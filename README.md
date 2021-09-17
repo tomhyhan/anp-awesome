@@ -1,1 +1,3 @@
 # anp-awesome
+
+init-test

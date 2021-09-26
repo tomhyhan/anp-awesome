@@ -1,0 +1,25 @@
+{
+  "name": "anp-awesome",
+  "version": "1.0.0",
+  "description": "init-test",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tomhyhan/anp-awesome.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tomhyhan/anp-awesome/issues"
+  },
+  "homepage": "https://github.com/tomhyhan/anp-awesome#readme",
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.4",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.13"
+  }
+}

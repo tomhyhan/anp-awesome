@@ -2,4 +2,4 @@
 
 init-test
 
-test webhook1
+test webhook2

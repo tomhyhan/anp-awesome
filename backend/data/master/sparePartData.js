@@ -44,7 +44,7 @@ export async function getAllById(materialMasterId) {
       [materialMasterId]
     )
     .then((result) => {
-      return result;
+      return result[0];
     });
 }
 
@@ -85,13 +85,49 @@ export async function create(spare_part) {
         new Date(),
       ]
     )
-    .then((result) => console.log(result));
+    .then((result) => getAllById(result[0].insertId));
 }
 
-/**
-  const query = `
-  INSERT INTO spare_part (spare_part_code, spare_part_desc, hsn_code, rate, uom, remarks, active_id, photo, created_by, created_date)
-  VALUES (?, ?)
-  `;
- * 
- */
+// getting a spare_part object
+export async function update(id, spare_part) {
+  const {
+    spare_part_code,
+    spare_part_desc,
+    hsn_code,
+    spare_part_group,
+    rate,
+    remarks,
+    active_id,
+    photo,
+  } = spare_part;
+
+  return db
+    .execute(
+      `
+  Update spare_part
+  SET 
+    spare_part_code=?,
+    spare_part_desc=?,
+    hsn_code=?,
+    spare_part_group=?,
+    rate=?,
+    remarks=?,
+    active_id=?,
+    photo=?
+  WHERE
+    material_master_id=?
+    `,
+      [
+        spare_part_code,
+        spare_part_desc,
+        hsn_code,
+        spare_part_group,
+        rate,
+        remarks,
+        active_id,
+        photo,
+        id,
+      ]
+    )
+    .then(() => getAllById(id));
+}

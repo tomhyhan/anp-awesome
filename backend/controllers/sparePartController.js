@@ -5,24 +5,43 @@ export async function getAllSpareParts(req, res, next) {
   const hsn_code = req.query.hsn_code;
 
   // exculde when hsn_code && spare_part_code exist for now
-  let sparePartdata;
+  let sparePart;
   if (spare_part_code) {
-    sparePartdata = await sparePartData.getAllBySparePartCode(spare_part_code);
+    sparePart = await sparePartData.getAllBySparePartCode(spare_part_code);
   } else if (hsn_code) {
-    sparePartdata = await sparePartData.getAllByHsnCode(hsn_code);
+    sparePart = await sparePartData.getAllByHsnCode(hsn_code);
   } else {
-    sparePartdata = await sparePartData.getAll();
+    sparePart = await sparePartData.getAll();
   }
 
-  return res.status(200).send(sparePartdata);
+  return res.status(200).json(sparePart);
 }
 
-export async function getById(req, res, next) {}
+export async function getById(req, res, next) {
+  const { id } = req.params;
+  const sparePart = await sparePartData.getAllById(id);
+
+  if (sparePart) {
+    res.status(200).json(sparePart);
+  } else {
+    res.status(404).json({ message: `Spare Part not Found` });
+  }
+}
 
 export async function postSparePart(req, res) {
   const { spare_part } = req.body;
-  await sparePartData.create(spare_part);
-  res.sendStatus(200);
+  const sparePart = await sparePartData.create(spare_part);
+  res.status(201).json(sparePart);
 }
 
-export async function updateSparePart(req, res, next) {}
+export async function updateSparePart(req, res) {
+  const { id } = req.params;
+  const { spare_part } = req.body;
+  console.log(spare_part);
+  const sparePart = await sparePartData.update(id, spare_part);
+  if (sparePart) {
+    res.status(200).json(sparePart);
+  } else {
+    res.status(404).json({ message: `Spare Part not Found` });
+  }
+}

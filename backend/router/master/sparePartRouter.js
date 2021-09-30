@@ -4,8 +4,8 @@ import * as sparePartController from '../../controllers/sparePartController.js';
 const router = express.Router();
 
 router.get('/', sparePartController.getAllSpareParts);
-router.get('/:id');
+router.get('/:id', sparePartController.getById);
 router.post('/', sparePartController.postSparePart);
-router.put('/:id');
+router.put('/:id', sparePartController.updateSparePart);
 
 export default router;

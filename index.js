@@ -1,18 +1,37 @@
-const express = require('express')
-const app = express()
-const path = require('path');
 
-app.use(express.static('public'));
+
+import express from 'express';
+import cors from 'cors';
+import morgan from 'morgan';
+import helmet from 'helmet';
+import path from 'path';
+
+// routers
+import sparePartRouter from './backend/router/master/sparePartRouter.js';
+import projectRouter from './backend/router/master/projectRouter.js';
+import DashboardRouter from './backend/router/Dashboard/DashboardRouter.js';
+import Pruchase_OrderRouter from './backend/router//Dashboard/Pruchase_OrderRouter.js';
+import errorRouter from './backend/router/error.js';
+
+const app = express();
+
+
 app.use(express.json());
-app.use('/static', express.static('public'));
+app.use(cors());
+app.use(morgan('tiny'));
+app.use(helmet());
+
+app.use('/master/spare_part', sparePartRouter);
+app.use('/master/project', projectRouter);
+app.use(errorRouter);
 
 
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname,"pages/Dashboard.html"))
-})
 
-app.get("/purchase-order-create", (req, res) => {
-  res.sendFile(path.join(__dirname,"pages/purchase_order_creation.html"))
-  })
+app.use("/Dashboard",DashboardRouter)
 
-app.listen(8080, () => console.log("listening on port 8080"))
+app.use("/Purchase-order-create", Pruchase_OrderRouter)
+
+  app.listen(8080, () => {
+    console.log('Listening on http://localhost:8080 🤗');
+  });
+  

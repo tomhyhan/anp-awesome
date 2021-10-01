@@ -7,14 +7,14 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
-    <link rel='stylesheet' href='/style.css'>
+    <link rel="stylesheet" href="/css/index.css" type="text/css" />
     <title>Dashboard</title>
   </head>
 
   <body>
 
     <nav class="navbar navbar-expand-lg navbar-light">
-      <a href='/'><img src="http://localhost:8080/static/Icons/Company-logo.png	"  alt="Responsive image" width="160" /></a>
+      <a href='/'><img src="/Icons/Company-logo.png	"  alt="Responsive image" width="160" /></a>
     
       <div class="collapse navbar-collapse " id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
@@ -45,21 +45,115 @@
         </ul>
       </div>
     </nav>
+   
 
-    <section class="bg-image w-100 p-3 h-200 d-inline-block" style="background: url('http://localhost:8080/static/Icons/bg1.png'); height: 22vh;">
+    <section class="bg-image w-100 p-3 h-200 d-inline-block" style="background: url('/Icons/bg1.png'); height: 22vh;">
       <h1>Dashboard</h1>
     </section>
 
-    <section style='height: 200px; background-color: white;'></section>
+    <section id="main-section-namepageline">
+      <h1 style="text-align:center;">Purchase Order</h1>
+    </section>
+
+
+    <section class="ml-3 mr-3 pb-0 mb-0 row" id="main-section-searchline">
+      <table id="main-table-selector">
+        <thead>
+          <tr style="color: rgb(110,144,161);">
+            <th scope="col">Company Code</th>
+            <th scope="col">Purchase Order No</th>
+            <th scope="col">SAP Vendor No</th>
+            <th scope="col">Vendor</th>
+            <th scope="col">Material Code</th>
+            <th scope="col">Material Desc</th>
+            <th scope="col">From Date</th>
+            <th scope="col">To Date</th>
+            
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><input class="form-control" type="text" name="Company-code" list="code-list">
+              <datalist id="code-list">
+                <option value="A0112635">
+                <option value="A9360000">
+              </datalist></td>
+            <td><input class="form-control"></td>
+            <td><input class="form-control"></td>
+            <td><input class="form-control "></td>
+            <td><input class="form-control"></td>
+            <td><input class="form-control"></td>
+            <td><input class="form-control"></td>
+            <td><input class="form-control "></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="ml-2 pt-4 row align-items-center">
+      <button type="submit" id="main-button-search"><i class="fa fa-search"></i> Search</button>
+      </div>
+      </section>
+    <section class="ml-3 mr-3 pt-0 mt-0" style="background-color: white">
+
+      <div >
+        <table id="main-table-orderinfo">
+          <thead>
+            <tr style="background-color: rgb(110,144,161); color:white;box-shadow: 0 8px 4px -2px #888888; ">
+              <th scope="col">S No.</th>
+              <th scope="col">TAMCO PO</th>
+              <th scope="col">MID AFRICA PO</th>
+              <th scope="col">SUPPIER</th>
+              <th scope="col">TOTAL PRICE</th>
+              <th scope="col">PO STATUS</th>
+              <th scope="col">CREATE GRN</th>
+              <th scope="col">VIEW</th>
+
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1.</th>
+              <td><input class="form-control input-lg"></td>
+              <td><input class="form-control input-lg"></td>
+              <td><input class="form-control input-lg"></td>
+              <td><input class="form-control input-lg"></td>
+              <td><input class="form-control input-lg"></td>
+              <td><input class="form-control input-lg"></td>
+              <td><input class="form-control input-lg"></td>
+            </tr>
+            <tr>
+              <th scope="row">2.</th>
+              <td><input class="form-control input-lg"></td>
+              <td><input class="form-control input-lg"></td>
+              <td><input class="form-control input-lg"></td>
+              <td><input class="form-control input-lg"></td>
+              <td><input class="form-control input-lg"></td>
+              <td><input class="form-control input-lg"></td>
+              <td><input class="form-control input-lg"></td>
+            </tr>
+            <tr>
+              <th scope="row">3.</th>
+              <td><input class="form-control input-lg"></td>
+              <td><input class="form-control input-lg"></td>
+              <td><input class="form-control input-lg"></td>
+              <td><input class="form-control input-lg"></td>
+              <td><input class="form-control input-lg"></td>
+              <td><input class="form-control input-lg"></td>
+              <td><input class="form-control input-lg"></td>
+            </tr>
+          </tbody>
+        </table>   
+      </div>
+    </section>
   
 
-    <section class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+    <section class="text-center p-3" style="background-color: rgba(177,192,199);">
 
-      <p>studio@tracecost.com</p>
-      <p>011- 26899274, +91-9999126111, +1-403 988 0111</p>
-      <p>Canada: 145-3553 31 St NW, Calgary, AB T2L 2K7</p>
-      <p>India: 352, Bhanu Pratap Estate, Sultanpur, Delhi 30</p>
-      <p>© 2021 Tracecost</p>
+      <p class="footer-p-companyinfo">studio@tracecost.com</p>
+      <p class="footer-p-companyinfo">011- 26899274, +91-9999126111, +1-403 988 0111</p>
+      <p class="footer-p-companyinfo">Canada: 145-3553 31 St NW, Calgary, AB T2L 2K7</p>
+      <p class="footer-p-companyinfo">India: 352, Bhanu Pratap Estate, Sultanpur, Delhi 30</p>
+      <p class="footer-p-companyinfo">© 2021 Tracecost</p>
       
     </section>
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

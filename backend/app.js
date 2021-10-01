@@ -17,6 +17,6 @@ app.use(helmet());
 app.use('/master/spare_part', sparePartRouter);
 app.use(errorRouter);
 
-app.listen(8080, () => {
+app.listen(process.env.PORT || 8080, () => {
   console.log('Listening on http://localhost:8080 🤗');
 });

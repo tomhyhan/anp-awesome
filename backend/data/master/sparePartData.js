@@ -58,7 +58,7 @@ export async function create(spare_part) {
     hsn_code,
     spare_part_group,
     rate,
-    uom,
+    frn_uom,
     remarks,
     active_id,
     created_by,
@@ -68,7 +68,7 @@ export async function create(spare_part) {
   return db
     .execute(
       `
-  INSERT INTO spare_part (spare_part_code, spare_part_desc, hsn_code, spare_part_group, rate, uom, remarks, active_id, photo, created_by, created_date)
+  INSERT INTO spare_part (spare_part_code, spare_part_desc, hsn_code, spare_part_group, rate, frn_uom, remarks, active_id, photo, created_by, created_date)
   VALUES (?,?,?,?,?,?,?,?,?,?,?)
   `,
       [
@@ -77,7 +77,7 @@ export async function create(spare_part) {
         hsn_code,
         spare_part_group,
         rate,
-        uom,
+        frn_uom,
         remarks,
         active_id,
         photo,
@@ -89,6 +89,7 @@ export async function create(spare_part) {
 }
 
 // getting a spare_part object
+// *** need to add uom ***
 export async function update(id, spare_part) {
   const {
     spare_part_code,

@@ -1,4 +1,4 @@
-import * as sparePartData from '../data/master/sparePartData.js';
+import * as sparePartData from '../../data/master/sparePartData.js';
 
 export async function getAllSpareParts(req, res, next) {
   const spare_part_code = req.query.spare_part_code;
@@ -37,7 +37,6 @@ export async function postSparePart(req, res) {
 export async function updateSparePart(req, res) {
   const { id } = req.params;
   const { spare_part } = req.body;
-  console.log(spare_part);
   const sparePart = await sparePartData.update(id, spare_part);
   if (sparePart) {
     res.status(200).json(sparePart);

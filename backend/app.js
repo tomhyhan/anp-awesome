@@ -5,6 +5,11 @@ import helmet from 'helmet';
 
 // routers
 import sparePartRouter from './router/master/sparePartRouter.js';
+import projectRouter from './router/master/projectRouter.js';
+import uomRouter from './router/master/uomRouter.js';
+import vendorRouter from './router/master/vendorRouter.js';
+import employeeRouter from './router/master/employeeRouter.js';
+import aircraftRouter from './router/master/aircraftRouter.js';
 import errorRouter from './router/error.js';
 
 const app = express();
@@ -15,6 +20,11 @@ app.use(morgan('tiny'));
 app.use(helmet());
 
 app.use('/master/spare_part', sparePartRouter);
+app.use('/master/project', projectRouter);
+app.use('/master/uom', uomRouter);
+app.use('/master/vendor', vendorRouter);
+app.use('/master/employee', employeeRouter);
+app.use('/master/spare_part', aircraftRouter);
 app.use(errorRouter);
 
 app.listen(process.env.PORT || 8080, () => {

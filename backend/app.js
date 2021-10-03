@@ -12,6 +12,8 @@ import employeeRouter from './router/master/employeeRouter.js';
 import aircraftRouter from './router/master/aircraftRouter.js';
 import errorRouter from './router/error.js';
 
+import { config } from './config.js';
+
 const app = express();
 
 app.use(express.json());
@@ -27,6 +29,6 @@ app.use('/master/employee', employeeRouter);
 app.use('/master/spare_part', aircraftRouter);
 app.use(errorRouter);
 
-app.listen(process.env.PORT || 8080, () => {
-  console.log('Listening on http://localhost:8080 🤗');
+app.listen(config.host.port, () => {
+  console.info(`Listening on http://localhost:${config.host.port} 🤗`);
 });

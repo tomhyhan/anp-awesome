@@ -54,7 +54,7 @@ export async function update(id, unit_of_measure) {
   return db
     .execute(
       `
-  Update project
+  Update uom
   SET 
   uom=?,     
   WHERE

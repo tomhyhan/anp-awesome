@@ -3,7 +3,7 @@ import * as aircraftData from '../../data/master/aircraftData.js';
 export async function getAllAircraft(req, res, next) {
   const aircraftName = req.query.aircraft_name;
 
-  const aircraft = await (aircraft_name
+  const aircraft = await (aircraftName
     ? await aircraftData.getallbyAircraftName(aircraftName)
     : await aircraftData.getAll());
 

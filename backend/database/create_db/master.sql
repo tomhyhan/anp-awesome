@@ -1,6 +1,16 @@
 create database inventory_dev;
 use inventory_dev;
 
+CREATE TABLE uom (
+  uom_id int NOT NULL AUTO_INCREMENT,
+  uom varchar(100) DEFAULT NULL,
+  remarks varchar(250) DEFAULT NULL,
+  created_by varchar(100) DEFAULT NULL,
+  created_date  Date,
+  PRIMARY KEY (uom_id)
+);
+
+
 CREATE TABLE spare_part (
   material_master_id INTEGER PRIMARY KEY AUTO_INCREMENT,
   spare_part_code VARCHAR(100),     
@@ -10,7 +20,7 @@ CREATE TABLE spare_part (
   rate DOUBLE,                      
   frn_uom INTEGER,                      
   remarks VARCHAR(100),             
-  active_id INTEGER DEFAULT 1,      
+  active_id INTEGER DEFAULT 1,
   photo VARCHAR(255),               
   created_by VARCHAR(100),         
   created_date Date,
@@ -25,17 +35,10 @@ CREATE TABLE project (
   remarks VARCHAR(100),             
   active_id INTEGER DEFAULT 1,      
   created_by VARCHAR(100),         
-  created_date Date,
+  created_date Date
 );
 
-CREATE TABLE uom (
-  uom_id int NOT NULL AUTO_INCREMENT,
-  uom varchar(100) DEFAULT NULL,
-  remarks varchar(250) DEFAULT NULL,
-  created_by varchar(100) DEFAULT NULL,
-  created_date  Date,
-  PRIMARY KEY (uom_id)
-);
+
 
 CREATE TABLE vendor (
 	vendor_id INT NOT NULL AUTO_INCREMENT,
@@ -49,14 +52,14 @@ CREATE TABLE vendor (
     PRIMARY KEY (vendor_id)
 );
 
-CREATE TABLE employees (
+CREATE TABLE employee (
   	emp_id INT NOT NULL AUTO_INCREMENT,
     emp_name VARCHAR(30) NOT NULL,
     emp_code VARCHAR(30) NOT NULL,
-    site_master_id VARCHAR(30) NOT NULL,
+    site_master_id int NOT NULL,
     contact VARCHAR(30) NOT NULL,
     address VARCHAR(30) NOT NULL,
-    desination VARCHAR(30) NOT NULL,
+    designation VARCHAR(30) NOT NULL,
     department VARCHAR(30) NOT NULL,
     remarks VARCHAR(100) NOT NULL,
     created_by VARCHAR(30) NOT NULL,

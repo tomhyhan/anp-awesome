@@ -56,7 +56,7 @@ export async function update(id, unit_of_measure) {
       `
   Update uom
   SET 
-  uom=?,     
+  uom=?     
   WHERE
     uom_id=?
     `,

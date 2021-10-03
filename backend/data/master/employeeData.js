@@ -38,7 +38,7 @@ export async function getAllById(emp_id) {
   return db
     .execute(
       `
-    SELECT * FROM spare_part
+    SELECT * FROM employee
     WHERE emp_id=?
     `,
       [emp_id]
@@ -55,17 +55,16 @@ export async function create(employee) {
     site_master_id,
     contact,
     address,
-    desination,
+    designation,
     department,
     remarks,
     created_by,
-    created_date,
   } = employee;
 
   return db
     .execute(
       `
-  INSERT INTO spare_part (emp_name, emp_code, site_master_id, contact, address, desination, department, remarks, created_by, created_date)
+  INSERT INTO employee (emp_name, emp_code, site_master_id, contact, address, designation, department, remarks, created_by, created_date)
   VALUES (?,?,?,?,?,?,?,?,?,?)
   `,
       [
@@ -74,7 +73,7 @@ export async function create(employee) {
         site_master_id,
         contact,
         address,
-        desination,
+        designation,
         department,
         remarks,
         created_by,
@@ -91,7 +90,7 @@ export async function update(id, employee) {
     site_master_id,
     contact,
     address,
-    desination,
+    designation,
     department,
     remarks,
   } = employee;
@@ -106,7 +105,7 @@ export async function update(id, employee) {
     site_master_id=?,
     contact=?,
     address=?,
-    desination=?,
+    designation=?,
     department=?,
     remarks=?
   WHERE
@@ -118,9 +117,10 @@ export async function update(id, employee) {
         site_master_id,
         contact,
         address,
-        desination,
+        designation,
         department,
         remarks,
+        id,
       ]
     )
     .then(() => getAllById(id));

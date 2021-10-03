@@ -7,9 +7,9 @@ export async function getAllemployees(req, res, next) {
   // exculde when hsn_code && spare_part_code exist for now
   let employee;
   if (empCode) {
-    employee = await employeeData.getAllByEmployeeCode(spare_part_code);
+    employee = await employeeData.getAllByEmployeeCode(empCode);
   } else if (empName) {
-    employee = await employeeData.getAllByEmployeeName(hsn_code);
+    employee = await employeeData.getAllByEmployeeName(empName);
   } else {
     employee = await employeeData.getAll();
   }
@@ -30,7 +30,9 @@ export async function getById(req, res) {
 
 export async function postEmployee(req, res) {
   const { employee } = req.body;
+
   const newEmployee = await employeeData.create(employee);
+
   res.status(201).json(newEmployee);
 }
 
@@ -39,7 +41,7 @@ export async function updateEmployee(req, res) {
   const { employee } = req.body;
   const updatedEmployee = await employeeData.update(id, employee);
   if (updatedEmployee) {
-    res.status(200).json(employee);
+    res.status(200).json(updatedEmployee);
   } else {
     res.status(404).json({ message: `Spare Part not Found` });
   }

@@ -20,7 +20,7 @@ export async function getAllByVendorCode(vendor_code) {
     });
 }
 
-export async function getAllByHsnCode(vendor_name) {
+export async function getAllVendorName(vendor_name) {
   return db
     .execute(
       `
@@ -49,24 +49,26 @@ export async function getById(vendor_id) {
 }
 
 export async function create(vendor) {
-  const {
-    vendor_name,
-    vendor_code,
-    contact,
-    address,
-    created_by,
-    created_date,
-  } = vendor;
+  const { vendor_name, vendor_code, contact, address, remarks, created_by } =
+    vendor;
 
   return db
     .execute(
       `
-  INSERT INTO vendor (vendor_name, vendor_code, contact, address, created_by, created_date)
-  VALUES (?,?,?,?,?,?)
+  INSERT INTO vendor (vendor_name, vendor_code, contact, address, remarks, created_by, created_date)
+  VALUES (?,?,?,?,?,?,?)
   `,
-      [vendor_name, vendor_code, contact, address, created_by, new Date()]
+      [
+        vendor_name,
+        vendor_code,
+        contact,
+        address,
+        remarks,
+        created_by,
+        new Date(),
+      ]
     )
-    .then((result) => getAllById(result[0].insertId));
+    .then((result) => getById(result[0].insertId));
 }
 
 // getting a spare_part object
@@ -81,11 +83,11 @@ export async function update(id, vendor) {
     vendor_name=?,
     vendor_code=?,
     contact=?,
-    address=?,
+    address=?
   WHERE
     vendor_id=?
     `,
-      [vendor_name, vendor_code, contact, address]
+      [vendor_name, vendor_code, contact, address, id]
     )
-    .then(() => getAllById(id));
+    .then(() => getById(id));
 }

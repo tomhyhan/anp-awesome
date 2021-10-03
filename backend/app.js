@@ -26,7 +26,7 @@ app.use('/master/project', projectRouter);
 app.use('/master/uom', uomRouter);
 app.use('/master/vendor', vendorRouter);
 app.use('/master/employee', employeeRouter);
-app.use('/master/spare_part', aircraftRouter);
+app.use('/master/aircraft', aircraftRouter);
 app.use(errorRouter);
 
 app.listen(config.host.port, () => {

@@ -25,7 +25,7 @@ export async function getById(aircraftid) {
     .execute(
       `
     SELECT * FROM aircraft
-    WHERE aircraft_id=?
+    WHERE material_aircraft_id=?
     `,
       [aircraftid]
     )
@@ -58,9 +58,9 @@ export async function update(id, aircraft) {
   Update aircraft
   SET 
     aircraft_name=?,
-    remarks=?,
+    remarks=?
   WHERE
-    aircraft_id=?
+    material_aircraft_id=?
     `,
       [aircraft_name, remarks, id]
     )

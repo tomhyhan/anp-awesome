@@ -8,7 +8,7 @@ export async function getAllvendors(req, res, next) {
   if (vendorCode) {
     vendor = await vendorData.getAllByVendorCode(vendorCode);
   } else if (vendorName) {
-    vendor = await vendorData.getAllByHsnCode(vendorName);
+    vendor = await vendorData.getAllVendorName(vendorName);
   } else {
     vendor = await vendorData.getAll();
   }
@@ -29,14 +29,14 @@ export async function getById(req, res) {
 
 export async function postVendor(req, res) {
   const { vendor } = req.body;
-  const newVendor = await sparePartData.create(vendor);
+  const newVendor = await vendorData.create(vendor);
   res.status(201).json(newVendor);
 }
 
 export async function updateVendor(req, res) {
   const { id } = req.params;
   const { vendor } = req.body;
-  const udpatedVendor = await sparePartData.update(id, vendor);
+  const udpatedVendor = await vendorData.update(id, vendor);
   if (udpatedVendor) {
     res.status(200).json(udpatedVendor);
   } else {

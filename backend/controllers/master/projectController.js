@@ -17,7 +17,7 @@ export async function getById(req, res, next) {
   if (project) {
     res.status(200).json(project);
   } else {
-    res.status(404).json({ message: `project not Found` });
+    res.status(404).json({ message: `Project not Found` });
   }
 }
 
@@ -37,6 +37,6 @@ export async function updateproject(req, res) {
   if (project) {
     res.status(200).json(project);
   } else {
-    res.status(404).json({ message: `project not Found` });
+    res.status(404).json({ message: `Project not Found` });
   }
 }

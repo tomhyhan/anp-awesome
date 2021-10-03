@@ -17,7 +17,7 @@ export async function getById(req, res, next) {
   if (aircraft) {
     res.status(200).json(aircraft);
   } else {
-    res.status(404).json({ message: `aircraft not Found` });
+    res.status(404).json({ message: `Aircraft not Found` });
   }
 }
 
@@ -35,6 +35,6 @@ export async function updateAircraft(req, res) {
   if (updatedAircraft) {
     res.status(200).json(updatedAircraft);
   } else {
-    res.status(404).json({ message: `aircraft not Found` });
+    res.status(404).json({ message: `Aircraft not Found` });
   }
 }

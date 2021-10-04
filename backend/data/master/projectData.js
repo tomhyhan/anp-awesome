@@ -6,7 +6,7 @@ export async function getAll() {
   });
 }
 
-export async function getAllByproject_code(project_code) {
+export async function getAllByprojectCode(project_code) {
   return db
     .execute(
       `
@@ -34,15 +34,9 @@ export async function getAllById(materialMasterId) {
     });
 }
 
-
 export async function create(project_new) {
-  const {
-    project_name,     
-    project_code,     
-    remarks,             
-    active_id,      
-    created_by,
-  } = project_new;
+  const { project_name, project_code, remarks, active_id, created_by } =
+    project_new;
 
   return db
     .execute(
@@ -50,26 +44,13 @@ export async function create(project_new) {
   INSERT INTO project (project_name, project_code, remarks, active_id, created_by, created_date)
   VALUES (?,?,?,?,?,?)
   `,
-      [
-        project_name,
-        project_code,  
-        remarks,
-        active_id,
-        created_by,
-        new Date(),
-      ]
+      [project_name, project_code, remarks, active_id, created_by, new Date()]
     )
     .then((result) => getAllById(result[0].insertId));
 }
 
-
 export async function update(id, project_update) {
-  const {
-    project_name,     
-    project_code,     
-    remarks,             
-    active_id, 
-  } = project_update;
+  const { project_name, project_code, remarks, active_id } = project_update;
 
   return db
     .execute(
@@ -83,13 +64,7 @@ export async function update(id, project_update) {
   WHERE
     project_master_id=?
     `,
-      [
-        project_name,     
-        project_code,     
-        remarks,             
-        active_id, 
-        id, 
-      ]
+      [project_name, project_code, remarks, active_id, id]
     )
     .then(() => getAllById(id));
 }

@@ -1,8 +1,8 @@
 {
   "name": "anp-awesome",
   "version": "1.0.0",
-  "description": "init-test",
-  "main": "index.js",
+  "description": "Inventory Management System for MRO",
+  "main": "app.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -12,14 +12,16 @@
     "type": "git",
     "url": "git+https://github.com/tomhyhan/anp-awesome.git"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "BCIT",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/tomhyhan/anp-awesome/issues"
   },
   "homepage": "https://github.com/tomhyhan/anp-awesome#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.13"
+  },
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^5.15.4",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
@@ -27,7 +29,6 @@
     "express-validator": "^6.12.2",
     "helmet": "^4.6.0",
     "morgan": "^1.10.0",
-    "mysql2": "^2.3.0",
-    "nodemon": "^2.0.13"
+    "mysql2": "^2.3.0"
   }
 }

@@ -1,5 +1,5 @@
 import express from 'express';
-import * as sparePartController from '../../controllers/sparePartController.js';
+import * as sparePartController from '../../controllers/master/sparePartController.js';
 
 const router = express.Router();
 

@@ -1,7 +1,14 @@
 import { db } from '../../database/database.js';
 
+const SELECT_JOIN = `
+SELECT sp.spare_part_code, sp.spare_part_desc, sp.hsn_code ,sp.spare_part_group ,sp.rate ,uom.uom, sp.remarks, sp.photo, sp.created_by, sp.created_date 
+FROM spare_part as sp 
+JOIN uom 
+On sp.frn_uom = uom.uom_id
+`;
+
 export async function getAll() {
-  return db.execute(`SELECT * FROM spare_part`).then((result) => {
+  return db.execute(SELECT_JOIN).then((result) => {
     return result[0];
   });
 }
@@ -10,7 +17,7 @@ export async function getAllBySparePartCode(spare_part_code) {
   return db
     .execute(
       `
-    SELECT * FROM spare_part
+    ${SELECT_JOIN}
     WHERE spare_part_code=?
     `,
       [spare_part_code]
@@ -24,7 +31,7 @@ export async function getAllByHsnCode(hsn_code) {
   return db
     .execute(
       `
-    SELECT * FROM spare_part
+    ${SELECT_JOIN}
     WHERE hsn_code=?
     `,
       [hsn_code]
@@ -38,7 +45,7 @@ export async function getAllById(materialMasterId) {
   return db
     .execute(
       `
-    SELECT * FROM spare_part
+    ${SELECT_JOIN}
     WHERE material_master_id=?
     `,
       [materialMasterId]
@@ -58,7 +65,7 @@ export async function create(spare_part) {
     hsn_code,
     spare_part_group,
     rate,
-    uom,
+    frn_uom,
     remarks,
     active_id,
     created_by,
@@ -68,7 +75,7 @@ export async function create(spare_part) {
   return db
     .execute(
       `
-  INSERT INTO spare_part (spare_part_code, spare_part_desc, hsn_code, spare_part_group, rate, uom, remarks, active_id, photo, created_by, created_date)
+  INSERT INTO spare_part (spare_part_code, spare_part_desc, hsn_code, spare_part_group, rate, frn_uom, remarks, active_id, photo, created_by, created_date)
   VALUES (?,?,?,?,?,?,?,?,?,?,?)
   `,
       [
@@ -77,7 +84,7 @@ export async function create(spare_part) {
         hsn_code,
         spare_part_group,
         rate,
-        uom,
+        frn_uom,
         remarks,
         active_id,
         photo,
@@ -89,6 +96,7 @@ export async function create(spare_part) {
 }
 
 // getting a spare_part object
+// *** need to add uom ***
 export async function update(id, spare_part) {
   const {
     spare_part_code,

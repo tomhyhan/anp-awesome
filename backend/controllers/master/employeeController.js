@@ -4,7 +4,6 @@ export async function getAllemployees(req, res, next) {
   const empCode = req.query.emp_code;
   const empName = req.query.emp_name;
 
-  // exculde when hsn_code && spare_part_code exist for now
   let employee;
   if (empCode) {
     employee = await employeeData.getAllByEmployeeCode(empCode);
@@ -43,6 +42,6 @@ export async function updateEmployee(req, res) {
   if (updatedEmployee) {
     res.status(200).json(updatedEmployee);
   } else {
-    res.status(404).json({ message: `Spare Part not Found` });
+    res.status(404).json({ message: `Employee not Found` });
   }
 }

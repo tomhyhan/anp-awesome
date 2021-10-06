@@ -9,9 +9,11 @@
     <li>    {{sparePart.spare_part_desc}}</li>
     <li>    {{sparePart.uom}}</li>
     <li>    {{sparePart.spare_part_group}}</li>
+    <li>    {{sparePart.material_master_id}}</li>
 </ul>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Update Spare Part</button>
 
-<app-edit-spare-part [sparePart]="sparePart" ></app-edit-spare-part>
+<app-edit-spare-part [sparePart]="sparePart" (onUpdateSparePart)="updateSparePart($event)" ></app-edit-spare-part>
 
 
 

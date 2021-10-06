@@ -22,7 +22,21 @@ export class SparePartsComponent implements OnInit {
     this.sparePartService
       .addSparePart(sparePart)
       .subscribe((sparePart: any) => {
-        this.spareParts.push(sparePart[0]);
+        this.spareParts = [...this.spareParts, sparePart[0]];
+      });
+  }
+
+  updateSparePart(sparePart: any) {
+    this.sparePartService
+      .updateSparePart(sparePart.sparePart, sparePart.id)
+      .subscribe((updated: any) => {
+        const newSpareParts = this.spareParts.map((sparePart: any) => {
+          if (sparePart.id === updated[0].id) {
+            return updated[0];
+          }
+          return sparePart;
+        });
+        this.spareParts = newSpareParts;
       });
   }
 }

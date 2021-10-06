@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { SparePartComponent } from './components/master/spare-part/spare-part.component';
@@ -29,6 +30,7 @@ import { FooterComponent } from './components/footer/footer.component';
     HttpClientModule,
     FormsModule,
     NgbModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

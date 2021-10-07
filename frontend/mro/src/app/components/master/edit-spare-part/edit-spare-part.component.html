@@ -1,5 +1,6 @@
+<button type="button" class="btn btn-primary" data-toggle="modal"  attr.data-target="#{{ sparePart.material_master_id }}" data-whatever="@getbootstrap" data-backdrop="false">Update Spare Part</button>
 
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" attr.id="{{ sparePart.material_master_id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -9,24 +10,21 @@
         </button>
       </div>
       <div class="modal-body">
-         <form [formGroup]="sparePartForm" (ngSubmit)="onSubmit()">     
+         <form  [formGroup]="sparePartForm" (ngSubmit)="onSubmit()">     
           <div class="form-group">
             <label for="recipient-name" class="col-form-label">Spare Part Code</label>
-            <input formControlName="sparePartCode" type="text"  name="sparePartCode"  class="form-control" id="recipient-name" value="{{sparePart.spare_part_code}}"> 
+            <input formControlName="sparePartCode" type="text"  name="sparePartCode"  class="form-control" id="recipient-name" > 
           </div>
           <div class="form-group">
             <label for="recipient-name" class="col-form-label">HSN code</label>
-            <input formControlName="hsnCode" type="text" name="hsnCode"  class="form-control" id="recipient-name" value="{{sparePart.hsn_code}}" >
+            <input formControlName="hsnCode" type="text" name="hsnCode"  class="form-control" id="recipient-name" >
           </div>
           <div class="form-group">
             <label for="recipient-name" class="col-form-label">Description</label>
-            <input formControlName="sparePartDesc" type="text" name="sparePartDesc"  class="form-control" id="recipient-name" value="{{sparePart.spare_part_desc}}">
+            <input formControlName="sparePartDesc" type="text" name="sparePartDesc"  class="form-control" id="recipient-name">
           </div>
           <button type="submit" class="btn btn-primary">Send message</button>
         </form>
-      </div>
-      <div class="modal-footer">
-        
       </div>
     </div>
   </div>
@@ -35,3 +33,16 @@
 <!-- value={{ sparePart.spare_part_code}}
 value={{ sparePart.hsn_code}}
 value={{ spare_part.spare_part_desc}} -->
+
+<!-- <div class="form-group">
+  <label for="recipient-name" class="col-form-label">Spare Part Code</label>
+  <input formControlName="sparePartCode" type="text"  name="sparePartCode"  class="form-control" id="recipient-name" value="{{sparePart.spare_part_code}}"> 
+</div>
+<div class="form-group">
+  <label for="recipient-name" class="col-form-label">HSN code</label>
+  <input formControlName="hsnCode" type="text" name="hsnCode"  class="form-control" id="recipient-name" value="{{sparePart.hsn_code}}" >
+</div>
+<div class="form-group">
+  <label for="recipient-name" class="col-form-label">Description</label>
+  <input formControlName="sparePartDesc" type="text" name="sparePartDesc"  class="form-control" id="recipient-name" value="{{sparePart.spare_part_desc}}">
+</div> -->

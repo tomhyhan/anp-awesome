@@ -7,7 +7,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export class SparePartComponent implements OnInit {
   @Input() sparePart: any;
   @Output() onUpdateSparePart = new EventEmitter();
-
+  numbers = [1, 2, 3, 4, 5];
   constructor() {}
 
   ngOnInit(): void {}

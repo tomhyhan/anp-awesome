@@ -1,0 +1,9 @@
+<h3>Project</h3>
+<ul>
+    <li>    {{project.created_date}}</li>
+    <li>    {{project.project_code}}</li>
+    <li>    {{project.project_name}}</li>
+</ul>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Update project</button>
+
+<app-edit-project [project]="project" (onUpdateproject)="updateproject($event)" ></app-edit-project>

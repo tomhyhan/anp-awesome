@@ -1,0 +1,6 @@
+<app-add-project (onCreateproject)="createTask($event)"></app-add-project>
+<app-project
+ *ngFor="let project of projects"
+ [project]="project"
+ (onUpdateproject)="updateproject($event)"
+></app-project>

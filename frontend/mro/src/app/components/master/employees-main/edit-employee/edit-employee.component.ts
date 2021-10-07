@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { EmployeeService } from 'src/app/services/master/employee.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-edit-employee',
@@ -15,7 +16,7 @@ export class EditEmployeeComponent implements OnInit {
   id: any;
 
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: FormBuilder, private router: Router) {}
 
   ngOnInit(): void {
     this.employeeForm = this.formBuilder.group({
@@ -30,10 +31,10 @@ export class EditEmployeeComponent implements OnInit {
       createdBy: '',
       createdDate: '',
     });
-    this.updateValues();
+    this.updateEmployees();
   }
 
-updateValues() {
+updateEmployees() {
   this.employeeForm.patchValue({
     empName: this.employee.emp_name,
     empCode: this.employee.emp_code,
@@ -45,23 +46,23 @@ updateValues() {
     remarks: this.employee.remarks,
     createdBy: this.employee.created_by,
     createdDate: this.employee.created_date,
-  })
+  });
 }
 
 
 onSubmit() {
   const updateEmployee = {
     employee: {
-      empName: this.employee.emp_name,
-      empCode: this.employee.emp_code,
-      siteMasterId: this.employee.site_master_id,
-      contact: this.employee.contact,
-      address: this.employee.address,
-      designation: this.employee.designation,
-      department: this.employee.department,
-      remarks: this.employee.remarks,
-      createdBy: this.employee.created_by,
-      createdDate: this.employee.created_date,
+      empName: this.employeeForm.value.emp_name,
+      empCode: this.employeeForm.value.emp_code,
+      siteMasterId: this.employeeForm.value.site_master_id,
+      contact: this.employeeForm.value.contact,
+      address: this.employeeForm.value.address,
+      designation: this.employeeForm.value.designation,
+      department: this.employeeForm.value.department,
+      remarks: this.employeeForm.value.remarks,
+      createdBy: this.employeeForm.value.created_by,
+      createdDate: this.employeeForm.value.created_date,
     },
   };
 

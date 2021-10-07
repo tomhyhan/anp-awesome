@@ -25,18 +25,4 @@ export class EmployeesComponent implements OnInit {
         this.employees = [...this.employees, employee[0]];
       });
   }
-
-  updateEmployee(Employee: any) {
-    this.employeeService
-      .updateEmployee(Employee.employee, Employee.id)
-      .subscribe((updated: any) => {
-        const newEmployees = this.employees.map((employee: any) => {
-          if (employee.id === updated[0].id) {
-            return updated[0];
-          }
-          return employee;
-        });
-        this.employees = newEmployees;
-      });
-  }
 }

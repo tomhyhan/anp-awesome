@@ -1,5 +1,10 @@
 .mat-table {
+  margin-top: 2%;
   width:100%;
+}
+
+.mat-header-cell {
+  background-color: #6e90a1;
 }
 
 .mat-row .mat-cell {
@@ -9,6 +14,6 @@
   }
   
   .mat-row:hover .mat-cell {
-    border-color: currentColor;
-  }
+    border-color: #6e90a1;
+  };
   

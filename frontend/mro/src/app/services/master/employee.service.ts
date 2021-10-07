@@ -11,20 +11,20 @@ const httpOptions = {
 @Injectable({
   providedIn: 'root',
 })
-export class SparePartService {
-  apiUrl = 'http://localhost:8080/master/spare_part';
+export class EmployeeService {
+  apiUrl = 'http://localhost:8080/master/employee';
 
   constructor(private http: HttpClient) {}
 
-  getSparePart() {
+  getEmployee() {
     return this.http.get(this.apiUrl);
   }
 
-  addSparePart(sparePart: any) {
-    return this.http.post(this.apiUrl, sparePart, httpOptions);
+  addEmployee(employee: any) {
+    return this.http.post(this.apiUrl, employee, httpOptions);
   }
 
-  updateSparePart(sparePart: any, id: any) {
-    return this.http.put(`${this.apiUrl}/${id}`, sparePart, httpOptions);
+  updateEmployee(employee: any, id: any) {
+    return this.http.put(`${this.apiUrl}/${id}`, employee, httpOptions);
   }
 }

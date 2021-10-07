@@ -1,0 +1,35 @@
+<form  (ngSubmit)="onSubmit() ">
+  <section class="ml-3 mr-3 pb-0  row "  id="main-section-searchline">
+    <table id="main-table-selector">
+      <thead>
+        <tr style="color: rgb(110,144,161);">
+          <th scope="col"><label for="empCode">Employee Code</label></th>
+          <th scope="col"><label for="empName">Employee Name</label></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><input
+            class="form-control"
+            type="text"
+            name="empCode"
+            [(ngModel)]="empCode"
+            id="empCode"
+            placeholder="code"
+          /></td>
+          <td><input
+            class="form-control"
+            type="text"
+            name="empName"
+            [(ngModel)]="empName"
+            id="empName"
+            placeholder="empName"
+          /></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="ml-2 pt-5 row align-items-center">
+    <button id="main-button-add_project" type="submit" ><i class="fa fa-plus-circle">Add Employee</i></button>
+  </div>
+  </section>
+  </form>

@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { SparePartsComponent } from './components/master/spare-parts/spare-parts.component';
-import { EditSparePartComponent } from './components/master/edit-spare-part/edit-spare-part.component';
+import { EmployeesComponent } from './components/master/employees-main/employees/employees.component';
+
 
 const routes: Routes = [
-  { path: 'master/spare_part', component: SparePartsComponent },
+  { path: 'master/employees', component: EmployeesComponent },
 ];
 
 @NgModule({
@@ -13,4 +13,3 @@ const routes: Routes = [
 })
 export class AppRoutingModule {}
 
-// { path: 'master/spare_part/:id', component: EditSparePartComponent }

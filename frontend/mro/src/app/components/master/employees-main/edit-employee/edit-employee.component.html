@@ -1,5 +1,4 @@
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Update Spare Part</button>
-
+<!-- 
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -10,25 +9,29 @@
         </button>
       </div>
       <div class="modal-body">
-        <form (ngSubmit)="onSubmit()">
+         <form [formGroup]="sparePartForm" (ngSubmit)="onSubmit()">     
           <div class="form-group">
             <label for="recipient-name" class="col-form-label">Spare Part Code</label>
-            <input type="text"  name="sparePartCode" [(ngModel)]="sparePartCode" class="form-control" id="recipient-name" value={{sparePart.spare_part_code}}>
+            <input formControlName="sparePartCode" type="text"  name="sparePartCode"  class="form-control" id="recipient-name" value="{{sparePart.spare_part_code}}"> 
           </div>
           <div class="form-group">
-            <label for="recipient-name" class="col-form-label"></label>
-            <input type="text" name="hsnCode" [(ngModel)]="hsnCode" class="form-control" id="recipient-name" value={{sparePart.hsn_code}}>
+            <label for="recipient-name" class="col-form-label">HSN code</label>
+            <input formControlName="hsnCode" type="text" name="hsnCode"  class="form-control" id="recipient-name" value="{{sparePart.hsn_code}}" >
           </div>
           <div class="form-group">
             <label for="recipient-name" class="col-form-label">Description</label>
-            <input type="text" name="sparePartDesc" [(ngModel)]="sparePartDesc" class="form-control" id="recipient-name" value={{sparePart.spare_part_desc}}>
+            <input formControlName="sparePartDesc" type="text" name="sparePartDesc"  class="form-control" id="recipient-name" value="{{sparePart.spare_part_desc}}">
           </div>
+          <button type="submit" class="btn btn-primary">Send message</button>
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Send message</button>
+        
       </div>
     </div>
   </div>
 </div>
+
+<!-- value={{ sparePart.spare_part_code}}
+value={{ sparePart.hsn_code}}
+value={{ spare_part.spare_part_desc}} --> -->

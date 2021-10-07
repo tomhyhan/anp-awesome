@@ -4,22 +4,28 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { MatTableModule } from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 import { AppComponent } from './app.component';
-import { SparePartComponent } from './components/master/spare-part/spare-part.component';
-import { SparePartsComponent } from './components/master/spare-parts/spare-parts.component';
-import { AddSparePartComponent } from './components/master/add-spare-part/add-spare-part.component';
-import { EditSparePartComponent } from './components/master/edit-spare-part/edit-spare-part.component';
+import { EmployeeComponent } from './components/master/employees-main/employee/employee.component';
+import { EmployeesComponent } from './components/master/employees-main/employees/employees.component';
+import { AddEmployeeComponent } from './components/master/employees-main/add-employee/add-employee.component';
+import { EditEmployeeComponent } from './components/master/employees-main/edit-employee/edit-employee.component';
+import { EmployeeTableComponent } from './components/master/employees-main/employee-table/employee-table.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    SparePartComponent,
-    SparePartsComponent,
-    AddSparePartComponent,
-    EditSparePartComponent,
+    EmployeeComponent,
+    EmployeesComponent,
+    AddEmployeeComponent,
+    EditEmployeeComponent,
+    EmployeeTableComponent,
     HeaderComponent,
     FooterComponent,
   ],
@@ -29,6 +35,9 @@ import { FooterComponent } from './components/footer/footer.component';
     HttpClientModule,
     FormsModule,
     NgbModule,
+    BrowserAnimationsModule,
+    MatTableModule,
+    MatPaginatorModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

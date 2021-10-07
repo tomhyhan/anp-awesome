@@ -1,0 +1,6 @@
+<app-add-vendor (onCreateVendor)="createTask($event)"></app-add-vendor>
+<app-vendor
+ *ngFor="let vendor of vendors"
+ [vendor]="vendor"
+ (onUpdateVendor)="updateVendor($event)"
+></app-vendor>

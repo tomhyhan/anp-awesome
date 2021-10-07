@@ -1,0 +1,35 @@
+<form  (ngSubmit)="onSubmit() ">
+  <section class="ml-3 mr-3 pb-0  row "  id="main-section-searchline">
+    <table id="main-table-selector">
+      <thead>
+        <tr style="color: rgb(110,144,161);">
+          <th scope="col"><label for="VendorCode">Vendor Code</label></th>
+          <th scope="col"><label for="VendorName">Vendor Name</label></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><input
+            class="form-control"
+            type="text"
+            name="VendorCode"
+            [(ngModel)]="VendorCode"
+            id="VendorCode"
+            placeholder="Vendor Code"
+          /></td>
+          <td><input
+            class="form-control"
+            type="text"
+            name="VendorName"
+            [(ngModel)]="VendorName"
+            id="VendorName"
+            placeholder="Vendor Name"
+          /></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="ml-2 pt-5 row align-items-center">
+    <button id="main-button-add_Vendor" type="submit" ><i class="fa fa-plus-circle"> add Vendor</i></button>
+  </div>
+  </section>
+  </form>

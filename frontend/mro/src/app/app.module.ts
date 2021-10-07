@@ -21,6 +21,11 @@ import { EditProjectComponent } from './components/master/project/edit-project/e
 import { ProjectComponent } from './components/master/project/project/project.component';
 import { ProjectsComponent } from './components/master/project/projects/projects.component';
 
+import { AddVendorComponent } from './components/master/vendor/add-vendor/add-vendor.component';
+import { EditVendorComponent } from './components/master/vendor/edit-vendor/edit-vendor.component';
+import { VendorComponent } from './components/master/vendor/vendor/vendor.component';
+import { VendorsComponent } from './components/master/vendor/vendors/vendors.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,6 +42,10 @@ import { ProjectsComponent } from './components/master/project/projects/projects
     EditProjectComponent,
     ProjectComponent,
     ProjectsComponent,
+    AddVendorComponent,
+    EditVendorComponent,
+    VendorComponent,
+    VendorsComponent,
   ],
   imports: [
     BrowserModule,

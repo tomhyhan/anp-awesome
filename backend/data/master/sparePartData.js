@@ -105,6 +105,7 @@ export async function update(id, spare_part) {
     spare_part_group,
     rate,
     remarks,
+    frn_uom,
     active_id,
     photo,
   } = spare_part;
@@ -120,6 +121,7 @@ export async function update(id, spare_part) {
     spare_part_group=?,
     rate=?,
     remarks=?,
+    frn_uom=?,
     active_id=?,
     photo=?
   WHERE
@@ -132,6 +134,7 @@ export async function update(id, spare_part) {
         spare_part_group,
         rate,
         remarks,
+        frn_uom,
         active_id,
         photo,
         id,

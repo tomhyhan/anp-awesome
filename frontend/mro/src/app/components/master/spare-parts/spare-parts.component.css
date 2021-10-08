@@ -1,0 +1,90 @@
+.spare-part {
+  display: flex;
+  flex-direction: column;
+  margin: 2rems;
+}
+
+.spare-part__add {
+  margin: 0;
+  padding: 0;
+  margin-bottom: var(--margin-bottom);
+}
+
+.spare-part__table {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+table {
+  width: 100%;
+}
+
+td {
+  text-align: center;
+}
+
+.mat-table {
+  border-radius: 10px;
+}
+
+.mat-header-cell {
+  background-color: #6e90a1;
+  text-align: center;
+}
+
+.mat-row .mat-cell {
+  border-bottom: 1px solid transparent;
+  border-top: 1px solid transparent;
+  cursor: pointer;
+}
+
+.mat-row:hover .mat-cell {
+  border-color: #6e90a1;
+}
+
+.mat-column-spare_part_code {
+  white-space: unset !important;
+  flex: 1 0 15% !important;
+  width: 15%;
+}
+
+.mat-column-spare_part_desc {
+  white-space: unset !important;
+  flex: 1 0 15% !important;
+  width: 15%;
+}
+
+.mat-column-hsn_code {
+  white-space: unset !important;
+  flex: 1 0 15% !important;
+  width: 15%;
+}
+
+.mat-column-spare_part_group {
+  white-space: unset !important;
+  flex: 1 0 15% !important;
+  width: 15%;
+}
+
+.mat-column-rate {
+  white-space: unset !important;
+  flex: 1 0 10% !important;
+  width: 10%;
+}
+
+.mat-column-uom {
+  white-space: unset !important;
+  flex: 1 0 10% !important;
+  width: 10%;
+}
+
+.mat-column-active_id {
+  white-space: unset !important;
+  flex: 1 0 10% !important;
+  width: 10%;
+}
+
+.mat-column-view {
+  white-space: unset !important;
+  flex: 1 0 12% !important;
+}

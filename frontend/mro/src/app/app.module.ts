@@ -12,22 +12,22 @@ import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule } from '@angular/material/core';
 
 import { AppComponent } from './app.component';
-import { SparePartComponent } from './components/master/spare-part/spare-part.component';
 import { SparePartsComponent } from './components/master/spare-parts/spare-parts.component';
 import { AddSparePartComponent } from './components/master/add-spare-part/add-spare-part.component';
 import { EditSparePartComponent } from './components/master/edit-spare-part/edit-spare-part.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { DisplayErrComponent } from './components/display-err/display-err.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SparePartComponent,
     SparePartsComponent,
     AddSparePartComponent,
     EditSparePartComponent,
     HeaderComponent,
     FooterComponent,
+    DisplayErrComponent,
   ],
   imports: [
     BrowserModule,

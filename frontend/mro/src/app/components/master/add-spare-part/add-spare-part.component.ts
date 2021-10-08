@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-add-spare-part',
@@ -11,27 +12,40 @@ export class AddSparePartComponent implements OnInit {
   rate: any;
   uom: any;
   @Output() onCreateSparePart = new EventEmitter();
+  addSparePartForm: FormGroup | any;
 
-  constructor() {}
+  constructor(private formBuilder: FormBuilder) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.addSparePartForm = this.formBuilder.group({
+      spare_part_code: ['', Validators.required],
+      spare_part_desc: [''],
+      hsn_code: [''],
+      spare_part_group: [''],
+      rate: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern(`[+]?([0-9]+([.][0-9]*)?|[.][0-9]+)`),
+        ],
+      ],
+      frn_uom: ['', Validators.required],
+      active_id: ['', Validators.required],
+      photo: [''],
+    });
+  }
 
   onSubmit() {
     const sparePart = {
       spare_part: {
-        spare_part_code: this.sparePartCode,
-        spare_part_desc: 'changed oil',
-        hsn_code: this.hsnCode,
-        spare_part_group: 'Lubricant & fuel',
-        rate: parseInt(this.rate),
-        frn_uom: 1,
+        ...this.addSparePartForm.value,
+        rate: parseInt(this.addSparePartForm.value.rate),
+        active_id: parseInt(this.addSparePartForm.value.active_id),
         remarks: 'remark',
-        active_id: 1,
         created_by: 'tom',
-        photo: '',
       },
     };
-
+    console.log(sparePart);
     this.onCreateSparePart.emit(sparePart);
   }
 }

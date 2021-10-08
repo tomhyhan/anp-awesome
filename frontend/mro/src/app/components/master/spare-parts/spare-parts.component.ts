@@ -1,13 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SparePartService } from 'src/app/services/master/spare-part.service';
 
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
-
 @Component({
   selector: 'app-spare-parts',
   templateUrl: './spare-parts.component.html',
@@ -17,11 +10,14 @@ export class SparePartsComponent implements OnInit {
   spareParts: any = [];
 
   displayedColumns: string[] = [
-    'demo-position',
-    'demo-name',
-    'demo-weight',
-    'demo-symbol',
-    'demo-button',
+    'spare_part_code',
+    'spare_part_desc',
+    'hsn_code',
+    'spare_part_group',
+    'rate',
+    'uom',
+    'active_id',
+    'view',
   ];
 
   constructor(private sparePartService: SparePartService) {}

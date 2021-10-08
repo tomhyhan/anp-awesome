@@ -1,7 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { SparePartService } from 'src/app/services/master/spare-part.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import * as $ from 'jquery';
 import { Router } from '@angular/router';
 
 @Component({
@@ -12,7 +10,7 @@ import { Router } from '@angular/router';
 export class EditSparePartComponent implements OnInit {
   @Output() onUpdateSparePart = new EventEmitter();
   @Input() sparePart: any;
-  sparePartForm!: FormGroup;
+  sparePartForm: FormGroup | any;
   id: any;
 
   constructor(private formBuilder: FormBuilder, private router: Router) {}

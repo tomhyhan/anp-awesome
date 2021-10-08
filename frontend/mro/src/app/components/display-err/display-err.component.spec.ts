@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SparePartComponent } from './spare-part.component';
+import { DisplayErrComponent } from './display-err.component';
 
-describe('SparePartComponent', () => {
-  let component: SparePartComponent;
-  let fixture: ComponentFixture<SparePartComponent>;
+describe('DisplayErrComponent', () => {
+  let component: DisplayErrComponent;
+  let fixture: ComponentFixture<DisplayErrComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SparePartComponent ]
+      declarations: [ DisplayErrComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SparePartComponent);
+    fixture = TestBed.createComponent(DisplayErrComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

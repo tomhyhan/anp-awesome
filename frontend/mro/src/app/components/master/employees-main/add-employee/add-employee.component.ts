@@ -31,7 +31,7 @@ export class AddEmployeeComponent implements OnInit {
         site_master_id: 2,
         contact: 'LUCUS MARTENS',
         address: '29 TIREDWAY',
-        designation: '	MECH.FOREMAN',
+        designation: 'MECH.FOREMAN',
         department: 'P&M',
         remarks: 'Recently hired',
         created_by: 'Ingrid',

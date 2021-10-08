@@ -13,13 +13,14 @@ export class EmployeesComponent implements AfterViewInit {
                                 "contact", "address", "designation", "department",
                                 "remarks", "created_by", "created_date", "edit"];
   employees: any = [];
-  @ViewChild(MatPaginator, {static: true}) set matPaginator(paginator: MatPaginator) {
-    this.employees.paginator = paginator;}
+  @ViewChild(MatPaginator)
+  paginator!: MatPaginator;
 
   constructor(private employeeService: EmployeeService) {}
 
   ngAfterViewInit(): void {
     this.employeeService.getEmployee().subscribe(employees => this.employees = employees);
+    this.employees.paginator = this.paginator;
   }
 
   createTask(employee: any) {

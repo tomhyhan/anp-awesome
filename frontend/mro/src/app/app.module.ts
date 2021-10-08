@@ -13,7 +13,6 @@ import { MatNativeDateModule } from '@angular/material/core';
 
 
 import { AppComponent } from './app.component';
-import { EmployeeComponent } from './components/master/employees-main/employee/employee.component';
 import { EmployeesComponent } from './components/master/employees-main/employees/employees.component';
 import { AddEmployeeComponent } from './components/master/employees-main/add-employee/add-employee.component';
 import { EditEmployeeComponent } from './components/master/employees-main/edit-employee/edit-employee.component';
@@ -25,7 +24,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [
     AppComponent,
-    EmployeeComponent,
     EmployeesComponent,
     AddEmployeeComponent,
     EditEmployeeComponent,

@@ -5,6 +5,9 @@
   
 .mat-header-cell {
     background-color: #6e90a1;
+    font-weight: 500;
+    font-size: 1.1em;
+    color: white;
 }
   
 .mat-row .mat-cell {

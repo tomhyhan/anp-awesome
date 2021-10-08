@@ -12,9 +12,8 @@ import { Router } from '@angular/router';
 export class EditEmployeeComponent implements OnInit {
   @Output() onUpdateEmployee = new EventEmitter();
   @Input() employee: any;
-  employeeForm!: FormGroup;
+  employeeForm: FormGroup | any;
   id: any;
-
 
   constructor(private formBuilder: FormBuilder, private router: Router) {}
 

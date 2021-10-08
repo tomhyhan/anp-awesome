@@ -1,6 +1,6 @@
  <div class="spare-part">
    <div class="spare-part__add">
-    <app-add-spare-part (onCreateSparePart)="createTask($event)"></app-add-spare-part>
+    <app-add-spare-part [uom]="uom" (onCreateSparePart)="createTask($event)"></app-add-spare-part>
    </div>
    <div class="spare-part__table">
     <table mat-table [dataSource]="spareParts" class="mat-elevation-z1 demo-table">

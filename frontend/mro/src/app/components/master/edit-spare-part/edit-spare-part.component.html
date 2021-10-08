@@ -1,4 +1,4 @@
-<button type="button" class="btn btn-primary button" data-toggle="modal"  attr.data-target="#{{ sparePart.material_master_id }}" data-whatever="@getbootstrap" data-backdrop="false"><i class="fa fa-edit"></i></button>
+<button type="button" (click)="onClick()" class="btn btn-primary button" data-toggle="modal"  attr.data-target="#{{ sparePart.material_master_id }}" data-whatever="@getbootstrap" data-backdrop="false"><i class="fa fa-edit"></i></button>
 
 <div class="modal fade" attr.id="{{ sparePart.material_master_id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -44,15 +44,15 @@
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="frn_uom">Unit</label>
-              <select formControlName="frn_uom" id="frn_uom" class="form-control">
-                <option selected>1</option>
+              <select  formControlName="frn_uom" id="frn_uom" class="form-control">
+                <option *ngFor="let item of uom">{{item.uom}}</option>
               </select>
             </div>
             <div class="form-group col-md-6">
               <label for="active_id">Status</label>
               <select formControlName="active_id" id="active_id" class="form-control">
-                <option selected>1</option>
-                <option selected>0</option>
+                <option selected value="1">Active</option>
+                <option selected value="0">Deactive</option>
               </select>
             </div>
           </div>  

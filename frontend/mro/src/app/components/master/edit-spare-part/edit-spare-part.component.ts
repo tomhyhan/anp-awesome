@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-
+import { UomService } from 'src/app/services/master/uom.service';
 @Component({
   selector: 'app-edit-spare-part',
   templateUrl: './edit-spare-part.component.html',
@@ -12,8 +11,12 @@ export class EditSparePartComponent implements OnInit {
   @Input() sparePart: any;
   editSparePartForm: FormGroup | any;
   id: any;
+  uom: any = [];
 
-  constructor(private formBuilder: FormBuilder, private router: Router) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private uomService: UomService
+  ) {}
 
   ngOnInit(): void {
     this.editSparePartForm = this.formBuilder.group({
@@ -29,8 +32,8 @@ export class EditSparePartComponent implements OnInit {
         ],
       ],
       remarks: [''],
-      frn_uom: ['', Validators.required],
-      active_id: ['', Validators.required],
+      frn_uom: [''],
+      active_id: [''],
       photo: [''],
     });
     this.updateValues();
@@ -39,6 +42,7 @@ export class EditSparePartComponent implements OnInit {
   updateValues() {
     this.editSparePartForm.patchValue({
       ...this.sparePart,
+      frn_uom: 'm',
     });
   }
 
@@ -49,13 +53,24 @@ export class EditSparePartComponent implements OnInit {
         ...this.editSparePartForm.value,
         rate: parseInt(this.editSparePartForm.value.rate),
         active_id: parseInt(this.editSparePartForm.value.active_id),
-        frn_uom: parseInt(this.editSparePartForm.value.frn_uom),
+        frn_uom: parseInt(
+          this.uom.find(
+            (uom: any) => uom.uom === this.editSparePartForm.value.frn_uom
+          ).uom_id
+        ),
       },
     };
+    console.log(updateSparePart);
 
     this.onUpdateSparePart.emit({
       sparePart: updateSparePart,
       id: this.sparePart.material_master_id,
+    });
+  }
+
+  onClick() {
+    this.uomService.getUomPart().subscribe((uom) => {
+      this.uom = uom;
     });
   }
 }

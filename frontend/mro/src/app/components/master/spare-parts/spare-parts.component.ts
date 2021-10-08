@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SparePartService } from 'src/app/services/master/spare-part.service';
-
+import { UomService } from 'src/app/services/master/uom.service';
 @Component({
   selector: 'app-spare-parts',
   templateUrl: './spare-parts.component.html',
@@ -8,6 +8,7 @@ import { SparePartService } from 'src/app/services/master/spare-part.service';
 })
 export class SparePartsComponent implements OnInit {
   spareParts: any = [];
+  uom: any = [];
 
   displayedColumns: string[] = [
     'spare_part_code',
@@ -20,12 +21,17 @@ export class SparePartsComponent implements OnInit {
     'view',
   ];
 
-  constructor(private sparePartService: SparePartService) {}
+  constructor(
+    private sparePartService: SparePartService,
+    private uomService: UomService
+  ) {}
 
   ngOnInit(): void {
     this.sparePartService.getSparePart().subscribe((spareParts) => {
       this.spareParts = spareParts;
-      console.log(this.spareParts);
+    });
+    this.uomService.getUomPart().subscribe((uom) => {
+      this.uom = uom;
     });
   }
 

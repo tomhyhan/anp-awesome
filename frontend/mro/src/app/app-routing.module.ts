@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { SparePartsComponent } from './components/master/spare-parts/spare-parts.component';
+import { SparePartsComponent } from './components/master/sparePart/spare-parts/spare-parts.component';
 import { ProjectsComponent } from './components/master/project/projects/projects.component';
-import { EditSparePartComponent } from './components/master/edit-spare-part/edit-spare-part.component';
+import { EditSparePartComponent } from './components/master/sparePart/edit-spare-part/edit-spare-part.component';
 import { PurchaseOrderComponent } from './components/purchase-order/purchase-order.component';
 import { PurchaseOrderCreateComponent } from './components/purchase-order-create/purchase-order-create.component';
 

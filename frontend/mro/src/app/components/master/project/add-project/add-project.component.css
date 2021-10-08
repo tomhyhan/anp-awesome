@@ -18,3 +18,11 @@
 	position:relative;
 	top:1px;
 }
+
+.button {
+	height: 100%;
+  }
+  button {
+	margin-left: 5px;
+  }
+  

@@ -40,6 +40,8 @@ export async function updateproject(req, res) {
   const { id } = req.params;
   const { project_user } = req.body;
 
+  console.log(id)
+  console.log("id")
 
   const project = await projectData.update(id, project_user);
   
@@ -47,6 +49,7 @@ export async function updateproject(req, res) {
     console.log(project)
     res.status(200).json(project);
   } else {
+    console.log(id)
     res.status(404).json({ message: `project not Found` });
   }
 }

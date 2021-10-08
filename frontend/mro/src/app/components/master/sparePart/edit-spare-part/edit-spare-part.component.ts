@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { SparePartService } from 'src/app/services/master/spare-part.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-edit-spare-part',
@@ -10,10 +10,10 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class EditSparePartComponent implements OnInit {
   @Output() onUpdateSparePart = new EventEmitter();
   @Input() sparePart: any;
-  sparePartForm!: FormGroup;
+  sparePartForm: FormGroup | any;
   id: any;
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: FormBuilder, private router: Router) {}
 
   ngOnInit(): void {
     this.sparePartForm = this.formBuilder.group({
@@ -34,7 +34,6 @@ export class EditSparePartComponent implements OnInit {
 
   // probably better use router
   onSubmit() {
-    console.log(this.sparePartForm.value.sparePartCode);
     const updateSparePart = {
       spare_part: {
         spare_part_code: this.sparePartForm.value.sparePartCode,
@@ -47,7 +46,6 @@ export class EditSparePartComponent implements OnInit {
         photo: '',
       },
     };
-
     this.onUpdateSparePart.emit({
       sparePart: updateSparePart,
       id: this.sparePart.material_master_id,

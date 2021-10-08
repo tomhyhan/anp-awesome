@@ -9,6 +9,15 @@ import { projectService } from 'src/app/services/master/project/project.service'
 export class ProjectsComponent implements OnInit {
   projects: any = [];
 
+  displayedColumns: string[] = [
+    'project_name',
+    'project_code',
+    'active_id',
+    'created_date',
+    'end_date',
+    'view',
+  ];
+
   constructor(private projectService: projectService) { }
 
   ngOnInit(): void {
@@ -29,13 +38,13 @@ export class ProjectsComponent implements OnInit {
     this.projectService
       .updateproject(project.project, project.id)
       .subscribe((updated: any) => {
-        const newSpareParts = this.projects.map((project: any) => {
-          if (project.id === updated[0].id) {
+        const newProjects = this.projects.map((project: any) => {
+          if (project.project_master_id === updated[0].project_master_id) {
             return updated[0];
           }
           return project;
         });
-        this.projects = newSpareParts;
+        this.projects = newProjects;
       });
   }
 

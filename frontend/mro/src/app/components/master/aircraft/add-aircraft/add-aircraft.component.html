@@ -1,0 +1,46 @@
+<form  (ngSubmit)="onSubmit()">
+      <label for="material_aircraft_id">material_aircraft_id</label>
+      <input
+        type="text"
+        name="material_aircraft_id"
+        [(ngModel)]="material_aircraft_id"
+        id="material_aircraft_id"
+        placeholder="code"
+      />
+      <label for="aircraft_name">aircraft_name</label>
+      <input
+        type="text"
+        name="aircraft_name"
+        [(ngModel)]="aircraft_name"
+        id="aircraft_name"
+        placeholder="aircraft_name"
+      />
+      <label for="remark">remark</label>
+      <input
+        type="text"
+        name="remark"
+        [(ngModel)]="remark"
+        id="remark"
+        placeholder="remark"
+      />
+      <label for="created_by">created_by</label>
+      <input
+        type="text"
+        name="created_by"
+        [(ngModel)]="created_by"
+        id="created_by"
+        placeholder="created_by"
+      />
+      <label for="created_date">created_date</label>
+      <input
+        type="text"
+        name="created_date"
+        [(ngModel)]="created_date"
+        id="created_date"
+        placeholder="created_date"
+      />
+
+  
+    <input type="submit" value="add aircraft"  >
+  </form>
+  

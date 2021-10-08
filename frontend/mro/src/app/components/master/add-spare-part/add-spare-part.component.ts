@@ -41,6 +41,7 @@ export class AddSparePartComponent implements OnInit {
         ...this.addSparePartForm.value,
         rate: parseInt(this.addSparePartForm.value.rate),
         active_id: parseInt(this.addSparePartForm.value.active_id),
+        frn_uom: parseInt(this.addSparePartForm.value.frn_uom),
         remarks: 'remark',
         created_by: 'tom',
       },

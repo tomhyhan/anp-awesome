@@ -1,7 +1,7 @@
 import { db } from '../../database/database.js';
 
 const SELECT_JOIN = `
-SELECT sp.material_master_id, sp.spare_part_code, sp.spare_part_desc, sp.hsn_code ,sp.spare_part_group ,sp.rate ,uom.uom, sp.remarks, sp.photo, sp.created_by, sp.created_date 
+SELECT sp.material_master_id, sp.spare_part_code, sp.spare_part_desc, sp.hsn_code ,sp.spare_part_group ,sp.rate ,uom.uom, sp.remarks, sp.photo, sp.created_by, sp.active_id, sp.created_date 
 FROM spare_part as sp 
 JOIN uom 
 On sp.frn_uom = uom.uom_id

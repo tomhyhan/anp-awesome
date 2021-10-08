@@ -24,8 +24,8 @@ export class SparePartsComponent implements OnInit {
 
   ngOnInit(): void {
     this.sparePartService.getSparePart().subscribe((spareParts) => {
-      console.log(spareParts);
       this.spareParts = spareParts;
+      console.log(this.spareParts);
     });
   }
 

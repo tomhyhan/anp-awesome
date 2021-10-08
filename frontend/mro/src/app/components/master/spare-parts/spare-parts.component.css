@@ -1,22 +1,20 @@
-.spare-part {
-  display: flex;
-  flex-direction: column;
-  margin: 2rems;
-}
-
-.spare-part__add {
-  margin: 0;
-  padding: 0;
-  margin-bottom: var(--margin-bottom);
-}
-
-.spare-part__table {
-  margin: 0;
-  padding: 0;
+.mat-table {
+  margin-top: 2%;
   width: 100%;
 }
-table {
-  width: 100%;
+
+.mat-header-cell {
+  background-color: #6e90a1;
+}
+
+.mat-row .mat-cell {
+  border-bottom: 1px solid transparent;
+  border-top: 1px solid transparent;
+  cursor: pointer;
+}
+
+.mat-row:hover .mat-cell {
+  border-color: #6e90a1;
 }
 
 td {
@@ -87,4 +85,12 @@ td {
 .mat-column-view {
   white-space: unset !important;
   flex: 1 0 12% !important;
+}
+
+.active {
+  color: green;
+}
+
+.deactive {
+  color: red;
 }

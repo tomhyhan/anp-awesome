@@ -1,0 +1,17 @@
+<h3>aircraft</h3>
+<ul>
+    <li>    {{aircraft.created_by}}</li>
+    <li>    {{aircraft.created_date}}</li>
+    <li>    {{aircraft.aircraft_name}}</li>
+    <li>    {{aircraft.remarks}}</li>
+    <li>    {{aircraft.material_aircraft_id}}</li>
+</ul>
+
+
+<button type="button" class="btn btn-primary" data-toggle="modal"  attr.data-target="#{{ aircraft.material_master_id }}" data-whatever="@getbootstrap" data-backdrop="false">Update Spare Part</button>
+
+<app-edit-spare-part [aircraft]="aircraft" (onUpdateaircraft)="updateaircraft($event)" ></app-edit-spare-part>
+
+
+
+

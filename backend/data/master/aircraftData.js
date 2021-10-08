@@ -6,7 +6,11 @@ export async function getAll() {
   });
 }
 
+<<<<<<< HEAD
 export async function getallbyaircraftname(aircraft_name) {
+=======
+export async function getallbyAircraftName(aircraft_name) {
+>>>>>>> newtam
   return db
     .execute(
       `
@@ -20,11 +24,16 @@ export async function getallbyaircraftname(aircraft_name) {
     });
 }
 
+<<<<<<< HEAD
 export async function getAllByHsnCode(hsn_code) {
+=======
+export async function getById(aircraftid) {
+>>>>>>> newtam
   return db
     .execute(
       `
     SELECT * FROM aircraft
+<<<<<<< HEAD
     WHERE hsn_code=?
     `,
       [hsn_code]
@@ -40,6 +49,9 @@ export async function getAllById(aircraftid) {
       `
     SELECT * FROM aircraft
     WHERE aircraft_id=?
+=======
+    WHERE material_aircraft_id=?
+>>>>>>> newtam
     `,
       [aircraftid]
     )
@@ -48,6 +60,7 @@ export async function getAllById(aircraftid) {
     });
 }
 
+<<<<<<< HEAD
 // receiving as an object
 // id => auto
 // created_by => from frontend
@@ -58,11 +71,16 @@ export async function create(aircraft) {
     remarks,
     created_by,
   } = aircraft;
+=======
+export async function create(aircraft) {
+  const { aircraft_name, remarks, created_by } = aircraft;
+>>>>>>> newtam
 
   return db
     .execute(
       `
   INSERT INTO aircraft (aircraft_name, remarks, created_by, created_date)
+<<<<<<< HEAD
   VALUES (?,?,?,?,?,?,?,?,?,?,?)
   `,
       [
@@ -73,14 +91,25 @@ export async function create(aircraft) {
       ]
     )
     .then((result) => getAllById(result[0].insertId));
+=======
+  VALUES (?,?,?,?)
+  `,
+      [aircraft_name, remarks, created_by, new Date()]
+    )
+    .then((result) => getById(result[0].insertId));
+>>>>>>> newtam
 }
 
 // getting a aircraft object
 export async function update(id, aircraft) {
+<<<<<<< HEAD
   const {
     aircraft_name,
     remarks,
   } = aircraft;
+=======
+  const { aircraft_name, remarks } = aircraft;
+>>>>>>> newtam
 
   return db
     .execute(
@@ -88,6 +117,7 @@ export async function update(id, aircraft) {
   Update aircraft
   SET 
     aircraft_name=?,
+<<<<<<< HEAD
     remarks=?,
   WHERE
     aircraft_id=?
@@ -99,4 +129,13 @@ export async function update(id, aircraft) {
       ]
     )
     .then(() => getAllById(id));
+=======
+    remarks=?
+  WHERE
+    material_aircraft_id=?
+    `,
+      [aircraft_name, remarks, id]
+    )
+    .then(() => getById(id));
+>>>>>>> newtam
 }

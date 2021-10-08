@@ -1,0 +1,38 @@
+
+ <table mat-table [dataSource]="spareParts" class="mat-elevation-z8 demo-table">
+    <!-- Position Column -->
+    <ng-container matColumnDef="demo-position">
+        <th mat-header-cell *matHeaderCellDef> No. </th>
+        <td mat-cell *matCellDef="let sparePart"> {{sparePart.spare_part_code}} </td>
+      </ng-container>
+    
+      <!-- Name Column -->
+      <ng-container matColumnDef="demo-name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let sparePart"> {{sparePart.hsn_code}} </td>
+      </ng-container>
+    
+      <!-- Weight Column -->
+      <ng-container matColumnDef="demo-weight">
+        <th mat-header-cell *matHeaderCellDef> Weight </th>
+        <td mat-cell *matCellDef="let sparePart"> {{sparePart.material_master_id}} </td>
+      </ng-container>
+    
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="demo-symbol">
+        <th mat-header-cell *matHeaderCellDef> Symbol </th>
+        <td mat-cell *matCellDef="let sparePart"> {{sparePart.uom}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="demo-button">
+        <th mat-header-cell *matHeaderCellDef> Button </th>
+        <td mat-cell *matCellDef="let sparePart"><app-edit-spare-part [sparePart]="sparePart" (onUpdateSparePart)="updateSparePart($event)" ></app-edit-spare-part> </td>
+      </ng-container>
+
+      
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <app-add-spare-part (onCreateSparePart)="createTask($event)"></app-add-spare-part>

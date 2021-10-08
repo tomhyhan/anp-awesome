@@ -1,3 +1,5 @@
+42 lines (37 sloc)  2.03 KB
+   
 <header>
     <nav class="navbar navbar-expand-md navbar-light bg-light">
         <a href='/'><img src="/assets/image/Company-logo.png	"  alt="Responsive image" width="160" /></a>
@@ -10,9 +12,12 @@
             <li class="nav-item" ngbDropdown>
               <a class="nav-link" tabindex="1" ngbDropdownToggle id="navbarDropdown1" role="button">Master</a>
               <div ngbDropdownMenu aria-labelledby="navbarDropdown1" class="dropdown-menu">
-                <a ngbDropdownItem routerLink="/Uom_page" (click)="$event.preventDefault()">UOM</a>
-                <a ngbDropdownItem routerLink="/master/spare_part" (click)="$event.preventDefault()">Spare Part</a>
-                <a ngbDropdownItem routerLink="/master/employee" (click)="$event.preventDefault()">Employee</a>
+                <a ngbDropdownItem >Spare Part</a>
+                <a ngbDropdownItem >Project</a>
+                <a ngbDropdownItem >UOM</a>
+                <a ngbDropdownItem >vendor</a>
+                <a ngbDropdownItem >Aircraft</a>
+                <a ngbDropdownItem routerLink="/master/employees" routerLinkActive="deActive" (click)="$event.preventDefault()">Employees</a>
               </div>
             </li>
       

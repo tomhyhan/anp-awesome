@@ -10,6 +10,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule } from '@angular/material/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 import { AppComponent } from './app.component';
@@ -18,7 +19,7 @@ import { AddEmployeeComponent } from './components/master/employees-main/add-emp
 import { EditEmployeeComponent } from './components/master/employees-main/edit-employee/edit-employee.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DisplayErrComponent } from './components/display-error/display-err.component';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     EditEmployeeComponent,
     HeaderComponent,
     FooterComponent,
+    DisplayErrComponent,
   ],
   imports: [
     BrowserModule,

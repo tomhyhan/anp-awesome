@@ -53,18 +53,19 @@ updateEmployees() {
 onSubmit() {
   const updateEmployee = {
     employee: {
-      empName: this.employeeForm.value.emp_name,
-      empCode: this.employeeForm.value.emp_code,
-      siteMasterId: this.employeeForm.value.site_master_id,
+      emp_name: this.employeeForm.value.empName,
+      emp_code: this.employeeForm.value.empCode,
+      site_master_id: this.employeeForm.value.siteMasterId,
       contact: this.employeeForm.value.contact,
       address: this.employeeForm.value.address,
       designation: this.employeeForm.value.designation,
       department: this.employeeForm.value.department,
       remarks: this.employeeForm.value.remarks,
-      createdBy: this.employeeForm.value.created_by,
-      createdDate: this.employeeForm.value.created_date,
+      created_by: this.employeeForm.value.createdBy,
+      created_date: this.employeeForm.value.createdDate,
     },
   };
+
 
   this.onUpdateEmployee.emit({
     employee: updateEmployee,

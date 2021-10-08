@@ -17,7 +17,6 @@ import { EmployeeComponent } from './components/master/employees-main/employee/e
 import { EmployeesComponent } from './components/master/employees-main/employees/employees.component';
 import { AddEmployeeComponent } from './components/master/employees-main/add-employee/add-employee.component';
 import { EditEmployeeComponent } from './components/master/employees-main/edit-employee/edit-employee.component';
-import { EmployeeTableComponent } from './components/master/employees-main/employee-table/employee-table.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -30,7 +29,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     EmployeesComponent,
     AddEmployeeComponent,
     EditEmployeeComponent,
-    EmployeeTableComponent,
     HeaderComponent,
     FooterComponent,
   ],

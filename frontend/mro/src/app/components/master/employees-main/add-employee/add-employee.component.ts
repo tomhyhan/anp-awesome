@@ -15,24 +15,27 @@ export class AddEmployeeComponent implements OnInit {
   department: any;
   remarks: any;
   createdBy: any;
+  createdDate: any;
   @Output() onCreateEmployee = new EventEmitter();
 
   constructor() {}
 
   ngOnInit(): void {}
 
+
   onSubmit() {
     const employee = {
       employee: {
-        emp_code: this.empCode,
         emp_name: this.empName,
-        siteMasterId: 2,
-        contact: 'Lucus',
-        address: 'Vancouver BC',
-        designation: 'Calgary AB',
+        emp_code: this.empCode,
+        site_master_id: 2,
+        contact: 'LUCUS MARTENS',
+        address: '29 TIREDWAY',
+        designation: '	MECH.FOREMAN',
         department: 'P&M',
         remarks: 'Recently hired',
-        createdBy: 'Ingrid',
+        created_by: 'Ingrid',
+        created_date: new Date(),
       }
     };
 

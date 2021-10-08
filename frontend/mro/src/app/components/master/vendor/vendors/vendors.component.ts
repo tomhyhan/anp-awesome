@@ -2,40 +2,49 @@ import { Component, OnInit } from '@angular/core';
 import { VendorService } from 'src/app/services/master/vendor/vendor.service';
 
 @Component({
-  selector: 'app-vendors',
+  selector: 'app-vendor',
   templateUrl: './vendors.component.html',
   styleUrls: ['./vendors.component.css']
 })
 export class VendorsComponent implements OnInit {
-  vendors: any = [];
+  vendor: any = [];
+
+  displayedColumns: string[] = [
+    'vendor_code',
+    'vendor_name',
+    'contact',
+    'address',
+    'remarks',
+    'view',
+  ];
 
   constructor(private vendorService: VendorService) { }
 
   ngOnInit(): void {
-    this.vendorService.getVendor().subscribe((vendors) => {
-      console.log(vendors);
-      this.vendors = vendors;
+    this.vendorService.getVendor().subscribe((vendor) => {
+      console.log(vendor);
+      this.vendor = vendor;
     });
   }
   createTask(vendor: any) {
     this.vendorService
       .addVendor(vendor)
       .subscribe((vendor: any) => {
-        this.vendors = [...this.vendors, vendor[0]];
+        this.vendor = [...this.vendor, vendor[0]];
       });
   }
 
-  updateVendor(vendor: any) {
+  updateVendor(Vendor: any) {
     this.vendorService
-      .updateVendor(vendor.vendor, vendor.id)
+      .updateVendor(Vendor.vendor, Vendor.id)
       .subscribe((updated: any) => {
-        const newVendors = this.vendors.map((vendor: any) => {
-          if (vendor.id === updated[0].id) {
+        const newVendors = this.vendor.map((Vendor: any) => {
+          if (Vendor.id === updated[0].id) {
             return updated[0];
           }
-          return vendor;
+          return Vendor;
         });
-        this.vendors = newVendors;
+        this.vendor = newVendors;
       });
   }
 

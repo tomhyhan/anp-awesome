@@ -1,5 +1,7 @@
 import { Component, OnInit,Input, Output, EventEmitter} from '@angular/core';
+import { VendorService } from 'src/app/services/master/vendor/vendor.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-edit-vendor',
@@ -9,41 +11,42 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class EditVendorComponent implements OnInit {
   @Output() onUpdateVendor = new EventEmitter();
   @Input() vendor: any;
-  vendorForm!: FormGroup;
+  editVendorForm!: FormGroup | any;
   id: any;
 
   constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
-    this.vendorForm = this.formBuilder.group({
-      vendorName: '',
-      vendorCode: '',
-      vendorContact:'',
-      vendorAddress:'',
+    this.editVendorForm = this.formBuilder.group({
+      vendor_code: '',
+      vendor_name: '',
+      contact:'',
+      address:'',
+      remarks:'',
     });
-    this.updateValues();
+    this.updateVendors();
   }
 
-  updateValues() {
-    this.vendorForm.patchValue({
-      vendorName: this.vendor.vendor_name,
-      vendorCode: this.vendor.vendor_code,
-      vendorContact: this.vendor.contact,
-      vendorAddress: this.vendor.address,
+  updateVendors() {
+    this.editVendorForm.patchValue({
+      vendor_code: this.vendor.vendor_code,
+      vendor_name: this.vendor.vendor_name,
+      contact: this.vendor.contact,
+      address: this.vendor.address,
+      remarks: this.vendor.remarks,
     });
   }
 
-  // probably better use router
+
   onSubmit() {
-    console.log(this.vendor.vendorName);
     const updateVendor = {
       vendor: {
-        vendor_name: this.vendorForm.value.vendorName,
-        vendor_code: this.vendorForm.value.vendorCode,
-        contact: this.vendorForm.value.vendorContact,
-        address: this.vendorForm.value.vendorAddress,
-        remarks:"new",
-        created_by:"hosung"
+        vendor_code: this.editVendorForm.value.vendor_code,
+        vendor_name: this.editVendorForm.value.vendor_name,
+        contact: this.editVendorForm.value.contact,
+        address: this.editVendorForm.value.address,
+        remarks: this.editVendorForm.value.remarks,
+        created_by:"hosung",
       },
     };
     
@@ -52,5 +55,4 @@ export class EditVendorComponent implements OnInit {
       id: this.vendor.vendor_id,
     });
   }
-
 }

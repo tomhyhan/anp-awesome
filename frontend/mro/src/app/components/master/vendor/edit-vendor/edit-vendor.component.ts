@@ -17,6 +17,7 @@ export class EditVendorComponent implements OnInit {
   constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
+    console.log(this.vendor)
     this.editVendorForm = this.formBuilder.group({
       vendor_code: '',
       vendor_name: '',
@@ -28,6 +29,7 @@ export class EditVendorComponent implements OnInit {
   }
 
   updateVendors() {
+    console.log(this.vendor)
     this.editVendorForm.patchValue({
       vendor_code: this.vendor.vendor_code,
       vendor_name: this.vendor.vendor_name,
@@ -49,7 +51,7 @@ export class EditVendorComponent implements OnInit {
         created_by:"hosung",
       },
     };
-    
+    // console.log(updateVendor)
     this.onUpdateVendor.emit({
       vendor: updateVendor,
       id: this.vendor.vendor_id,

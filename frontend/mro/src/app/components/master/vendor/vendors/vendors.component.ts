@@ -38,8 +38,9 @@ export class VendorsComponent implements OnInit {
     this.vendorService
       .updateVendor(Vendor.vendor, Vendor.id)
       .subscribe((updated: any) => {
+        console.log(updated)
         const newVendors = this.vendor.map((Vendor: any) => {
-          if (Vendor.id === updated[0].id) {
+          if (Vendor.vendor_id === updated[0].vendor_id) {
             return updated[0];
           }
           return Vendor;

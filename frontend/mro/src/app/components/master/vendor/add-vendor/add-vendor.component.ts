@@ -8,11 +8,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   styleUrls: ['./add-vendor.component.css']
 })
 export class AddVendorComponent implements OnInit {
-  vendor_name: any;
-  vendor_code: any;
-  contact: any;
-  address: any;
-  remarks: any;
+
   @Output() onCreateVendor = new EventEmitter();
   addVendorForm: FormGroup | any;
 
@@ -30,16 +26,11 @@ export class AddVendorComponent implements OnInit {
   onSubmit() {
     const vendor = {
       vendor: {
-        vender_id: 2,
-        vendor_code: this.vendor_code,
-        vendor_name: this.vendor_name,
-        contact: this.contact,
-        address: this.address,
-        remarks:this.remarks,
+        ...this.addVendorForm.value,
         created_by:"hosung",
-        created_date: new Date(),
       },
     };
+    console.log(vendor)
     this.onCreateVendor.emit(vendor);
   }
 }

@@ -1,0 +1,65 @@
+
+<button class="icons" type="button" data-toggle="modal"  attr.data-target="#{{ employee.emp_id }}" data-whatever="@getbootstrap" data-backdrop="false"><i class="fa fa-edit"></i> </button>
+
+<div class="modal fade" attr.id="{{ employee.emp_id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="exampleModalLabel">Edit Employee</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form  [formGroup]="employeeForm" (ngSubmit)="onSubmit()">   
+            <div class="column">
+                <div class="form-group">
+                  <label for="recipient-name" class="col-form-label">Employee Code</label>
+                  <input formControlName="empCode" type="text"  name="empCode"  class="form-control" id="recipient-name" > 
+                </div>
+                <div class="form-group">
+                    <label for="recipient-name" class="col-form-label">Site Master ID</label>
+                    <input formControlName="siteMasterId" type="text" name="siteMasterId"  class="form-control" id="recipient-name" >
+                </div>
+                <div class="form-group">
+                    <label for="recipient-name" class="col-form-label">Address</label>
+                    <input formControlName="address" type="text" name="address"  class="form-control" id="recipient-name" >
+                </div>
+                <div class="form-group">
+                    <label for="recipient-name" class="col-form-label">Department</label>
+                    <input formControlName="department" type="text" name="department"  class="form-control" id="recipient-name" >
+                </div>
+            <div class="form-group">
+                <label for="recipient-name" class="col-form-label">Created By</label>
+                <input formControlName="createdBy" type="text" name="createdBy"  class="form-control" id="recipient-name" >
+            </div>
+            </div>
+            <div class="column"> 
+                <div class="form-group">
+                <label for="recipient-name" class="col-form-label">Employee Name</label>
+                <input formControlName="empName" type="text" name="empName"  class="form-control" id="recipient-name" >
+                </div>
+                <div class="form-group">
+                <label for="recipient-name" class="col-form-label">Contact</label>
+                <input formControlName="contact" type="text" name="contact"  class="form-control" id="recipient-name" >
+                </div>
+                <div class="form-group">
+                    <label for="recipient-name" class="col-form-label">Designation</label>
+                    <input formControlName="designation" type="text" name="designation"  class="form-control" id="recipient-name" >
+                </div>
+                <div class="form-group">
+                    <label for="recipient-name" class="col-form-label">Remarks</label>
+                    <input formControlName="remarks" type="text" name="remarks"  class="form-control" id="recipient-name" >
+                </div>
+                        
+                <div class="form-group">
+                    <label for="recipient-name" class="col-form-label">Created Date</label>
+                    <input formControlName="createdDate" type="text" name="createdDate"  class="form-control" id="recipient-name" >
+                </div>
+            </div>
+          <button type="submit" class="button-save">Save</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

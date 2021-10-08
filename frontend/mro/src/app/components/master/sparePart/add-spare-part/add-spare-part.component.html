@@ -8,7 +8,7 @@
             <th><label for="sparePartDesc">Spare Part Desc</label></th>
             <th><label for="sparePartGroup">Spare Part Group</label></th>
             <th><label for="rate">Rate</label></th>
-            <th><label for="uom">Uom</label></th>
+            <th scope="col"><label for="frn_uom">Uom</label></th>
             <th><label for="active_id">Status</label></th>
             <th><label for="photo">photo</label></th>
           </tr>
@@ -55,22 +55,17 @@
               placeholder="rate"
               formControlName="rate"
             /></td>
-            <td><input
-              class="form-control"
-              type="text"
-              name="uom"
-              id="uom"
-              placeholder="uom"
-              formControlName="frn_uom"
-            /></td>
-            <td><input
-              class="form-control"
-              type="text"
-              name="active_id"
-              id="active_id"
-              placeholder="active_id"
-              formControlName="active_id"
-            /></td>
+            <td>
+              <select  formControlName="frn_uom" id="frn_uom" class="form-control">
+                <option *ngFor="let item of uom">{{item.uom}}</option>
+              </select>
+            </td>
+            <td>
+            <select  formControlName="active_id" id="active_id" class="form-control">
+              <option selected value="1">Active</option>
+              <option selected value="0">Deactive</option>
+            </select>
+            </td>
             <td><input
               class="form-control"
               type="text"

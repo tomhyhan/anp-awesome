@@ -28,8 +28,17 @@ import { PurchaseOrderCreateComponent } from './components/purchase-order-create
 
 import { AddProjectComponent } from './components/master/project/add-project/add-project.component';
 import { EditProjectComponent } from './components/master/project/edit-project/edit-project.component';
-
 import { ProjectsComponent } from './components/master/project/projects/projects.component';
+
+import { EmployeesComponent } from './components/master/employees-main/employees/employees.component';
+import { AddEmployeeComponent } from './components/master/employees-main/add-employee/add-employee.component';
+import { EditEmployeeComponent } from './components/master/employees-main/edit-employee/edit-employee.component';
+
+import { UomPartsComponent } from './components/master/uom/uom-parts/uom-parts.component';
+import { AddUomComponent } from './components/master/uom/add-uom/add-uom-part.component';
+import { EditUomPartComponent } from './components/master/uom/edit-uom/edit-uom.component';
+
+
 
 @NgModule({
   declarations: [
@@ -45,6 +54,12 @@ import { ProjectsComponent } from './components/master/project/projects/projects
     AddProjectComponent,
     EditProjectComponent,
     ProjectsComponent,
+    EmployeesComponent,
+    AddEmployeeComponent,
+    EditEmployeeComponent,
+    UomPartsComponent,
+    AddUomComponent,
+    EditUomPartComponent
   ],
   imports: [
     BrowserModule,

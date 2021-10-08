@@ -1,4 +1,4 @@
-<button type="button" class="btn btn-primary button" data-toggle="modal"  attr.data-target="#{{ sparePart.material_master_id }}" data-whatever="@getbootstrap" data-backdrop="false"><i class="fa fa-edit"></i></button>
+<button type="button" (click)="onClick()" class="btn btn-primary button" data-toggle="modal"  attr.data-target="#{{ sparePart.material_master_id }}" data-whatever="@getbootstrap" data-backdrop="false"><i class="fa fa-edit"></i></button>
 
 <div class="modal fade" attr.id="{{ sparePart.material_master_id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -10,46 +10,59 @@
         </button>
       </div>
       <div class="modal-body">
-        
-         <form  [formGroup]="sparePartForm" (ngSubmit)="onSubmit()">     
-          <div class="form-group">
-            <label for="recipient-name" class="col-form-label">Spare Part Code</label>
-            <input formControlName="sparePartCode" type="text"  name="sparePartCode"  class="form-control" id="recipient-name" > 
-          </div>
-          <div class="form-group">
-            <label for="recipient-name" class="col-form-label">HSN code</label>
-            <input formControlName="hsnCode" type="text" name="hsnCode"  class="form-control" id="recipient-name" >
-          </div>
-          <div class="form-group">
-            <label for="recipient-name" class="col-form-label">Description</label>
-            <input formControlName="sparePartDesc" type="text" name="sparePartDesc"  class="form-control" id="recipient-name">
+        <form  class="m-3" [formGroup]="editSparePartForm" (ngSubmit)="onSubmit()">
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="spare_part_code">Spare Part Code</label>
+              <input formControlName="spare_part_code" type="text" class="form-control" id="spare_part_code" placeholder="Spare Part Code">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="spare_part_desc">Spare Part Description</label>
+              <input formControlName="spare_part_desc" type="text" class="form-control" id="spare_part_desc" placeholder="Spare Part Description">
+            </div>
           </div>
           <div class="form-row">
-            <div class="col">
-                <div class="mb-3" style="margin-top:20px;">
-                    <label>Region</label>
-                    <select id="disabledSelect" class="form-select">
-                        <option>NORTH JAMMU</option>
-                    </select>
-                </div>
+            <div class="form-group col-md-6">
+              <label for="hsn_code">HSN code</label>
+              <input formControlName="hsn_code" type="text" class="form-control" id="hsn_code" placeholder="HSN code">
             </div>
-            <div class="col">
-                <div class="mb-3" style="margin-top:20px;">
-                  <label>Reproting Manager</label>
-                  <select id="disabledSelect" class="form-select">
-                      <option>SUSHIL KUMAR</option>
-                      <option>NANDAN ORAON</option>
-                      <option>CHARANJEET SINGH WALIYA</option>
-                  </select>
-              </div>
+            <div class="form-group col-md-6">
+              <label for="spare_part_group">Spare Part Group</label>
+              <input formControlName="spare_part_group" type="text" class="form-control" id="spare_part_group" placeholder="Spare Part Group">
             </div>
-        </div>
-          <button type="submit" class="btn btn-primary">Send message</button>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="rate">Rate</label>
+              <input formControlName="rate" type="text" class="form-control" id="rate" placeholder="Rate">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="remarks">Remark</label>
+              <input formControlName="remarks" type="text" class="form-control" id="remarks" placeholder="Remark">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="frn_uom">Unit</label>
+              <select  formControlName="frn_uom" id="frn_uom" class="form-control">
+                <option *ngFor="let item of uom">{{item.uom}}</option>
+              </select>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="active_id">Status</label>
+              <select formControlName="active_id" id="active_id" class="form-control">
+                <option selected value="1">Active</option>
+                <option selected value="0">Deactive</option>
+              </select>
+            </div>
+          </div>  
+          <div class="form-group">
+            <label for="photo">Photo</label>
+            <input formControlName="photo" type="text" class="form-control" id="photo" placeholder="Photo">
+          </div>
+            
+          <button type="submit" class="btn btn-primary">Update</button>
         </form>
-      </div>
-    </div>
-  </div>
-</div>
 <!-- 
 <form class="form" style="width:1000px; margin-left:auto; margin-right:auto;">
   <div class="form-row">

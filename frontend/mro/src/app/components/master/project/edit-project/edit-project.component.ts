@@ -48,6 +48,7 @@ export class EditProjectComponent implements OnInit {
         end_date:"2021-10-06"
       },
     };
+    console.log(updateproject)
     
     this.onUpdateproject.emit({
       project: updateproject,

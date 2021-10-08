@@ -1,0 +1,35 @@
+<form [formGroup]="addUomPartForm" (ngSubmit)="onSubmit() ">
+  <section class="ml-3 mr-3 pb-0  row "  id="main-section-searchline">
+    <table id="main-table-selector">
+      <thead>
+      <tr style="color: rgb(110,144,161);">
+        <th scope="col"><label for="uom">Uom</label></th>
+        <th scope="col"><label for="remarks">Remarks</label></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td><input
+          class="form-control"
+          type="text"
+          name="uom"
+          id="uom"
+          placeholder="uom"
+          formControlName="uom"
+        /></td>
+        <td><input
+          class="form-control"
+          type="text"
+          name="remarks"
+          id="remarks"
+          placeholder="remarks"
+          formControlName="remarks"
+        /></td>
+      </tr>
+      </tbody>
+    </table>
+    <div class="ml-2 pt-5 row align-items-center">
+      <button id="main-button-add_uom" type="submit" ><i class="fa fa-plus-circle"> add UOM</i></button>
+    </div>
+  </section>
+</form>

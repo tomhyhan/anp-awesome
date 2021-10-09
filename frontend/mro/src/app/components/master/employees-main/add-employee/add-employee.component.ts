@@ -40,9 +40,9 @@ export class AddEmployeeComponent implements OnInit {
   onSubmit() {
     const employee = {
       employee: {
-        emp_name: this.addEmployeeForm.value.empName,
-        emp_code: this.addEmployeeForm.value.empCode,
-        site_master_id: parseInt(this.addEmployeeForm.value.siteMasterId),
+        emp_name: this.addEmployeeForm.value.emp_name,
+        emp_code: this.addEmployeeForm.value.emp_code,
+        site_master_id: parseInt(this.addEmployeeForm.value.site_master_id),
         contact: this.addEmployeeForm.value.contact,
         address: this.addEmployeeForm.value.address,
         designation: this.addEmployeeForm.value.designation,

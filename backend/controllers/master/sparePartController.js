@@ -1,18 +1,11 @@
 import * as sparePartData from '../../data/master/sparePartData.js';
 
 export async function getAllSpareParts(req, res, next) {
-  const spare_part_code = req.query.spare_part_code;
-  const hsn_code = req.query.hsn_code;
+  const spare_part_filter = req.query.spare_part_filter;
 
-  // exculde when hsn_code && spare_part_code exist for now
-  let sparePart;
-  if (spare_part_code) {
-    sparePart = await sparePartData.getAllBySparePartCode(spare_part_code);
-  } else if (hsn_code) {
-    sparePart = await sparePartData.getAllByHsnCode(hsn_code);
-  } else {
-    sparePart = await sparePartData.getAll();
-  }
+  const sparePart = await (spare_part_filter
+    ? sparePartData.getAllByFilter(spare_part_filter)
+    : sparePartData.getAll());
 
   return res.status(200).json(sparePart);
 }

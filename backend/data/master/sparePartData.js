@@ -13,21 +13,7 @@ export async function getAll() {
   });
 }
 
-export async function getAllBySparePartCode(spare_part_code) {
-  return db
-    .execute(
-      `
-    ${SELECT_JOIN}
-    WHERE spare_part_code=?
-    `,
-      [spare_part_code]
-    )
-    .then((result) => {
-      return result[0];
-    });
-}
-
-export async function getAllByHsnCode(hsn_code) {
+export async function getAllByHsnCode(filter) {
   return db
     .execute(
       `

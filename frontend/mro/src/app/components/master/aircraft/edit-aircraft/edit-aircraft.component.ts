@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 export class EditaircraftComponent implements OnInit {
   @Output() onUpdateaircraft = new EventEmitter();
   @Input() aircraft: any;
-  aircraftForm!: FormGroup;
+  aircraftForm!: FormGroup | any;
   id: any;
 
   constructor(private formBuilder: FormBuilder, private router: Router) {}
@@ -32,6 +32,7 @@ export class EditaircraftComponent implements OnInit {
 
   // probably better use router
   onSubmit() {
+    
     const updateaircraft = {
       aircraft: {
         aircraft_name: this.aircraftForm.value.aircraft_name,

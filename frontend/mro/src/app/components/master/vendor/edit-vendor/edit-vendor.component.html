@@ -1,0 +1,96 @@
+<button type="button" class="btn btn-primary button" data-toggle="modal"  attr.data-target="#{{ vendor.vendor_id }}" data-whatever="@getbootstrap" data-backdrop="false"><i class="fa fa-edit"></i></button>
+
+<div class="modal fade" attr.id="{{ vendor.vendor_id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit Vendor</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form class="m-3" [formGroup]="editVendorForm" (ngSubmit)="onSubmit()">
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="vendor_code">Vendor Code</label>
+              <input formControlName="vendor_code" type="text" class="form-control" id="vendor_code" placeholder="Vendor Code">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="vendor_name">Vendor Name</label>
+              <input formControlName="vendor_name" type="text" class="form-control" id="vendor_name" placeholder="Vendor Name">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="contact">Contact</label>
+              <input formControlName="contact" type="text" class="form-control" id="contact" placeholder="Contact">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="address">Address</label>
+              <input formControlName="address" type="text" class="form-control" id="address" placeholder="Address">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="remarks">Remarks</label>
+              <input formControlName="remarks" type="text" class="form-control" id="remarks" placeholder="Remarks">
+            </div>
+          </div>
+          <div class="form-row">
+          </div>
+            
+          <button type="submit" class="btn btn-primary">Update</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Edit Vendor</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+           <form [formGroup]="vendorForm" (ngSubmit)="onSubmit()">     
+            <div class="form-group">
+              <label for="recipient-name" class="col-form-label">Vendor Name</label>
+              <input formControlName="vendorName" type="text"  name="vendorName"  class="form-control" id="recipient-name" value="{{vendor.vendor_name}}"> 
+            </div>
+            <div class="form-group">
+              <label for="recipient-name" class="col-form-label">Vendor Code</label>
+              <input formControlName="vendorCode" type="text" name="vendorCode"  class="form-control" id="recipient-name" value="{{vendor.vendor_code}}" >
+            </div>
+            
+            <div class="form-group">
+              <label for="recipient-name" class="col-form-label">Contact</label>
+              <input formControlName="vendorContact" type="text" name="vendorContact"  class="form-control" id="recipient-name" value="{{vendor.contact}}" >
+            </div>
+            
+            <div class="form-group">
+              <label for="recipient-name" class="col-form-label">Address</label>
+              <input formControlName="vendorAddress" type="text" name="vendorAddress"  class="form-control" id="recipient-name" value="{{vendor.address}}" >
+            </div>
+
+            <div class="form-group">
+              <label for="recipient-name" class="col-form-label">Remarks</label>
+              <input formControlName="vendorRemarks" type="text" name="vendorRemarks"  class="form-control" id="recipient-name" value="{{vendor.remarks}}" >
+            </div>
+
+            <button type="submit" class="btn btn-primary">Update</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          
+        </div>
+      </div>
+    </div>
+  </div> -->
+  

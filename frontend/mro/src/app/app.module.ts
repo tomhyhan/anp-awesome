@@ -38,6 +38,11 @@ import { AddUomComponent } from './components/master/uom/add-uom/add-uom-part.co
 import { EditUomPartComponent } from './components/master/uom/edit-uom/edit-uom.component';
 import { SearchSparePartComponent } from './components/master/sparePart/search-spare-part/search-spare-part.component';
 
+import { AddVendorComponent } from './components/master/vendor/add-vendor/add-vendor.component';
+import { EditVendorComponent } from './components/master/vendor/edit-vendor/edit-vendor.component';
+import { VendorsComponent } from './components/master/vendor/vendors/vendors.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -59,6 +64,11 @@ import { SearchSparePartComponent } from './components/master/sparePart/search-s
     AddUomComponent,
     EditUomPartComponent,
     SearchSparePartComponent,
+    AddVendorComponent,
+    EditVendorComponent,
+    VendorsComponent
+
+
   ],
   imports: [
     BrowserModule,

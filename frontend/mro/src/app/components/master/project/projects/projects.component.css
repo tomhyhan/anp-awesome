@@ -1,0 +1,42 @@
+.mat-row .mat-cell {
+    border-bottom: 1px solid transparent;
+    border-top: 1px solid transparent;
+    cursor: pointer;
+    border: 2px solid #ddd;
+    padding: 8px;
+    box-shadow: 0 6px 4px -2px #888888;
+  }
+  
+  .mat-table {
+    margin-top: 2%;
+    width: 100%;
+    border-radius: 10px;
+    border-collapse: separate;
+    border-spacing:0 20px;
+  }
+  
+  .mat-row:hover .mat-cell {
+    background-color: #ddd;
+  }
+  
+  td {
+    text-align: center;
+  }
+  
+  .mat-header-cell {
+    background-color: #6e90a1;
+    text-align: center;
+    color: white;
+  }
+  
+  
+  
+
+  .active {
+    color: green;
+  }
+  
+  .deactive {
+    color: red;
+  }
+  

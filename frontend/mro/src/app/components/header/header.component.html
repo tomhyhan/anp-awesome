@@ -8,19 +8,21 @@
         <div class="navbar-collapse" [class.collapse]="collapsed" id="navbarContent">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item" ngbDropdown>
-              <a class="nav-link" tabindex="1" ngbDropdownToggle id="navbarDropdown1" role="button">Master</a>
+              <a class="nav-link" tabindex="1" ngbDropdownToggle id="navbarDropdown1" role="button"><b>Master</b></a>
               <div ngbDropdownMenu aria-labelledby="navbarDropdown1" class="dropdown-menu">
-                <a ngbDropdownItem routerLink="/Uom_page" (click)="$event.preventDefault()">UOM</a>
+                <a ngbDropdownItem routerLink="/master/uom" routerLinkActive="deActive" (click)="$event.preventDefault()">UOM</a>
                 <a ngbDropdownItem routerLink="/master/spare_part" routerLinkActive="deActive" (click)="$event.preventDefault()">Spare Part</a>
+                <a ngbDropdownItem routerLink="/master/project" routerLinkActive="deActive" (click)="$event.preventDefault()">Project</a>
+                <a ngbDropdownItem routerLink="/master/employees" routerLinkActive="deActive" (click)="$event.preventDefault()">Employees</a>
               </div>
             </li>
       
             <li class="nav-item" ngbDropdown>
-              <a routerLink="/Purchase_order" class="nav-link" tabindex="1" id="navbarDropdown2" role="button">Purchase</a>
+              <a routerLink="/Purchase_order" class="nav-link" tabindex="1" id="navbarDropdown2" role="button"><b>Purchase</b></a>
             </li>
       
             <li class="nav-item" ngbDropdown display="dynamic" placement="bottom-right">
-              <a routerLink="#" class="nav-link" tabindex="1" id="navbarDropdown3" role="button">Contact</a>
+              <a routerLink="#" class="nav-link" tabindex="1" id="navbarDropdown3" role="button"><b>Contact</b></a>
             </li>
       
             <li class="nav-item active px-1">

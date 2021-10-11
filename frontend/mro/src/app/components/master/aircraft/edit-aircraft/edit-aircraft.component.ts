@@ -27,7 +27,7 @@ export class EditaircraftComponent implements OnInit {
 
   updateValues() {
     this.aircraftForm.patchValue({
-      material_aircraft_id: this.aircraftForm.value.material_aircraft_id,
+      material_aircraft_id: this.aircraft.value.material_aircraft_id,
       aircraft_name: this.aircraft.aircraft_name
     });
   }

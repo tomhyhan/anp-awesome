@@ -14,7 +14,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 
-
 import { SparePartsComponent } from './components/master/sparePart/spare-parts/spare-parts.component';
 import { AddSparePartComponent } from './components/master/sparePart/add-spare-part/add-spare-part.component';
 import { EditSparePartComponent } from './components/master/sparePart/edit-spare-part/edit-spare-part.component';
@@ -37,8 +36,7 @@ import { EditEmployeeComponent } from './components/master/employees-main/edit-e
 import { UomPartsComponent } from './components/master/uom/uom-parts/uom-parts.component';
 import { AddUomComponent } from './components/master/uom/add-uom/add-uom-part.component';
 import { EditUomPartComponent } from './components/master/uom/edit-uom/edit-uom.component';
-
-
+import { SearchSparePartComponent } from './components/master/sparePart/search-spare-part/search-spare-part.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +57,8 @@ import { EditUomPartComponent } from './components/master/uom/edit-uom/edit-uom.
     EditEmployeeComponent,
     UomPartsComponent,
     AddUomComponent,
-    EditUomPartComponent
+    EditUomPartComponent,
+    SearchSparePartComponent,
   ],
   imports: [
     BrowserModule,

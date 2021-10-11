@@ -35,22 +35,38 @@ export async function getAllById(materialMasterId) {
 }
 
 export async function create(project_new) {
-  const { project_name, project_code, remarks, active_id, created_by, end_date } =
-    project_new;
+  const {
+    project_name,
+    project_code,
+    remarks,
+    active_id,
+    created_by,
+    end_date,
+  } = project_new;
 
   return db
     .execute(
       `
+
       INSERT INTO project (project_name, project_code, remarks, active_id, created_by, end_date,created_date)
       VALUES (?,?,?,?,?,?,?)
   `,
-      [project_name, project_code, remarks, active_id, created_by,end_date ,new Date()]
+      [
+        project_name,
+        project_code,
+        remarks,
+        active_id,
+        created_by,
+        end_date,
+        new Date(),
+      ]
     )
     .then((result) => getAllById(result[0].insertId));
 }
 
 export async function update(id, project_update) {
-  const { project_name, project_code, remarks, active_id, end_date } = project_update;
+  const { project_name, project_code, remarks, active_id, end_date } =
+    project_update;
 
   return db
     .execute(
@@ -60,6 +76,7 @@ export async function update(id, project_update) {
   project_name=?,     
   project_code=?,     
   remarks=?,             
+
   active_id=?,
   end_date=?
   WHERE

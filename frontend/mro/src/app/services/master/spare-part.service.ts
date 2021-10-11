@@ -16,9 +16,8 @@ export class SparePartService {
 
   constructor(private http: HttpClient) {}
 
-  getSparePart(filter: any) {
-    console.log(filter);
-    return this.http.get(`${this.apiUrl}?sparePartFilter=${filter}`);
+  getSparePart() {
+    return this.http.get(this.apiUrl);
   }
 
   addSparePart(sparePart: any) {

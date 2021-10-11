@@ -11,11 +11,10 @@ import { UomPartsComponent } from './components/master/uom/uom-parts/uom-parts.c
 const routes: Routes = [
   { path: 'master/spare_part', component: SparePartsComponent },
   { path: 'master/project', component: ProjectsComponent },
-  { path: 'Purchase_order', component:PurchaseOrderComponent},
-  { path: 'Purchase_order/create', component:PurchaseOrderCreateComponent},
+  { path: 'Purchase_order', component: PurchaseOrderComponent },
+  { path: 'Purchase_order/create', component: PurchaseOrderCreateComponent },
   { path: 'master/employees', component: EmployeesComponent },
   { path: 'master/uom', component: UomPartsComponent },
-
 ];
 
 @NgModule({

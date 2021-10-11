@@ -37,6 +37,7 @@ import { EditEmployeeComponent } from './components/master/employees-main/edit-e
 import { UomPartsComponent } from './components/master/uom/uom-parts/uom-parts.component';
 import { AddUomComponent } from './components/master/uom/add-uom/add-uom-part.component';
 import { EditUomPartComponent } from './components/master/uom/edit-uom/edit-uom.component';
+import { SearchUomComponent } from './components/master/uom/search-uom/search-uom.component';
 
 
 
@@ -59,7 +60,8 @@ import { EditUomPartComponent } from './components/master/uom/edit-uom/edit-uom.
     EditEmployeeComponent,
     UomPartsComponent,
     AddUomComponent,
-    EditUomPartComponent
+    EditUomPartComponent,
+    SearchUomComponent
   ],
   imports: [
     BrowserModule,

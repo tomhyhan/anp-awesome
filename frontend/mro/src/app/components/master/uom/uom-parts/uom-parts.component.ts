@@ -48,5 +48,9 @@ export class UomPartsComponent implements OnInit {
       });
   }
 
-
+  searchUom(filter: any) {
+    this.uomService.getUomPart(filter).subscribe((uoms) => {
+      this.uoms = uoms;
+    });
+  }
 }

@@ -4,11 +4,6 @@ import morgan from 'morgan';
 import helmet from 'helmet';
 
 // routers
-<<<<<<< HEAD
-import aircraftRouter from './router/master/aircraftRouter.js';
-import errorRouter from './router/error.js';
-
-=======
 import sparePartRouter from './router/master/sparePartRouter.js';
 import projectRouter from './router/master/projectRouter.js';
 import uomRouter from './router/master/uomRouter.js';
@@ -19,7 +14,6 @@ import errorRouter from './router/error.js';
 
 import { config } from './config.js';
 
->>>>>>> newtam
 const app = express();
 
 app.use(express.json());
@@ -27,13 +21,6 @@ app.use(cors());
 app.use(morgan('tiny'));
 app.use(helmet());
 
-<<<<<<< HEAD
-app.use('/master/spare_part', aircraftRouter);
-app.use(errorRouter);
-
-app.listen(8080, () => {
-  console.log('Listening on http://localhost:8080 🤗');
-=======
 app.use('/master/spare_part', sparePartRouter);
 app.use('/master/project', projectRouter);
 app.use('/master/uom', uomRouter);
@@ -44,5 +31,4 @@ app.use(errorRouter);
 
 app.listen(config.host.port, () => {
   console.info(`Listening on http://localhost:${config.host.port} 🤗`);
->>>>>>> newtam
 });

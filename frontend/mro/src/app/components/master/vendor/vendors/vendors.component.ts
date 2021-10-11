@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
 import { VendorService } from 'src/app/services/master/vendor/vendor.service';
 
 @Component({
@@ -17,8 +18,16 @@ export class VendorsComponent implements OnInit {
     'remarks',
     'view',
   ];
+  @ViewChild(MatPaginator)
+  paginator!: MatPaginator;
 
   constructor(private vendorService: VendorService) { }
+
+
+  ngAfterViewInit(): void {
+    this.vendorService.getVendor().subscribe(vendor => this.vendor = vendor);
+    this.vendor.paginator = this.paginator;
+  }
 
   ngOnInit(): void {
     this.vendorService.getVendor().subscribe((vendor) => {

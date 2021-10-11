@@ -1,0 +1,95 @@
+<section id="main-section-namepageline">
+    <h1 style="text-align:center;">Purchase Order</h1>
+  </section>
+  
+  
+  <section class="ml-3 mr-3 pb-0  row" >
+    <table id="main-table-selector">
+      <thead>
+        <tr style="color: rgb(110,144,161);">
+          <th scope="col">Company Code</th>
+          <th scope="col">Purchase Order No</th>
+          <th scope="col">SAP Vendor No</th>
+          <th scope="col">Vendor</th>
+          <th scope="col">Material Code</th>
+          <th scope="col">Material Desc</th>
+          <th scope="col">From Date</th>
+          <th scope="col">To Date</th>
+          
+  
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><input class="form-control" type="text" name="Company-code" list="code-list">
+            <datalist id="code-list">
+              <option value="A0112635">
+              <option value="A9360000">
+            </datalist></td>
+          <td><input class="form-control"></td>
+          <td><input class="form-control"></td>
+          <td><input class="form-control "></td>
+          <td><input class="form-control"></td>
+          <td><input class="form-control"></td>
+          <td><input class="form-control"></td>
+          <td><input class="form-control "></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="ml-2 pt-4 row align-items-center">
+    <button type="submit" id="main-button-search"><i class="fa fa-search"></i> Search</button>
+    <button  id="main-link-create" class="ml-2" routerLink="/Purchase_order/create" ><i class="fa fa-plus-circle"></i> Create</button>
+    </div>
+    </section>
+  <section class="ml-3 mr-3 pt-0 mt-0" style="background-color: white">
+  
+    <div >
+      <table id="main-table-orderinfo">
+        <thead>
+          <tr style="background-color: rgb(110,144,161); color:white;box-shadow: 0 8px 4px -2px #888888; ">
+            <th scope="col">S.No</th>
+            <th scope="col">TAMCO PO</th>
+            <th scope="col">MID AFRICA PO</th>
+            <th scope="col">SUPPIER</th>
+            <th scope="col">TOTAL PRICE</th>
+            <th scope="col">PO STATUS</th>
+            <th scope="col">CREATE GRN</th>
+            <th scope="col">VIEW</th>
+  
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1.</th>
+            <td><input class="form-control input-lg"></td>
+            <td><input class="form-control input-lg"></td>
+            <td><input class="form-control input-lg"></td>
+            <td><input class="form-control input-lg"></td>
+            <td><input class="form-control input-lg"></td>
+            <td><input class="form-control input-lg"></td>
+            <td><input class="form-control input-lg"></td>
+          </tr>
+          <tr>
+            <th scope="row">2.</th>
+            <td><input class="form-control input-lg"></td>
+            <td><input class="form-control input-lg"></td>
+            <td><input class="form-control input-lg"></td>
+            <td><input class="form-control input-lg"></td>
+            <td><input class="form-control input-lg"></td>
+            <td><input class="form-control input-lg"></td>
+            <td><input class="form-control input-lg"></td>
+          </tr>
+          <tr>
+            <th scope="row">3.</th>
+            <td><input class="form-control input-lg"></td>
+            <td><input class="form-control input-lg"></td>
+            <td><input class="form-control input-lg"></td>
+            <td><input class="form-control input-lg"></td>
+            <td><input class="form-control input-lg"></td>
+            <td><input class="form-control input-lg"></td>
+            <td><input class="form-control input-lg"></td>
+          </tr>
+        </tbody>
+      </table>   
+    </div>
+  </section>

@@ -1,11 +1,10 @@
 .button {
-    background-color: white;
-    border: none;
-    outline: none;
-    color: black;
-  }
-  
-  .form-group {
-    text-align: left;
-  }
-  
+  background-color: white;
+  border: none;
+  outline: none;
+  color: black;
+}
+
+.form-group {
+  text-align: left;
+}

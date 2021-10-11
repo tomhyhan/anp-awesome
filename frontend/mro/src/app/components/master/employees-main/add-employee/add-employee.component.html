@@ -1,0 +1,92 @@
+<form [formGroup]="addEmployeeForm" (ngSubmit)="onSubmit()" >
+  <section  id="main-section-searchline">
+    <table id="main-table-selector">
+      <thead>
+        <tr style="color: rgb(110,144,161);">
+          <th scope="col"><label for="empName">Employee Name</label></th>
+          <th scope="col"><label for="empCode">Employee Code</label></th>
+          <th scope="col"><label for="siteMasterId">Site Master ID</label></th>
+          <th scope="col"><label for="contact">Contact</label></th>
+          <th scope="col"><label for="address">Address</label></th>
+          <th scope="col"><label for="designation">Disignation</label></th>
+          <th scope="col"><label for="department">Department</label></th>
+          <th scope="col"><label for="remarks">Remarks</label></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><input
+            class="form-control"
+            type="text"
+            name="empName"
+            id="empName"
+            placeholder="Employee Name"
+            formControlName="emp_name"
+          /></td>
+          <td><input
+            class="form-control"
+            type="text"
+            name="empCode"
+            id="empCode"
+            placeholder="Employee Code"
+            formControlName="emp_code"
+            /></td>
+          <td><input
+            class="form-control"
+            type="text"
+            name="siteMasterId"
+            id="siteMasterId"
+            placeholder="Site Master ID"
+            formControlName="site_master_id"
+          /></td>
+          <td><input
+            class="form-control"
+            type="text"
+            name="contact"
+            id="contact"
+            placeholder="Contact"
+            formControlName="contact"
+          /></td>
+          <td><input
+            class="form-control"
+            type="text"
+            name="addres"
+            id="addres"
+            placeholder="Address"
+            formControlName="address"
+          /></td>
+          <td><input
+            class="form-control"
+            type="text"
+            name="disignation"
+            id="disignation"
+            placeholder="Disignation"
+            formControlName="designation"
+          /></td>
+          <td><input
+            class="form-control"
+            type="text"
+            name="department"
+            id="department"
+            placeholder="Department"
+            formControlName="department"
+          /></td>
+          <td><input
+            class="form-control"
+            type="text"
+            name="remarks"
+            id="remarks"
+            placeholder="Remarks"
+            formControlName="remarks"
+          /></td>
+          <td class="button ext-center">
+            <button class="text-center ml-2" id="button-save" type="submit"><i class="fa fa-plus-circle">Add</i></button>
+          </td>
+        </tr>
+      </tbody>
+
+    </table>
+
+  </section>
+  </form>
+ 

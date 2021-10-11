@@ -7,6 +7,9 @@
   <div class="spare-part__add">
    <app-add-spare-part [uom]="uom" (onCreateSparePart)="createTask($event)"></app-add-spare-part>
   </div>
+  <div class="spare-part__add">
+    <app-search-spare-part [uom]="uom" (onSearchSparePart)="searchSparePart($event)"></app-search-spare-part>
+   </div>
   <div class="spare-part__table">
    <table mat-table [dataSource]="spareParts" class="mat-elevation-z1 demo-table">
      <!-- Position Column -->

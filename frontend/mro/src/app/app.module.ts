@@ -36,6 +36,7 @@ import { EditEmployeeComponent } from './components/master/employees-main/edit-e
 import { UomPartsComponent } from './components/master/uom/uom-parts/uom-parts.component';
 import { AddUomComponent } from './components/master/uom/add-uom/add-uom-part.component';
 import { EditUomPartComponent } from './components/master/uom/edit-uom/edit-uom.component';
+import { SearchSparePartComponent } from './components/master/sparePart/search-spare-part/search-spare-part.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { EditUomPartComponent } from './components/master/uom/edit-uom/edit-uom.
     UomPartsComponent,
     AddUomComponent,
     EditUomPartComponent,
+    SearchSparePartComponent,
   ],
   imports: [
     BrowserModule,

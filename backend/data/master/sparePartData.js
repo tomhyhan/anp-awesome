@@ -13,14 +13,46 @@ export async function getAll() {
   });
 }
 
-export async function getAllByHsnCode(filter) {
+export async function getAllByFilter(filter) {
+  console.log(filter);
+  const {
+    spare_part_code,
+    hsn_code,
+    spare_part_desc,
+    spare_part_group,
+    rate,
+    frn_uom,
+    active_id,
+  } = filter;
+  console.log(filter);
   return db
     .execute(
       `
     ${SELECT_JOIN}
-    WHERE hsn_code=?
-    `,
-      [hsn_code]
+    WHERE
+      sp.spare_part_code=?
+      or
+      sp.hsn_code=?
+      or
+      sp.spare_part_desc=? 
+      or
+      sp.spare_part_group=? 
+      or
+      sp.rate=?
+      or
+      sp.frn_uom=?
+      or
+      sp.active_id=?
+      `,
+      [
+        spare_part_code,
+        hsn_code,
+        spare_part_desc,
+        spare_part_group,
+        rate,
+        frn_uom,
+        active_id,
+      ]
     )
     .then((result) => {
       return result[0];

@@ -1,16 +1,15 @@
-  <form [formGroup]="addSparePartForm" (ngSubmit)="onSubmit()" >
+<form [formGroup]="searchSparePartForm" (ngSubmit)="onSubmit()" >
     <section  id="main-section-searchline">
       <table id="main-table-selector">
         <thead>
           <tr style="color: rgb(110,144,161);">
-            <th scope="col"><label for="sparePartCode">Spare Part Code</label></th>
-            <th scope="col"><label for="hsnCode">HSN code</label></th>
-            <th scope="col"><label for="sparePartDesc">Spare Part Desc</label></th>
-            <th scope="col"><label for="sparePartGroup">Spare Part Group</label></th>
-            <th scope="col"><label for="rate">Rate</label></th>
+            <th ><label for="sparePartCode">Spare Part Code</label></th>
+            <th><label for="hsnCode">HSN code</label></th>
+            <th><label for="sparePartDesc">Spare Part Desc</label></th>
+            <th><label for="sparePartGroup">Spare Part Group</label></th>
+            <th><label for="rate">Rate</label></th>
             <th scope="col"><label for="frn_uom">Uom</label></th>
-            <th scope="col"><label for="active_id">Status</label></th>
-            <th scope="col"><label for="photo">photo</label></th>
+            <th><label for="active_id">Status</label></th>
           </tr>
         </thead>
         <tbody>
@@ -29,7 +28,7 @@
               name="hsnCode"
               id="hsnCode"
               placeholder="hsnCode"
-              formControlName="spare_part_desc"
+              formControlName="hsn_code"
               /></td>
             <td><input
               class="form-control"
@@ -37,7 +36,7 @@
               name="sparePartDesc"
               id="sparePartDesc"
               placeholder="sparePartDesc"
-              formControlName="hsn_code"
+              formControlName="spare_part_desc"
             /></td>
             <td><input
               class="form-control"
@@ -57,25 +56,18 @@
             /></td>
             <td>
               <select  formControlName="frn_uom" id="frn_uom" class="form-control">
-                <option *ngFor="let item of uom">{{item.uom}}</option>
-              </select>
+                <option value="" disabled>Choose your Unit</option>
+                <option *ngFor="let item of uom" [ngValue]="item.uom_id" selected>{{item.uom}}</option>              </select>
             </td>
             <td>
             <select  formControlName="active_id" id="active_id" class="form-control">
-              <option selected value="1">Active</option>
+                <option value="" disabled>Choose the Status</option>
+                <option selected value="1">Active</option>
               <option selected value="0">Deactive</option>
             </select>
             </td>
-            <td><input
-              class="form-control"
-              type="text"
-              name="photo"
-              id="photo"
-              placeholder="photo"
-              formControlName="photo"
-            /></td>
             <td class="button ext-center">
-              <button class="text-center ml-2" id="main-button-add_spare" type="submit" [disabled]="!addSparePartForm.valid"><i class="fa fa-plus-circle">Add</i></button>
+              <button class="text-center m-2" id="main-button-add_spare" type="submit" [disabled]="!searchSparePartForm.valid">search</button>
             </td>
           </tr>
         </tbody>

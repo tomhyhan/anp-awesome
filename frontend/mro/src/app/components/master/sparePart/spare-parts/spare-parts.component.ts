@@ -28,9 +28,11 @@ export class SparePartsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.sparePartService.getSparePart().subscribe((spareParts) => {
-      this.spareParts = spareParts;
-    });
+    this.sparePartService
+      .getSparePart(JSON.stringify(''))
+      .subscribe((spareParts) => {
+        this.spareParts = spareParts;
+      });
     this.uomService.getUomPart().subscribe((uom) => {
       this.uom = uom;
     });
@@ -57,5 +59,10 @@ export class SparePartsComponent implements OnInit {
         this.spareParts = newSpareParts;
       });
   }
-}
 
+  searchSparePart(filter: any) {
+    this.sparePartService.getSparePart(filter).subscribe((spareParts) => {
+      this.spareParts = spareParts;
+    });
+  }
+}

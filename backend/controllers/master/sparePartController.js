@@ -1,10 +1,12 @@
 import * as sparePartData from '../../data/master/sparePartData.js';
 
 export async function getAllSpareParts(req, res, next) {
-  const spare_part_filter = req.query.spare_part_filter;
+  const sparePartFilter = JSON.parse(req.query.sparePartFilter);
+  const filter =
+    sparePartFilter === '' || isEmpty(sparePartFilter) ? '' : sparePartFilter;
 
-  const sparePart = await (spare_part_filter
-    ? sparePartData.getAllByFilter(spare_part_filter)
+  const sparePart = await (filter
+    ? sparePartData.getAllByFilter(filter)
     : sparePartData.getAll());
 
   return res.status(200).json(sparePart);
@@ -23,6 +25,7 @@ export async function getById(req, res, next) {
 
 export async function postSparePart(req, res) {
   const { spare_part } = req.body;
+  console.log(spare_part);
   const sparePart = await sparePartData.create(spare_part);
   res.status(201).json(sparePart);
 }
@@ -36,4 +39,9 @@ export async function updateSparePart(req, res) {
   } else {
     res.status(404).json({ message: `Spare Part not Found` });
   }
+}
+
+function isEmpty(filter) {
+  const empty = Object.values(filter).find((value) => value !== null);
+  return empty == null ? true : false;
 }

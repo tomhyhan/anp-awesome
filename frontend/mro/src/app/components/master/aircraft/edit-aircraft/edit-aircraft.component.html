@@ -1,0 +1,56 @@
+<button type="button" class="btn btn-primary" data-toggle="modal"  attr.data-target="#{{ aircraft.material_aircraft_id }}" data-whatever="@getbootstrap" data-backdrop="false">Update Spare Part</button>
+
+<div class="modal fade" attr.id="{{ aircraft.materialaircraft_id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit aircraft</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+         <form  [formGroup]="aircraftForm" (ngSubmit)="onSubmit()">   
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">aircraft material id</label>
+            <input formControlName="material_aircraft_id" type="text" name="material_aircraft_id"  class="form-control" id="recipient-name">
+          </div>  
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">aircraft name</label>
+            <input formControlName="aircraft_name" type="text"  name="aircraft_name"  class="form-control" id="recipient-name" > 
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">remarks</label>
+            <input formControlName="remarks" type="text" name="remarks"  class="form-control" id="recipient-name">
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">created by</label>
+            <input formControlName="created_by" type="text" name="created_by"  class="form-control" id="recipient-name">
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">created date</label>
+            <input formControlName="created_date" type="text" name="created_date"  class="form-control" id="recipient-name">
+          </div>
+          <button type="submit" class="btn btn-primary">Send message</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- value={{ aircraft.spare_part_code}}
+value={{ aircraft.hsn_code}}
+value={{ spare_part.spare_part_desc}} -->
+
+<!-- <div class="form-group">
+  <label for="recipient-name" class="col-form-label">Spare Part Code</label>
+  <input formControlName="aircraft_name" type="text"  name="aircraft_name"  class="form-control" id="recipient-name" value="{{aircraft.spare_part_code}}"> 
+</div>
+<div class="form-group">
+  <label for="recipient-name" class="col-form-label">HSN code</label>
+  <input formControlName="hsnCode" type="text" name="hsnCode"  class="form-control" id="recipient-name" value="{{aircraft.hsn_code}}" >
+</div>
+<div class="form-group">
+  <label for="recipient-name" class="col-form-label">Description</label>
+  <input formControlName="aircraftDesc" type="text" name="aircraftDesc"  class="form-control" id="recipient-name" value="{{aircraft.spare_part_desc}}">
+</div> -->

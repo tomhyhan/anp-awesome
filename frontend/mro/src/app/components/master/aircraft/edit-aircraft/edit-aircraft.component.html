@@ -1,4 +1,4 @@
-<button type="button" class="btn btn-primary" data-toggle="modal"  attr.data-target="#{{ aircraft.material_aircraft_id }}" data-whatever="@getbootstrap" data-backdrop="false">Update Spare Part</button>
+<button type="button" class="btn btn-primary" data-toggle="modal"  attr.data-target="#{{ aircraft.material_aircraft_id }}" data-whatever="@getbootstrap" data-backdrop="false">Update aircraft</button>
 
 <div class="modal fade" attr.id="{{ aircraft.materialaircraft_id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -12,24 +12,12 @@
       <div class="modal-body">
          <form  [formGroup]="aircraftForm" (ngSubmit)="onSubmit()">   
           <div class="form-group">
-            <label for="recipient-name" class="col-form-label">aircraft material id</label>
-            <input formControlName="material_aircraft_id" type="text" name="material_aircraft_id"  class="form-control" id="recipient-name">
-          </div>  
-          <div class="form-group">
             <label for="recipient-name" class="col-form-label">aircraft name</label>
             <input formControlName="aircraft_name" type="text"  name="aircraft_name"  class="form-control" id="recipient-name" > 
           </div>
           <div class="form-group">
             <label for="recipient-name" class="col-form-label">remarks</label>
             <input formControlName="remarks" type="text" name="remarks"  class="form-control" id="recipient-name">
-          </div>
-          <div class="form-group">
-            <label for="recipient-name" class="col-form-label">created by</label>
-            <input formControlName="created_by" type="text" name="created_by"  class="form-control" id="recipient-name">
-          </div>
-          <div class="form-group">
-            <label for="recipient-name" class="col-form-label">created date</label>
-            <input formControlName="created_date" type="text" name="created_date"  class="form-control" id="recipient-name">
           </div>
           <button type="submit" class="btn btn-primary">Send message</button>
         </form>

@@ -1,5 +1,5 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { Component, OnInit, Output, EventEmitter} from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-add-aircraft',
@@ -7,21 +7,27 @@ import { FormGroup } from '@angular/forms';
   styleUrls: ['./add-aircraft.component.css'],
 })
 export class AddaircraftComponent implements OnInit {
-  aircraft_name: any;
-  material_aircraft_id: any;
+  aircraftname: any;
+  materialaircraftid: any;
   created_date: any;
   @Output() onCreateaircraft = new EventEmitter();
   addaircraftForm : FormGroup | any;
 
-  constructor() {}
+  constructor(private formBuilder: FormBuilder) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.addaircraftForm = this.formBuilder.group({
+      aircraft_name: [''],
+      remarks: [''],
+      created_by:[''],
+      created_date: [''],
+    });
+  }
 
   onSubmit() {
     const aircraft = {
-      spare_part: {
-        material_aircraft_id: this.addaircraftForm.material_aircraft_id,
-        aircraft_name: this.addaircraftForm.aircraft_name,
+      aircraft: {
+        aircraft_name: this.addaircraftForm.value.aircraft_name,
         remarks: 'remark',
         created_by: 'tom',
         created_date: '',

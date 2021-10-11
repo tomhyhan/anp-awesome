@@ -18,9 +18,9 @@ export class aircraftsComponent implements OnInit {
 
   displayedColumns: string[] = [
     'demo-position',
-    'demo-name',
-    'demo-weight',
-    'demo-symbol',
+    'aircraft_name',
+    'remarks',
+    'created_by',
     'demo-button',
   ];
 

@@ -43,6 +43,11 @@ import { EditVendorComponent } from './components/master/vendor/edit-vendor/edit
 import { VendorsComponent } from './components/master/vendor/vendors/vendors.component';
 
 
+import { AddaircraftComponent } from './components/master/aircraft/add-aircraft/add-aircraft.component';
+import { EditaircraftComponent } from './components/master/aircraft/edit-aircraft/edit-aircraft.component';
+import { aircraftsComponent } from './components/master/aircraft/aircrafts/aircraft.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -66,7 +71,10 @@ import { VendorsComponent } from './components/master/vendor/vendors/vendors.com
     SearchSparePartComponent,
     AddVendorComponent,
     EditVendorComponent,
-    VendorsComponent
+    VendorsComponent,
+    aircraftsComponent,
+    EditaircraftComponent,
+    AddaircraftComponent
 
 
   ],

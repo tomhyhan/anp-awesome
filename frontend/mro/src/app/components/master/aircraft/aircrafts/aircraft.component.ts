@@ -10,8 +10,8 @@ export interface PeriodicElement {
 
 @Component({
   selector: 'app-aircrafts',
-  templateUrl: './aircrafts.component.html',
-  styleUrls: ['./aircrafts.component.css'],
+  templateUrl: './aircraft.component.html',
+  styleUrls: ['./aircraft.component.css'],
 })
 export class aircraftsComponent implements OnInit {
   aircrafts: any = [];

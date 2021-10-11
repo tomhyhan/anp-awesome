@@ -14,7 +14,6 @@ export async function getAll() {
 }
 
 export async function getAllByFilter(filter) {
-  console.log(filter);
   const {
     spare_part_code,
     hsn_code,
@@ -24,7 +23,7 @@ export async function getAllByFilter(filter) {
     frn_uom,
     active_id,
   } = filter;
-  console.log(filter);
+
   return db
     .execute(
       `

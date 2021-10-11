@@ -7,6 +7,9 @@ import { PurchaseOrderComponent } from './components/purchase-order/purchase-ord
 import { PurchaseOrderCreateComponent } from './components/purchase-order-create/purchase-order-create.component';
 import { EmployeesComponent } from './components/master/employees-main/employees/employees.component';
 import { UomPartsComponent } from './components/master/uom/uom-parts/uom-parts.component';
+import { VendorsComponent } from './components/master/vendor/vendors/vendors.component';
+import { aircraftsComponent } from './components/master/aircraft/aircrafts/aircraft.component'
+
 
 const routes: Routes = [
   { path: 'master/spare_part', component: SparePartsComponent },
@@ -15,6 +18,8 @@ const routes: Routes = [
   { path: 'Purchase_order/create', component: PurchaseOrderCreateComponent },
   { path: 'master/employees', component: EmployeesComponent },
   { path: 'master/uom', component: UomPartsComponent },
+  { path: 'master/vendor', component:VendorsComponent},
+  { path: 'master/aircraft', component:aircraftsComponent},
 ];
 
 @NgModule({

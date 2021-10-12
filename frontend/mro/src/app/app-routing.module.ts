@@ -8,7 +8,7 @@ import { PurchaseOrderCreateComponent } from './components/purchase-order-create
 import { EmployeesComponent } from './components/master/employees-main/employees/employees.component';
 import { UomPartsComponent } from './components/master/uom/uom-parts/uom-parts.component';
 import { VendorsComponent } from './components/master/vendor/vendors/vendors.component';
-import { aircraftsComponent } from './components/master/aircraft/aircrafts/aircraft.component'
+import { aircraftsComponent } from './components/master/aircraft/aircrafts/aircrafts.component'
 
 
 const routes: Routes = [

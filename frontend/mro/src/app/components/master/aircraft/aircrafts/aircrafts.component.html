@@ -1,0 +1,37 @@
+<section id="main-section-namepageline">
+  <h1 style="text-align:center;">aircraft</h1>
+</section>
+
+<section class="ml-3 mr-3 pt-0 mt-0" style="background-color: white">
+  <div class="spare-part">
+      <div class="spare-part__add">
+      <app-add-aircraft (onCreateaircraft)="createTask($event)"></app-add-aircraft>
+      </div>
+      <div class="spare-part__table">
+      <table mat-table [dataSource]="aircraft" class="mat-elevation-z1 demo-table">
+
+          <ng-container matColumnDef="aircraft_name">
+            <th mat-header-cell *matHeaderCellDef>aircraft name</th>
+            <td mat-cell *matCellDef="let aircraft"> {{aircraft.aircraft_name}} </td>
+          </ng-container>
+        
+          <ng-container matColumnDef="remarks">
+            <th mat-header-cell *matHeaderCellDef>Remarks</th>
+            <td mat-cell *matCellDef="let aircraft">{{aircraft.remarks}}</td>
+          </ng-container>
+          
+          <ng-container matColumnDef="view">
+            <th mat-header-cell *matHeaderCellDef>Update</th>
+            <td mat-cell *matCellDef="let aircraft"><app-edit-aircraft [aircraft]="aircraft" (onUpdateaircraft)="updateaircraft($event)" ></app-edit-aircraft></td>
+          </ng-container>
+  
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
+    <!-- <mat-paginator [pageSizeOptions]="[2, 5, 10]"
+                   showFirstLastButtons 
+                   aria-label="Select page">
+    </mat-paginator> -->
+  </div>
+</section>

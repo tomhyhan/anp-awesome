@@ -13,6 +13,7 @@ export class aircraftsComponent implements OnInit {
   displayedColumns: string[] = [
     'aircraft_name',
     'remarks',
+    'view'
   ];
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;

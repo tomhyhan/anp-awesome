@@ -7,10 +7,14 @@ JOIN uom
 On sp.frn_uom = uom.uom_id
 `;
 
-export async function getAll() {
-  return db.execute(SELECT_JOIN).then((result) => {
-    return result[0];
-  });
+export async function getAll(pageIndex, pageSize) {
+  const limit = parseInt(pageSize);
+  const currentPage = parseInt(pageIndex) * limit;
+  return db
+    .execute(`${SELECT_JOIN} LIMIT ? OFFSET ?`, [limit, currentPage])
+    .then((result) => {
+      return result[0];
+    });
 }
 
 export async function getAllByFilter(filter) {
@@ -69,6 +73,18 @@ export async function getAllById(materialMasterId) {
     )
     .then((result) => {
       return result[0];
+    });
+}
+
+export async function getCount() {
+  return db
+    .execute(
+      `
+      SELECT count(*) from spare_part
+    `
+    )
+    .then((result) => {
+      return result[0][0]['count(*)'];
     });
 }
 

@@ -56,12 +56,12 @@
             /></td>
             <td>
               <select  formControlName="frn_uom" id="frn_uom" class="form-control">
-                <option value="" disabled>Choose your Unit</option>
+                <option value="null" >Choose your Unit</option>
                 <option *ngFor="let item of uom" [ngValue]="item.uom_id" selected>{{item.uom}}</option>              </select>
             </td>
             <td>
             <select  formControlName="active_id" id="active_id" class="form-control">
-                <option value="" disabled>Choose the Status</option>
+                <option value="null" >Choose the Status</option>
                 <option selected value="1">Active</option>
               <option selected value="0">Deactive</option>
             </select>

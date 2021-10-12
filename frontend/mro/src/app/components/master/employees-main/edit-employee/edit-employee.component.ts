@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { EmployeeService } from 'src/app/services/master/employee.service';
+import { EmployeeService } from 'src/app/services/master/employees/employee.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 

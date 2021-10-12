@@ -1,0 +1,35 @@
+<form  [formGroup]="addaircraftForm" (ngSubmit)="onSubmit() ">
+  <section id="main-section-searchline">
+    <table id="main-table-selector">
+      <thead>
+        <tr style="color: rgb(110,144,161);">
+          <th scope="col"><label for="aircraft_name">Aircraft Name</label></th>
+          <th scope="col"><label for="remarks">Remarks</label></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><input
+            class="form-control"
+            type="text"
+            name="aircraft_name"
+            id="aircraft_name"
+            placeholder="Aircraft Name"
+            formControlName="aircraft_name"
+          /></td>
+          <td><input
+            class="form-control"
+            type="text"
+            name="remarks"
+            id="remarks"
+            placeholder="Remarks"
+            formControlName="remarks"
+          /></td>
+          <td class="button ext-center">
+            <button class="text-center ml-2" id="main-button-add_aircraft" type="submit" [disabled]="!addaircraftForm.valid"><i class="fa fa-plus-circle">Add</i></button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+  </form>

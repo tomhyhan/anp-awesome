@@ -34,8 +34,10 @@ CREATE TABLE project (
   project_code VARCHAR(100),     
   remarks VARCHAR(100),             
   active_id INTEGER DEFAULT 1,      
-  created_by VARCHAR(100),         
+  created_by VARCHAR(100), 
+  end_date Date,        
   created_date Date
+  
 );
 
 

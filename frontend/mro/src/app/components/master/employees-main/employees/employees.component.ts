@@ -1,5 +1,9 @@
 import { ViewChild, Component, AfterViewInit } from '@angular/core';
+<<<<<<< HEAD
 import { EmployeeService } from 'src/app/services/master/employee.service';
+=======
+import { EmployeeService } from 'src/app/services/master/employees/employee.service';
+>>>>>>> e05ff3ec5eac9ec76e9344a81f065e7883a75261
 import {MatPaginator} from '@angular/material/paginator';
 
 @Component({

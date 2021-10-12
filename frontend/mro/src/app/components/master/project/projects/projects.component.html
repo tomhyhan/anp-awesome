@@ -1,0 +1,51 @@
+<section id="main-section-namepageline">
+    <h1 style="text-align:center;">Project</h1>
+  </section>
+  
+  <section class="ml-3 mr-3 pt-0 mt-0" style="background-color: white">
+   <div class="project">
+     <div class="project__add">
+      <app-add-project (onCreateproject)="createTask($event)"></app-add-project>
+     </div>
+     <div class="project__table">
+      <table mat-table [dataSource]="projects" class="mat-elevation-z1 demo-table">
+        
+        <ng-container matColumnDef="project_name">
+            <th mat-header-cell *matHeaderCellDef>Project Name</th>
+            <td mat-cell *matCellDef="let project"> {{project.project_name}} </td>
+          </ng-container>
+        
+          
+          <ng-container matColumnDef="project_code">
+            <th mat-header-cell *matHeaderCellDef>Project Code</th>
+            <td mat-cell *matCellDef="let project"> {{project.project_code}} </td>
+          </ng-container>
+        
+         
+          <ng-container matColumnDef="created_date">
+            <th mat-header-cell *matHeaderCellDef>Created date</th>
+            <td mat-cell *matCellDef="let project"> {{project.created_date}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="end_date">
+            <th mat-header-cell *matHeaderCellDef>End date</th>
+            <td mat-cell *matCellDef="let project"> {{project.end_date}} </td>
+          </ng-container>
+        
+  <!-- {{project.active_id}} -->
+          <ng-container matColumnDef="active_id">
+            <th mat-header-cell *matHeaderCellDef>Status</th>
+            <td mat-cell *matCellDef="let project" [ngClass]="project.active_id === 1? 'active': 'deactive'">Active</td> 
+          </ng-container>
+          
+          <ng-container matColumnDef="view">
+            <th mat-header-cell *matHeaderCellDef>Update</th>
+            <td mat-cell *matCellDef="let project"><app-edit-project [project]="project" (onUpdateproject)="updateproject($event)" ></app-edit-project></td>
+          </ng-container>
+  
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+     </div>
+  </div>
+  </section>

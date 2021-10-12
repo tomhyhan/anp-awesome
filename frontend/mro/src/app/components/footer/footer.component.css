@@ -1,9 +1,5 @@
-footer{
-    position:fixed;
-    bottom:0px;
-    width:100%;
-}
-
 .footer-p-companyinfo {
-    margin: -5px;
+    text-align: left;
+    margin-bottom: 0%;
+    color: white;
 }

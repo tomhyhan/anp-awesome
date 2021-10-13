@@ -14,7 +14,7 @@ export async function getAllSpareParts(req, res, next) {
     sparePartFilter === '' || isEmpty(sparePartFilter) ? '' : sparePartFilter;
 
   const sparePart = await (filter
-    ? sparePartData.getAllByFilter(filter)
+    ? sparePartData.getAllByFilter(filter, pageIndex, pageSize)
     : sparePartData.getAll(pageIndex, pageSize));
 
   return res.status(200).json(sparePart);
@@ -33,7 +33,12 @@ export async function getById(req, res, next) {
 
 export async function getSparePartCount(req, res) {
   const count = await sparePartData.getCount();
+  res.status(200).json(count);
+}
 
+export async function getSparePartFilterCount(req, res) {
+  const sparePartFilter = JSON.parse(req.query.sparePartFilter);
+  const count = await sparePartData.getFilterCount(sparePartFilter);
   res.status(200).json(count);
 }
 

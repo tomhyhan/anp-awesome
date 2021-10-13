@@ -4,6 +4,7 @@ import * as sparePartController from '../../controllers/master/sparePartControll
 const router = express.Router();
 
 router.get('/pages', sparePartController.getSparePartCount);
+router.get('/filterPages', sparePartController.getSparePartFilterCount);
 router.get('/:id', sparePartController.getById);
 router.get('/', sparePartController.getAllSpareParts);
 router.post('/', sparePartController.postSparePart);

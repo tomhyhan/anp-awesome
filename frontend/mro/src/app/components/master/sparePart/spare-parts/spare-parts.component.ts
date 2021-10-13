@@ -12,6 +12,7 @@ export class SparePartsComponent implements OnInit {
   spareParts: any;
   uom: any = [];
   sparePartCount: any;
+  filter = JSON.stringify('');
   displayedColumns: string[] = [
     'spare_part_code',
     'spare_part_desc',
@@ -46,7 +47,7 @@ export class SparePartsComponent implements OnInit {
         tap(() =>
           this.sparePartService
             .getSparePart(
-              JSON.stringify(''),
+              this.filter,
               this.paginator.pageIndex,
               this.paginator.pageSize
             )
@@ -81,13 +82,17 @@ export class SparePartsComponent implements OnInit {
   }
 
   searchSparePart(filter: any) {
+    this.sparePartService.getSparePartFilterCount(filter).subscribe((count) => {
+      this.sparePartCount = count;
+    });
+    this.filter = filter;
     this.paginator.page
       .pipe(
         startWith(null),
         tap(() =>
           this.sparePartService
             .getSparePart(
-              filter,
+              this.filter,
               this.paginator.pageIndex,
               this.paginator.pageSize
             )

@@ -17,7 +17,6 @@ export class SparePartService {
   constructor(private http: HttpClient) {}
 
   getSparePart(filter: any, pageIndex: any, pageSize: any) {
-    console.log(filter);
     return this.http.get(
       `${this.apiUrl}?sparePartFilter=${filter}&pageIndex=${pageIndex}&pageSize=${pageSize}$`
     );
@@ -33,5 +32,12 @@ export class SparePartService {
 
   getSparePartCount() {
     return this.http.get(`${this.apiUrl}/pages`, httpOptions);
+  }
+
+  getSparePartFilterCount(filter: any) {
+    return this.http.get(
+      `${this.apiUrl}/filterPages?sparePartFilter=${filter}`,
+      httpOptions
+    );
   }
 }

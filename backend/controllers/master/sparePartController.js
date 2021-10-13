@@ -4,6 +4,8 @@ export async function getAllSpareParts(req, res, next) {
   const sparePartFilter = JSON.parse(req.query.sparePartFilter);
   const filter =
     sparePartFilter === '' || isEmpty(sparePartFilter) ? '' : sparePartFilter;
+    
+  
 
   const sparePart = await (filter
     ? sparePartData.getAllByFilter(filter)

@@ -1,10 +1,24 @@
 import * as projectData from '../../data/master/projectData.js';
 
-export async function getAllproject(req, res, next) {
-  const project_code = req.query.project_code;
+// export async function getAllproject(req, res, next) {
+//   const project_code = req.query.project_code;
 
-  const project = await (project_code
-    ? projectData.getAllByprojectCode(project_code)
+//   const project = await (project_code
+//     ? projectData.getAllByprojectCode(project_code)
+//     : projectData.getAll());
+
+//   return res.status(200).json(project);
+// }
+
+export async function getAllproject(req, res, next) {
+  const projectFilter = JSON.parse(req.query.projectFilter);
+  const filter =
+  projectFilter === '' || isEmpty(projectFilter) ? '' : projectFilter;
+    
+  
+
+  const project = await (filter
+    ? projectData.getAllByFilter(filter)
     : projectData.getAll());
 
   return res.status(200).json(project);
@@ -39,4 +53,9 @@ export async function updateproject(req, res) {
   } else {
     res.status(404).json({ message: `Project not Found` });
   }
+}
+
+function isEmpty(filter) {
+  const empty = Object.values(filter).find((value) => value !== null);
+  return empty == null ? true : false;
 }

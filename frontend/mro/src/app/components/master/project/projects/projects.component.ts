@@ -12,6 +12,7 @@ export class ProjectsComponent implements OnInit {
   displayedColumns: string[] = [
     'project_name',
     'project_code',
+    'remarks',
     'active_id',
     'created_date',
     'end_date',
@@ -21,7 +22,7 @@ export class ProjectsComponent implements OnInit {
   constructor(private projectService: projectService) { }
 
   ngOnInit(): void {
-    this.projectService.getproject().subscribe((projects) => {
+    this.projectService.getproject(JSON.stringify('')).subscribe((projects) => {
       console.log(projects);
       this.projects = projects;
     });
@@ -46,6 +47,12 @@ export class ProjectsComponent implements OnInit {
         });
         this.projects = newProjects;
       });
+  }
+
+  searchproject(filter: any) {
+    this.projectService.getproject(filter).subscribe((projects) => {
+      this.projects = projects;
+    });
   }
 
 }

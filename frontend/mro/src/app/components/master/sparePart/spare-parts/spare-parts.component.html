@@ -11,7 +11,7 @@
     <app-search-spare-part [uom]="uom" (onSearchSparePart)="searchSparePart($event)"></app-search-spare-part>
    </div>
   <div class="spare-part__table">
-   <table mat-table [dataSource]="spareParts" class="mat-elevation-z1 demo-table">
+   <table mat-table [dataSource]="spareParts" class="demo-table">
      <!-- Position Column -->
      <ng-container matColumnDef="spare_part_code">
          <th mat-header-cell *matHeaderCellDef>Spare Part Code</th>

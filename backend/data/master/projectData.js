@@ -6,6 +6,41 @@ export async function getAll() {
   });
 }
 
+export async function getAllByFilter(filter) {
+  console.log(filter);
+  const {
+    project_name,
+    project_code,
+    remarks,
+    active_id,
+  } = filter;
+  console.log(filter);
+  return db
+    .execute(
+      `
+    SELECT * FROM project
+    WHERE
+      project_name=?
+      or
+      project_code=?
+      or
+      remarks=? 
+      or
+      active_id=? 
+      `,
+      [
+        project_name,
+        project_code,
+        remarks,
+        active_id,
+      ]
+    )
+    .then((result) => {
+      return result[0];
+    });
+}
+
+
 export async function getAllByprojectCode(project_code) {
   return db
     .execute(
@@ -58,7 +93,7 @@ export async function create(project_new) {
         active_id,
         created_by,
         end_date,
-        new Date(),
+        new Date().toLocaleDateString().replace('/','-').replace('/','-'),
       ]
     )
     .then((result) => getAllById(result[0].insertId));

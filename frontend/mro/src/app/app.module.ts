@@ -46,6 +46,7 @@ import { VendorsComponent } from './components/master/vendor/vendors/vendors.com
 import { AddaircraftComponent } from './components/master/aircraft/add-aircraft/add-aircraft.component';
 import { EditaircraftComponent } from './components/master/aircraft/edit-aircraft/edit-aircraft.component';
 import { aircraftsComponent } from './components/master/aircraft/aircrafts/aircrafts.component';
+import { SearchProjectComponent } from './components/master/project/search-project/search-project.component';
 
 
 @NgModule({
@@ -74,7 +75,8 @@ import { aircraftsComponent } from './components/master/aircraft/aircrafts/aircr
     VendorsComponent,
     aircraftsComponent,
     EditaircraftComponent,
-    AddaircraftComponent
+    AddaircraftComponent,
+    SearchProjectComponent
 
 
   ],

@@ -16,8 +16,11 @@ export class projectService {
 
   constructor(private http: HttpClient) {}
 
-  getproject() {
-    return this.http.get(this.apiUrl);
+
+
+  getproject(filter: any) {
+    console.log(filter);
+    return this.http.get(`${this.apiUrl}?projectFilter=${filter}`);
   }
 
   addproject( project: any) {

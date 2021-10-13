@@ -1,13 +1,10 @@
-<form [formGroup]="addaircraftForm" (ngSubmit)="onSubmit()" >
-  <section  id="main-section-searchline">
+<form  [formGroup]="addaircraftForm" (ngSubmit)="onSubmit() ">
+  <section id="main-section-searchline">
     <table id="main-table-selector">
       <thead>
         <tr style="color: rgb(110,144,161);">
-          <th ><label for="material_aircraft_id">Aircraft Code</label></th>
-          <th><label for="aircraft_name">Aircraft Name</label></th>
-          <th ><label for="remarks">Status</label></th>
-          <th><label for="created_by">created by</label></th>
-          <th><label for="created_date">created date</label></th>
+          <th scope="col"><label for="aircraft_name">Aircraft Name</label></th>
+          <th scope="col"><label for="remarks">Remarks</label></th>
         </tr>
       </thead>
       <tbody>
@@ -15,88 +12,24 @@
           <td><input
             class="form-control"
             type="text"
-            name="aircraftname"
-            id="aircraftname"
-            placeholder="Name"
+            name="aircraft_name"
+            id="aircraft_name"
+            placeholder="Aircraft Name"
             formControlName="aircraft_name"
-            /></td>
+          /></td>
           <td><input
             class="form-control"
             type="text"
             name="remarks"
             id="remarks"
-            placeholder="remarks"
+            placeholder="Remarks"
             formControlName="remarks"
           /></td>
-          <td><input
-            class="form-control"
-            type="text"
-            name="created_by"
-            id="created_by"
-            placeholder="created_by"
-            formControlName="created_by"
-          /></td>
-          <td><input
-            class="form-control"
-            type="text"
-            name="created_date"
-            id="created_date"
-            placeholder="created_date"
-            formControlName="created_date"
-          /></td>
-
           <td class="button ext-center">
-            <button class="text-center ml-2" id="main-button-add_aircraft" type="submit" [disabled]="!addaircraftForm.valid"><i class="fa fa-plus-circle"> Add</i></button>
+            <button class="text-center ml-2" id="main-button-add_aircraft" type="submit" [disabled]="!addaircraftForm.valid"><i class="fa fa-plus-circle">Add</i></button>
           </td>
         </tr>
       </tbody>
-
     </table>
-
   </section>
   </form>
-<!-- <form  (ngSubmit)="onSubmit()">
-      <label for="material_aircraft_id">material_aircraft_id</label>
-      <input
-        type="text"
-        name="material_aircraft_id"
-        [(ngModel)]="material_aircraft_id"
-        id="material_aircraft_id"
-        placeholder="code"
-      />
-      <label for="aircraft_name">aircraft_name</label>
-      <input
-        type="text"
-        name="aircraft_name"
-        [(ngModel)]="aircraft_name"
-        id="aircraft_name"
-        placeholder="aircraft_name"
-      />
-      <label for="remark">remark</label>
-      <input
-        type="text"
-        name="remark"
-        [(ngModel)]="remark"
-        id="remark"
-        placeholder="remark"
-      />
-      <label for="created_by">created_by</label>
-      <input
-        type="text"
-        name="created_by"
-        [(ngModel)]="created_by"
-        id="created_by"
-        placeholder="created_by"
-      />
-      <label for="created_date">created_date</label>
-      <input
-        type="text"
-        name="created_date"
-        [(ngModel)]="created_date"
-        id="created_date"
-        placeholder="created_date"
-      />
-
-  
-    <input type="submit" value="add aircraft"  >
-  </form> -->

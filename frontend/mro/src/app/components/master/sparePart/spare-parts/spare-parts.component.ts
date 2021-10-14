@@ -63,7 +63,13 @@ export class SparePartsComponent implements OnInit {
     this.sparePartService
       .addSparePart(sparePart)
       .subscribe((sparePart: any) => {
-        this.spareParts = [...this.spareParts, sparePart[0]];
+        this.sparePartService.getSparePartCount().subscribe((count) => {
+          this.sparePartCount = count;
+        });
+
+        if (this.spareParts.length < this.paginator.pageSize) {
+          this.spareParts = [...this.spareParts, sparePart[0]];
+        }
       });
   }
 
@@ -77,6 +83,7 @@ export class SparePartsComponent implements OnInit {
           }
           return sparePart;
         });
+
         this.spareParts = newSpareParts;
       });
   }

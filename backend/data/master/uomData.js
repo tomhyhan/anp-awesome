@@ -18,7 +18,7 @@ export async function getCount() {
   return db
     .query(
       `
-      SELECT * FROM uom
+      SELECT count(*) FROM uom
     `
     )
     .then((result) => {

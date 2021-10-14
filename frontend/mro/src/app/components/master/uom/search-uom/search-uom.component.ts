@@ -16,8 +16,7 @@ export class SearchUomComponent implements OnInit {
   ngOnInit(): void {
     this.searchUomPartForm = this.formBuilder.group({
       uom: [''],
-      remarks: [''],
-      created_by: [''],
+      remarks: ['']
     });
   }
 
@@ -25,12 +24,10 @@ export class SearchUomComponent implements OnInit {
 
     const uom = this.searchUomPartForm.value.uom || null;
     const remarks = this.searchUomPartForm.value.remarks || null;
-    const created_by = this.searchUomPartForm.value.created_by || null;
 
     const filter = {
           uom,
-          remarks,
-          created_by
+          remarks
         };
     
     this.onSearchUomPart.emit(JSON.stringify(filter));

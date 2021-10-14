@@ -33,4 +33,5 @@ export class AddUomComponent implements OnInit {
 
     this.onCreateUomPart.emit(uomPart);
   }
+
 }

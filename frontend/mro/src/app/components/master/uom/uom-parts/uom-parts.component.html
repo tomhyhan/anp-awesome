@@ -49,6 +49,13 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
   </table>
+  <mat-paginator 
+              [length]="uomPartCount"
+              [pageSize]="5"
+              [pageSizeOptions]="[2, 5, 10, 15, 20]"
+              showFirstLastButtons 
+              aria-label="Select page">
+  </mat-paginator>
 </div>
 </div>
 </section>

@@ -20,26 +20,37 @@ export class UomPartsComponent implements OnInit {
     'created_date',
     'edit',
   ];
-  uomCount: any;
+
+  uomPartCount: any;
+
   filter = JSON.stringify('');
 
   @ViewChild(MatPaginator) paginator: MatPaginator | any;
 
   constructor(private uomService: UomService) { }
 
+
   ngOnInit(): void {
-    this.uomService.getUomCount().subscribe((uoms) => {
-      this.uoms = uoms;
-      console.log(this.uoms)
+    this.uomService.getUomCount().subscribe((count) => {
+      this.uomPartCount = count;
     });
   }
+
+
   createTask(uomPart: any) {
     this.uomService
       .addUomPart(uomPart)
       .subscribe((uomPart: any) => {
-        this.uoms = [...this.uoms, uomPart[0]];
+        this.uomService.getUomCount().subscribe((count) =>{
+          this.uomPartCount = count
+        });
+        if (this.uoms.length < this.paginator.pageSize){
+          this.uoms = [...this.uoms, uomPart[0]];
+        }
       });
   }
+
+  
   updateUom(uomPart: any) {
     this.uomService
       .updateUomPart(uomPart.uom, uomPart.id)
@@ -76,7 +87,7 @@ export class UomPartsComponent implements OnInit {
 
   searchUom(filter: any) {
     this.uomService.getUomFilterCount(filter).subscribe((count) => {
-      this.uomCount = count;
+      this.uomPartCount = count;
     });
     this.filter = filter;
     this.paginator.page

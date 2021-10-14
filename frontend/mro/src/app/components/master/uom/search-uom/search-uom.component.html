@@ -5,7 +5,6 @@
           <tr style="color: rgb(110,144,161);">
             <th><label for="uom">UOM</label></th>
             <th><label for="remarks">Remarks</label></th>
-            <th><label for="created_by">Created By</label></th>
           </tr>
         </thead>
         <tbody>
@@ -26,16 +25,8 @@
               placeholder="Someremarks"
               formControlName="remarks"
             /></td>
-            <td><input
-              class="form-control"
-              type="text"
-              name="created_by"
-              id="created_by"
-              placeholder="Created by"
-              formControlName="created_by"
-            /></td>
             <td class="button ext-center">
-              <button class="text-center m-2" id="main-button-search_uom" type="submit">Search</button>
+              <button class="text-center m-2" id="main-button-search_uom" type="submit" [disabled]="!searchUomPartForm.valid">search</button>
             </td>
           </tr>
         </tbody>

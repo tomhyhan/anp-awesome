@@ -19,7 +19,7 @@ export class UomService {
  
   getUomPart(filter: any, pageIndex: any, pageSize: any) {
     return this.http.get(
-      `${this.apiUrl}?unit_of_measure=${filter}&pageIndex=${pageIndex}&pageSize=${pageSize}$`
+      `${this.apiUrl}?uomPartFilter=${filter}&pageIndex=${pageIndex}&pageSize=${pageSize}$`
     );
   }
 
@@ -38,7 +38,7 @@ export class UomService {
 
   getUomFilterCount(filter: any) {
     return this.http.get(
-      `${this.apiUrl}/filterPages?unit_of_measure=${filter}`, httpOptions
+      `${this.apiUrl}/filterPages?uomPartFilter=${filter}`, httpOptions
     );
   }
 }

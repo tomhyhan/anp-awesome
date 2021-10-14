@@ -20,3 +20,10 @@ h4 {
     margin-bottom: -10px;
 }
 
+.form-control.ng-touched.ng-invalid {
+    border:1px solid red;
+   }
+   
+.form-control.ng-touched.ng-valid {
+    border:1px solid green;
+   }

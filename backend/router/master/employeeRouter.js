@@ -6,7 +6,7 @@ const router = express.Router();
 router.get('/pages', employeeController.getEmployeeCount);
 router.get('/filterPages', employeeController.getEmployeeFilterCount);
 router.get('/:id', employeeController.getById);
-router.get('/', employeeController.getAllemployees);
+router.get('/', employeeController.getAllEmployees);
 router.post('/', employeeController.postEmployee);
 router.put('/:id', employeeController.updateEmployee);
 

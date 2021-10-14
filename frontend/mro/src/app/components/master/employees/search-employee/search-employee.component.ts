@@ -1,5 +1,5 @@
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-search-employee',
@@ -7,7 +7,15 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./search-employee.component.css'],
 })
 export class SearchEmployeeComponent implements OnInit {
-  @Input() uom: any;
+  empName: any;
+  empCode: any;
+  siteMasterId: any;
+  contact: any;
+  address: any;
+  designation: any;
+  department: any;
+  createdBy: any;
+  createdDate: any;
   @Output() onSearchEmployee = new EventEmitter();
   searchEmployeeForm: FormGroup | any;
 
@@ -49,7 +57,6 @@ export class SearchEmployeeComponent implements OnInit {
       created_by,
       created_date
     };
-
     this.onSearchEmployee.emit(JSON.stringify(filter));
   }
 }

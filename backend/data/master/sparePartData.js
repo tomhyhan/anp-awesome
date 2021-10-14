@@ -15,6 +15,7 @@ export async function getAll() {
 
 export async function getAllBySparePartCode(spare_part_code) {
   return db
+    //.query
     .execute(
       `
     ${SELECT_JOIN}

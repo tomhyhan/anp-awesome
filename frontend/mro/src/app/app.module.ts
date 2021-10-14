@@ -41,6 +41,7 @@ import { EditUomPartComponent } from './components/master/uom/edit-uom/edit-uom.
 import { AddVendorComponent } from './components/master/vendor/add-vendor/add-vendor.component';
 import { EditVendorComponent } from './components/master/vendor/edit-vendor/edit-vendor.component';
 import { VendorsComponent } from './components/master/vendor/vendors/vendors.component';
+import { SearchVendorComponent } from './components/master/vendor/search-vendor/search-vendor.component';
 
 
 @NgModule({
@@ -66,6 +67,7 @@ import { VendorsComponent } from './components/master/vendor/vendors/vendors.com
     AddVendorComponent,
     EditVendorComponent,
     VendorsComponent,
+    SearchVendorComponent
   ],
   imports: [
     BrowserModule,

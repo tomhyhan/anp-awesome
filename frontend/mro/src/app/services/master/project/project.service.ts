@@ -18,9 +18,9 @@ export class projectService {
 
 
 
-  getproject(filter: any) {
-    console.log(filter);
-    return this.http.get(`${this.apiUrl}?projectFilter=${filter}`);
+  getproject(filter: any, pageIndex: any, pageSize: any) {
+    console.log(pageSize);
+    return this.http.get(`${this.apiUrl}?projectFilter=${filter}&pageIndex=${pageIndex}&pageSize=${pageSize}$`);
   }
 
   addproject( project: any) {
@@ -29,5 +29,16 @@ export class projectService {
 
   updateproject( project: any, id: any) {
     return this.http.put(`${this.apiUrl}/${id}`, project, httpOptions);
+  }
+
+  getprojectCount() {
+    return this.http.get(`${this.apiUrl}/pages`, httpOptions);
+  }
+
+  getprojectFilterCount(filter: any) {
+    return this.http.get(
+      `${this.apiUrl}/filterPages?projectFilter=${filter}`,
+      httpOptions
+    );
   }
 }

@@ -11,15 +11,23 @@ import * as projectData from '../../data/master/projectData.js';
 // }
 
 export async function getAllproject(req, res, next) {
-  const projectFilter = JSON.parse(req.query.projectFilter);
+  let projectFilter = req.query.projectFilter;
+  const { pageIndex, pageSize } = req.query;
+
+  if (projectFilter == null) {
+    projectFilter = '';
+  } else {
+    projectFilter = JSON.parse(projectFilter);
+  }
+
   const filter =
   projectFilter === '' || isEmpty(projectFilter) ? '' : projectFilter;
     
   
 
   const project = await (filter
-    ? projectData.getAllByFilter(filter)
-    : projectData.getAll());
+    ? projectData.getAllByFilter(filter, pageIndex, pageSize)
+    : projectData.getAll(pageIndex, pageSize));
 
   return res.status(200).json(project);
 }
@@ -34,6 +42,17 @@ export async function getById(req, res, next) {
     res.status(404).json({ message: `Project not Found` });
   }
 }
+export async function getprojectCount(req, res) {
+  const count = await projectData.getCount();
+  res.status(200).json(count);
+}
+
+export async function getprojectFilterCount(req, res) {
+  const projectFilter = JSON.parse(req.query.projectFilter);
+  const count = await projectData.getFilterCount(projectFilter);
+  res.status(200).json(count);
+}
+
 
 export async function postproject(req, res) {
   const { project_user } = req.body;

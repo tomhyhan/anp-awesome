@@ -1,17 +1,20 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
+import { UomService } from 'src/app/services/master/Uom/uom.service';
 @Component({
   selector: 'app-add-spare-part',
   templateUrl: './add-spare-part.component.html',
   styleUrls: ['./add-spare-part.component.css'],
 })
 export class AddSparePartComponent implements OnInit {
-  @Input() uom: any;
   @Output() onCreateSparePart = new EventEmitter();
   addSparePartForm: FormGroup | any;
+  uom: any = [];
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private uomService: UomService
+  ) {}
 
   ngOnInit(): void {
     this.addSparePartForm = this.formBuilder.group({
@@ -26,26 +29,35 @@ export class AddSparePartComponent implements OnInit {
           Validators.pattern(`[+]?([0-9]+([.][0-9]*)?|[.][0-9]+)`),
         ],
       ],
-      frn_uom: ['', Validators.required],
-      active_id: ['1'],
+      remarks: [''],
+      frn_uom: [''],
+      active_id: [''],
       photo: [''],
     });
   }
 
   onSubmit() {
-    console.log(this.uom);
-    console.log(this.addSparePartForm.value.frn_uom);
-
     const sparePart = {
       spare_part: {
         ...this.addSparePartForm.value,
         rate: parseInt(this.addSparePartForm.value.rate),
         active_id: parseInt(this.addSparePartForm.value.active_id),
-        remarks: 'remark',
+        frn_uom: parseInt(
+          this.uom.find(
+            (uom: any) => uom.uom === this.addSparePartForm.value.frn_uom
+          ).uom_id
+        ),
         created_by: 'tom',
       },
     };
+    console.log('asdf');
     console.log(sparePart);
     this.onCreateSparePart.emit(sparePart);
+  }
+
+  onClick() {
+    this.uomService.getUomPart().subscribe((uom) => {
+      this.uom = uom;
+    });
   }
 }

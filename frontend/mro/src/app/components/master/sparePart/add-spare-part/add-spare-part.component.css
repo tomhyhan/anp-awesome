@@ -1,4 +1,4 @@
-#main-button-add_spare {
+/* #main-button-add_spare {
   box-shadow: 0px 0px 0px 2px rgb(110, 144, 161);
   background-color: rgb(110, 144, 161);
   border-radius: 10px;
@@ -24,5 +24,12 @@
 }
 button {
   margin-left: 5px;
+} */
+
+.button {
+  background-color: white;
+  border: none;
+  outline: none;
+  color: black;
 }
 

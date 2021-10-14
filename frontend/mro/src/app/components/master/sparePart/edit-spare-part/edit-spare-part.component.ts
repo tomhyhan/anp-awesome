@@ -46,7 +46,6 @@ export class EditSparePartComponent implements OnInit {
     });
   }
 
-  // probably better use router
   onSubmit() {
     const updateSparePart = {
       spare_part: {
@@ -60,7 +59,6 @@ export class EditSparePartComponent implements OnInit {
         ),
       },
     };
-    console.log(updateSparePart);
 
     this.onUpdateSparePart.emit({
       sparePart: updateSparePart,

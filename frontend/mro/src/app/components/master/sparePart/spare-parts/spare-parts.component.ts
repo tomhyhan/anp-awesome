@@ -66,7 +66,6 @@ export class SparePartsComponent implements OnInit {
         this.sparePartService.getSparePartCount().subscribe((count) => {
           this.sparePartCount = count;
         });
-
         if (this.spareParts.length < this.paginator.pageSize) {
           this.spareParts = [...this.spareParts, sparePart[0]];
         }

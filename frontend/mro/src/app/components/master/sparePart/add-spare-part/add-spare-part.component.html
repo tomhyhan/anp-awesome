@@ -1,88 +1,69 @@
-  <form [formGroup]="addSparePartForm" (ngSubmit)="onSubmit()" >
-    <section  id="main-section-searchline">
-      <table id="main-table-selector">
-        <thead>
-          <tr style="color: rgb(110,144,161);">
-            <th ><label for="sparePartCode">Spare Part Code</label></th>
-            <th><label for="hsnCode">HSN code</label></th>
-            <th><label for="sparePartDesc">Spare Part Desc</label></th>
-            <th><label for="sparePartGroup">Spare Part Group</label></th>
-            <th><label for="rate">Rate</label></th>
-            <th scope="col"><label for="frn_uom">Uom</label></th>
-            <th><label for="active_id">Status</label></th>
-            <th><label for="photo">photo</label></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><input
-              class="form-control"
-              type="text"
-              name="sparePartCode"
-              id="sparePartCode"
-              placeholder="code"
-              formControlName="spare_part_code"
-            /></td>
-            <td><input
-              class="form-control"
-              type="text"
-              name="hsnCode"
-              id="hsnCode"
-              placeholder="hsnCode"
-              formControlName="spare_part_desc"
-              /></td>
-            <td><input
-              class="form-control"
-              type="text"
-              name="sparePartDesc"
-              id="sparePartDesc"
-              placeholder="sparePartDesc"
-              formControlName="hsn_code"
-            /></td>
-            <td><input
-              class="form-control"
-              type="text"
-              name="sparePartGroup"
-              id="sparePartGroup"
-              placeholder="sparePartGroup"
-              formControlName="spare_part_group"
-            /></td>
-            <td><input
-              class="form-control"
-              type="text"
-              name="rate"
-              id="rate"
-              placeholder="rate"
-              formControlName="rate"
-            /></td>
-            <td>
-              <select formControlName="frn_uom" id="frn_uom" class="form-control">
-                <option value="" disabled>Choose your Unit</option>
-                <option *ngFor="let item of uom" [ngValue]="item.uom_id" selected>{{item.uom}}</option>
-              </select>
-            </td>
-            <td>
-            <select  formControlName="active_id" id="active_id" class="form-control">
-              <option selected value="1">Active</option>
-              <option selected value="0">Deactive</option>
-            </select>
-            </td>
-            <td><input
-              class="form-control"
-              type="text"
-              name="photo"
-              id="photo"
-              placeholder="photo"
-              formControlName="photo"
-            /></td>
-            <td class="button ext-center">
-              <button class="text-center ml-2" id="main-button-add_spare" type="submit" [disabled]="!addSparePartForm.valid"><i class="fa fa-plus-circle"> Add</i></button>
-            </td>
-          </tr>
-        </tbody>
+<button type="button" (click)="onClick()" class="btn btn-primary button" data-toggle="modal"  data-target="#sparePartModal12" data-whatever="@getbootstrap" data-backdrop="false"><i class="fa fa-edit"></i></button>
 
-      </table>
- 
-    </section>
-    </form>
-   
+<div class="modal fade" id="sparePartModal12" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add SparePart</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form  class="m-3" [formGroup]="addSparePartForm" (ngSubmit)="onSubmit()">
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="spare_part_code">Spare Part Code</label>
+              <input formControlName="spare_part_code" type="text" class="form-control" id="spare_part_code" placeholder="Spare Part Code">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="spare_part_desc">Spare Part Description</label>
+              <input formControlName="spare_part_desc" type="text" class="form-control" id="spare_part_desc" placeholder="Spare Part Description">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="hsn_code">HSN code</label>
+              <input formControlName="hsn_code" type="text" class="form-control" id="hsn_code" placeholder="HSN code">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="spare_part_group">Spare Part Group</label>
+              <input formControlName="spare_part_group" type="text" class="form-control" id="spare_part_group" placeholder="Spare Part Group">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="rate">Rate</label>
+              <input formControlName="rate" type="text" class="form-control" id="rate" placeholder="Rate">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="remarks">Remark</label>
+              <input formControlName="remarks" type="text" class="form-control" id="remarks" placeholder="Remark">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="frn_uom">Unit</label>
+              <select  formControlName="frn_uom" id="frn_uom" class="form-control">
+                <option *ngFor="let item of uom">{{item.uom}}</option>
+              </select>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="active_id">Status</label>
+              <select formControlName="active_id" id="active_id" class="form-control">
+                <option selected value="1">Active</option>
+                <option selected value="0">Deactive</option>
+              </select>
+            </div>
+          </div>  
+          <div class="form-group">
+            <label for="photo">Photo</label>
+            <input formControlName="photo" type="text" class="form-control" id="photo" placeholder="Photo">
+          </div>
+            
+          <button type="submit" class="btn btn-primary">Update</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

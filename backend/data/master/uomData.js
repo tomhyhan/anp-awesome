@@ -1,11 +1,61 @@
 import { db } from '../../database/database.js';
+import { getFilterQuery } from '../../utils/uomFilter.js'
 
-export async function getAll() {
- 
+const SELECT_QUERY = `SELECT * FROM uom`
 
-  return db.execute(`SELECT * FROM uom`).then((result) => {
-    return result[0];
+
+export async function getAll(pageIndex, pageSize) {
+  const limit = parseInt(pageSize);
+  const currentPage = parseInt(pageIndex) * limit;
+
+  return db
+    .query(`${SELECT_QUERY} LIMIT ? OFFSET ?`, [limit, currentPage])
+    .then((result) => {
+      return result[0];
   });
+}
+
+export async function getCount() {
+  return db
+    .query(
+      `SELECT count(*) from uom`
+    )
+    .then((result) => {
+      return result[0][0]['count(*)'];
+    });
+}
+
+
+export async function getAllByFilter(filter, pageIndex, pageSize) {
+  const limit = parseInt(pageSize);
+  const currentPage = parseInt(pageIndex) * limit;
+  const { query, queryArr } = getFilterQuery(filter);
+
+  return db
+    .query(
+      `
+      ${SELECT_QUERY}
+      ${query}
+      LIMIT ? OFFSET ?
+      `,
+      [...queryArr, limit, currentPage]
+    )
+    .then((result) => {
+      return result[0];
+    });
+}
+
+export async function getFilterCount(filter) {
+  const { query, queryArr } = getFilterQuery(filter);
+
+  return db
+    .query(
+      `SELECT count(*) from uom ${query}`,
+      [...queryArr]
+    )
+    .then((result) => {
+      return result[0][0]['count(*)'];
+    });
 }
 
 export async function getAllByUnitName(uom) {

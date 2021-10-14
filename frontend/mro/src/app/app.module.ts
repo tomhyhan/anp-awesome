@@ -14,13 +14,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 
-
 import { SparePartsComponent } from './components/master/sparePart/spare-parts/spare-parts.component';
 import { AddSparePartComponent } from './components/master/sparePart/add-spare-part/add-spare-part.component';
 import { EditSparePartComponent } from './components/master/sparePart/edit-spare-part/edit-spare-part.component';
+import { SearchSparePartComponent } from './components/master/sparePart/search-spare-part/search-spare-part.component';
 
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { DisplayErrComponent } from './components/display-error/display-err.component';
+
 
 import { BackgroundComponent } from './components/background/background.component';
 import { PurchaseOrderComponent } from './components/purchase-order/purchase-order.component';
@@ -33,12 +35,21 @@ import { ProjectsComponent } from './components/master/project/projects/projects
 import { EmployeesComponent } from './components/master/employees-main/employees/employees.component';
 import { AddEmployeeComponent } from './components/master/employees-main/add-employee/add-employee.component';
 import { EditEmployeeComponent } from './components/master/employees-main/edit-employee/edit-employee.component';
+import { SearchEmployeeComponent } from './components/master/employees-main/search-employee/search-employee.component';
 
 import { UomPartsComponent } from './components/master/uom/uom-parts/uom-parts.component';
 import { AddUomComponent } from './components/master/uom/add-uom/add-uom-part.component';
 import { EditUomPartComponent } from './components/master/uom/edit-uom/edit-uom.component';
 import { SearchUomComponent } from './components/master/uom/search-uom/search-uom.component';
 
+import { AddVendorComponent } from './components/master/vendor/add-vendor/add-vendor.component';
+import { EditVendorComponent } from './components/master/vendor/edit-vendor/edit-vendor.component';
+import { VendorsComponent } from './components/master/vendor/vendors/vendors.component';
+
+
+import { AddaircraftComponent } from './components/master/aircraft/add-aircraft/add-aircraft.component';
+import { EditaircraftComponent } from './components/master/aircraft/edit-aircraft/edit-aircraft.component';
+import { aircraftsComponent } from './components/master/aircraft/aircrafts/aircrafts.component';
 
 
 @NgModule({
@@ -58,10 +69,19 @@ import { SearchUomComponent } from './components/master/uom/search-uom/search-uo
     EmployeesComponent,
     AddEmployeeComponent,
     EditEmployeeComponent,
+    SearchEmployeeComponent,
     UomPartsComponent,
     AddUomComponent,
     EditUomPartComponent,
-    SearchUomComponent
+    SearchUomComponent,
+    SearchSparePartComponent,
+    AddVendorComponent,
+    EditVendorComponent,
+    VendorsComponent,
+    aircraftsComponent,
+    EditaircraftComponent,
+    AddaircraftComponent,
+    DisplayErrComponent
   ],
   imports: [
     BrowserModule,

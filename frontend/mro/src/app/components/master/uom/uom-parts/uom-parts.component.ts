@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { ViewChild, Component, OnInit } from '@angular/core';
 import { UomService } from 'src/app/services/master/Uom/uom.service';
+import {MatPaginator} from '@angular/material/paginator';
+import { startWith, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-uoms',
@@ -7,6 +9,7 @@ import { UomService } from 'src/app/services/master/Uom/uom.service';
   styleUrls: ['./uom-parts.component.css']
 })
 export class UomPartsComponent implements OnInit {
+
   uoms: any = [];
 
   displayedColumns: string[] = [
@@ -17,6 +20,10 @@ export class UomPartsComponent implements OnInit {
     'created_date',
     'edit',
   ];
+  uomCount: any;
+  filter = JSON.stringify('');
+
+  @ViewChild(MatPaginator) paginator: MatPaginator | any;
 
   constructor(private uomService: UomService) { }
 
@@ -48,9 +55,44 @@ export class UomPartsComponent implements OnInit {
       });
   }
 
-  searchUom(filter: any) {
-    this.uomService.getUomPart(filter).subscribe((uoms) => {
-      this.uoms = uoms;
+  ngAfterViewInit() {
+    this.paginator.page
+      .pipe(
+        startWith(null),
+        tap(() =>
+          this.uomService
+            .getAllUom(
+              this.filter,
+              this.paginator.pageIndex,
+              this.paginator.pageSize
+            )
+            .subscribe((uoms) => {
+              this.uoms = uoms;
+            })
+        )
+      )
+      .subscribe(() => {});
+  }
+
+  searchEmployee(filter: any) {
+    this.uomService.getUomFilterCount(filter).subscribe((count) => {
+      this.uomCount = count;
     });
+    this.filter = filter;
+    this.paginator.page
+      .pipe(
+        startWith(null),
+        tap(() =>
+          this.uomService.getAllUom(
+              this.filter,
+              this.paginator.pageIndex,
+              this.paginator.pageSize
+            )
+            .subscribe((uoms) => {
+              this.uoms = uoms;
+            })
+        )
+      )
+      .subscribe(() => {});
   }
 }

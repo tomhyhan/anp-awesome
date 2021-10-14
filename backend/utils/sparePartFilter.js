@@ -1,13 +1,3 @@
-const filter = {
-  spare_part_code: null,
-  hsn_code: null,
-  spare_part_desc: null,
-  spare_part_group: null,
-  rate: 11,
-  frn_uom: null,
-  active_id: 1,
-};
-
 export function getFilterQuery(filter) {
   const query = [];
   const queryArr = [];

@@ -69,7 +69,7 @@ export class EditSparePartComponent implements OnInit {
   }
 
   onClick() {
-    this.uomService.getUomPart().subscribe((uom) => {
+    this.uomService.getUomCount().subscribe((uom) => {
       this.uom = uom;
     });
   }

@@ -16,15 +16,29 @@ export class UomService {
 
   constructor(private http: HttpClient) {}
 
-  getUomPart() {
-    return this.http.get(this.apiUrl);
+ 
+  getUomPart(filter: any, pageIndex: any, pageSize: any) {
+    return this.http.get(
+      `${this.apiUrl}?unit_of_measure=${filter}&pageIndex=${pageIndex}&pageSize=${pageSize}$`
+    );
   }
 
-  addUomPart(uomPart: any) {
-    return this.http.post(this.apiUrl, uomPart, httpOptions);
+  addUomPart(uom: any) {
+    return this.http.post(this.apiUrl,uom, httpOptions);
   }
 
-  updateUomPart(uomPart: any, id: any) {
-    return this.http.put(`${this.apiUrl}/${id}`, uomPart, httpOptions);
+  updateUomPart(uom: any, id: any) {
+    return this.http.put(`${this.apiUrl}/${id}`, uom, httpOptions);
+  }
+
+
+  getUomCount() {
+    return this.http.get(`${this.apiUrl}/pages`, httpOptions);
+  }
+
+  getUomFilterCount(filter: any) {
+    return this.http.get(
+      `${this.apiUrl}/filterPages?unit_of_measure=${filter}`, httpOptions
+    );
   }
 }

@@ -28,7 +28,7 @@ export class UomPartsComponent implements OnInit {
   constructor(private uomService: UomService) { }
 
   ngOnInit(): void {
-    this.uomService.getUomPart().subscribe((uoms) => {
+    this.uomService.getUomCount().subscribe((uoms) => {
       this.uoms = uoms;
       console.log(this.uoms)
     });
@@ -61,7 +61,7 @@ export class UomPartsComponent implements OnInit {
         startWith(null),
         tap(() =>
           this.uomService
-            .getAllUom(
+            .getUomPart(
               this.filter,
               this.paginator.pageIndex,
               this.paginator.pageSize
@@ -74,7 +74,7 @@ export class UomPartsComponent implements OnInit {
       .subscribe(() => {});
   }
 
-  searchEmployee(filter: any) {
+  searchUom(filter: any) {
     this.uomService.getUomFilterCount(filter).subscribe((count) => {
       this.uomCount = count;
     });
@@ -83,7 +83,7 @@ export class UomPartsComponent implements OnInit {
       .pipe(
         startWith(null),
         tap(() =>
-          this.uomService.getAllUom(
+          this.uomService.getUomPart(
               this.filter,
               this.paginator.pageIndex,
               this.paginator.pageSize

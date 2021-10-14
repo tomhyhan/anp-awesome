@@ -63,7 +63,6 @@ onSubmit() {
       created_date: this.employeeForm.value.createdDate,
     },
   };
-
   this.onUpdateEmployee.emit({
     employee: updateEmployee,
     id: this.employee.emp_id,

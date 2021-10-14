@@ -68,6 +68,7 @@ export class EmployeesComponent implements OnInit {
   }
 
   searchEmployee(filter: any) {
+    console.log(filter);
     this.employeeService.getEmployeeFilterCount(filter).subscribe((count) => {
       this.employeeCount = count;
     });

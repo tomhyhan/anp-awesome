@@ -7,13 +7,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./add-employee.component.css'],
 })
 export class AddEmployeeComponent implements OnInit {
-  // empName: any;
-  // empCode: any;
-  // siteMasterId: any;
-  // contact: any;
-  // address: any;
-  // designation: any;
-  // department: any;
   remarks: any;
   createdBy: any;
   createdDate: any;
@@ -54,22 +47,19 @@ export class AddEmployeeComponent implements OnInit {
     };
     this.onCreateEmployee.emit(employee);
   }
- // emp_name: ['', Validators.required],
-  // emp_code: ['', Validators.required],
-  // site_master_id: ['', Validators.required],
-  // contact: ['', Validators.required],
-  // address: ['', Validators.required],
-  // designation: ['', Validators.required],
-  // department: ['', Validators.required],
+
   get empName() {
     return this.addEmployeeForm.get('emp_name');
   }
+
   get empCode() {
     return this.addEmployeeForm.get('emp_code');
   }
+
   get siteMasterId() {
     return this.addEmployeeForm.get('site_master_id');
   }
+
   get contact() {
     return this.addEmployeeForm.get('contact');
   }
@@ -77,11 +67,12 @@ export class AddEmployeeComponent implements OnInit {
   get address() {
     return this.addEmployeeForm.get('address');
   }
+
   get designation() {
     return this.addEmployeeForm.get('designation');
   }
+
   get department() {
     return this.addEmployeeForm.get('department');
   }
-
 }

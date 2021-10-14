@@ -19,7 +19,8 @@ export function getFilterQuery(filter) {
         query.push(`${key}=?`);
         queryArr.push(value);
         }
-    } return {
+    } 
+    return {
         query: query.length === 0 ? '' : ` where ${query.join(' and ')}`,
         queryArr,
         };

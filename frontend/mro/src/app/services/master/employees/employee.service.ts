@@ -19,6 +19,7 @@ export class EmployeeService {
   getEmployee(filter: any, pageIndex: any, pageSize: any) {
     return this.http.get(
       `${this.apiUrl}?employeeFilter=${filter}&pageIndex=${pageIndex}&pageSize=${pageSize}$`
+      
     );
   }
 

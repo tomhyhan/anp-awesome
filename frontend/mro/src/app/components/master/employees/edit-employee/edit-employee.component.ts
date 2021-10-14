@@ -69,27 +69,4 @@ onSubmit() {
     id: this.employee.emp_id,
   });
   }
-
-    get empName() {
-    return this.employeeForm.get('emp_name');
-  }
-  get empCode() {
-    return this.employeeForm.get('emp_code');
-  }
-  get siteMasterId() {
-    return this.employeeForm.get('site_master_id');
-  }
-  get contact() {
-    return this.employeeForm.get('contact');
-  }
-
-  get address() {
-    return this.employeeForm.get('address');
-  }
-  get designation() {
-    return this.employeeForm.get('designation');
-  }
-  get department() {
-    return this.employeeForm.get('department');
-  }
 }

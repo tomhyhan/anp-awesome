@@ -1,26 +1,48 @@
-import { ViewChild, Component, AfterViewInit } from '@angular/core';
+import { ViewChild, Component, OnInit } from '@angular/core';
 import { EmployeeService } from 'src/app/services/master/employees/employee.service';
 import {MatPaginator} from '@angular/material/paginator';
+import { startWith, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-employees',
   templateUrl: './employees.component.html',
   styleUrls: ['./employees.component.css'],
 })
-export class EmployeesComponent implements AfterViewInit {
+export class EmployeesComponent implements OnInit {
   
   displayedColumns: string[] = ["emp_id",	"emp_name", "emp_code", "site_master_id",	
                                 "contact", "address", "designation", "department",
                                 "remarks", "created_by", "created_date", "edit"];
   employees: any = [];
-  @ViewChild(MatPaginator)
-  paginator!: MatPaginator;
+  employeeCount: any;
+  filter = JSON.stringify('');
+  @ViewChild(MatPaginator) paginator: MatPaginator | any;
 
   constructor(private employeeService: EmployeeService) {}
 
-  ngAfterViewInit(): void {
-    this.employeeService.getEmployee().subscribe(employees => this.employees = employees);
-    this.employees.paginator = this.paginator;
+  ngOnInit(): void {
+    this.employeeService.getEmployeeCount().subscribe((count) => {
+      this.employeeCount = count;
+    })
+  }
+
+  ngAfterViewInit() {
+    this.paginator.page
+      .pipe(
+        startWith(null),
+        tap(() =>
+          this.employeeService
+            .getEmployee(
+              this.filter,
+              this.paginator.pageIndex,
+              this.paginator.pageSize
+            )
+            .subscribe((employees) => {
+              this.employees = employees;
+            })
+        )
+      )
+      .subscribe(() => {});
   }
 
   createTask(employee: any) {
@@ -43,6 +65,29 @@ export class EmployeesComponent implements AfterViewInit {
         });
         this.employees = newEmployees;
       });
+  }
+
+  searchEmployee(filter: any) {
+    this.employeeService.getEmployeeFilterCount(filter).subscribe((count) => {
+      this.employeeCount = count;
+    });
+    this.filter = filter;
+    this.paginator.page
+      .pipe(
+        startWith(null),
+        tap(() =>
+          this.employeeService
+            .getEmployee(
+              this.filter,
+              this.paginator.pageIndex,
+              this.paginator.pageSize
+            )
+            .subscribe((employees) => {
+              this.employees = employees;
+            })
+        )
+      )
+      .subscribe(() => {});
   }
 }
 

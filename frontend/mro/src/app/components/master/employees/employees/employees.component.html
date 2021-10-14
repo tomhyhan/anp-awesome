@@ -1,9 +1,13 @@
 <section id="main-section-namepageline">
-    <h1 style="text-align:center;">Employee</h1>
+    <h1 style="text-align:center; font-weight:700">Employees</h1>
   </section>
 
 <section class="ml-3 mr-3 pt-0 mt-0" style="background-color: white">
-    <app-add-employee (onCreateEmployee)="createTask($event)"></app-add-employee>
+    <div class="top">
+        <app-search-employee (onSearchSparePart)="searchEmployee($event)"></app-search-employee>
+        <app-add-employee id="add-button" (onCreateEmployee)="createTask($event)"></app-add-employee>
+    </div>
+
     <div>
         <table mat-table [dataSource]="employees" class="mat-elevation-z8 demo-table">
 
@@ -71,7 +75,10 @@
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
         </table>    
-        <mat-paginator [pageSizeOptions]="[2, 5, 10]"
+        <mat-paginator 
+                    [length]="employeeCount"
+                    [pageSize]="5"
+                    [pageSizeOptions]="[5, 20, 40]"
                     showFirstLastButtons 
                     aria-label="Select page">
         </mat-paginator>

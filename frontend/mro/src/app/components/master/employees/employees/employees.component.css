@@ -2,6 +2,11 @@
     margin-top: 20px;
 }
 
+.top {
+    display: grid;
+    grid-template-columns: auto auto;
+}
+
 .mat-row .mat-cell {
 border-bottom: 1px solid transparent;
 border-top: 1px solid transparent;
@@ -33,27 +38,8 @@ text-align: center;
 color: white;
 }
 
-/* .mat-table {
-    margin-top: 1%;
-    width:100%;
-  }
-  
-.mat-header-cell {
-    background-color: #6e90a1;
-    font-weight: 500;
-    font-size: 1.1em;
-    color: white;
+#add-button {
+    align-self: end;
+    margin-bottom: 10px;
 }
-  
-.mat-row .mat-cell {
-    border-bottom: 1px solid transparent;
-    border-top: 1px solid transparent;
-    cursor: pointer;
-}
-    
- .mat-row:hover .mat-cell {
-    border-color: #6e90a1;
-};
-    
-   */
-  
+

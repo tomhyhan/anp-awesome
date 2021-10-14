@@ -34,6 +34,7 @@ import { ProjectsComponent } from './components/master/project/projects/projects
 import { EmployeesComponent } from './components/master/employees/employees/employees.component';
 import { AddEmployeeComponent } from './components/master/employees/add-employee/add-employee.component';
 import { EditEmployeeComponent } from './components/master/employees/edit-employee/edit-employee.component';
+import { SearchEmployeeComponent } from './components/master/employees/search-employee/search-employee.component';
 
 import { UomPartsComponent } from './components/master/uom/uom-parts/uom-parts.component';
 import { AddUomComponent } from './components/master/uom/add-uom/add-uom-part.component';
@@ -67,6 +68,7 @@ import { aircraftsComponent } from './components/master/aircraft/aircrafts/aircr
     EmployeesComponent,
     AddEmployeeComponent,
     EditEmployeeComponent,
+    SearchEmployeeComponent,
     UomPartsComponent,
     AddUomComponent,
     EditUomPartComponent,

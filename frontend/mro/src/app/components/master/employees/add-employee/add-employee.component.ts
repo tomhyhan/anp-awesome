@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ErrorHandlers } from 'src/app/utils/error-handler';
 
 @Component({
   selector: 'app-add-employee',
@@ -7,11 +8,19 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./add-employee.component.css'],
 })
 export class AddEmployeeComponent implements OnInit {
+  emp_name: any;
+  emp_code: any;
+  site_master_id: any;
+  contact: any;
+  address: any;
+  designation: any;
+  department: any;
   remarks: any;
-  createdBy: any;
-  createdDate: any;
+  created_by: any;
+  created_date: any;
   @Output() onCreateEmployee = new EventEmitter();
   addEmployeeForm: FormGroup | any;
+  errorhandlers: any;
 
   constructor(private formBuilder: FormBuilder) {}
 
@@ -28,51 +37,29 @@ export class AddEmployeeComponent implements OnInit {
       created_by: [''],
       created_date: [''],
     });
+    this.errorhandlers = new ErrorHandlers(this.addEmployeeForm);
   }
 
   onSubmit() {
-    const employee = {
-      employee: {
-        emp_name: this.addEmployeeForm.value.emp_name,
-        emp_code: this.addEmployeeForm.value.emp_code,
-        site_master_id: parseInt(this.addEmployeeForm.value.site_master_id),
-        contact: this.addEmployeeForm.value.contact,
-        address: this.addEmployeeForm.value.address,
-        designation: this.addEmployeeForm.value.designation,
-        department: this.addEmployeeForm.value.department,
-        remarks: this.addEmployeeForm.value.remarks,
-        created_by: "Inggy",
-        created_date: new Date(),
-      }
+    if (this.addEmployeeForm.valid) {
+      const employee = {
+        employee: {
+          emp_name: this.addEmployeeForm.value.emp_name,
+          emp_code: this.addEmployeeForm.value.emp_code,
+          site_master_id: parseInt(this.addEmployeeForm.value.site_master_id),
+          contact: this.addEmployeeForm.value.contact,
+          address: this.addEmployeeForm.value.address,
+          designation: this.addEmployeeForm.value.designation,
+          department: this.addEmployeeForm.value.department,
+          remarks: this.addEmployeeForm.value.remarks,
+          created_by: "Inggy",
+          created_date: new Date(),
+        },
     };
+
     this.onCreateEmployee.emit(employee);
-  }
-
-  get empName() {
-    return this.addEmployeeForm.get('emp_name');
-  }
-
-  get empCode() {
-    return this.addEmployeeForm.get('emp_code');
-  }
-
-  get siteMasterId() {
-    return this.addEmployeeForm.get('site_master_id');
-  }
-
-  get contact() {
-    return this.addEmployeeForm.get('contact');
-  }
-
-  get address() {
-    return this.addEmployeeForm.get('address');
-  }
-
-  get designation() {
-    return this.addEmployeeForm.get('designation');
-  }
-
-  get department() {
-    return this.addEmployeeForm.get('department');
-  }
+    this.addEmployeeForm.reset();
+  } else {
+    this.errorhandlers.showErrors();
+  }};
 }

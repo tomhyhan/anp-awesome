@@ -20,7 +20,7 @@ import { EditSparePartComponent } from './components/master/sparePart/edit-spare
 
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { DisplayErrComponent } from './components/display-error/display-err.component';
+import { DisplayErrorComponent } from './components/display-error/display-error.component';
 
 
 import { BackgroundComponent } from './components/background/background.component';
@@ -79,7 +79,7 @@ import { aircraftsComponent } from './components/master/aircraft/aircrafts/aircr
     aircraftsComponent,
     EditaircraftComponent,
     AddaircraftComponent,
-    DisplayErrComponent
+    DisplayErrorComponent
   ],
   imports: [
     BrowserModule,

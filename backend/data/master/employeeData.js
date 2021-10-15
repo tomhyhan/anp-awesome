@@ -27,9 +27,6 @@ export async function getAllByFilter(filter, pageIndex, pageSize) {
   const limit = parseInt(pageSize);
   const currentPage = parseInt(pageIndex) * limit;
   const { query, queryArr } = getFilterQuery(filter);
-  console.log(filter);
-
-
   return db
     .query(
       `
@@ -135,7 +132,6 @@ export async function update(id, employee) {
     department,
     remarks,
   } = employee;
-
   return db
     .query(
       `

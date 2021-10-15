@@ -4,7 +4,7 @@ import * as employeeData from '../../data/master/employeeData.js';
 export async function getAllEmployees(req, res, next) {
   let employeeFilter = req.query.employeeFilter;
   const { pageIndex, pageSize } = req.query;
-  console.log(req.query);
+
   if (employeeFilter == null) {
     employeeFilter = '';
   } else {
@@ -45,7 +45,7 @@ export async function getById(req, res) {
 
 export async function postEmployee(req, res) {
   const { employee } = req.body;
-
+  console.log(employee);
   const newEmployee = await employeeData.create(employee);
 
   res.status(201).json(newEmployee);
@@ -54,7 +54,9 @@ export async function postEmployee(req, res) {
 export async function updateEmployee(req, res) {
   const { id } = req.params;
   const { employee } = req.body;
-  const updatedEmployee = await employeeData.update(id, employee);
+  console.log(id);
+  const updatedEmployee = await employeeData.update(id, employee).catch(err=>{console.log(err)});
+  
   if (updatedEmployee) {
     res.status(200).json(updatedEmployee);
   } else {

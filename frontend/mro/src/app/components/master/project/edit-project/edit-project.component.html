@@ -1,0 +1,185 @@
+<button type="button" class="btn btn-primary button" data-toggle="modal"  attr.data-target="#{{ project.project_master_id }}" data-whatever="@getbootstrap" data-backdrop="false"><i class="fa fa-edit"></i></button>
+
+<div class="modal fade" attr.id="{{ project.project_master_id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit Project</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+         <form  [formGroup]="projectForm" (ngSubmit)="onSubmit()">     
+
+          <div class="row">
+            <div class="col-md-6">
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Project Code</label>
+            
+            <input
+             class="form-control"
+              type="text"
+              name="ProjectCode"
+              id="recipient-name"
+              placeholder="code"
+              formControlName="ProjectCode"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Project Name</label>
+            
+            <input
+              class="form-control"
+              type="text"
+              name="ProjectName"
+              placeholder="Name"
+              id="recipient-name"
+              formControlName="ProjectName"
+              />
+            </div>
+
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Endate</label>
+            
+            <input
+              class="form-control"
+              type="date"
+              [min]="minDate"
+              
+              name="Enddate"
+              id="Enddate"
+              formControlName="EndDate"
+              />
+          </div>
+        </div>
+          
+          <div class="col-md-6">
+
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Remarks</label>
+            
+            <input
+            class="form-control"
+            type="text"
+            name="remarks"
+            id="recipient-name"
+            placeholder="Remarks"
+            formControlName="remarks"
+            />
+        </div>
+
+          <div class="form-group">
+            <label for="active_id">Status</label>
+            <select formControlName="Status" id="active_id" class="form-control">
+              <option value="" disabled>Choose the Status</option>
+              <option selected value="1">Active</option>
+              <option selected value="0">Deactive</option>
+            </select>
+         </div>
+
+        </div>
+        </div>
+    
+
+          <button type="submit" class="button-update">Update</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Add Project</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="addprojectForm" (ngSubmit)="onSubmit()" >
+          <div class="row">
+            <div class="col-md-6">
+
+                <div class="form-group">
+                  <label for="recipient-name" class="col-form-label">Project Code</label>
+                  
+                  <input
+                   class="form-control"
+                    type="text"
+                    name="ProjectCode"
+                    id="recipient-name"
+                    placeholder="code"
+                    formControlName="project_code"
+                  />
+                </div>
+                
+                <div class="form-group">
+                  <label for="recipient-name" class="col-form-label">Project Name</label>
+                  
+                  <input
+                    class="form-control"
+                    type="text"
+                    name="ProjectName"
+                    placeholder="Name"
+                    id="recipient-name"
+                    formControlName="project_name"
+                    />
+                  </div>
+
+                <div class="form-group">
+                  <label for="recipient-name" class="col-form-label">Endate</label>
+                  
+                  <input
+                    class="form-control"
+                    type="date"
+                    [min]="minDate"
+                    name="Enddate"
+                    id="recipient-name"
+                    formControlName="end_date"
+                    />
+                </div>
+               
+
+            </div>
+            <div class="col-md-6"> 
+
+             
+                <div class="form-group">
+                    <label for="recipient-name" class="col-form-label">Remarks</label>
+                    
+                    <input
+                    class="form-control"
+                    type="text"
+                    name="Remarks"
+                    id="recipient-name"
+                    placeholder="Remarks"
+                    formControlName="remarks"
+                    />
+                </div>
+
+                
+
+                 <div class="form-group">
+                    <label for="active_id">Status</label>
+                    <select formControlName="active_id" id="active_id" class="form-control">
+                      <option value="" disabled>Choose the Status</option>
+                      <option selected value="1">Active</option>
+                      <option selected value="0">Deactive</option>
+                    </select>
+                 </div>
+
+
+            </div>
+          </div>
+          <p><button type="submit" class="button-save">Submit</button></p>
+        </form>
+      </div>
+    </div>
+  </div>
+</div> -->

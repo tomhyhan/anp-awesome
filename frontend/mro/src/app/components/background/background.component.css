@@ -1,0 +1,7 @@
+#main-section-backimg{
+    background: url('/assets/image/bg2.png'); 
+    height: 28vh; 
+    background-size: 2000px 850px;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}

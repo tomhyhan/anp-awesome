@@ -28,3 +28,14 @@ td {
   text-align: center;
   color: white;
 }
+
+
+
+
+.active {
+  color: green;
+}
+
+.deactive {
+  color: red;
+}

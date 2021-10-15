@@ -41,6 +41,7 @@ import { SearchSparePartComponent } from './components/master/sparePart/search-s
 import { AddVendorComponent } from './components/master/vendor/add-vendor/add-vendor.component';
 import { EditVendorComponent } from './components/master/vendor/edit-vendor/edit-vendor.component';
 import { VendorsComponent } from './components/master/vendor/vendors/vendors.component';
+import { SearchVendorComponent } from './components/master/vendor/search-vendor/search-vendor.component';
 
 
 import { AddaircraftComponent } from './components/master/aircraft/add-aircraft/add-aircraft.component';
@@ -69,16 +70,16 @@ import { SearchProjectComponent } from './components/master/project/search-proje
     UomPartsComponent,
     AddUomComponent,
     EditUomPartComponent,
-    SearchSparePartComponent,
     AddVendorComponent,
     EditVendorComponent,
     VendorsComponent,
+    SearchVendorComponent,
+    SearchSparePartComponent,
+    AddVendorComponent,
     aircraftsComponent,
     EditaircraftComponent,
     AddaircraftComponent,
     SearchProjectComponent
-
-
   ],
   imports: [
     BrowserModule,

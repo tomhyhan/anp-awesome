@@ -137,7 +137,6 @@ export async function update(id, project_update) {
   project_name=?,     
   project_code=?,     
   remarks=?,             
-
   active_id=?,
   end_date=?
   WHERE

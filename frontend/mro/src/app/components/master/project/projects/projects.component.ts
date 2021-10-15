@@ -24,6 +24,15 @@ export class ProjectsComponent implements OnInit {
   ];
   @ViewChild(MatPaginator) paginator: MatPaginator | any;
 
+  displayedColumns: string[] = [
+    'project_name',
+    'project_code',
+    'active_id',
+    'created_date',
+    'end_date',
+    'view',
+  ];
+
   constructor(private projectService: projectService) { }
 
   ngOnInit(): void {

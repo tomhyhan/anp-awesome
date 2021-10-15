@@ -1,8 +1,7 @@
-import { Component, OnInit,ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { SparePartService } from 'src/app/services/master/sparePart/spare-part.service';
 import { UomService } from 'src/app/services/master/Uom/uom.service';
-import { MatPaginator } from '@angular/material/paginator';
-import { startWith, tap } from 'rxjs/operators';
+
 @Component({
   selector: 'app-spare-parts',
   templateUrl: './spare-parts.component.html',
@@ -11,8 +10,7 @@ import { startWith, tap } from 'rxjs/operators';
 export class SparePartsComponent implements OnInit {
   spareParts: any = [];
   uom: any = [];
-  sparePartCount: any;
-  filter = JSON.stringify('');
+
   displayedColumns: string[] = [
     'spare_part_code',
     'spare_part_desc',
@@ -23,7 +21,6 @@ export class SparePartsComponent implements OnInit {
     'active_id',
     'view',
   ];
-  @ViewChild(MatPaginator) paginator: MatPaginator | any;
 
   constructor(
     private sparePartService: SparePartService,
@@ -31,44 +28,19 @@ export class SparePartsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.sparePartService.getSparePartCount().subscribe((count) => {
-      this.sparePartCount = count;
+    this.sparePartService.getSparePart().subscribe((spareParts) => {
+      this.spareParts = spareParts;
     });
     this.uomService.getUomPart().subscribe((uom) => {
       this.uom = uom;
     });
   }
 
-  ngAfterViewInit() {
-    this.paginator.page
-      .pipe(
-        startWith(null),
-        tap(() =>
-          this.sparePartService
-            .getSparePart(
-              this.filter,
-              this.paginator.pageIndex,
-              this.paginator.pageSize
-            )
-            .subscribe((spareParts) => {
-              this.spareParts = spareParts;
-            })
-        )
-      )
-      .subscribe(() => {});
-  }
-
   createTask(sparePart: any) {
     this.sparePartService
       .addSparePart(sparePart)
       .subscribe((sparePart: any) => {
-        this.sparePartService.getSparePartCount().subscribe((count) => {
-          this.sparePartCount = count;
-        });
-
-        if (this.spareParts.length < this.paginator.pageSize) {
-          this.spareParts = [...this.spareParts, sparePart[0]];
-        }
+        this.spareParts = [...this.spareParts, sparePart[0]];
       });
   }
 
@@ -85,27 +57,5 @@ export class SparePartsComponent implements OnInit {
         this.spareParts = newSpareParts;
       });
   }
-
-  searchSparePart(filter: any) {
-    this.sparePartService.getSparePartFilterCount(filter).subscribe((count) => {
-      this.sparePartCount = count;
-    });
-    this.filter = filter;
-    this.paginator.page
-      .pipe(
-        startWith(null),
-        tap(() =>
-          this.sparePartService
-            .getSparePart(
-              this.filter,
-              this.paginator.pageIndex,
-              this.paginator.pageSize
-            )
-            .subscribe((spareParts) => {
-              this.spareParts = spareParts;
-            })
-        )
-      )
-      .subscribe(() => {});
-  }
 }
+

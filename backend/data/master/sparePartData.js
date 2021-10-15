@@ -21,7 +21,7 @@ export async function getAllByFilter(filter, pageIndex, pageSize) {
   const limit = parseInt(pageSize);
   const currentPage = parseInt(pageIndex) * limit;
   const { query, queryArr } = getFilterQuery(filter);
-
+  console.log(query, queryArr);
   return db
     .execute(
       `
@@ -64,8 +64,7 @@ export async function getCount() {
 
 export async function getFilterCount(filter) {
   const { query, queryArr } = getFilterQuery(filter);
-  console.log(`      SELECT count(*) from spare_part
-  ${query}`);
+
   return db
     .execute(
       `

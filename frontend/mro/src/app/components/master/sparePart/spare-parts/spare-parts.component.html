@@ -5,13 +5,12 @@
 <section class="ml-3 mr-3 pt-0 mt-0" style="background-color: white">
 <div class="spare-part">
   <div class="spare-part__add">
-   <app-add-spare-part [uom]="uom" (onCreateSparePart)="createTask($event)"></app-add-spare-part>
-  </div>
-  <div class="spare-part__add">
+    <!-- <app-edit-spare-part [sparePart]="sparePart" (onUpdateSparePart)="updateSparePart($event)" ></app-edit-spare-part> -->
     <app-search-spare-part [uom]="uom" (onSearchSparePart)="searchSparePart($event)"></app-search-spare-part>
-   </div>
+    <app-add-spare-part (onCreateSparePart)="createTask($event)"></app-add-spare-part> 
+  </div>
   <div class="spare-part__table">
-   <table mat-table [dataSource]="spareParts" class="demo-table">
+   <table mat-table [dataSource]="spareParts" class="mat-elevation-z1 demo-table">
      <!-- Position Column -->
      <ng-container matColumnDef="spare_part_code">
          <th mat-header-cell *matHeaderCellDef>Spare Part Code</th>
@@ -59,14 +58,14 @@
        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
    </table>
-
+   
    <mat-paginator 
               [length]="sparePartCount"
               [pageSize]="5"
               [pageSizeOptions]="[2, 5, 10]"
               aria-label="Select page">
   </mat-paginator>
-
   </div>
+  
 </div>
 </section>

@@ -82,7 +82,7 @@ import { aircraftsComponent } from './components/master/aircraft/aircrafts/aircr
     AddProjectComponent,
     EditProjectComponent,
     ProjectsComponent,
-    SearchProjectComponent
+    SearchProjectComponent,
     
     EmployeesComponent,
     AddEmployeeComponent,

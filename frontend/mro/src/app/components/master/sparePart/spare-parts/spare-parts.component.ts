@@ -35,7 +35,11 @@ export class SparePartsComponent implements OnInit {
     this.sparePartService.getSparePartCount().subscribe((count) => {
       this.sparePartCount = count;
     });
-    this.uomService.getUomCount().subscribe((uom) => {
+    this.uomService.getUomPart(
+      this.filter,
+      this.paginator.pageIndex,
+      this.paginator.pageSize
+      ).subscribe((uom) => {
       this.uom = uom;
     });
   }

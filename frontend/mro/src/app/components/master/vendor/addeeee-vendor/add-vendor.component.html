@@ -1,0 +1,62 @@
+<form  [formGroup]="addVendorForm" (ngSubmit)="onSubmit() ">
+  <section id="main-section-searchline">
+    <table id="main-table-selector">
+      <thead>
+        <tr style="color: rgb(110,144,161);">
+          <th scope="col"><label for="vendor_code">Vendor Code</label></th>
+          <th scope="col"><label for="vendor_name">Vendor Name</label></th>
+          <th scope="col"><label for="contact">Contact</label></th>
+          <th scope="col"><label for="address">Address</label></th>
+          <th scope="col"><label for="remarks">Remarks</label></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><input
+            class="form-control"
+            type="text"
+            name="vendor_code"
+            id="vendor_code"
+            placeholder="Vendor Code"
+            formControlName="vendor_code"
+          /></td>
+          <td><input
+            class="form-control"
+            type="text"
+            name="vendor_name"
+            id="vendor_name"
+            placeholder="Vendor Name"
+            formControlName="vendor_name"
+          /></td>
+          <td><input
+            class="form-control"
+            type="text"
+            name="contact"
+            id="contact"
+            placeholder="contact"
+            formControlName="contact"
+          /></td>
+          <td><input
+            class="form-control"
+            type="text"
+            name="address"
+            id="address"
+            placeholder="address"
+            formControlName="address"
+          /></td>
+          <td><input
+            class="form-control"
+            type="text"
+            name="remarks"
+            id="remarks"
+            placeholder="Remarks"
+            formControlName="remarks"
+          /></td>
+          <td class="button ext-center">
+            <button class="text-center ml-2" id="main-button-add_vendor" type="submit" [disabled]="!addVendorForm.valid"><i class="fa fa-plus-circle">Add</i></button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+  </form>

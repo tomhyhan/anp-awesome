@@ -3,6 +3,8 @@ import * as projectController from '../../controllers/master/projectController.j
 
 const router = express.Router();
 
+router.get('/pages', projectController.getprojectCount);
+router.get('/filterPages', projectController.getprojectFilterCount);
 router.get('/', projectController.getAllproject);
 router.get('/:id', projectController.getById);
 router.post('/', projectController.postproject);

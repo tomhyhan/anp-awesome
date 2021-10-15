@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 export class EditProjectComponent implements OnInit {
   @Output() onUpdateproject = new EventEmitter();
   @Input() project: any;
+  minDate = new Date().toLocaleDateString().replace('/','-').replace('/','-');
   projectForm!: FormGroup | any;
   id: any;
 
@@ -20,17 +21,20 @@ export class EditProjectComponent implements OnInit {
       ProjectName: '',
       ProjectCode: '',
       Status:'',
-      EndDate:'',
+      remarks:'',
+      EndDate:new Date(),
     });
     this.updateValues();
   }
 
   updateValues() {
+    
     this.projectForm.patchValue({
       ProjectName: this.project.project_name,
       ProjectCode: this.project.project_code,
       Status:this.project.active_id,
-      EndDate:this.project.end_date,
+      remarks:this.project.remarks,
+      EndDate:this.project.end_date.split('T')[0],
     });
   }
 
@@ -42,10 +46,10 @@ export class EditProjectComponent implements OnInit {
       project_user: {
         project_name: this.projectForm.value.ProjectName,
         project_code: this.projectForm.value.ProjectCode,
-        remarks:"new",
+        remarks:this.projectForm.value.remarks,
         active_id:this.projectForm.value.Status,
         created_by:"benny",
-        end_date:"2021-10-06"
+        end_date:this.projectForm.value.EndDate
       },
     };
     console.log(updateproject)

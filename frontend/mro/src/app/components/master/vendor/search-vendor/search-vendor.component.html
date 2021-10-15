@@ -1,0 +1,62 @@
+<form  [formGroup]="searchvendorForm" (ngSubmit)="onSubmit() ">
+  <section id="main-section-searchline">
+    <table id="main-table-selector">
+      <thead>
+        <tr style="color: rgb(110,144,161);">
+          <th scope="col"><label for="vendor_code">Vendor Code</label></th>
+          <th scope="col"><label for="vendor_name">Vendor Name</label></th>
+          <th scope="col"><label for="contact">Contact</label></th>
+          <th scope="col"><label for="address">Address</label></th>
+          <th scope="col"><label for="remarks">Remarks</label></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><input
+            class="form-control"
+            type="text"
+            name="VendorCode"
+            id="recipient-name"
+            placeholder="Vendor Code"
+            formControlName="vendor_code"
+          /></td>
+          <td><input
+            class="form-control"
+            type="text"
+            name="VendorName"
+            id="recipient-name"
+            placeholder="Vendor Name"
+            formControlName="vendor_name"
+          /></td>
+          <td><input
+            class="form-control"
+            type="text"
+            name="Contact"
+            id="recipient-name"
+            placeholder="contact"
+            formControlName="contact"
+          /></td>
+          <td><input
+            class="form-control"
+            type="text"
+            name="Address"
+            id="recipient-name"
+            placeholder="address"
+            formControlName="address"
+          /></td>
+          <td><input
+            class="form-control"
+            type="text"
+            name="Remarks"
+            id="recipient-name"
+            placeholder="Remarks"
+            formControlName="remarks"
+          /></td>
+          <td class="button ext-center">
+            <button class="text-center m-2 " id="main-button-search_vendor" type="submit">Search</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+  </form>

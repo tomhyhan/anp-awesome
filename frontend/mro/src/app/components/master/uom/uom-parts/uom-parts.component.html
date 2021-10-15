@@ -2,11 +2,14 @@
   <h1 style="text-align:center;">UOM</h1>
 </section>
 
+
 <section class="ml-3 mr-3 pt-0 mt-0" style="background-color: white">
  <div class="uom">
+
   <div class="uom__add">
    <app-add-uom-part (onCreateUomPart)="createTask($event)"></app-add-uom-part>
   </div>
+
 
  <div class="uom__search">
     <app-search-uom (onSearchUomPart)="searchUom($event)"></app-search-uom>
@@ -14,6 +17,7 @@
 
 <div class="uom__table"> 
   <table mat-table [dataSource]="uoms" class="mat-elevation-z8 demo-table">
+
 
     <ng-container matColumnDef="uom_id">
       <th mat-header-cell *matHeaderCellDef>No.</th>
@@ -57,5 +61,7 @@
               aria-label="Select page">
   </mat-paginator>
 </div>
+
 </div>
+
 </section>

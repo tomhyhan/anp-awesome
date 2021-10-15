@@ -15,7 +15,7 @@ import errorRouter from './router/error.js';
 import { config } from './config.js';
 
 const app = express();
-
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());
 app.use(morgan('tiny'));

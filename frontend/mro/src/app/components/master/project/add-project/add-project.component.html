@@ -1,65 +1,106 @@
-<form [formGroup]="addprojectForm" (ngSubmit)="onSubmit()" >
-  <section  id="main-section-searchline">
-    <table id="main-table-selector">
-      <thead>
-        <tr style="color: rgb(110,144,161);">
-          <th ><label for="ProjectCode">Project Code</label></th>
-          <th><label for="ProjectName">Project Name</label></th>
-          <th ><label for="active_id">Status</label></th>
-          <th><label for="Enddate">End date</label></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><input
-            class="form-control"
-            type="text"
-            name="ProjectCode"
-            id="ProjectCode"
-            placeholder="code"
-            formControlName="project_code"
-          /></td>
-          <td><input
-            class="form-control"
-            type="text"
-            name="ProjectName"
-            id="ProjectName"
-            placeholder="Name"
-            formControlName="project_name"
-            /></td>
-          <td><input
-            class="form-control"
-            type="text"
-            name="active_id"
-            id="active_id"
-            placeholder="active_id"
-            formControlName="active_id"
-          /></td>
-          <td><input
-            class="form-control"
-            type="text"
-            name="Enddate"
-            id="Enddate"
-            placeholder="End date"
-            formControlName="end_date"
-          /></td>
-          
-          <td class="button ext-center">
-            <button class="text-center ml-2" id="main-button-add_project" type="submit" [disabled]="!addprojectForm.valid"><i class="fa fa-plus-circle"> Add</i></button>
-          </td>
-        </tr>
-      </tbody>
-
-    </table>
-
-  </section>
-  </form>
- 
 
 
+  <button id="main-button-add_project" type="button" data-toggle="modal"  data-whatever="@getbootstrap" data-backdrop="false" data-target="#exampleModalLong"><i class="fa fa-plus"></i> Create</button>
+
+  <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Add Project</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="addprojectForm" (ngSubmit)="onSubmit()" >
+            <div class="row">
+              <div class="col-md-6">
+
+                  <div class="form-group">
+                    <label for="recipient-name" class="col-form-label">Project Code</label>
+                    
+                    <input
+                     class="form-control"
+                      type="text"
+                      name="ProjectCode"
+                      id="recipient-name"
+                      placeholder="code"
+                      formControlName="project_code"
+                    />
+                  </div>
+                  
+                  <div class="form-group">
+                    <label for="recipient-name" class="col-form-label">Project Name</label>
+                    
+                    <input
+                      class="form-control"
+                      type="text"
+                      name="ProjectName"
+                      placeholder="Name"
+                      id="recipient-name"
+                      formControlName="project_name"
+                      />
+                    </div>
+
+                  <div class="form-group">
+                    <label for="recipient-name" class="col-form-label">Endate</label>
+                    
+                    <input
+                      class="form-control"
+                      type="date"
+                      [min]="minDate"
+                      name="Enddate"
+                      id="recipient-name"
+                      formControlName="end_date"
+                      />
+                  </div>
+                 
+
+              </div>
+              <div class="col-md-6"> 
+
+               
+                  <div class="form-group">
+                      <label for="recipient-name" class="col-form-label">Remarks</label>
+                      
+                      <input
+                      class="form-control"
+                      type="text"
+                      name="Remarks"
+                      id="recipient-name"
+                      placeholder="Remarks"
+                      formControlName="remarks"
+                      />
+                  </div>
+
+                  
+
+                   <div class="form-group">
+                      <label for="active_id">Status</label>
+                      <select formControlName="active_id" id="active_id" class="form-control">
+                        <option value="" disabled>Choose the Status</option>
+                        <option selected value="1">Active</option>
+                        <option selected value="0">Deactive</option>
+                      </select>
+                   </div>
 
 
-
+              </div>
+            </div>
+            <p><button type="submit" class="button-save">Submit</button></p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+  
+  
+  
+  
+  
+  
 
 
 

@@ -1,20 +1,38 @@
 import * as vendorData from '../../data/master/vendorData.js';
 
-export async function getAllvendors(req, res, next) {
-  const vendorCode = req.query.vendor_code;
-  const vendorName = req.query.vendor_name;
 
-  let vendor;
-  if (vendorCode) {
-    vendor = await vendorData.getAllByVendorCode(vendorCode);
-  } else if (vendorName) {
-    vendor = await vendorData.getAllVendorName(vendorName);
+
+export async function getAllVendors(req, res, next) {
+  let vendorFilter = req.query.vendorFilter;
+  const { pageIndex, pageSize } = req.query;
+  console.log(req.query);
+  if (vendorFilter == null) {
+    vendorFilter = '';
   } else {
-    vendor = await vendorData.getAll();
+    vendorFilter = JSON.parse(vendorFilter);
   }
 
-  return res.status(200).json(vendor);
+  const filter =
+    vendorFilter === '' || isEmpty(vendorFilter) ? '' : vendorFilter;
+
+  const vendors = await (filter
+    ? vendorData.getAllByFilter(filter, pageIndex, pageSize)
+    : vendorData.getAll(pageIndex, pageSize));
+
+  return res.status(200).json(vendors);
 }
+
+export async function getVendorCount(req, res) {
+  const count = await vendorData.getCount();
+  res.status(200).json(count);
+}
+
+export async function getVendorFilterCount(req, res) {
+  const vendorFilter = JSON.parse(req.query.vendorFilter);
+  const count = await vendorData.getFilterCount(vendorFilter);
+  res.status(200).json(count);
+}
+
 
 export async function getById(req, res) {
   const { id } = req.params;
@@ -42,4 +60,9 @@ export async function updateVendor(req, res) {
   } else {
     res.status(404).json({ message: `Vendor not Found` });
   }
+}
+
+function isEmpty(filter) {
+  const empty = Object.values(filter).find((value) => value !== null);
+  return empty == null ? true : false;
 }

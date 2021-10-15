@@ -1,6 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { EmployeeService } from 'src/app/services/master/employees/employee.service';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -10,8 +9,8 @@ import { Router } from '@angular/router';
 })
 
 export class EditEmployeeComponent implements OnInit {
-  @Output() onUpdateEmployee = new EventEmitter();
   @Input() employee: any;
+  @Output() onUpdateEmployee = new EventEmitter();
   employeeForm: FormGroup | any;
   id: any;
 
@@ -19,13 +18,13 @@ export class EditEmployeeComponent implements OnInit {
 
   ngOnInit(): void {
     this.employeeForm = this.formBuilder.group({
-      empName: '',
-      empCode: '',
-      siteMasterId: '',
-      contact: '',
-      address: '',
-      designation: '',
-      department: '',
+      empName: ['', Validators.required],
+      empCode: ['', Validators.required],
+      siteMasterId: ['', Validators.required],
+      contact: ['', Validators.required],
+      address: ['', Validators.required],
+      designation: ['', Validators.required],
+      department: ['', Validators.required],
       remarks: '',
       createdBy: '',
       createdDate: '',
@@ -64,11 +63,9 @@ onSubmit() {
       created_date: this.employeeForm.value.createdDate,
     },
   };
-
-
   this.onUpdateEmployee.emit({
     employee: updateEmployee,
     id: this.employee.emp_id,
   });
-}
+  }
 }

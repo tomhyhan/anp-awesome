@@ -7,13 +7,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./add-employee.component.css'],
 })
 export class AddEmployeeComponent implements OnInit {
-  empName: any;
-  empCode: any;
-  siteMasterId: any;
-  contact: any;
-  address: any;
-  designation: any;
-  department: any;
   remarks: any;
   createdBy: any;
   createdDate: any;
@@ -24,13 +17,13 @@ export class AddEmployeeComponent implements OnInit {
 
   ngOnInit(): void {
     this.addEmployeeForm = this.formBuilder.group({
-      emp_name: [''],
-      emp_code: [''],
-      site_master_id: [''],
-      contact: [''],
-      address: [''],
-      designation: [''],
-      department: [''],
+      emp_name: ['', Validators.required],
+      emp_code: ['', Validators.required],
+      site_master_id: ['', Validators.required],
+      contact: ['', Validators.required],
+      address: ['', Validators.required],
+      designation: ['', Validators.required],
+      department: ['', Validators.required],
       remarks: [''],
       created_by: [''],
       created_date: [''],
@@ -52,7 +45,34 @@ export class AddEmployeeComponent implements OnInit {
         created_date: new Date(),
       }
     };
-    console.log(employee)
     this.onCreateEmployee.emit(employee);
+  }
+
+  get empName() {
+    return this.addEmployeeForm.get('emp_name');
+  }
+
+  get empCode() {
+    return this.addEmployeeForm.get('emp_code');
+  }
+
+  get siteMasterId() {
+    return this.addEmployeeForm.get('site_master_id');
+  }
+
+  get contact() {
+    return this.addEmployeeForm.get('contact');
+  }
+
+  get address() {
+    return this.addEmployeeForm.get('address');
+  }
+
+  get designation() {
+    return this.addEmployeeForm.get('designation');
+  }
+
+  get department() {
+    return this.addEmployeeForm.get('department');
   }
 }

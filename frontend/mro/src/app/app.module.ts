@@ -38,10 +38,10 @@ import { ProjectsComponent } from './components/master/project/projects/projects
 import { SearchProjectComponent } from './components/master/project/search-project/search-project.component';
 
 //EmployeesPart
-import { EmployeesComponent } from './components/master/employees-main/employees/employees.component';
-import { AddEmployeeComponent } from './components/master/employees-main/add-employee/add-employee.component';
-import { EditEmployeeComponent } from './components/master/employees-main/edit-employee/edit-employee.component';
-import { SearchEmployeeComponent } from './components/master/employees-main/search-employee/search-employee.component';
+import { EmployeesComponent } from './components/master/employees/employees/employees.component';
+import { AddEmployeeComponent } from './components/master/employees/add-employee/add-employee.component';
+import { EditEmployeeComponent } from './components/master/employees/edit-employee/edit-employee.component';
+import { SearchEmployeeComponent } from './components/master/employees/search-employee/search-employee.component';
 
 //UomPart
 import { UomPartsComponent } from './components/master/uom/uom-parts/uom-parts.component';
@@ -77,8 +77,6 @@ import { aircraftsComponent } from './components/master/aircraft/aircrafts/aircr
     EditSparePartComponent,
     SearchSparePartComponent,
     
-    
-    
     AddProjectComponent,
     EditProjectComponent,
     ProjectsComponent,
@@ -102,8 +100,8 @@ import { aircraftsComponent } from './components/master/aircraft/aircrafts/aircr
     aircraftsComponent,
     EditaircraftComponent,
     AddaircraftComponent,
+    
     DisplayErrComponent
-
   ],
   imports: [
     BrowserModule,

@@ -37,6 +37,7 @@ export class AddSparePartComponent implements OnInit {
       active_id: ['', Validators.required],
       photo: [''],
     });
+
     this.errorhandlers = new ErrorHandlers(this.addSparePartForm);
   }
 
@@ -53,6 +54,7 @@ export class AddSparePartComponent implements OnInit {
       this.onCreateSparePart.emit(sparePart);
 
       $('#sparePartModal12').hide();
+      this.addSparePartForm.reset();
     } else {
       this.errorhandlers.showErrors();
     }

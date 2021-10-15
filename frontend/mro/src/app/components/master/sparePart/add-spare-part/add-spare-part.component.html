@@ -50,7 +50,7 @@
             <div class="form-group col-md-6">
               <label for="frn_uom">Unit</label>
               <select  formControlName="frn_uom" id="frn_uom" class="form-control">
-                <option value="null" disabled >Choose your Unit</option>
+                <option value="null" selected  disabled>Choose your Unit</option>
                 <option *ngFor="let item of uom" [ngValue]="item.uom_id">{{item.uom}}</option>
               </select>
               <app-display-error errorMsg="This field is required" [displayError]="errorhandlers.isFieldValid('frn_uom')" ></app-display-error>
@@ -58,11 +58,11 @@
             <div class="form-group col-md-6">
               <label for="active_id">Status</label>
               <select formControlName="active_id" id="active_id" class="form-control">
-                <option value="null" disabled>Choose the Status</option>
+                <option value="null" selected disabled>Choose the Status</option>
                 <option selected value="1">Active</option>
                 <option selected value="0">Deactive</option>
-                <app-display-error errorMsg="This field is required" [displayError]="errorhandlers.isFieldValid('active_id')" ></app-display-error>
               </select>
+              <app-display-error errorMsg="This field is required" [displayError]="errorhandlers.isFieldValid('active_id')" ></app-display-error>
             </div>
           </div>  
           <div class="form-group">

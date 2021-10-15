@@ -1,4 +1,4 @@
-<button type="button" (click)="onClick()" class="btn btn-primary button" data-toggle="modal"  data-target="#sparePartModal12" data-whatever="@getbootstrap" data-backdrop="false"><i class="fa fa-edit"></i></button>
+<button id="main-button-add-sparePart" type="button" (click)="onClick()"  data-toggle="modal"  data-target="#sparePartModal12" data-whatever="@getbootstrap" data-backdrop="false">+Add</button>
 
 <div class="modal fade" id="sparePartModal12" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -15,26 +15,31 @@
             <div class="form-group col-md-6">
               <label for="spare_part_code">Spare Part Code</label>
               <input formControlName="spare_part_code" type="text" class="form-control" id="spare_part_code" placeholder="Spare Part Code">
+              <app-display-error errorMsg="This field is required" [displayError]="errorhandlers.isFieldValid('spare_part_code')" ></app-display-error>
             </div>
             <div class="form-group col-md-6">
               <label for="spare_part_desc">Spare Part Description</label>
               <input formControlName="spare_part_desc" type="text" class="form-control" id="spare_part_desc" placeholder="Spare Part Description">
+              <app-display-error errorMsg="This field is required" [displayError]="errorhandlers.isFieldValid('spare_part_desc')" ></app-display-error>
             </div>
           </div>
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="hsn_code">HSN code</label>
               <input formControlName="hsn_code" type="text" class="form-control" id="hsn_code" placeholder="HSN code">
+              <app-display-error errorMsg="This field is required" [displayError]="errorhandlers.isFieldValid('hsn_code')" ></app-display-error>
             </div>
             <div class="form-group col-md-6">
               <label for="spare_part_group">Spare Part Group</label>
               <input formControlName="spare_part_group" type="text" class="form-control" id="spare_part_group" placeholder="Spare Part Group">
+              <app-display-error errorMsg="This field is required" [displayError]="errorhandlers.isFieldValid('spare_part_group')" ></app-display-error>
             </div>
           </div>
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="rate">Rate</label>
               <input formControlName="rate" type="text" class="form-control" id="rate" placeholder="Rate">
+              <app-display-error errorMsg="This field is required and must be a number" [displayError]="errorhandlers.isFieldValid('rate')" ></app-display-error>
             </div>
             <div class="form-group col-md-6">
               <label for="remarks">Remark</label>
@@ -45,14 +50,18 @@
             <div class="form-group col-md-6">
               <label for="frn_uom">Unit</label>
               <select  formControlName="frn_uom" id="frn_uom" class="form-control">
-                <option *ngFor="let item of uom">{{item.uom}}</option>
+                <option value="null" disabled >Choose your Unit</option>
+                <option *ngFor="let item of uom" [ngValue]="item.uom_id">{{item.uom}}</option>
               </select>
+              <app-display-error errorMsg="This field is required" [displayError]="errorhandlers.isFieldValid('frn_uom')" ></app-display-error>
             </div>
             <div class="form-group col-md-6">
               <label for="active_id">Status</label>
               <select formControlName="active_id" id="active_id" class="form-control">
+                <option value="null" disabled>Choose the Status</option>
                 <option selected value="1">Active</option>
                 <option selected value="0">Deactive</option>
+                <app-display-error errorMsg="This field is required" [displayError]="errorhandlers.isFieldValid('active_id')" ></app-display-error>
               </select>
             </div>
           </div>  
@@ -60,8 +69,9 @@
             <label for="photo">Photo</label>
             <input formControlName="photo" type="text" class="form-control" id="photo" placeholder="Photo">
           </div>
-            
-          <button type="submit" class="btn btn-primary">Update</button>
+          <div class="updateButton">
+            <button id="addButton" type="submit" class="button-save" >Update</button>
+          </div>
         </form>
       </div>
     </div>

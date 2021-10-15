@@ -1,6 +1,8 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UomService } from 'src/app/services/master/Uom/uom.service';
+import * as $ from 'jquery';
+import { ErrorHandlers } from 'src/app/utils/error-handler';
 @Component({
   selector: 'app-add-spare-part',
   templateUrl: './add-spare-part.component.html',
@@ -10,6 +12,7 @@ export class AddSparePartComponent implements OnInit {
   @Output() onCreateSparePart = new EventEmitter();
   addSparePartForm: FormGroup | any;
   uom: any = [];
+  errorhandlers: any;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -19,9 +22,9 @@ export class AddSparePartComponent implements OnInit {
   ngOnInit(): void {
     this.addSparePartForm = this.formBuilder.group({
       spare_part_code: ['', Validators.required],
-      spare_part_desc: [''],
-      hsn_code: [''],
-      spare_part_group: [''],
+      spare_part_desc: ['', Validators.required],
+      hsn_code: ['', Validators.required],
+      spare_part_group: ['', Validators.required],
       rate: [
         '',
         [
@@ -30,29 +33,29 @@ export class AddSparePartComponent implements OnInit {
         ],
       ],
       remarks: [''],
-      frn_uom: [''],
-      active_id: [''],
+      frn_uom: ['', Validators.required],
+      active_id: ['', Validators.required],
       photo: [''],
     });
+    this.errorhandlers = new ErrorHandlers(this.addSparePartForm);
   }
 
   onSubmit() {
-    const sparePart = {
-      spare_part: {
-        ...this.addSparePartForm.value,
-        rate: parseInt(this.addSparePartForm.value.rate),
-        active_id: parseInt(this.addSparePartForm.value.active_id),
-        frn_uom: parseInt(
-          this.uom.find(
-            (uom: any) => uom.uom === this.addSparePartForm.value.frn_uom
-          ).uom_id
-        ),
-        created_by: 'tom',
-      },
-    };
-    console.log('asdf');
-    console.log(sparePart);
-    this.onCreateSparePart.emit(sparePart);
+    if (this.addSparePartForm.valid) {
+      const sparePart = {
+        spare_part: {
+          ...this.addSparePartForm.value,
+          rate: parseInt(this.addSparePartForm.value.rate),
+          active_id: parseInt(this.addSparePartForm.value.active_id),
+          created_by: 'tom',
+        },
+      };
+      this.onCreateSparePart.emit(sparePart);
+
+      $('#sparePartModal12').hide();
+    } else {
+      this.errorhandlers.showErrors();
+    }
   }
 
   onClick() {

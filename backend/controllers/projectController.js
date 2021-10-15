@@ -1,17 +1,29 @@
 import * as projectData from '../data/master/projectData.js';
 
 
-export async function getAllproject(req, res, next) {
-  const project_code = req.query.project_code;
+// export async function getAllproject(req, res, next) {
+//   const project_code = req.query.project_code;
 
-  let project;
-  if (project_code) {
-    project = await projectData.getAllByproject_code(project_code);
-  } else {
-    project = await projectData.getAll();
-  }
+//   let project;
+//   if (project_code) {
+//     project = await projectData.getAllByproject_code(project_code);
+//   } else {
+//     project = await projectData.getAll();
+//   }
 
-  return res.status(200).json(project);
+//   return res.status(200).json(project);
+// }
+
+export async function getAllvendor(req, res, next) {
+  const vendorFilter = JSON.parse(req.query.vendorFilter);
+  const filter =
+  vendorFilter === '' || isEmpty(vendorFilter) ? '' : vendorFilter;
+
+  const vendor = await (filter
+    ? vendorData.getAllByFilter(filter)
+    : vendorData.getAll());
+
+  return res.status(200).json(vendor);
 }
 
 export async function getById(req, res, next) {

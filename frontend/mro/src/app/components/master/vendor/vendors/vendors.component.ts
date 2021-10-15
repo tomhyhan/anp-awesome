@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { VendorService } from 'src/app/services/master/vendor/vendor.service';
+import { startWith, tap } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-vendor',
@@ -9,6 +11,9 @@ import { VendorService } from 'src/app/services/master/vendor/vendor.service';
 })
 export class VendorsComponent implements OnInit {
   vendor: any = [];
+  vendorCount: any;
+  filter = JSON.stringify('');
+
 
   displayedColumns: string[] = [
     'vendor_code',
@@ -18,23 +23,47 @@ export class VendorsComponent implements OnInit {
     'remarks',
     'view',
   ];
-  @ViewChild(MatPaginator)
-  paginator!: MatPaginator;
+  @ViewChild(MatPaginator) paginator: MatPaginator | any;
+
 
   constructor(private vendorService: VendorService) { }
 
 
-  ngAfterViewInit(): void {
-    this.vendorService.getVendor().subscribe(vendor => this.vendor = vendor);
-    this.vendor.paginator = this.paginator;
+  // ngOnInit(): void {
+  //   this.vendorService.getVendor(this.filter).subscribe((vendor) => {
+  //     console.log(vendor);
+  //     this.vendor = vendor;
+  //   });
+  // }
+  ngOnInit(): void {
+    this.vendorService.getVendorCount().subscribe((count) => {
+   this.vendorCount = count;
+    })
   }
 
-  ngOnInit(): void {
-    this.vendorService.getVendor().subscribe((vendor) => {
-      console.log(vendor);
-      this.vendor = vendor;
-    });
+
+
+  ngAfterViewInit() {
+    this.paginator.page
+      .pipe(
+        startWith(null),
+        tap(() =>
+          this.vendorService
+            .getVendor(
+              this.filter,
+              this.paginator.pageIndex,
+              this.paginator.pageSize
+            )
+            .subscribe((vendor) => {
+              this.vendor = vendor;
+            })
+        )
+      )
+      .subscribe(() => {});
   }
+
+
+
   createTask(vendor: any) {
     this.vendorService
       .addVendor(vendor)
@@ -57,5 +86,38 @@ export class VendorsComponent implements OnInit {
         this.vendor = newVendors;
       });
   }
+
+
+  
+  // searchVendor(filter: any) {
+  //   this.vendorService.getVendor(this.filter).subscribe((vendor) => {
+  //     this.vendor = vendor;
+  //   });
+  // }
+ 
+  searchVendor(filter: any) {
+    this.vendorService.getVendorFilterCount(filter).subscribe((count) => {
+      this.vendorCount = count;
+    });
+    this.filter = filter;
+    this.paginator.page
+      .pipe(
+        startWith(null),
+        tap(() =>
+          this.vendorService
+            .getVendor(
+              this.filter,
+              this.paginator.pageIndex,
+              this.paginator.pageSize
+            )
+            .subscribe((vendor) => {
+              this.vendor = vendor;
+            })
+        )
+      )
+      .subscribe(() => {});
+  }
+
+
 
 }

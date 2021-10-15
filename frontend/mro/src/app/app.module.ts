@@ -15,7 +15,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 //Main
 import { AppComponent } from './app.component';
 
-//sparePart
+//Sparepart
 import { SparePartsComponent } from './components/master/sparePart/spare-parts/spare-parts.component';
 import { AddSparePartComponent } from './components/master/sparePart/add-spare-part/add-spare-part.component';
 import { EditSparePartComponent } from './components/master/sparePart/edit-spare-part/edit-spare-part.component';
@@ -35,6 +35,7 @@ import { PurchaseOrderCreateComponent } from './components/purchase-order-create
 import { AddProjectComponent } from './components/master/project/add-project/add-project.component';
 import { EditProjectComponent } from './components/master/project/edit-project/edit-project.component';
 import { ProjectsComponent } from './components/master/project/projects/projects.component';
+import { SearchProjectComponent } from './components/master/project/search-project/search-project.component';
 
 //EmployeesPart
 import { EmployeesComponent } from './components/master/employees-main/employees/employees.component';
@@ -52,6 +53,7 @@ import { SearchUomComponent } from './components/master/uom/search-uom/search-uo
 import { AddVendorComponent } from './components/master/vendor/add-vendor/add-vendor.component';
 import { EditVendorComponent } from './components/master/vendor/edit-vendor/edit-vendor.component';
 import { VendorsComponent } from './components/master/vendor/vendors/vendors.component';
+import { SearchVendorComponent } from './components/master/vendor/search-vendor/search-vendor.component';
 
 //AircraftPart
 import { AddaircraftComponent } from './components/master/aircraft/add-aircraft/add-aircraft.component';
@@ -59,36 +61,49 @@ import { EditaircraftComponent } from './components/master/aircraft/edit-aircraf
 import { aircraftsComponent } from './components/master/aircraft/aircrafts/aircrafts.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
-    SparePartsComponent,
-    AddSparePartComponent,
-    EditSparePartComponent,
+    
     HeaderComponent,
     FooterComponent,
     BackgroundComponent,
     PurchaseOrderComponent,
     PurchaseOrderCreateComponent,
+    
+    SparePartsComponent,
+    AddSparePartComponent,
+    EditSparePartComponent,
+    SearchSparePartComponent,
+    
+    
+    
     AddProjectComponent,
     EditProjectComponent,
     ProjectsComponent,
+    SearchProjectComponent
+    
     EmployeesComponent,
     AddEmployeeComponent,
     EditEmployeeComponent,
     SearchEmployeeComponent,
+    
     UomPartsComponent,
     AddUomComponent,
     EditUomPartComponent,
     SearchUomComponent,
-    SearchSparePartComponent,
+    
     AddVendorComponent,
     EditVendorComponent,
     VendorsComponent,
+    SearchVendorComponent,
+   
     aircraftsComponent,
     EditaircraftComponent,
     AddaircraftComponent,
     DisplayErrComponent
+
   ],
   imports: [
     BrowserModule,

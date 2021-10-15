@@ -3,11 +3,14 @@
 </section>
 
 <section class="ml-3 mr-3 pt-0 mt-0" style="background-color: white">
-  <div class="spare-part">
-      <div class="spare-part__add">
-      <app-add-vendor (onCreateVendor)="createTask($event)"></app-add-vendor>
+  <div class="vendor">
+      <div class="vendor__search row ml-1 align-items-center">
+        <app-search-vendor  (onSearchVendor)="searchVendor($event)"></app-search-vendor>
+        <app-add-vendor class="mt-3 pt-3" (onCreateVendor)="createTask($event)"></app-add-vendor>
       </div>
-      <div class="spare-part__table">
+
+      <div class="vendor__table">
+
       <table mat-table [dataSource]="vendor" class="mat-elevation-z1 demo-table">
 
           <ng-container matColumnDef="vendor_code">
@@ -44,9 +47,11 @@
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
     </div>
-    <!-- <mat-paginator [pageSizeOptions]="[2, 5, 10]"
-                   showFirstLastButtons 
-                   aria-label="Select page">
-    </mat-paginator> -->
+    <mat-paginator
+              [length]="vendorCount"
+              [pageSize]="5"
+              [pageSizeOptions]="[2, 5, 10]"
+              aria-label="Select page">
+    </mat-paginator>
   </div>
 </section>

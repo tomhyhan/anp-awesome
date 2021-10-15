@@ -13,13 +13,12 @@ import { aircraftsComponent } from './components/master/aircraft/aircrafts/aircr
 const routes: Routes = [
   { path: 'master/spare_part', component: SparePartsComponent },
   { path: 'master/project', component: ProjectsComponent },
-  { path: 'Purchase_order', component:PurchaseOrderComponent},
-  { path: 'Purchase_order/create', component:PurchaseOrderCreateComponent},
+  { path: 'Purchase_order', component: PurchaseOrderComponent },
+  { path: 'Purchase_order/create', component: PurchaseOrderCreateComponent },
   { path: 'master/employees', component: EmployeesComponent },
   { path: 'master/uom', component: UomPartsComponent },
   { path: 'master/vendor', component:VendorsComponent},
   { path: 'master/aircraft', component:aircraftsComponent},
-
 ];
 
 @NgModule({

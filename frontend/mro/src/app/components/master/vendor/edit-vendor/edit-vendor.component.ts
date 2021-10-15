@@ -3,7 +3,6 @@ import { VendorService } from 'src/app/services/master/vendor/vendor.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
-
 @Component({
   selector: 'app-edit-vendor',
   templateUrl: './edit-vendor.component.html',
@@ -15,30 +14,16 @@ export class EditVendorComponent implements OnInit {
   editVendorForm!: FormGroup | any;
   id: any;
 
-<<<<<<< HEAD
-
-  constructor(private formBuilder: FormBuilder, private router: Router) { }
-
-=======
-  constructor(private formBuilder: FormBuilder) {}
->>>>>>> tom
+  constructor(private formBuilder: FormBuilder, private router: Router) {}
 
   ngOnInit(): void {
     // console.log(this.vendor)
     this.editVendorForm = this.formBuilder.group({
-<<<<<<< HEAD
       vendor_code: ['', Validators.required],
       vendor_name: ['', Validators.required],
-      contact:['', Validators.required],
-      address:['', Validators.required],
-      remarks:'',
-=======
-      vendor_code: '',
-      vendor_name: '',
-      contact: '',
-      address: '',
+      contact: ['', Validators.required],
+      address: ['', Validators.required],
       remarks: '',
->>>>>>> tom
     });
     this.updateVendors();
   }

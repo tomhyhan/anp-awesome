@@ -37,17 +37,6 @@ export async function getSparePartFilterCount(req, res) {
   res.status(200).json(count);
 }
 
-export async function getSparePartCount(req, res) {
-  const count = await sparePartData.getCount();
-  res.status(200).json(count);
-}
-
-export async function getSparePartFilterCount(req, res) {
-  const sparePartFilter = JSON.parse(req.query.sparePartFilter);
-  const count = await sparePartData.getFilterCount(sparePartFilter);
-  res.status(200).json(count);
-}
-
 export async function postSparePart(req, res) {
   const { spare_part } = req.body;
   console.log(spare_part);

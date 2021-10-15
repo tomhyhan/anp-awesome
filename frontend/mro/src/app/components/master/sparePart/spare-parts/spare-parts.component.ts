@@ -35,28 +35,9 @@ export class SparePartsComponent implements OnInit {
     this.sparePartService.getSparePartCount().subscribe((count) => {
       this.sparePartCount = count;
     });
-    this.uomService.getUomPart().subscribe((uom) => {
+    this.uomService.getUomPartforservice().subscribe((uom) => {
       this.uom = uom;
     });
-  }
-
-  ngAfterViewInit() {
-    this.paginator.page
-      .pipe(
-        startWith(null),
-        tap(() =>
-          this.sparePartService
-            .getSparePart(
-              this.filter,
-              this.paginator.pageIndex,
-              this.paginator.pageSize
-            )
-            .subscribe((spareParts) => {
-              this.spareParts = spareParts;
-            })
-        )
-      )
-      .subscribe(() => {});
   }
 
   ngAfterViewInit() {

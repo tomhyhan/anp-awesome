@@ -59,49 +59,48 @@ import { SearchVendorComponent } from './components/master/vendor/search-vendor/
 import { AddaircraftComponent } from './components/master/aircraft/add-aircraft/add-aircraft.component';
 import { EditaircraftComponent } from './components/master/aircraft/edit-aircraft/edit-aircraft.component';
 import { aircraftsComponent } from './components/master/aircraft/aircrafts/aircrafts.component';
-
-
+import { DisplayErrorComponent } from './components/display-error/display-error.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    
+
     HeaderComponent,
     FooterComponent,
     BackgroundComponent,
     PurchaseOrderComponent,
     PurchaseOrderCreateComponent,
-    
+
     SparePartsComponent,
     AddSparePartComponent,
     EditSparePartComponent,
     SearchSparePartComponent,
-    
+
     AddProjectComponent,
     EditProjectComponent,
     ProjectsComponent,
     SearchProjectComponent,
-    
+
     EmployeesComponent,
     AddEmployeeComponent,
     EditEmployeeComponent,
     SearchEmployeeComponent,
-    
+
     UomPartsComponent,
     AddUomComponent,
     EditUomPartComponent,
     SearchUomComponent,
-    
+
     AddVendorComponent,
     EditVendorComponent,
     VendorsComponent,
     SearchVendorComponent,
-   
+
     aircraftsComponent,
     EditaircraftComponent,
     AddaircraftComponent,
-    
-    DisplayErrComponent
+    DisplayErrorComponent,
+    DisplayErrComponent,
   ],
   imports: [
     BrowserModule,

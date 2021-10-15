@@ -16,7 +16,6 @@ export class UomService {
 
   constructor(private http: HttpClient) {}
 
- 
   getUomPart(filter: any, pageIndex: any, pageSize: any) {
     return this.http.get(
       `${this.apiUrl}?uomPartFilter=${filter}&pageIndex=${pageIndex}&pageSize=${pageSize}$`
@@ -27,13 +26,12 @@ export class UomService {
   }
 
   addUomPart(uom: any) {
-    return this.http.post(this.apiUrl,uom, httpOptions);
+    return this.http.post(this.apiUrl, uom, httpOptions);
   }
 
   updateUomPart(uom: any, id: any) {
     return this.http.put(`${this.apiUrl}/${id}`, uom, httpOptions);
   }
-
 
   getUomCount() {
     return this.http.get(`${this.apiUrl}/pages`, httpOptions);
@@ -41,7 +39,8 @@ export class UomService {
 
   getUomFilterCount(filter: any) {
     return this.http.get(
-      `${this.apiUrl}/filterPages?uomPartFilter=${filter}`, httpOptions
+      `${this.apiUrl}/filterPages?uomPartFilter=${filter}`,
+      httpOptions
     );
   }
 }

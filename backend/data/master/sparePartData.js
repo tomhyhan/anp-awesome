@@ -7,13 +7,11 @@ JOIN uom
 On sp.frn_uom = uom.uom_id
 `;
 
-
 export async function getAll(pageIndex, pageSize) {
   const limit = parseInt(pageSize);
-  // console.log(pageSize)
   const currentPage = parseInt(pageIndex) * limit;
   return db
-    .query(`${SELECT_JOIN} LIMIT ? OFFSET ?`, [limit, currentPage])
+    .execute(`${SELECT_JOIN} LIMIT ? OFFSET ?`, [limit, currentPage])
     .then((result) => {
       return result[0];
     });
@@ -23,8 +21,7 @@ export async function getAllByFilter(filter, pageIndex, pageSize) {
   const limit = parseInt(pageSize);
   const currentPage = parseInt(pageIndex) * limit;
   const { query, queryArr } = getFilterQuery(filter);
-
-
+  console.log(query, queryArr);
   return db
     .query(
       `
@@ -33,7 +30,6 @@ export async function getAllByFilter(filter, pageIndex, pageSize) {
       LIMIT ? OFFSET ?
       `,
       [...queryArr, limit, currentPage]
-
     )
     .then((result) => {
       return result[0];
@@ -56,7 +52,7 @@ export async function getAllById(materialMasterId) {
 
 export async function getCount() {
   return db
-    .query(
+    .execute(
       `
       SELECT count(*) from spare_part
     `
@@ -68,10 +64,9 @@ export async function getCount() {
 
 export async function getFilterCount(filter) {
   const { query, queryArr } = getFilterQuery(filter);
-  console.log(`      SELECT count(*) from spare_part
-  ${query}`);
+
   return db
-    .query(
+    .execute(
       `
       SELECT count(*) from spare_part
       ${query}

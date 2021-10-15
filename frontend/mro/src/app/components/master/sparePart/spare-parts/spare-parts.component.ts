@@ -36,10 +36,8 @@ export class SparePartsComponent implements OnInit {
       this.sparePartCount = count;
     });
     this.uomService.getUomPartforservice().subscribe((uom) => {
-      console.log(uom)
       this.uom = uom;
     });
-    
   }
 
   ngAfterViewInit() {

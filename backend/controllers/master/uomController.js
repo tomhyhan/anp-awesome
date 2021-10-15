@@ -22,11 +22,7 @@ export async function getAllUom(req, res, next) {
 
 //old version
 export async function getAllUom2(req, res) {
-  const unitOfMeasure = req.query.unit_of_measure;
-
-  const uom = await (unitOfMeasure
-    ? uomData.getAllByUnitName(unitOfMeasure)
-    : uomData.getAll2());
+  const uom = await uomData.getAll2();
 
   return res.status(200).json(uom);
 }
@@ -74,14 +70,3 @@ function isEmpty(filter) {
   const empty = Object.values(filter).find((value) => value !== null);
   return empty == null ? true : false;
 }
-
-
-
-
-
-
-
-
-
-
-

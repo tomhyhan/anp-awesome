@@ -1,16 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { SparePartService } from 'src/app/services/master/sparePart/spare-part.service';
 import { UomService } from 'src/app/services/master/Uom/uom.service';
-
+import { MatPaginator } from '@angular/material/paginator';
+import { startWith, tap } from 'rxjs/operators';
 @Component({
   selector: 'app-spare-parts',
   templateUrl: './spare-parts.component.html',
   styleUrls: ['./spare-parts.component.css'],
 })
 export class SparePartsComponent implements OnInit {
-  spareParts: any = [];
+  spareParts: any;
   uom: any = [];
-
+  sparePartCount: any;
+  filter = JSON.stringify('');
   displayedColumns: string[] = [
     'spare_part_code',
     'spare_part_desc',
@@ -22,25 +24,51 @@ export class SparePartsComponent implements OnInit {
     'view',
   ];
 
+  @ViewChild(MatPaginator) paginator: MatPaginator | any;
+
   constructor(
     private sparePartService: SparePartService,
     private uomService: UomService
   ) {}
 
   ngOnInit(): void {
-    this.sparePartService.getSparePart().subscribe((spareParts) => {
-      this.spareParts = spareParts;
+    this.sparePartService.getSparePartCount().subscribe((count) => {
+      this.sparePartCount = count;
     });
     this.uomService.getUomPart().subscribe((uom) => {
       this.uom = uom;
     });
   }
 
+  ngAfterViewInit() {
+    this.paginator.page
+      .pipe(
+        startWith(null),
+        tap(() =>
+          this.sparePartService
+            .getSparePart(
+              this.filter,
+              this.paginator.pageIndex,
+              this.paginator.pageSize
+            )
+            .subscribe((spareParts) => {
+              this.spareParts = spareParts;
+            })
+        )
+      )
+      .subscribe(() => {});
+  }
+
   createTask(sparePart: any) {
     this.sparePartService
       .addSparePart(sparePart)
       .subscribe((sparePart: any) => {
-        this.spareParts = [...this.spareParts, sparePart[0]];
+        this.sparePartService.getSparePartCount().subscribe((count) => {
+          this.sparePartCount = count;
+        });
+        if (this.spareParts.length < this.paginator.pageSize) {
+          this.spareParts = [...this.spareParts, sparePart[0]];
+        }
       });
   }
 
@@ -54,8 +82,31 @@ export class SparePartsComponent implements OnInit {
           }
           return sparePart;
         });
+
         this.spareParts = newSpareParts;
       });
   }
-}
 
+  searchSparePart(filter: any) {
+    this.sparePartService.getSparePartFilterCount(filter).subscribe((count) => {
+      this.sparePartCount = count;
+    });
+    this.filter = filter;
+    this.paginator.page
+      .pipe(
+        startWith(null),
+        tap(() =>
+          this.sparePartService
+            .getSparePart(
+              this.filter,
+              this.paginator.pageIndex,
+              this.paginator.pageSize
+            )
+            .subscribe((spareParts) => {
+              this.spareParts = spareParts;
+            })
+        )
+      )
+      .subscribe(() => {});
+  }
+}

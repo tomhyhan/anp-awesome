@@ -1,13 +1,12 @@
-import { Component, OnInit,Input, Output, EventEmitter} from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { VendorService } from 'src/app/services/master/vendor/vendor.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
-
 @Component({
   selector: 'app-edit-vendor',
   templateUrl: './edit-vendor.component.html',
-  styleUrls: ['./edit-vendor.component.css']
+  styleUrls: ['./edit-vendor.component.css'],
 })
 export class EditVendorComponent implements OnInit {
   @Output() onUpdateVendor = new EventEmitter();
@@ -15,18 +14,16 @@ export class EditVendorComponent implements OnInit {
   editVendorForm!: FormGroup | any;
   id: any;
 
-
-  constructor(private formBuilder: FormBuilder, private router: Router) { }
-
+  constructor(private formBuilder: FormBuilder, private router: Router) {}
 
   ngOnInit(): void {
     // console.log(this.vendor)
     this.editVendorForm = this.formBuilder.group({
       vendor_code: ['', Validators.required],
       vendor_name: ['', Validators.required],
-      contact:['', Validators.required],
-      address:['', Validators.required],
-      remarks:'',
+      contact: ['', Validators.required],
+      address: ['', Validators.required],
+      remarks: '',
     });
     this.updateVendors();
   }
@@ -42,7 +39,6 @@ export class EditVendorComponent implements OnInit {
     });
   }
 
-
   onSubmit() {
     const updateVendor = {
       vendor: {
@@ -51,7 +47,7 @@ export class EditVendorComponent implements OnInit {
         contact: this.editVendorForm.value.contact,
         address: this.editVendorForm.value.address,
         remarks: this.editVendorForm.value.remarks,
-        created_by:"hosung",
+        created_by: 'hosung',
       },
     };
     // console.log(updateVendor)

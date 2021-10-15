@@ -5,7 +5,7 @@ import { SparePartsComponent } from './components/master/sparePart/spare-parts/s
 import { ProjectsComponent } from './components/master/project/projects/projects.component';
 import { PurchaseOrderComponent } from './components/purchase-order/purchase-order.component';
 import { PurchaseOrderCreateComponent } from './components/purchase-order-create/purchase-order-create.component';
-import { EmployeesComponent } from './components/master/employees-main/employees/employees.component';
+import { EmployeesComponent } from './components/master/employees/employees/employees.component';
 import { UomPartsComponent } from './components/master/uom/uom-parts/uom-parts.component';
 import { VendorsComponent } from './components/master/vendor/vendors/vendors.component';
 import { aircraftsComponent } from './components/master/aircraft/aircrafts/aircrafts.component'

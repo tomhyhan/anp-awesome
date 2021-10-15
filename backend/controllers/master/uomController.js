@@ -20,6 +20,13 @@ export async function getAllUom(req, res, next) {
   return res.status(200).json(uomPart);
 }
 
+//old version
+export async function getAllUom2(req, res) {
+  const uom = await uomData.getAll2();
+
+  return res.status(200).json(uom);
+}
+
 export async function getById(req, res, next) {
   const { id } = req.params;
   const uomPart = await uomData.getAllById(id);
@@ -63,14 +70,3 @@ function isEmpty(filter) {
   const empty = Object.values(filter).find((value) => value !== null);
   return empty == null ? true : false;
 }
-
-
-
-
-
-
-
-
-
-
-

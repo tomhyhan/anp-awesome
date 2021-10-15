@@ -17,10 +17,9 @@ export class SparePartService {
   constructor(private http: HttpClient) {}
 
   getSparePart(filter: any, pageIndex: any, pageSize: any) {
-    console.log(pageSize);
     return this.http.get(
       `${this.apiUrl}?sparePartFilter=${filter}&pageIndex=${pageIndex}&pageSize=${pageSize}$`
-      );
+    );
   }
 
   addSparePart(sparePart: any) {

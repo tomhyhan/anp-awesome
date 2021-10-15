@@ -4,7 +4,7 @@ import * as employeeData from '../../data/master/employeeData.js';
 export async function getAllEmployees(req, res, next) {
   let employeeFilter = req.query.employeeFilter;
   const { pageIndex, pageSize } = req.query;
-
+  console.log(req.query);
   if (employeeFilter == null) {
     employeeFilter = '';
   } else {

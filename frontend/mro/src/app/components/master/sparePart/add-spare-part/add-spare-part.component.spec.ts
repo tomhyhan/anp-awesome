@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AddSparePartComponent } from './add-spare-part.component';
+import { AddEmployeeComponent } from './add-employee.component';
 
-describe('AddSparePartComponent', () => {
-  let component: AddSparePartComponent;
-  let fixture: ComponentFixture<AddSparePartComponent>;
+describe('Add employee  component', () => {
+  let component: AddEmployeeComponent;
+  let fixture: ComponentFixture<AddEmployeeComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AddSparePartComponent ]
+      declarations: [ AddEmployeeComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AddSparePartComponent);
+    fixture = TestBed.createComponent(AddEmployeeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

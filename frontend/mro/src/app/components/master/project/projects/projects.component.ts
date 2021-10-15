@@ -56,7 +56,15 @@ export class ProjectsComponent implements OnInit {
     this.projectService
       .addproject(project)
       .subscribe((project: any) => {
-        this.projects = [...this.projects, project[0]];
+        this.projectService.getprojectCount().subscribe((count) => {
+          this.projectCount = count;
+        });
+
+        if (this.projects.length < this.paginator.pageSize) {
+          this.projects = [...this.projects, project[0]];
+        }
+     
+ 
       });
   }
 

@@ -16,8 +16,9 @@ export class aircraftService {
 
   constructor(private http: HttpClient) {}
 
-  getaircraft() {
-    return this.http.get(this.apiUrl);
+  getaircraft(filter: any) {
+    console.log(filter);
+    return this.http.get(`${this.apiUrl}?aircraftFilter=${filter}`);
   }
 
   addaircraft(aircraft: any) {

@@ -1,14 +1,14 @@
 import { db } from '../../database/database.js';
 
 export async function getAll() {
-  return db.execute(`SELECT * FROM aircraft`).then((result) => {
+  return db.query(`SELECT * FROM aircraft`).then((result) => {
     return result[0];
   });
 }
 
 export async function getallbyAircraftName(aircraft_name) {
   return db
-    .execute(
+    .query(
       `
     SELECT * FROM aircraft
     WHERE aircraft_name=?
@@ -20,9 +20,36 @@ export async function getallbyAircraftName(aircraft_name) {
     });
 }
 
+// export async function getAllByFilter(filter) {
+//   console.log(filter);
+//   const {
+//     aircraft_name,
+//     remarks,
+//   } = filter;
+//   console.log(filter);
+//   return db
+//     .query(
+//       `
+//     ${SELECT_JOIN}
+//     WHERE
+//       sp.aircraft_name=?
+//       or
+//       sp.remarks=?
+//       `,
+//       [
+//         aircraft_name,
+//         remarks,
+//       ]
+//     )
+//     .then((result) => {
+//       return result[0];
+//     });
+// }
+
+
 export async function getById(aircraftid) {
   return db
-    .execute(
+    .query(
       `
     SELECT * FROM aircraft
     WHERE material_aircraft_id=?
@@ -38,7 +65,7 @@ export async function create(aircraft) {
   const { aircraft_name, remarks, created_by } = aircraft;
 
   return db
-    .execute(
+    .query(
       `
   INSERT INTO aircraft (aircraft_name, remarks, created_by, created_date)
   VALUES (?,?,?,?)
@@ -53,7 +80,7 @@ export async function update(id, aircraft) {
   const { aircraft_name, remarks } = aircraft;
 
   return db
-    .execute(
+    .query(
       `
   Update aircraft
   SET 

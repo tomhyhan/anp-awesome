@@ -1,10 +1,13 @@
 import * as aircraftData from '../../data/master/aircraftData.js';
 
 export async function getAllAircraft(req, res, next) {
+  const aircraftFilter = JSON.parse(req.query.aircraftFilter);
+  const filter =
+    aircraftFilter === '' || isEmpty(aircraftFilter) ? '' : aircraftFilter;
   const aircraftName = req.query.aircraft_name;
 
-  const aircraft = await (aircraftName
-    ? await aircraftData.getallbyAircraftName(aircraftName)
+  const aircraft = await (filter
+    ? await aircraftData.getallbyAircraftName(filter)
     : await aircraftData.getAll());
 
   return res.status(200).json(aircraft);
@@ -38,3 +41,7 @@ export async function updateAircraft(req, res) {
     res.status(404).json({ message: `Aircraft not Found` });
   }
 }
+
+function isEmpty(filter) {
+  const empty = Object.values(filter).find((value) => value !== null);
+  return empty == null ? true : false;}

@@ -8,7 +8,7 @@ On sp.frn_uom = uom.uom_id
 `;
 
 export async function getAll() {
-  return db.execute(SELECT_JOIN).then((result) => {
+  return db.query(SELECT_JOIN).then((result) => {
     return result[0];
   });
 }
@@ -26,7 +26,7 @@ export async function getAllByFilter(filter) {
   } = filter;
   console.log(filter);
   return db
-    .execute(
+    .query(
       `
     ${SELECT_JOIN}
     WHERE
@@ -61,7 +61,7 @@ export async function getAllByFilter(filter) {
 
 export async function getAllById(materialMasterId) {
   return db
-    .execute(
+    .query(
       `
     ${SELECT_JOIN}
     WHERE material_master_id=?
@@ -91,7 +91,7 @@ export async function create(spare_part) {
   } = spare_part;
 
   return db
-    .execute(
+    .query(
       `
   INSERT INTO spare_part (spare_part_code, spare_part_desc, hsn_code, spare_part_group, rate, frn_uom, remarks, active_id, photo, created_by, created_date)
   VALUES (?,?,?,?,?,?,?,?,?,?,?)
@@ -129,7 +129,7 @@ export async function update(id, spare_part) {
   } = spare_part;
 
   return db
-    .execute(
+    .query(
       `
   Update spare_part
   SET 

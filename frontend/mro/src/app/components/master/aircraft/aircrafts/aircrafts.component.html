@@ -3,11 +3,14 @@
 </section>
 
 <section class="ml-3 mr-3 pt-0 mt-0" style="background-color: white">
-  <div class="spare-part">
-      <div class="spare-part__add">
+  <div class="aircraft">
+      <div class="aircraft__add">
       <app-add-aircraft (onCreateaircraft)="createTask($event)"></app-add-aircraft>
       </div>
-      <div class="spare-part__table">
+      <div class="aircraft__add">
+        <app-search-aircraft [aircraft]="aircraft" (onSearchaircraft)="searchaircraft($event)"></app-search-aircraft>
+      </div>
+      <div class="aircraft__table">
       <table mat-table [dataSource]="aircraft" class="mat-elevation-z1 demo-table">
 
           <ng-container matColumnDef="aircraft_name">

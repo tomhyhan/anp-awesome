@@ -1,14 +1,14 @@
 import { db } from '../../database/database.js';
 
 export async function getAll() {
-  return db.execute(`SELECT * FROM vendor`).then((result) => {
+  return db.query(`SELECT * FROM vendor`).then((result) => {
     return result[0];
   });
 }
 
 export async function getAllByVendorCode(vendor_code) {
   return db
-    .execute(
+    .query(
       `
     SELECT * FROM vendor
     WHERE vendor_code=?
@@ -22,7 +22,7 @@ export async function getAllByVendorCode(vendor_code) {
 
 export async function getAllVendorName(vendor_name) {
   return db
-    .execute(
+    .query(
       `
     SELECT * FROM vendor
     WHERE vendor_name=?
@@ -36,7 +36,7 @@ export async function getAllVendorName(vendor_name) {
 
 export async function getById(vendor_id) {
   return db
-    .execute(
+    .query(
       `
     SELECT * FROM vendor
     WHERE vendor_id=?
@@ -53,7 +53,7 @@ export async function create(vendor) {
     vendor;
 
   return db
-    .execute(
+    .query(
       `
   INSERT INTO vendor (vendor_name, vendor_code, contact, address, remarks, created_by, created_date)
   VALUES (?,?,?,?,?,?,?)
@@ -76,7 +76,7 @@ export async function update(id, vendor) {
   const { vendor_name, vendor_code, contact, address } = vendor;
 
   return db
-    .execute(
+    .query(
       `
   Update vendor
   SET 

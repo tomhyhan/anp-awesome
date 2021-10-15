@@ -1,14 +1,14 @@
 import { db } from '../../database/database.js';
 
 export async function getAll() {
-  return db.execute(`SELECT * FROM project`).then((result) => {
+  return db.query(`SELECT * FROM project`).then((result) => {
     return result[0];
   });
 }
 
 export async function getAllByprojectCode(project_code) {
   return db
-    .execute(
+    .query(
       `
     SELECT * FROM project
     WHERE project_code=?
@@ -22,7 +22,7 @@ export async function getAllByprojectCode(project_code) {
 
 export async function getAllById(materialMasterId) {
   return db
-    .execute(
+    .query(
       `
     SELECT * FROM project
     WHERE project_master_id=?
@@ -45,7 +45,7 @@ export async function create(project_new) {
   } = project_new;
 
   return db
-    .execute(
+    .query(
       `
 
       INSERT INTO project (project_name, project_code, remarks, active_id, created_by, end_date,created_date)
@@ -69,7 +69,7 @@ export async function update(id, project_update) {
     project_update;
 
   return db
-    .execute(
+    .query(
       `
   Update project
   SET 

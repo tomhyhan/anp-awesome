@@ -1,14 +1,14 @@
 import { db } from '../../database/database.js';
 
 export async function getAll() {
-  return db.execute(`SELECT * FROM employee`).then((result) => {
+  return db.query(`SELECT * FROM employee`).then((result) => {
     return result[0];
   });
 }
 
 export async function getAllByEmployeeCode(emp_code) {
   return db
-    .execute(
+    .query(
       `
     SELECT * FROM employee
     WHERE emp_code=?
@@ -22,7 +22,7 @@ export async function getAllByEmployeeCode(emp_code) {
 
 export async function getAllByEmployeeName(emp_name) {
   return db
-    .execute(
+    .query(
       `
     SELECT * FROM employee
     WHERE emp_name=?
@@ -36,7 +36,7 @@ export async function getAllByEmployeeName(emp_name) {
 
 export async function getAllById(emp_id) {
   return db
-    .execute(
+    .query(
       `
     SELECT * FROM employee
     WHERE emp_id=?
@@ -62,7 +62,7 @@ export async function create(employee) {
   } = employee;
 
   return db
-    .execute(
+    .query(
       `
   INSERT INTO employee (emp_name, emp_code, site_master_id, contact, address, designation, department, remarks, created_by, created_date)
   VALUES (?,?,?,?,?,?,?,?,?,?)
@@ -96,7 +96,7 @@ export async function update(id, employee) {
   } = employee;
 
   return db
-    .execute(
+    .query(
       `
   Update employee
   SET 

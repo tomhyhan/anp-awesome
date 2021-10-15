@@ -1,14 +1,14 @@
 import { db } from '../../database/database.js';
 
 export async function getAll() {
-  return db.execute(`SELECT * FROM uom`).then((result) => {
+  return db.query(`SELECT * FROM uom`).then((result) => {
     return result[0];
   });
 }
 
 export async function getAllByUnitName(uom) {
   return db
-    .execute(
+    .query(
       `
     SELECT * FROM uom
     WHERE uom=?
@@ -22,7 +22,7 @@ export async function getAllByUnitName(uom) {
 
 export async function getById(uom_id) {
   return db
-    .execute(
+    .query(
       `
     SELECT * FROM uom
     WHERE uom_id=?
@@ -38,7 +38,7 @@ export async function create(unit_of_measure) {
   const { uom, remarks, created_by } = unit_of_measure;
 
   return db
-    .execute(
+    .query(
       `
   INSERT INTO uom (uom, remarks, created_by, created_date)
   VALUES (?,?,?,?)
@@ -52,7 +52,7 @@ export async function update(id, unit_of_measure) {
   const { uom } = unit_of_measure;
 
   return db
-    .execute(
+    .query(
       `
   Update uom
   SET 

@@ -22,12 +22,14 @@ export class aircraftsComponent implements OnInit {
 
 
   ngAfterViewInit(): void {
-    this.aircraftService.getaircraft().subscribe(aircraft => this.aircraft = aircraft);
+    this.aircraftService.getaircraft(JSON.stringify(''))
+    .subscribe(aircraft => this.aircraft = aircraft);
     this.aircraft.paginator = this.paginator;
   }
 
   ngOnInit(): void {
-    this.aircraftService.getaircraft().subscribe((aircraft) => {
+    this.aircraftService.getaircraft(JSON.stringify(''))
+    .subscribe((aircraft) => {
       console.log(aircraft);
       this.aircraft = aircraft;
     });
@@ -54,5 +56,9 @@ export class aircraftsComponent implements OnInit {
         this.aircraft = newaircrafts;
       });
   }
-
+  searchaircraft(filter: any) {
+    this.aircraftService.getaircraft(filter).subscribe((aircrafts) => {
+      this.aircraft = aircrafts;
+    });
+  }
 }

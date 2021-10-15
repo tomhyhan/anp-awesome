@@ -1,18 +1,21 @@
 import * as sparePartData from '../../data/master/sparePartData.js';
 
 export async function getAllSpareParts(req, res, next) {
-  const spare_part_code = req.query.spare_part_code;
-  const hsn_code = req.query.hsn_code;
+  let sparePartFilter = req.query.sparePartFilter;
+  const { pageIndex, pageSize } = req.query;
 
-  // exculde when hsn_code && spare_part_code exist for now
-  let sparePart;
-  if (spare_part_code) {
-    sparePart = await sparePartData.getAllBySparePartCode(spare_part_code);
-  } else if (hsn_code) {
-    sparePart = await sparePartData.getAllByHsnCode(hsn_code);
+  if (sparePartFilter == null) {
+    sparePartFilter = '';
   } else {
-    sparePart = await sparePartData.getAll();
+    sparePartFilter = JSON.parse(sparePartFilter);
   }
+
+  const filter =
+    sparePartFilter === '' || isEmpty(sparePartFilter) ? '' : sparePartFilter;
+
+  const sparePart = await (filter
+    ? sparePartData.getAllByFilter(filter, pageIndex, pageSize)
+    : sparePartData.getAll(pageIndex, pageSize));
 
   return res.status(200).json(sparePart);
 }
@@ -27,9 +30,20 @@ export async function getById(req, res, next) {
     res.status(404).json({ message: `Spare Part not Found` });
   }
 }
+export async function getSparePartCount(req, res) {
+  const count = await sparePartData.getCount();
+  res.status(200).json(count);
+}
+
+export async function getSparePartFilterCount(req, res) {
+  const sparePartFilter = JSON.parse(req.query.sparePartFilter);
+  const count = await sparePartData.getFilterCount(sparePartFilter);
+  res.status(200).json(count);
+}
 
 export async function postSparePart(req, res) {
   const { spare_part } = req.body;
+  console.log(spare_part);
   const sparePart = await sparePartData.create(spare_part);
   res.status(201).json(sparePart);
 }
@@ -43,4 +57,9 @@ export async function updateSparePart(req, res) {
   } else {
     res.status(404).json({ message: `Spare Part not Found` });
   }
+}
+
+function isEmpty(filter) {
+  const empty = Object.values(filter).find((value) => value !== null);
+  return empty == null ? true : false;
 }

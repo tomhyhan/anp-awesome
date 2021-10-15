@@ -14,7 +14,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 
-
 import { SparePartsComponent } from './components/master/sparePart/spare-parts/spare-parts.component';
 import { AddSparePartComponent } from './components/master/sparePart/add-spare-part/add-spare-part.component';
 import { EditSparePartComponent } from './components/master/sparePart/edit-spare-part/edit-spare-part.component';
@@ -37,11 +36,18 @@ import { EditEmployeeComponent } from './components/master/employees-main/edit-e
 import { UomPartsComponent } from './components/master/uom/uom-parts/uom-parts.component';
 import { AddUomComponent } from './components/master/uom/add-uom/add-uom-part.component';
 import { EditUomPartComponent } from './components/master/uom/edit-uom/edit-uom.component';
+import { SearchSparePartComponent } from './components/master/sparePart/search-spare-part/search-spare-part.component';
 
 import { AddVendorComponent } from './components/master/vendor/add-vendor/add-vendor.component';
 import { EditVendorComponent } from './components/master/vendor/edit-vendor/edit-vendor.component';
 import { VendorsComponent } from './components/master/vendor/vendors/vendors.component';
 import { SearchVendorComponent } from './components/master/vendor/search-vendor/search-vendor.component';
+
+
+import { AddaircraftComponent } from './components/master/aircraft/add-aircraft/add-aircraft.component';
+import { EditaircraftComponent } from './components/master/aircraft/edit-aircraft/edit-aircraft.component';
+import { aircraftsComponent } from './components/master/aircraft/aircrafts/aircrafts.component';
+import { SearchProjectComponent } from './components/master/project/search-project/search-project.component';
 
 
 @NgModule({
@@ -67,7 +73,13 @@ import { SearchVendorComponent } from './components/master/vendor/search-vendor/
     AddVendorComponent,
     EditVendorComponent,
     VendorsComponent,
-    SearchVendorComponent
+    SearchVendorComponent,
+    SearchSparePartComponent,
+    AddVendorComponent,
+    aircraftsComponent,
+    EditaircraftComponent,
+    AddaircraftComponent,
+    SearchProjectComponent
   ],
   imports: [
     BrowserModule,

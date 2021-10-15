@@ -1,0 +1,35 @@
+<button type="button" class="btn btn-primary button" data-toggle="modal"  attr.data-target="#{{ aircraft.material_aircraft_id }}" data-whatever="@getbootstrap" data-backdrop="false"><i class="fa fa-edit"></i></button>
+
+<div class="modal fade" attr.id="{{ aircraft.material_aircraft_id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit aircraft</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form class="m-3" [formGroup]="editaircraftForm" (ngSubmit)="onSubmit()">
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="aircraft_name">aircraft name</label>
+              <input formControlName="aircraft_name" type="text" class="form-control" id="aircraft_name" placeholder="aircraft Name">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="remarks">Remarks</label>
+              <input formControlName="remarks" type="text" class="form-control" id="remarks" placeholder="Remarks">
+            </div>
+          </div>
+          <div class="form-row">
+          </div>
+            
+          <button type="submit" class="btn btn-primary">Update</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

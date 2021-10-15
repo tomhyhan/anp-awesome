@@ -56,8 +56,9 @@
               formControlName="rate"
             /></td>
             <td>
-              <select  formControlName="frn_uom" id="frn_uom" class="form-control">
-                <option *ngFor="let item of uom">{{item.uom}}</option>
+              <select formControlName="frn_uom" id="frn_uom" class="form-control">
+                <option value="" disabled>Choose your Unit</option>
+                <option *ngFor="let item of uom" [ngValue]="item.uom_id" selected>{{item.uom}}</option>
               </select>
             </td>
             <td>

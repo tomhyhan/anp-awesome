@@ -1,12 +1,16 @@
 
+<section id="main-section-namepageline">
+  <h1 style="text-align:center;">UOM</h1>
+</section>
 
- <div class="uom">
+
+ <section class="ml-3 mr-3 pt-0 mt-0" style="background-color: white">
   <div class="uom__add">
    <app-add-uom-part (onCreateUomPart)="createTask($event)"></app-add-uom-part>
   </div>
 
 <div>
-  <table mat-table [dataSource]="uoms" class="mat-elevation-z8 demo-table">
+  <table mat-table [dataSource]="uoms" class="demo-table">
 
     <ng-container matColumnDef="uom_id">
       <th mat-header-cell *matHeaderCellDef>No.</th>
@@ -47,4 +51,4 @@
                  aria-label="Select page of periodic elements">
   </mat-paginator>
 </div>
-
+</section>

@@ -109,9 +109,7 @@ export async function create(unit_of_measure) {
 }
 
 export async function update(id, unit_of_measure) {
-  
-  const { uom,remarks } = unit_of_measure;
-  console.log(unit_of_measure)
+  const { uom, remarks } = unit_of_measure;
   return db
     .query(
       `

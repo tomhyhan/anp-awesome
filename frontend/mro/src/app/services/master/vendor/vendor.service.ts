@@ -18,6 +18,7 @@ export class VendorService {
 
   getVendor(filter: any, pageIndex: any, pageSize: any) {
     return this.http.get(`${this.apiUrl}?vendorFilter=${filter}&pageIndex=${pageIndex}&pageSize=${pageSize}$`);
+
   }
 
   addVendor( vendor: any) {
@@ -27,6 +28,7 @@ export class VendorService {
   updateVendor( vendor: any, id: any) {
     return this.http.put(`${this.apiUrl}/${id}`, vendor, httpOptions);
   }
+
 
   
   getVendorCount() {
@@ -38,4 +40,5 @@ export class VendorService {
       `${this.apiUrl}/filterPages?vendorFilter=${filter}`, httpOptions
     );
   }
+
 }

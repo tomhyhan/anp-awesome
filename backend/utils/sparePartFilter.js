@@ -13,3 +13,4 @@ export function getFilterQuery(filter) {
     queryArr,
   };
 }
+

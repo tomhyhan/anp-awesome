@@ -3,6 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { VendorService } from 'src/app/services/master/vendor/vendor.service';
 import { startWith, tap } from 'rxjs/operators';
 
+
 @Component({
   selector: 'app-vendor',
   templateUrl: './vendors.component.html',
@@ -13,6 +14,7 @@ export class VendorsComponent implements OnInit {
   vendorCount: any;
   filter = JSON.stringify('');
 
+
   displayedColumns: string[] = [
     'vendor_code',
     'vendor_name',
@@ -22,6 +24,7 @@ export class VendorsComponent implements OnInit {
     'view',
   ];
   @ViewChild(MatPaginator) paginator: MatPaginator | any;
+
 
   constructor(private vendorService: VendorService) { }
 
@@ -60,6 +63,7 @@ export class VendorsComponent implements OnInit {
   }
 
 
+
   createTask(vendor: any) {
     this.vendorService
       .addVendor(vendor)
@@ -82,6 +86,7 @@ export class VendorsComponent implements OnInit {
         this.vendor = newVendors;
       });
   }
+
 
   
   // searchVendor(filter: any) {
@@ -112,6 +117,7 @@ export class VendorsComponent implements OnInit {
       )
       .subscribe(() => {});
   }
+
 
 
 }

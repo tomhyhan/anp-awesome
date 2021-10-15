@@ -15,7 +15,9 @@ export class EditVendorComponent implements OnInit {
   editVendorForm!: FormGroup | any;
   id: any;
 
+
   constructor(private formBuilder: FormBuilder, private router: Router) { }
+
 
   ngOnInit(): void {
     // console.log(this.vendor)

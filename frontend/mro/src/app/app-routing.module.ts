@@ -10,7 +10,6 @@ import { UomPartsComponent } from './components/master/uom/uom-parts/uom-parts.c
 import { VendorsComponent } from './components/master/vendor/vendors/vendors.component';
 import { aircraftsComponent } from './components/master/aircraft/aircrafts/aircrafts.component'
 
-
 const routes: Routes = [
   { path: 'master/spare_part', component: SparePartsComponent },
   { path: 'master/project', component: ProjectsComponent },

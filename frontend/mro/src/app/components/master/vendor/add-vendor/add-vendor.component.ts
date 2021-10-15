@@ -1,5 +1,7 @@
+
 import { Component, OnInit,Output, EventEmitter, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'app-add-vendor',
@@ -7,13 +9,16 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./add-vendor.component.css']
 })
 export class AddVendorComponent implements OnInit {
+
   Remarks:any;
   @Output() onCreateVendor = new EventEmitter();
   addvendorForm: FormGroup | any;
 
+
   constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
+
     // console.log(new Date().toLocaleDateString().replace('/','-').replace('/','-'))
     this.addvendorForm = this.formBuilder.group({
       vendor_code: ['', Validators.required],
@@ -33,12 +38,14 @@ export class AddVendorComponent implements OnInit {
         contact: this.addvendorForm.value.contact,
         address: this.addvendorForm.value.address,
         remarks: this.addvendorForm.value.remarks,
+
         created_by:"hosung",
       },
     };
     console.log(vendor)
     this.onCreateVendor.emit(vendor);
   }
+
 
   get VendorCode() {
     return this.addvendorForm.get('vendor_code');
@@ -55,6 +62,7 @@ export class AddVendorComponent implements OnInit {
   get Address() {
     return this.addvendorForm.get('address');
   }
+
 
 
 }

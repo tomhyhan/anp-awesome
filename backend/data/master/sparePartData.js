@@ -7,6 +7,7 @@ JOIN uom
 On sp.frn_uom = uom.uom_id
 `;
 
+
 export async function getAll(pageIndex, pageSize) {
   const limit = parseInt(pageSize);
   // console.log(pageSize)
@@ -23,6 +24,7 @@ export async function getAllByFilter(filter, pageIndex, pageSize) {
   const currentPage = parseInt(pageIndex) * limit;
   const { query, queryArr } = getFilterQuery(filter);
 
+
   return db
     .query(
       `
@@ -31,6 +33,7 @@ export async function getAllByFilter(filter, pageIndex, pageSize) {
       LIMIT ? OFFSET ?
       `,
       [...queryArr, limit, currentPage]
+
     )
     .then((result) => {
       return result[0];

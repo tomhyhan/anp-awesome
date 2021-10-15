@@ -1,6 +1,7 @@
 import * as sparePartData from '../../data/master/sparePartData.js';
 
 export async function getAllSpareParts(req, res, next) {
+
   let sparePartFilter = req.query.sparePartFilter;
   const { pageIndex, pageSize } = req.query;
 
@@ -9,6 +10,7 @@ export async function getAllSpareParts(req, res, next) {
   } else {
     sparePartFilter = JSON.parse(sparePartFilter);
   }
+
 
   const filter =
     sparePartFilter === '' || isEmpty(sparePartFilter) ? '' : sparePartFilter;

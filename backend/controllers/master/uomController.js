@@ -1,30 +1,51 @@
 import * as uomData from '../../data/master/uomData.js';
 
-export async function getAllUom(req, res) {
-  const unitOfMeasure = req.query.unit_of_measure;
+export async function getAllUom(req, res, next) {
+  let uomPartFilter = req.query.uomPartFilter;
+  const { pageIndex, pageSize } = req.query;
 
-  const uom = await (unitOfMeasure
-    ? uomData.getAllByUnitName(unitOfMeasure)
-    : uomData.getAll());
+  if (uomPartFilter == null) {
+    uomPartFilter = '';
+  } else {
+    uomPartFilter = JSON.parse(uomPartFilter);
+  }
 
-  return res.status(200).json(uom);
+  const filter =
+    uomPartFilter === '' || isEmpty(uomPartFilter) ? '' : uomPartFilter;
+
+  const uomPart = await (filter
+    ? uomData.getAllByFilter(filter, pageIndex, pageSize)
+    : uomData.getAll(pageIndex, pageSize));
+
+  return res.status(200).json(uomPart);
 }
 
 export async function getById(req, res, next) {
   const { id } = req.params;
-  const uom = await uomData.getById(id);
+  const uomPart = await uomData.getAllById(id);
 
-  if (uom) {
-    res.status(200).json(uom);
+  if (uomPart) {
+    res.status(200).json(uomPart);
   } else {
-    res.status(404).json({ message: `Unit not Found` });
+    res.status(404).json({ message: `Uom Part not Found` });
   }
+}
+
+export async function getUomPartCount(req, res) {
+  const count = await uomData.getCount();
+  res.status(200).json(count);
+}
+
+export async function getUomPartFilterCount(req, res) {
+  const uomPartFilter = JSON.parse(req.query.uomPartFilter);
+  const count = await uomData.getFilterCount(uomPartFilter);
+  res.status(200).json(count);
 }
 
 export async function postUom(req, res) {
   const { unit_of_measure } = req.body;
-  const uom = await uomData.create(unit_of_measure);
-  res.status(201).json(uom);
+  const newuom = await uomData.create(unit_of_measure);
+  res.status(201).json(newuom);
 }
 
 export async function updateUom(req, res) {
@@ -37,3 +58,19 @@ export async function updateUom(req, res) {
     res.status(404).json({ message: `Unit not Found` });
   }
 }
+
+function isEmpty(filter) {
+  const empty = Object.values(filter).find((value) => value !== null);
+  return empty == null ? true : false;
+}
+
+
+
+
+
+
+
+
+
+
+

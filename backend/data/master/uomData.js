@@ -1,16 +1,67 @@
 import { db } from '../../database/database.js';
+import { getFilterQuery } from '../../utils/uomFilter.js'
 
-export async function getAll() {
- 
+const SELECT_QUERY = `SELECT * FROM uom`
 
-  return db.execute(`SELECT * FROM uom`).then((result) => {
-    return result[0];
-  });
+
+export async function getAll(pageIndex, pageSize) {
+  const limit = parseInt(pageSize);
+  const currentPage = parseInt(pageIndex) * limit;
+  return db
+    .query(`${SELECT_QUERY} LIMIT ? OFFSET ?`, [limit, currentPage])
+    .then((result) => {
+      return result[0];
+    });
+}
+
+export async function getCount() {
+  return db
+    .query(
+      `
+      SELECT count(*) FROM uom
+    `
+    )
+    .then((result) => {
+      return result[0][0]['count(*)'];
+    });
+}
+
+
+export async function getAllByFilter(filter, pageIndex, pageSize) {
+  const limit = parseInt(pageSize);
+  const currentPage = parseInt(pageIndex) * limit;
+  const { query, queryArr } = getFilterQuery(filter);
+
+  return db
+    .query(
+      `
+      ${SELECT_QUERY}
+      ${query}
+      LIMIT ? OFFSET ?
+      `,
+      [...queryArr, limit, currentPage]
+    )
+    .then((result) => {
+      return result[0];
+    });
+}
+
+export async function getFilterCount(filter) {
+  const { query, queryArr } = getFilterQuery(filter);
+
+  return db
+    .query(
+      `SELECT count(*) from uom ${query}`,
+      [...queryArr]
+    )
+    .then((result) => {
+      return result[0][0]['count(*)'];
+    });
 }
 
 export async function getAllByUnitName(uom) {
   return db
-    .execute(
+    .query(
       `
     SELECT * FROM uom
     WHERE uom=?
@@ -24,9 +75,9 @@ export async function getAllByUnitName(uom) {
 
 export async function getById(uom_id) {
   return db
-    .execute(
+    .query(
       `
-    SELECT * FROM uom
+    ${SELECT_QUERY}
     WHERE uom_id=?
     `,
       [uom_id]
@@ -40,7 +91,7 @@ export async function create(unit_of_measure) {
   const { uom, remarks, created_by } = unit_of_measure;
 
   return db
-    .execute(
+    .query(
       `
   INSERT INTO uom (uom, remarks, created_by, created_date)
   VALUES (?,?,?,?)
@@ -55,7 +106,7 @@ export async function update(id, unit_of_measure) {
   const { uom,remarks } = unit_of_measure;
   console.log(unit_of_measure)
   return db
-    .execute(
+    .query(
       `
   Update uom
   SET 

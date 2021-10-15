@@ -1,17 +1,13 @@
 import * as sparePartData from '../../data/master/sparePartData.js';
 
 export async function getAllSpareParts(req, res, next) {
-  let sparePartFilter = req.query.sparePartFilter;
+  let sparePartFilter = req.query.sparePartFilter || '';
   const { pageIndex, pageSize } = req.query;
 
-  if (sparePartFilter == null) {
-    sparePartFilter = '';
-  } else {
-    sparePartFilter = JSON.parse(sparePartFilter);
-  }
-
   const filter =
-    sparePartFilter === '' || isEmpty(sparePartFilter) ? '' : sparePartFilter;
+    sparePartFilter === '' || isEmpty(sparePartFilter)
+      ? ''
+      : JSON.parse(sparePartFilter);
 
   const sparePart = await (filter
     ? sparePartData.getAllByFilter(filter, pageIndex, pageSize)

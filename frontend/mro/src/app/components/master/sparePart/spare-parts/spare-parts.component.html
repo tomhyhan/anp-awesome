@@ -3,11 +3,9 @@
 </section>
 
 <section class="ml-3 mr-3 pt-0 mt-0" style="background-color: white">
-<div class="spare-part">
-  <div class="spare-part__add">
-    <!-- <app-edit-spare-part [sparePart]="sparePart" (onUpdateSparePart)="updateSparePart($event)" ></app-edit-spare-part> -->
+  <div class="top">
     <app-search-spare-part [uom]="uom" (onSearchSparePart)="searchSparePart($event)"></app-search-spare-part>
-    <app-add-spare-part (onCreateSparePart)="createTask($event)"></app-add-spare-part> 
+    <app-add-spare-part id="add-button" (onCreateSparePart)="createTask($event)"></app-add-spare-part> 
   </div>
   <div class="spare-part__table">
    <table mat-table [dataSource]="spareParts" class="mat-elevation-z1 demo-table">
@@ -44,7 +42,7 @@
          <th mat-header-cell *matHeaderCellDef>Unit</th>
          <td mat-cell *matCellDef="let sparePart">{{sparePart.uom}}</td>
        </ng-container>
-<!-- {{sparePart.active_id}} -->
+
        <ng-container matColumnDef="active_id">
          <th mat-header-cell *matHeaderCellDef>Status</th>
          <td mat-cell *matCellDef="let sparePart" [ngClass]="sparePart.active_id === 1? 'active': 'deactive'">Active</td> 
@@ -67,5 +65,9 @@
   </mat-paginator>
   </div>
   
+<<<<<<< HEAD
 </div>
+=======
+
+>>>>>>> tom
 </section>

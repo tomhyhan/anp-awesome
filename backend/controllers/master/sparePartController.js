@@ -1,19 +1,13 @@
 import * as sparePartData from '../../data/master/sparePartData.js';
 
 export async function getAllSpareParts(req, res, next) {
-
-  let sparePartFilter = req.query.sparePartFilter;
+  let sparePartFilter = req.query.sparePartFilter || '';
   const { pageIndex, pageSize } = req.query;
 
-  if (sparePartFilter == null) {
-    sparePartFilter = '';
-  } else {
-    sparePartFilter = JSON.parse(sparePartFilter);
-  }
-
-
   const filter =
-    sparePartFilter === '' || isEmpty(sparePartFilter) ? '' : sparePartFilter;
+    sparePartFilter === '' || isEmpty(sparePartFilter)
+      ? ''
+      : JSON.parse(sparePartFilter);
 
   const sparePart = await (filter
     ? sparePartData.getAllByFilter(filter, pageIndex, pageSize)
@@ -32,6 +26,17 @@ export async function getById(req, res, next) {
     res.status(404).json({ message: `Spare Part not Found` });
   }
 }
+export async function getSparePartCount(req, res) {
+  const count = await sparePartData.getCount();
+  res.status(200).json(count);
+}
+
+export async function getSparePartFilterCount(req, res) {
+  const sparePartFilter = JSON.parse(req.query.sparePartFilter);
+  const count = await sparePartData.getFilterCount(sparePartFilter);
+  res.status(200).json(count);
+}
+
 export async function getSparePartCount(req, res) {
   const count = await sparePartData.getCount();
   res.status(200).json(count);

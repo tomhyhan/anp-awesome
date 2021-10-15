@@ -20,8 +20,8 @@ export class SearchSparePartComponent implements OnInit {
       hsn_code: [''],
       spare_part_group: [''],
       rate: ['', [Validators.pattern(`[+]?([0-9]+([.][0-9]*)?|[.][0-9]+)`)]],
-      frn_uom: [''],
-      active_id: [''],
+      frn_uom: '',
+      active_id: '',
     });
   }
 
@@ -33,10 +33,11 @@ export class SearchSparePartComponent implements OnInit {
     const hsn_code = this.searchSparePartForm.value.hsn_code || null;
     const spare_part_group =
       this.searchSparePartForm.value.spare_part_group || null;
-    const rate = parseInt(this.searchSparePartForm.value.rate) || null;
+    const rate = this.searchSparePartForm.value.rate || null;
     const active_id =
-      parseInt(this.searchSparePartForm.value.active_id) || null;
-    const frn_uom = this.searchSparePartForm.value.frn_uom || null;
+      this.isFalse(this.searchSparePartForm.value.active_id) || null;
+    const frn_uom =
+      this.isFalse(this.searchSparePartForm.value.frn_uom) || null;
 
     const filter = {
       spare_part_code,
@@ -47,7 +48,12 @@ export class SearchSparePartComponent implements OnInit {
       active_id,
       frn_uom,
     };
+    console.log(filter);
 
     this.onSearchSparePart.emit(JSON.stringify(filter));
+  }
+
+  isFalse(value: string) {
+    return value === 'false' ? null : value;
   }
 }

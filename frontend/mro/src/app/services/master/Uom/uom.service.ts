@@ -22,6 +22,9 @@ export class UomService {
       `${this.apiUrl}?uomPartFilter=${filter}&pageIndex=${pageIndex}&pageSize=${pageSize}$`
     );
   }
+  getUomPartforservice() {
+    return this.http.get(`${this.apiUrl}/uomservices`);
+  }
 
   addUomPart(uom: any) {
     return this.http.post(this.apiUrl,uom, httpOptions);

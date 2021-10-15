@@ -20,6 +20,17 @@ export async function getAllUom(req, res, next) {
   return res.status(200).json(uomPart);
 }
 
+//old version
+export async function getAllUom2(req, res) {
+  const unitOfMeasure = req.query.unit_of_measure;
+
+  const uom = await (unitOfMeasure
+    ? uomData.getAllByUnitName(unitOfMeasure)
+    : uomData.getAll2());
+
+  return res.status(200).json(uom);
+}
+
 export async function getById(req, res, next) {
   const { id } = req.params;
   const uomPart = await uomData.getAllById(id);

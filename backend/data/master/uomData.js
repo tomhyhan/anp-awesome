@@ -3,6 +3,13 @@ import { getFilterQuery } from '../../utils/uomFilter.js'
 
 const SELECT_QUERY = `SELECT * FROM uom`
 
+//old version
+export async function getAll2() {
+  return db.execute(`SELECT * FROM uom`).then((result) => {
+    return result[0];
+  });
+}
+
 
 export async function getAll(pageIndex, pageSize) {
   const limit = parseInt(pageSize);

@@ -10,10 +10,14 @@ export class AddSparePartComponent implements OnInit {
   @Input() uom: any;
   @Output() onCreateSparePart = new EventEmitter();
   addSparePartForm: FormGroup | any;
-
-  constructor(private formBuilder: FormBuilder) {}
+  
+  
+  constructor(private formBuilder: FormBuilder) {
+   
+  }
 
   ngOnInit(): void {
+    console.log(this.uom)
     this.addSparePartForm = this.formBuilder.group({
       spare_part_code: ['', Validators.required],
       spare_part_desc: [''],

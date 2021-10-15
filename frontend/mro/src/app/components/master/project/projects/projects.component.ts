@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild } from '@angular/core';
 import { projectService } from 'src/app/services/master/project/project.service';
+import { MatPaginator } from '@angular/material/paginator';
+import { startWith, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-projects',
@@ -8,29 +10,62 @@ import { projectService } from 'src/app/services/master/project/project.service'
 })
 export class ProjectsComponent implements OnInit {
   projects: any = [];
+  projectCount: any;
+  filter = JSON.stringify('');
 
   displayedColumns: string[] = [
     'project_name',
     'project_code',
+    'remarks',
     'active_id',
     'created_date',
     'end_date',
     'view',
   ];
+  @ViewChild(MatPaginator) paginator: MatPaginator | any;
+
 
   constructor(private projectService: projectService) { }
 
   ngOnInit(): void {
-    this.projectService.getproject().subscribe((projects) => {
-      console.log(projects);
-      this.projects = projects;
+    this.projectService.getprojectCount().subscribe((count) => {
+      console.log(count);
+      this.projectCount = count;
     });
+  }
+
+
+  ngAfterViewInit() {
+    this.paginator.page
+      .pipe(
+        startWith(null),
+        tap(() =>
+          this.projectService
+            .getproject(
+              this.filter,
+              this.paginator.pageIndex,
+              this.paginator.pageSize
+            )
+            .subscribe((projects) => {
+              this.projects = projects;
+            })
+        )
+      )
+      .subscribe(() => {});
   }
   createTask(project: any) {
     this.projectService
       .addproject(project)
       .subscribe((project: any) => {
-        this.projects = [...this.projects, project[0]];
+        this.projectService.getprojectCount().subscribe((count) => {
+          this.projectCount = count;
+        });
+
+        if (this.projects.length < this.paginator.pageSize) {
+          this.projects = [...this.projects, project[0]];
+        }
+     
+ 
       });
   }
 
@@ -46,6 +81,29 @@ export class ProjectsComponent implements OnInit {
         });
         this.projects = newProjects;
       });
+  }
+
+  searchproject(filter: any) {
+    this.projectService.getprojectFilterCount(filter).subscribe((count) => {
+      this.projectCount = count;
+    });
+    this.filter = filter;
+    this.paginator.page
+      .pipe(
+        startWith(null),
+        tap(() =>
+          this.projectService
+            .getproject(
+              this.filter,
+              this.paginator.pageIndex,
+              this.paginator.pageSize
+            )
+            .subscribe((projects) => {
+              this.projects = projects;
+            })
+        )
+      )
+      .subscribe(() => {});
   }
 
 }

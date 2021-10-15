@@ -1,3 +1,7 @@
+form {
+    margin-top: 1%;
+}
+
 #main-button-add_project{
     box-shadow: 0px 0px 0px 2px rgb(110,144,161);
 	background-color:rgb(110,144,161);
@@ -22,7 +26,23 @@
 .button {
 	height: 100%;
   }
-  button {
-	margin-left: 5px;
-  }
+
+.button-save {
+margin-top: 15px;
+background-color: #6e90a1;
+color: white;
+border: none;
+border-radius: 5px;
+padding: 10px 15px;
+text-align: center;
+text-decoration: none;
+font-size: 16px;
+}
   
+h4 {
+margin-bottom: -10px;
+}
+
+p {
+text-align: center;
+}

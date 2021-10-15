@@ -16,8 +16,11 @@ export class EmployeeService {
 
   constructor(private http: HttpClient) {}
 
-  getEmployee() {
-    return this.http.get(this.apiUrl);
+  getEmployee(filter: any, pageIndex: any, pageSize: any) {
+    return this.http.get(
+      `${this.apiUrl}?employeeFilter=${filter}&pageIndex=${pageIndex}&pageSize=${pageSize}$`
+      
+    );
   }
 
   addEmployee(employee: any) {
@@ -26,5 +29,15 @@ export class EmployeeService {
 
   updateEmployee(employee: any, id: any) {
     return this.http.put(`${this.apiUrl}/${id}`, employee, httpOptions);
+  }
+
+  getEmployeeCount() {
+    return this.http.get(`${this.apiUrl}/pages`, httpOptions);
+  }
+
+  getEmployeeFilterCount(filter: any) {
+    return this.http.get(
+      `${this.apiUrl}/filterPages?employeeFilter=${filter}`, httpOptions
+    );
   }
 }

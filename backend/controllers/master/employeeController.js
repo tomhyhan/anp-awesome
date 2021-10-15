@@ -1,19 +1,35 @@
 import * as employeeData from '../../data/master/employeeData.js';
 
-export async function getAllemployees(req, res, next) {
-  const empCode = req.query.emp_code;
-  const empName = req.query.emp_name;
 
-  let employee;
-  if (empCode) {
-    employee = await employeeData.getAllByEmployeeCode(empCode);
-  } else if (empName) {
-    employee = await employeeData.getAllByEmployeeName(empName);
+export async function getAllEmployees(req, res, next) {
+  let employeeFilter = req.query.employeeFilter;
+  const { pageIndex, pageSize } = req.query;
+  console.log(req.query);
+  if (employeeFilter == null) {
+    employeeFilter = '';
   } else {
-    employee = await employeeData.getAll();
+    employeeFilter = JSON.parse(employeeFilter);
   }
 
-  return res.status(200).json(employee);
+  const filter =
+    employeeFilter === '' || isEmpty(employeeFilter) ? '' : employeeFilter;
+
+  const employees = await (filter
+    ? employeeData.getAllByFilter(filter, pageIndex, pageSize)
+    : employeeData.getAll(pageIndex, pageSize));
+
+  return res.status(200).json(employees);
+}
+
+export async function getEmployeeCount(req, res) {
+  const count = await employeeData.getCount();
+  res.status(200).json(count);
+}
+
+export async function getEmployeeFilterCount(req, res) {
+  const employeeFilter = JSON.parse(req.query.employeeFilter);
+  const count = await employeeData.getFilterCount(employeeFilter);
+  res.status(200).json(count);
 }
 
 export async function getById(req, res) {
@@ -44,4 +60,9 @@ export async function updateEmployee(req, res) {
   } else {
     res.status(404).json({ message: `Employee not Found` });
   }
+}
+
+function isEmpty(filter) {
+  const empty = Object.values(filter).find((value) => value !== null);
+  return empty == null ? true : false;
 }

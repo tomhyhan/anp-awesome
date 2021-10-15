@@ -16,8 +16,9 @@ export class VendorService {
 
   constructor(private http: HttpClient) {}
 
-  getVendor() {
-    return this.http.get(this.apiUrl);
+  getVendor(filter: any, pageIndex: any, pageSize: any) {
+    return this.http.get(`${this.apiUrl}?vendorFilter=${filter}&pageIndex=${pageIndex}&pageSize=${pageSize}$`);
+
   }
 
   addVendor( vendor: any) {
@@ -27,4 +28,17 @@ export class VendorService {
   updateVendor( vendor: any, id: any) {
     return this.http.put(`${this.apiUrl}/${id}`, vendor, httpOptions);
   }
+
+
+  
+  getVendorCount() {
+    return this.http.get(`${this.apiUrl}/pages`, httpOptions);
+  }
+
+  getVendorFilterCount(filter: any) {
+    return this.http.get(
+      `${this.apiUrl}/filterPages?vendorFilter=${filter}`, httpOptions
+    );
+  }
+
 }

@@ -43,10 +43,10 @@ export async function getById(req, res) {
   }
 }
 
-export async function postEmployee(req, res) {
+export async function addEmployee(req, res) {
   const { employee } = req.body;
   console.log(employee);
-  const newEmployee = await employeeData.create(employee);
+  const newEmployee = await employeeData.create(employee).catch(err=>{console.log(err)});
 
   res.status(201).json(newEmployee);
 }
@@ -54,8 +54,7 @@ export async function postEmployee(req, res) {
 export async function updateEmployee(req, res) {
   const { id } = req.params;
   const { employee } = req.body;
-  console.log(id);
-  const updatedEmployee = await employeeData.update(id, employee).catch(err=>{console.log(err)});
+  const updatedEmployee = await employeeData.update(id, employee);
   
   if (updatedEmployee) {
     res.status(200).json(updatedEmployee);

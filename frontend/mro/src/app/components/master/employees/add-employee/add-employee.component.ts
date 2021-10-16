@@ -8,21 +8,12 @@ import { ErrorHandlers } from 'src/app/utils/error-handler';
   styleUrls: ['./add-employee.component.css'],
 })
 export class AddEmployeeComponent implements OnInit {
-  emp_name: any;
-  emp_code: any;
-  site_master_id: any;
-  contact: any;
-  address: any;
-  designation: any;
-  department: any;
-  remarks: any;
-  created_by: any;
-  created_date: any;
+
   @Output() onCreateEmployee = new EventEmitter();
   addEmployeeForm: FormGroup | any;
   errorhandlers: any;
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: FormBuilder) {};
 
   ngOnInit(): void {
     this.addEmployeeForm = this.formBuilder.group({
@@ -42,11 +33,11 @@ export class AddEmployeeComponent implements OnInit {
 
   onSubmit() {
     if (this.addEmployeeForm.valid) {
-      const employee = {
+      const addEmployee = {
         employee: {
           emp_name: this.addEmployeeForm.value.emp_name,
           emp_code: this.addEmployeeForm.value.emp_code,
-          site_master_id: parseInt(this.addEmployeeForm.value.site_master_id),
+          site_master_id: this.addEmployeeForm.value.site_master_id,
           contact: this.addEmployeeForm.value.contact,
           address: this.addEmployeeForm.value.address,
           designation: this.addEmployeeForm.value.designation,
@@ -56,9 +47,8 @@ export class AddEmployeeComponent implements OnInit {
           created_date: new Date(),
         },
     };
-
-    this.onCreateEmployee.emit(employee);
-    this.addEmployeeForm.reset();
+      this.onCreateEmployee.emit(addEmployee);
+      this.addEmployeeForm.reset();
   } else {
     this.errorhandlers.showErrors();
   }};

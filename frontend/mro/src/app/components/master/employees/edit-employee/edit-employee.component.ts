@@ -61,7 +61,7 @@ onSubmit() {
     }
     this.onUpdateEmployee.emit({
       employee: updateEmployee,
-      id: this.employee.id,
+      id: this.employee.emp_id,
     })
   } else {
     this.errorhandlers.showErrors();

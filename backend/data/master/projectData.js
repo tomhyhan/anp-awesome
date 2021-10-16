@@ -1,28 +1,59 @@
 import { db } from '../../database/database.js';
-
-export async function getAll() {
-  return db.execute(`SELECT * FROM project`).then((result) => {
-    return result[0];
-  });
+import { getFilterQuery } from '../../utils/projectFilter.js';
+// export async function getAll() {
+//   return db.execute(`SELECT * FROM project`).then((result) => {
+//     return result[0];
+//   });
+// }
+export async function getAll(pageIndex, pageSize) {
+  const limit = parseInt(pageSize);
+  // console.log(pageSize)
+  const currentPage = parseInt(pageIndex) * limit;
+  return db
+    .query(`SELECT * FROM project LIMIT ? OFFSET ?`, [limit, currentPage])
+    .then((result) => {
+      return result[0];
+    });
 }
 
-export async function getAllByprojectCode(project_code) {
+export async function getAllByFilter(filter, pageIndex, pageSize) {
+  const limit = parseInt(pageSize);
+  const currentPage = parseInt(pageIndex) * limit;
+  const { query, queryArr } = getFilterQuery(filter);
+  
   return db
-    .execute(
+    .query(
       `
     SELECT * FROM project
-    WHERE project_code=?
-    `,
-      [project_code]
+     ${query}
+      `,
+      [
+        ...queryArr, limit, currentPage
+      ]
     )
     .then((result) => {
       return result[0];
     });
 }
 
+
+// export async function getAllByprojectCode(project_code) {
+//   return db
+//     .execute(
+//       `
+//     SELECT * FROM project
+//     WHERE project_code=?
+//     `,
+//       [project_code]
+//     )
+//     .then((result) => {
+//       return result[0];
+//     });
+// }
+
 export async function getAllById(materialMasterId) {
   return db
-    .execute(
+    .query(
       `
     SELECT * FROM project
     WHERE project_master_id=?
@@ -31,6 +62,36 @@ export async function getAllById(materialMasterId) {
     )
     .then((result) => {
       return result[0];
+    });
+}
+
+
+export async function getCount() {
+  return db
+    .query(
+      `
+      SELECT count(*) from project
+    `
+    )
+    .then((result) => {
+      return result[0][0]['count(*)'];
+    });
+}
+
+export async function getFilterCount(filter) {
+  const { query, queryArr } = getFilterQuery(filter);
+  console.log(`      SELECT count(*) from project
+  ${query}`);
+  return db
+    .query(
+      `
+      SELECT count(*) from project
+      ${query}
+      `,
+      [...queryArr]
+    )
+    .then((result) => {
+      return result[0][0]['count(*)'];
     });
 }
 
@@ -58,7 +119,7 @@ export async function create(project_new) {
         active_id,
         created_by,
         end_date,
-        new Date(),
+        new Date().toLocaleDateString().replace('/','-').replace('/','-'),
       ]
     )
     .then((result) => getAllById(result[0].insertId));
@@ -76,7 +137,6 @@ export async function update(id, project_update) {
   project_name=?,     
   project_code=?,     
   remarks=?,             
-
   active_id=?,
   end_date=?
   WHERE

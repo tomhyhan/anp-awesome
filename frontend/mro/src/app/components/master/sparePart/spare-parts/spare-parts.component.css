@@ -8,11 +8,11 @@
 }
 
 .mat-table {
-  margin-top: 2%;
   width: 100%;
   border-radius: 10px;
   border-collapse: separate;
   border-spacing:0 20px;
+  padding-top: 0;
 }
 
 .mat-row:hover .mat-cell {
@@ -84,4 +84,14 @@ td {
 
 .deactive {
   color: red;
+}
+
+.top {
+  display: grid;
+  grid-template-columns: auto auto;
+}
+
+#add-button {
+  align-self: end;
+  margin-bottom: 10px;
 }

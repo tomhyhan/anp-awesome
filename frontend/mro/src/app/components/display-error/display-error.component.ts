@@ -6,8 +6,8 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./display-error.component.css'],
 })
 export class DisplayErrorComponent implements OnInit {
-  @Input() errorMsg: string | any;
-  @Input() displayError: boolean | any;
+  @Input() errorMsg: string;
+  @Input() displayError: boolean;
 
   constructor() {}
 

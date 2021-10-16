@@ -1,0 +1,55 @@
+<form [formGroup]="searchprojectForm" (ngSubmit)="onSubmit()" >
+    <section  id="main-section-searchline">
+      <table id="main-table-selector">
+        <thead>
+          <tr style="color: rgb(110,144,161);">
+            <th ><label for="project_name">Project Name</label></th>
+            <th><label for="project_code">Project Code</label></th>
+            <th><label for="remarks">Remarks</label></th>
+            <th><label for="active_id">Status</label></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><input
+              class="form-control"
+              type="text"
+              name="project_name"
+              id="project_name"
+              placeholder="name"
+              formControlName="project_name"
+            /></td>
+            <td><input
+              class="form-control"
+              type="text"
+              name="project_code"
+              id="project_code"
+              placeholder="Code"
+              formControlName="project_code"
+              /></td>
+            <td><input
+              class="form-control"
+              type="text"
+              name="remarks"
+              id="remarks"
+              placeholder="remarks"
+              formControlName="remarks"
+            /></td>
+            <td>
+            <select  formControlName="active_id" id="active_id" class="form-control">
+                <option selected value="">None</option>
+                <option selected value="1">Active</option>
+                <option selected value="0">Deactive</option>
+            </select>
+            </td>
+            <td class="button ext-center pt-1">
+              <button class="text-center m-2" id="main-button-search_project" type="submit" [disabled]="!searchprojectForm.valid"><i class="fa fa-search"></i> Search</button>
+            </td>
+          </tr>
+        </tbody>
+
+      </table>
+ 
+    </section>
+    </form>
+   

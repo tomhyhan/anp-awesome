@@ -1,35 +1,33 @@
-<form [formGroup]="addUomPartForm" (ngSubmit)="onSubmit() ">
-  <section class="ml-3 mr-3 pb-0  row "  id="main-section-searchline">
-    <table id="main-table-selector">
-      <thead>
-      <tr style="color: rgb(110,144,161);">
-        <th scope="col"><label for="uom">Uom</label></th>
-        <th scope="col"><label for="remarks">Remarks</label></th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <td><input
-          class="form-control"
-          type="text"
-          name="uom"
-          id="uom"
-          placeholder="uom"
-          formControlName="uom"
-        /></td>
-        <td><input
-          class="form-control"
-          type="text"
-          name="remarks"
-          id="remarks"
-          placeholder="remarks"
-          formControlName="remarks"
-        /></td>
-      </tr>
-      </tbody>
-    </table>
-    <div class="ml-2 pt-5 row align-items-center">
-      <button id="main-button-add_uom" type="submit" ><i class="fa fa-plus-circle"> add UOM</i></button>
+
+<button id="add-uom-button" type="button" data-toggle="modal"  data-whatever="@getbootstrap" data-backdrop="false" data-target="#exampleModalLong"><i class="fa fa-plus"></i>Add Uom</button>
+
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Add UOM</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="addUomPartForm" (ngSubmit)="onSubmit()" >
+          <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                  <label for="recipient-name" class="col-form-label">UOM</label>
+                  <input formControlName="uom" type="text"  name="uom"  class="form-control" id="recipient-name" > 
+                </div>
+                <div class="form-group">
+                    <label for="recipient-name" class="col-form-label">Remarks</label>
+                    <input formControlName="remarks" type="text" name="remarks"  class="form-control" id="recipient-name" >
+                </div>
+            </div>
+          </div>
+          <p><button type="submit" id="button-save">Submit</button></p>
+        </form>
+      </div>
+
     </div>
-  </section>
-</form>
+  </div>
+</div>

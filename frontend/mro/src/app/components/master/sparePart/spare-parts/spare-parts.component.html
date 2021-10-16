@@ -3,13 +3,10 @@
 </section>
 
 <section class="ml-3 mr-3 pt-0 mt-0" style="background-color: white">
-<div class="spare-part">
-  <div class="spare-part__add">
-   <app-add-spare-part [uom]="uom" (onCreateSparePart)="createTask($event)"></app-add-spare-part>
-  </div>
-  <div class="spare-part__add">
+  <div class="top">
     <app-search-spare-part [uom]="uom" (onSearchSparePart)="searchSparePart($event)"></app-search-spare-part>
-   </div>
+    <app-add-spare-part id="add-button" (onCreateSparePart)="createTask($event)"></app-add-spare-part> 
+  </div>
   <div class="spare-part__table">
    <table mat-table [dataSource]="spareParts" class="mat-elevation-z1 demo-table">
      <!-- Position Column -->
@@ -45,7 +42,7 @@
          <th mat-header-cell *matHeaderCellDef>Unit</th>
          <td mat-cell *matCellDef="let sparePart">{{sparePart.uom}}</td>
        </ng-container>
-<!-- {{sparePart.active_id}} -->
+
        <ng-container matColumnDef="active_id">
          <th mat-header-cell *matHeaderCellDef>Status</th>
          <td mat-cell *matCellDef="let sparePart" [ngClass]="sparePart.active_id === 1? 'active': 'deactive'">Active</td> 
@@ -59,6 +56,13 @@
        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
    </table>
+   
+   <mat-paginator 
+              [length]="sparePartCount"
+              [pageSize]="5"
+              [pageSizeOptions]="[2, 5, 10]"
+              aria-label="Select page">
+  </mat-paginator>
   </div>
-</div>
+  
 </section>

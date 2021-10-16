@@ -1,6 +1,6 @@
 import { NULL_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit,Output, EventEmitter } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-add-aircraft',
@@ -16,18 +16,22 @@ export class AddaircraftComponent implements OnInit {
 
   ngOnInit(): void {
     this.addaircraftForm = this.formBuilder.group({
-      aircraft_name: '',
+      aircraft_name: ['', Validators.required],
       remarks: '',
     });
   }
   onSubmit() {
     const aircraft = {
       aircraft: {
-        ...this.addaircraftForm.value,
-        created_by:"tama",
+        aircraft_name: this.addaircraftForm.value.aircraft_name,
+        remarks: this.addaircraftForm.value.remarks,
+        created_by:"tama"
       },
     };
     console.log(aircraft)
     this.onCreateaircraft.emit(aircraft);
+  }
+  get aircraftName() {
+    return this.addaircraftForm.get('aircraft_name');
   }
 }

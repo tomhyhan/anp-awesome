@@ -7,7 +7,9 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   styleUrls: ['./search-aircraft.component.css'],
 })
 export class SearchaircraftComponent implements OnInit {
-  @Input() aircraft: any;
+  // @Input() aircraft: any;
+  aircraft_name: any;
+  remarks: any;
   @Output() onSearchaircraft = new EventEmitter();
   searchaircraftForm: FormGroup | any;
 

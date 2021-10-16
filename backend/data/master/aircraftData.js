@@ -1,51 +1,72 @@
 import { db } from '../../database/database.js';
+import { getFilterQuery } from '../../utils/aircraftFilter.js'
 
-export async function getAll() {
-  return db.query(`SELECT * FROM aircraft`).then((result) => {
-    return result[0];
-  });
+const SELECT_QUERY = `SELECT * FROM aircraft`
+
+export async function getAll(pageIndex, pageSize) {
+  const limit = parseInt(pageSize);
+  const currentPage = parseInt(pageIndex) * limit;
+  return db
+    .query(`${SELECT_QUERY} LIMIT ? OFFSET ?`, [limit, currentPage])
+    .then((result) => {
+      return result[0];
+    });
 }
 
-export async function getallbyAircraftName(aircraft_name) {
+export async function getCount() {
+  return db
+    .query(
+      `SELECT count(*) from aircraft`
+    )
+    .then((result) => {
+      return result[0][0]['count(*)'];
+    });
+}
+
+export async function getAllByFilter(filter, pageIndex, pageSize) {
+  const limit = parseInt(pageSize);
+  const currentPage = parseInt(pageIndex) * limit;
+  const { query, queryArr } = getFilterQuery(filter);
+  console.log(filter);
+
+
   return db
     .query(
       `
-    SELECT * FROM aircraft
-    WHERE aircraft_name=?
-    `,
-      [aircraft_name]
+      ${SELECT_QUERY}
+      ${query}
+      LIMIT ? OFFSET ?
+      `,
+      [...queryArr, limit, currentPage]
     )
     .then((result) => {
       return result[0];
     });
 }
 
-// export async function getAllByFilter(filter) {
-//   console.log(filter);
-//   const {
-//     aircraft_name,
-//     remarks,
-//   } = filter;
-//   console.log(filter);
-//   return db
-//     .query(
-//       `
-//     ${SELECT_JOIN}
-//     WHERE
-//       sp.aircraft_name=?
-//       or
-//       sp.remarks=?
-//       `,
-//       [
-//         aircraft_name,
-//         remarks,
-//       ]
-//     )
-//     .then((result) => {
-//       return result[0];
-//     });
-// }
+export async function getFilterCount(filter) {
+  const { query, queryArr } = getFilterQuery(filter);
+  return db
+    .query(
+      `SELECT count(*) from aircraft ${query}`,
+      [...queryArr]
+    )
+    .then((result) => {
+      return result[0][0]['count(*)'];
+    });
+}
 
+
+export async function getAllByaircraftName(aircraft_name) {
+  return db
+    .query(
+      `SELECT * FROM aircraft WHERE aircraft_name=?`,
+      [aircraft_name]
+    )
+    .then((result) => {
+      return result[0];
+    });
+}
 
 export async function getById(aircraftid) {
   return db

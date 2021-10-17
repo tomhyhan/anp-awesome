@@ -1,3 +1,4 @@
+import 'express-async-errors';
 import * as sparePartData from '../../data/master/sparePartData.js';
 
 export async function getAllSpareParts(req, res, next) {

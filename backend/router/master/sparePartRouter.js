@@ -1,4 +1,5 @@
 import express from 'express';
+import 'express-async-errors';
 import * as sparePartController from '../../controllers/master/sparePartController.js';
 
 const router = express.Router();

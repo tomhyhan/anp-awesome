@@ -1,5 +1,5 @@
 import * as employeeData from '../../data/master/employeeData.js';
-
+import * as authUtil from '../../utils/authUtils.js';
 
 export async function getAllEmployees(req, res, next) {
   let employeeFilter = req.query.employeeFilter;
@@ -45,8 +45,19 @@ export async function getById(req, res) {
 
 export async function postEmployee(req, res) {
   const { employee } = req.body;
+  const password = employee.password;
 
-  const newEmployee = await employeeData.create(employee);
+  const IsEmployee = employeeData.getByEmployeeCode(employee.emp_code);
+  if (IsEmployee) {
+    res.status(409).json({ message: `${employee.emp_name} already exist` });
+  }
+
+  const hash = await authUtil.hashPassword(password);
+  const hashedEmployee = {
+    ...employee,
+    password: hash,
+  };
+  const newEmployee = await employeeData.create(hashedEmployee);
 
   res.status(201).json(newEmployee);
 }

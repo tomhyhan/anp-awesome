@@ -19,4 +19,11 @@ export const config = {
   host: {
     port: required('PORT', 8080),
   },
+  jwt: {
+    key: required('JWT_KEY'),
+    expiresIn: required('EXPIRESIN'),
+  },
+  bcrypt: {
+    saltrounds: required('SALTROUND'),
+  },
 };

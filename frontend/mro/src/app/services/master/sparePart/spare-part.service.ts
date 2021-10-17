@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
+import { HttpClientHelper } from 'src/network/httpClient';
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json',
@@ -13,13 +13,12 @@ const httpOptions = {
 })
 export class SparePartService {
   apiUrl = 'http://localhost:8080/master/spare_part';
-
-  constructor(private http: HttpClient) {}
+  url = '/master/spare_part';
+  constructor(private http: HttpClient, private httpHelper: HttpClientHelper) {}
 
   getSparePart(filter: any, pageIndex: any, pageSize: any) {
-    return this.http.get(
-      `${this.apiUrl}?sparePartFilter=${filter}&pageIndex=${pageIndex}&pageSize=${pageSize}$`
-    );
+    const queryString = `sparePartFilter=${filter}&pageIndex=${pageIndex}&pageSize=${pageSize}`;
+    return this.httpHelper.get(this.url, queryString, {});
   }
 
   addSparePart(sparePart: any) {

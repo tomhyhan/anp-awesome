@@ -4,7 +4,7 @@ import * as authUtil from '../../utils/authUtils.js';
 export async function getAllEmployees(req, res, next) {
   let employeeFilter = req.query.employeeFilter;
   const { pageIndex, pageSize } = req.query;
-  console.log(req.query);
+
   if (employeeFilter == null) {
     employeeFilter = '';
   } else {
@@ -43,8 +43,9 @@ export async function getById(req, res) {
   }
 }
 
-export async function postEmployee(req, res) {
+export async function addEmployee(req, res) {
   const { employee } = req.body;
+<<<<<<< HEAD
   const password = employee.password;
 
   const IsEmployee = employeeData.getByEmployeeCode(employee.emp_code);
@@ -58,6 +59,10 @@ export async function postEmployee(req, res) {
     password: hash,
   };
   const newEmployee = await employeeData.create(hashedEmployee);
+=======
+  console.log(employee);
+  const newEmployee = await employeeData.create(employee).catch(err=>{console.log(err)});
+>>>>>>> Ingrid
 
   res.status(201).json(newEmployee);
 }
@@ -66,6 +71,7 @@ export async function updateEmployee(req, res) {
   const { id } = req.params;
   const { employee } = req.body;
   const updatedEmployee = await employeeData.update(id, employee);
+  
   if (updatedEmployee) {
     res.status(200).json(updatedEmployee);
   } else {

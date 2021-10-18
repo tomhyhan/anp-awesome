@@ -24,7 +24,6 @@ import { SearchSparePartComponent } from './components/master/sparePart/search-s
 //HomePage
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { DisplayErrComponent } from './components/display-error/display-err.component';
 
 //PurchaseOrderPart
 import { BackgroundComponent } from './components/background/background.component';
@@ -101,7 +100,6 @@ import { LoginComponent } from './components/login/login.component';
     EditaircraftComponent,
     AddaircraftComponent,
     DisplayErrorComponent,
-    DisplayErrComponent,
     LoginComponent,
   ],
   imports: [

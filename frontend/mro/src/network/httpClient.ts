@@ -7,6 +7,7 @@ import {
 } from '@angular/common/http';
 import { throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { SparePart } from 'src/app/model/sparePart';
 
 const baseURL = 'http://localhost:8080';
 @Injectable({
@@ -42,16 +43,36 @@ export class HttpClientHelper {
 
     const options = {
       params: paramsOptions,
-      headers: { 'Content-Type': 'application/json' },
+      headers: headersOption,
     };
     return this.http
-      .get(`${baseURL}${url}`, options)
+      .get<any[]>(`${baseURL}${url}`, options)
       .pipe(catchError(this.handleError));
   }
 
-  public post(url: string, payload: {}, {}) {}
+  public post(url: string, body: {}, headers: any) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        ...headers,
+        'Content-Type': 'application/json',
+      }),
+    };
+    return this.http
+      .post<any[]>(`${baseURL}${url}`, body, httpOptions)
+      .pipe(catchError(this.handleError));
+  }
 
-  public put(url: string, payload: {}, {}) {}
+  public put(url: string, body: {}, headers: any) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        ...headers,
+        'Content-Type': 'application/json',
+      }),
+    };
+    return this.http
+      .put<any[]>(`${baseURL}${url}`, body, httpOptions)
+      .pipe(catchError(this.handleError));
+  }
 
   public delete(url: string, payload: {}, {}) {}
 }

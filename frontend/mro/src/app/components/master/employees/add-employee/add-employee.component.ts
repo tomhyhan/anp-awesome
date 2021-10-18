@@ -41,9 +41,9 @@ export class AddEmployeeComponent implements OnInit {
         designation: this.addEmployeeForm.value.designation,
         department: this.addEmployeeForm.value.department,
         remarks: this.addEmployeeForm.value.remarks,
-        created_by: "Inggy",
+        created_by: 'Inggy',
         created_date: new Date(),
-      }
+      },
     };
     this.onCreateEmployee.emit(employee);
   }

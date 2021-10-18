@@ -23,11 +23,8 @@ export async function getAllByFilter(filter, pageIndex, pageSize) {
   const limit = parseInt(pageSize);
   const currentPage = parseInt(pageIndex) * limit;
   const { query, queryArr } = getFilterQuery(filter);
-<<<<<<< HEAD
   console.log(filter);
 
-=======
->>>>>>> Ingrid
   return db
     .query(
       `
@@ -79,7 +76,7 @@ export async function getByEmployeeCode(employeeCode) {
   return db
     .query(`SELECT * FROM employee WHERE emp_code=?`, [employeeCode])
     .then((result) => {
-      return result[0];
+      return result[0][0];
     });
 }
 
@@ -94,13 +91,14 @@ export async function create(employee) {
     department,
     remarks,
     created_by,
+    password,
   } = employee;
 
   return db
     .query(
       `
-  INSERT INTO employee (emp_name, emp_code, site_master_id, contact, address, designation, department, remarks, created_by, created_date)
-  VALUES (?,?,?,?,?,?,?,?,?,?)
+  INSERT INTO employee (emp_name, emp_code, site_master_id, contact, address, designation, department, remarks, created_by, created_date, password)
+  VALUES (?,?,?,?,?,?,?,?,?,?,?)
     `,
       [
         emp_name,
@@ -113,9 +111,12 @@ export async function create(employee) {
         remarks,
         created_by,
         new Date(),
+        password,
       ]
     )
-    .then((result) => getAllById(result[0].insertId));
+    .then((result) => {
+      return getAllById(result[0].insertId);
+    });
 }
 
 export async function update(id, employee) {

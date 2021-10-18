@@ -13,7 +13,7 @@ export class AddEmployeeComponent implements OnInit {
   errorhandlers: any;
 
   constructor(private formBuilder: FormBuilder) {}
-
+  //  Validators.pattern(`^[0-9]+`) NOT WORKING ???
   ngOnInit(): void {
     this.addEmployeeForm = this.formBuilder.group({
       emp_name: ['', Validators.required],
@@ -26,6 +26,7 @@ export class AddEmployeeComponent implements OnInit {
       remarks: [''],
       created_by: [''],
       created_date: [''],
+      password: ['', Validators.required],
     });
     this.errorhandlers = new ErrorHandlers(this.addEmployeeForm);
   }
@@ -43,7 +44,7 @@ export class AddEmployeeComponent implements OnInit {
           department: this.addEmployeeForm.value.department,
           remarks: this.addEmployeeForm.value.remarks,
           created_by: 'Inggy',
-          created_date: new Date(),
+          password: this.addEmployeeForm.value.password,
         },
       };
       this.onCreateEmployee.emit(addEmployee);

@@ -24,6 +24,6 @@ export const config = {
     expiresIn: required('EXPIRESIN'),
   },
   bcrypt: {
-    saltrounds: required('SALTROUND'),
+    saltrounds: parseInt(required('SALTROUND')),
   },
 };

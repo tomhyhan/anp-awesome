@@ -19,6 +19,7 @@ export async function generateCookie(res, token) {
 }
 
 export async function hashPassword(password) {
+  console.log(config.bcrypt.saltrounds);
   return await bcrypt.hash(password, config.bcrypt.saltrounds);
 }
 

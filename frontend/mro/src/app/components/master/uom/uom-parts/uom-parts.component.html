@@ -6,17 +6,14 @@
 <section class="ml-3 mr-3 pt-0 mt-0" style="background-color: white">
  <div class="uom">
 
-  <div class="uom__add">
-   <app-add-uom-part (onCreateUomPart)="createTask($event)"></app-add-uom-part>
-  </div>
 
-
- <div class="uom__search">
+ <div class="uom__search row ml-1 align-items-center">
     <app-search-uom (onSearchUomPart)="searchUom($event)"></app-search-uom>
+    <app-add-uom-part class="mt-2 pt-4 pb-1"(onCreateUomPart)="createTask($event)"></app-add-uom-part>
   </div>
 
 <div class="uom__table"> 
-  <table mat-table [dataSource]="uoms" class="mat-elevation-z8 demo-table">
+  <table mat-table [dataSource]="uoms" class="demo-table">
 
 
     <ng-container matColumnDef="uom_id">

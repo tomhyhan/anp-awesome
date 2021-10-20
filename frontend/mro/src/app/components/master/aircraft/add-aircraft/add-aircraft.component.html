@@ -1,35 +1,34 @@
-<form  [formGroup]="addaircraftForm" (ngSubmit)="onSubmit() ">
-  <section id="main-section-searchline">
-    <table id="main-table-selector">
-      <thead>
-        <tr style="color: rgb(110,144,161);">
-          <th scope="col"><label for="aircraft_name">Aircraft Name</label></th>
-          <th scope="col"><label for="remarks">Remarks</label></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><input
-            class="form-control"
-            type="text"
-            name="aircraft_name"
-            id="aircraft_name"
-            placeholder="Aircraft Name"
-            formControlName="aircraft_name"
-          /></td>
-          <td><input
-            class="form-control"
-            type="text"
-            name="remarks"
-            id="remarks"
-            placeholder="Remarks"
-            formControlName="remarks"
-          /></td>
-          <td class="button ext-center">
-            <button class="text-center ml-2" id="main-button-add_aircraft" type="submit" [disabled]="!addaircraftForm.valid"><i class="fa fa-plus-circle">Add</i></button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </section>
-  </form>
+<button id="main-button-add_aircraft" type="button" data-toggle="modal"  data-whatever="@getbootstrap" data-backdrop="false" data-target="#exampleModalLong"><i class="fa fa-plus"></i>Add aircraft</button>
+
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Add aircraft</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="addaircraftForm" (ngSubmit)="onSubmit()" >
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="recipient-name" class="col-form-label">aircraft Name</label>
+                <input formControlName="aircraft_name" type="text" name="aircraftName"  class="form-control" id="recipient-name" >
+                <small *ngIf="aircraftName.invalid && aircraftName.touched" class="text-danger">aircraft Name is Required</small> 
+            </div>
+            </div>
+            <div class="col-md-6"> 
+              <div class="form-group">
+                  <label for="recipient-name" class="col-form-label">Remarks</label>
+                  <input formControlName="remarks" type="text" name="remarks"  class="form-control" id="recipient-name" >
+              </div>
+            </div>
+          </div>
+          <p><button type="submit" class="button-save">Submit</button></p>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

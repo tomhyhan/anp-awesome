@@ -29,10 +29,12 @@ td {
   color: white;
 }
 
+
 .active {
   color: green;
 }
 
 .deactive {
   color: red;
+
 }

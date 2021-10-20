@@ -50,19 +50,21 @@ export class HttpClientHelper {
       .pipe(catchError(this.handleError));
   }
 
-  public post(url: string, body: {}, headers: any) {
+  post(url: string, body: {}, headers: any) {
     const httpOptions = {
       headers: new HttpHeaders({
         ...headers,
         'Content-Type': 'application/json',
       }),
     };
+
+    console.log(body);
     return this.http
       .post<any[]>(`${baseURL}${url}`, body, httpOptions)
       .pipe(catchError(this.handleError));
   }
 
-  public put(url: string, body: {}, headers: any) {
+  put(url: string, body: {}, headers: any) {
     const httpOptions = {
       headers: new HttpHeaders({
         ...headers,
@@ -74,5 +76,5 @@ export class HttpClientHelper {
       .pipe(catchError(this.handleError));
   }
 
-  public delete(url: string, payload: {}, {}) {}
+  delete(url: string, payload: {}, {}) {}
 }

@@ -19,7 +19,7 @@ export export async function isAuth (req,res,next) {
             res.status(401).json(auth_err)
         }
 
-        const employee = await employeeData.getByEmployeeCode(decode.emp_id)
+        const employee = await employeeData.getAllById(decode.emp_id)
         if (!employee) {
             return res.status(401).json(auth_err)
         }

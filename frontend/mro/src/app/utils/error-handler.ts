@@ -1,8 +1,13 @@
+import { FormGroup } from '@angular/forms';
 export class ErrorHandlers {
   form: any;
 
-  constructor(form: any) {
+  constructor(form: FormGroup) {
     this.form = form;
+  }
+
+  static linkForm(form: FormGroup) {
+    return new ErrorHandlers(form);
   }
 
   isFieldValid(field: any) {

@@ -16,8 +16,12 @@ export class aircraftService {
 
   constructor(private http: HttpClient) {}
 
-  getaircraft() {
-    return this.http.get(this.apiUrl);
+  getaircraft(filter: any, pageIndex: any, pageSize: any) {
+    console.log(filter);
+    return this.http.get(
+      `${this.apiUrl}?aircraftFilter=${filter}&pageIndex=${pageIndex}&pageSize=${pageSize}$`
+      
+    );
   }
 
   addaircraft(aircraft: any) {
@@ -26,5 +30,15 @@ export class aircraftService {
 
   updateaircraft(aircraft: any, id: any) {
     return this.http.put(`${this.apiUrl}/${id}`, aircraft, httpOptions);
+  }
+
+  getaircraftCount() {
+    return this.http.get(`${this.apiUrl}/pages`, httpOptions);
+  }
+
+  getaircraftFilterCount(filter: any) {
+    return this.http.get(
+      `${this.apiUrl}/filterPages?aircraftFilter=${filter}`, httpOptions
+    );
   }
 }

@@ -30,12 +30,11 @@ td {
 }
 
 
-
-
 .active {
   color: green;
 }
 
 .deactive {
   color: red;
+
 }

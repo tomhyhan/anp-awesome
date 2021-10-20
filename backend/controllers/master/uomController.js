@@ -56,9 +56,9 @@ export async function postUom(req, res) {
 }
 
 export async function updateUom(req, res) {
-  const { uom_id } = req.params;
+  const { id } = req.params;
   const { unit_of_measure } = req.body;
-  const uoms = await uomData.update(uom_id, unit_of_measure);
+  const uoms = await uomData.update(id, unit_of_measure);
   if (uoms) {
     res.status(200).json(uoms);
   } else {

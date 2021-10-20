@@ -1,4 +1,5 @@
-<button id="main-button-add-employee" type="button" data-toggle="modal"  data-whatever="@getbootstrap" data-backdrop="false" data-target="#exampleModalLong"><i class="fa fa-plus"></i> Add Employee</button>
+<button id="main-button-add-employee" type="button" data-toggle="modal"  data-whatever="@getbootstrap" data-backdrop="false" data-target="#exampleModalLong"><i class="fa fa-plus"></i> Create</button>
+
 
 <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -15,6 +16,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                   <label for="recipient-name" class="col-form-label">Employee Code</label>
+
                   <input formControlName="emp_code" type="text"  name="emp_code"  class="form-control" id="recipient-name" > 
                   <app-display-error errorMsg="This field is required" [displayError]="errorhandlers.isFieldValid('emp_code')" ></app-display-error>
                 </div>
@@ -32,6 +34,7 @@
                     <label for="recipient-name" class="col-form-label">Department</label>
                     <input formControlName="department" type="text" name="department"  class="form-control" id="recipient-name" >
                     <app-display-error errorMsg="This field is required" [displayError]="errorhandlers.isFieldValid('department')" ></app-display-error>
+
                   </div>
             </div>
             <div class="col-md-6"> 
@@ -49,10 +52,11 @@
                 <label for="recipient-name" class="col-form-label">Designation</label>
                 <input formControlName="designation" type="text" name="designation"  class="form-control" id="recipient-name" >
                 <app-display-error errorMsg="This field is required" [displayError]="errorhandlers.isFieldValid('designation')" ></app-display-error> 
+
               </div>
               <div class="form-group">
                   <label for="recipient-name" class="col-form-label">Remarks</label>
-                  <input formControlName="remarks" type="text" name="remarks"  class="form-control" id="recipient-name" >
+                  <input formControlName="remarks" type="text" name="remarks"  class="form-control" id="recipient-name" placeholder="remarks" >
               </div>
             </div>
           </div>

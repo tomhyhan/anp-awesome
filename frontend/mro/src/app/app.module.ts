@@ -59,6 +59,9 @@ import { SearchVendorComponent } from './components/master/vendor/search-vendor/
 import { AddaircraftComponent } from './components/master/aircraft/add-aircraft/add-aircraft.component';
 import { EditaircraftComponent } from './components/master/aircraft/edit-aircraft/edit-aircraft.component';
 import { aircraftsComponent } from './components/master/aircraft/aircrafts/aircrafts.component';
+import { SearchaircraftComponent } from './components/master/aircraft/search-aircraft/search-aircraft.component';
+
+import { DisplayErrorComponent } from './components/display-error/display-error.component';
 
 
 @NgModule({
@@ -99,6 +102,7 @@ import { aircraftsComponent } from './components/master/aircraft/aircrafts/aircr
     aircraftsComponent,
     EditaircraftComponent,
     AddaircraftComponent,
+    SearchaircraftComponent,
     DisplayErrorComponent,
   ],
   imports: [

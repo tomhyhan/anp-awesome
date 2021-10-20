@@ -11,7 +11,7 @@ export async function getAll(pageIndex, pageSize) {
   const limit = parseInt(pageSize);
   const currentPage = parseInt(pageIndex) * limit;
   return db
-    .execute(`${SELECT_JOIN} LIMIT ? OFFSET ?`, [limit, currentPage])
+    .query(`${SELECT_JOIN} LIMIT ? OFFSET ?`, [limit, currentPage])
     .then((result) => {
       return result[0];
     });
@@ -52,7 +52,7 @@ export async function getAllById(materialMasterId) {
 
 export async function getCount() {
   return db
-    .execute(
+    .query(
       `
       SELECT count(*) from spare_part
     `
@@ -66,7 +66,7 @@ export async function getFilterCount(filter) {
   const { query, queryArr } = getFilterQuery(filter);
 
   return db
-    .execute(
+    .query(
       `
       SELECT count(*) from spare_part
       ${query}

@@ -1,28 +1,31 @@
-#main-button-search_employee {
-    box-shadow: 0px 0px 0px 2px rgb(110, 144, 161);
-    background-color: rgb(110, 144, 161);
-    border-radius: 10px;
-    border: 1px solid #4e6096;
-    display: inline-block;
-    cursor: pointer;
-    color: #ffffff;
-    font-family: Arial;
-    text-decoration: none;
-    text-shadow: 0px 1px 0px #283966;
-  }
+#main-button-search_employee{
+  box-shadow: 0px 0px 0px 2px rgb(110,144,161);
+background-color:rgb(110,144,161);
+border-radius:10px;
+border:1px solid #4e6096;
+display:inline-block;
+cursor:pointer;
+color:#ffffff;
+font-family:Arial;
+text-decoration:none;
+text-shadow:0px 1px 0px #283966;
+}
 #main-button-search_employee:hover {
-  background: linear-gradient(to bottom, #476e9e 5%, #7892c2 100%);
-  background-color: #476e9e;
+background:linear-gradient(to bottom, #476e9e 5%, #7892c2 100%);
+background-color:#476e9e;
 }
 #main-button-search_employee:active {
-  position: relative;
-  top: 1px;
+position:relative;
+top:1px;
 }
 
 .button {
-  height: 100%;
+height: 100%;
 }
 button {
-  margin-left: 5px;
+margin-left: 5px;
 }
-  
+table{
+  width: 105%;
+  table-layout: fixed;
+}

@@ -1,4 +1,4 @@
-<button id="main-button-add_aircraft" type="button" data-toggle="modal"  data-whatever="@getbootstrap" data-backdrop="false" data-target="#exampleModalLong"><i class="fa fa-plus"></i>Add aircraft</button>
+<button id="main-button-add_aircraft" type="button" data-toggle="modal"  data-whatever="@getbootstrap" data-backdrop="false" data-target="#exampleModalLong"><i class="fa fa-plus"></i> Create</button>
 
 <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -14,15 +14,15 @@
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
-                <label for="recipient-name" class="col-form-label">aircraft Name</label>
-                <input formControlName="aircraft_name" type="text" name="aircraftName"  class="form-control" id="recipient-name" >
+                <label for="recipient-name" class="col-form-label">Aircraft Name</label>
+                <input formControlName="aircraft_name" type="text" name="aircraftName"  class="form-control" id="recipient-name" placeholder="Name" >
                 <small *ngIf="aircraftName.invalid && aircraftName.touched" class="text-danger">aircraft Name is Required</small> 
             </div>
             </div>
             <div class="col-md-6"> 
               <div class="form-group">
                   <label for="recipient-name" class="col-form-label">Remarks</label>
-                  <input formControlName="remarks" type="text" name="remarks"  class="form-control" id="recipient-name" >
+                  <input formControlName="remarks" type="text" name="remarks"  class="form-control" id="recipient-name" placeholder="Remarks">
               </div>
             </div>
           </div>

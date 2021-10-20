@@ -19,7 +19,7 @@ export class EditUomPartComponent implements OnInit {
   ngOnInit(): void {
     this.editUomPartForm = this.formBuilder.group({
       uom: ['', Validators.required],
-      remarks: ['', Validators.required],
+      remarks: [''],
     });
     this.updateValues();
     this.errorhandlers = new ErrorHandlers(this.editUomPartForm);

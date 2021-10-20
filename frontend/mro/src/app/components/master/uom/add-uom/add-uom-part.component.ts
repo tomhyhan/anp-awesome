@@ -21,7 +21,7 @@ export class AddUomComponent implements OnInit {
   ngOnInit(): void { 
     this.addUomPartForm = this.formBuilder.group({
     uom: ['', Validators.required],
-    remarks: ['', Validators.required],
+    remarks: [''],
   });
   this.errorhandlers = new ErrorHandlers(this.addUomPartForm);
 

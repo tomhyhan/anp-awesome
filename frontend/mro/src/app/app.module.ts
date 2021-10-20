@@ -24,7 +24,7 @@ import { SearchSparePartComponent } from './components/master/sparePart/search-s
 //HomePage
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { DisplayErrComponent } from './components/display-error/display-err.component';
+import { DisplayErrorComponent } from './components/display-error/display-error.component';
 
 //PurchaseOrderPart
 import { BackgroundComponent } from './components/background/background.component';
@@ -60,7 +60,9 @@ import { AddaircraftComponent } from './components/master/aircraft/add-aircraft/
 import { EditaircraftComponent } from './components/master/aircraft/edit-aircraft/edit-aircraft.component';
 import { aircraftsComponent } from './components/master/aircraft/aircrafts/aircrafts.component';
 import { SearchaircraftComponent } from './components/master/aircraft/search-aircraft/search-aircraft.component';
+
 import { DisplayErrorComponent } from './components/display-error/display-error.component';
+
 
 @NgModule({
   declarations: [
@@ -102,7 +104,6 @@ import { DisplayErrorComponent } from './components/display-error/display-error.
     AddaircraftComponent,
     SearchaircraftComponent,
     DisplayErrorComponent,
-    DisplayErrComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,65 @@
+<button class="icons" type="button" data-toggle="modal"  attr.data-target="#{{ employee.emp_id }}" data-whatever="@getbootstrap" data-backdrop="false"><i class="fa fa-edit"></i> </button>
+
+<div class="modal fade" attr.id="{{ employee.emp_id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="exampleModalLabel">Edit Employee</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form  [formGroup]="employeeForm" (ngSubmit)="onSubmit()">   
+          <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                  <label for="recipient-name" class="col-form-label">Employee Code</label>
+                  <input formControlName="emp_code" type="text"  name="emp_code"  class="form-control" id="recipient-name"> 
+                  <app-display-error errorMsg="This field is required" [displayError]="errorhandlers.isFieldValid('emp_code')" ></app-display-error> 
+                </div>
+                <div class="form-group">
+                    <label for="recipient-name" class="col-form-label">Site Master ID</label>
+                    <input formControlName="site_master_id" type="text" name="site_master_id"  class="form-control" id="recipient-name" >
+                    <app-display-error errorMsg="This field is required" [displayError]="errorhandlers.isFieldValid('site_master_id')" ></app-display-error> 
+                </div>
+                <div class="form-group">
+                    <label for="recipient-name" class="col-form-label">Address</label>
+                    <input formControlName="address" type="text" name="address"  class="form-control" id="recipient-name" >
+                    <app-display-error errorMsg="This field is required" [displayError]="errorhandlers.isFieldValid('address')" ></app-display-error>
+                </div>
+                <div class="form-group">
+                    <label for="recipient-name" class="col-form-label">Department</label>
+                    <input formControlName="department" type="text" name="department"  class="form-control" id="recipient-name" >
+                    <app-display-error errorMsg="This field is required" [displayError]="errorhandlers.isFieldValid('department')" ></app-display-error>
+                </div>
+            </div>
+            <div class="col-md-6"> 
+                <div class="form-group">
+                  <label for="recipient-name" class="col-form-label">Employee Name</label>
+                  <input formControlName="emp_name" type="text" name="emp_name"  class="form-control" id="recipient-name" >
+                  <app-display-error errorMsg="This field is required" [displayError]="errorhandlers.isFieldValid('emp_name')" ></app-display-error>
+                </div>
+                <div class="form-group">
+                  <label for="recipient-name" class="col-form-label">Contact</label>
+                  <input formControlName="contact" type="text" name="contact"  class="form-control" id="recipient-name" >
+                  <app-display-error errorMsg="This field is required" [displayError]="errorhandlers.isFieldValid('contact')" ></app-display-error>
+                </div>
+                <div class="form-group">
+                  <label for="recipient-name" class="col-form-label">Designation</label>
+                  <input formControlName="designation" type="text" name="designation"  class="form-control" id="recipient-name" >
+                  <app-display-error errorMsg="This field is required" [displayError]="errorhandlers.isFieldValid('designation')" ></app-display-error>
+                </div>
+                <div class="form-group">
+                  <label for="recipient-name" class="col-form-label">Remarks</label>
+                  <input formControlName="remarks" type="text" name="remarks"  class="form-control" id="recipient-name" >
+                </div>
+            </div>
+          </div>
+          <button type="submit" class="button-save">Save</button>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

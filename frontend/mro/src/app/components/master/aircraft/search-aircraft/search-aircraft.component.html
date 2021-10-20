@@ -1,0 +1,38 @@
+<form [formGroup]="searchaircraftForm" (ngSubmit)="onSubmit()" >
+    <section  id="main-section-searchline">
+      <table id="main-table-selector">
+        <thead>
+          <tr style="color: rgb(110,144,161);">
+            <th ><label for="aircraft_name">aircraft name</label></th>
+            <th><label for="remarks">remarks</label></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><input
+              class="form-control"
+              type="text"
+              name="aircraft_name"
+              id="aircraft_name"
+              placeholder="name"
+              formControlName="aircraft_name"
+            /></td>
+            <td><input
+              class="form-control"
+              type="text"
+              name="remarks"
+              id="remarks"
+              placeholder="remarks"
+              formControlName="remarks"
+              /></td>
+            <td class="button ext-center">
+              <button class="text-center m-2" id="main-button-search_aircraft" type="submit" ><i class="fa fa-search"></i> Search</button>
+            </td>
+          </tr>
+        </tbody>
+
+      </table>
+ 
+    </section>
+    </form>
+   

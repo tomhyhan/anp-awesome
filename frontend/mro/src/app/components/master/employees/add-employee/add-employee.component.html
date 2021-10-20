@@ -15,44 +15,44 @@
             <div class="col-md-6">
                 <div class="form-group">
                   <label for="recipient-name" class="col-form-label">Employee Code</label>
-                  <input formControlName="emp_code" type="text"  name="empCode"  class="form-control" id="recipient-name" > 
+                  <input formControlName="emp_code" type="text"  name="empCode"  class="form-control" id="recipient-name" placeholder="Code" > 
                   <small *ngIf="empCode.invalid && empCode.touched" class="text-danger">Employee Code is Required</small> 
                 </div>
                 <div class="form-group">
                     <label for="recipient-name" class="col-form-label">Site Master ID</label>
-                    <input formControlName="site_master_id" type="text" name="siteMasterId"  class="form-control" id="recipient-name" >
+                    <input formControlName="site_master_id" type="text" name="siteMasterId"  class="form-control" id="recipient-name" placeholder="siteMasterId" >
                     <small *ngIf="siteMasterId.invalid && siteMasterId.touched" class="text-danger">Site Master ID is Required</small> 
                   </div>
                 <div class="form-group">
                     <label for="recipient-name" class="col-form-label">Address</label>
-                    <input formControlName="address" type="text" name="address"  class="form-control" id="recipient-name" >
+                    <input formControlName="address" type="text" name="address"  class="form-control" id="recipient-name" placeholder="address">
                     <small *ngIf="address.invalid && address.touched" class="text-danger">Address is Required</small> 
                 </div>
                 <div class="form-group">
                     <label for="recipient-name" class="col-form-label">Department</label>
-                    <input formControlName="department" type="text" name="department"  class="form-control" id="recipient-name" >
+                    <input formControlName="department" type="text" name="department"  class="form-control" id="recipient-name" placeholder="department" >
                     <small *ngIf="department.invalid && department.touched" class="text-danger">Department is Required</small> 
                   </div>
             </div>
             <div class="col-md-6"> 
                 <div class="form-group">
                   <label for="recipient-name" class="col-form-label">Employee Name</label>
-                  <input formControlName="emp_name" type="text" name="empName"  class="form-control" id="recipient-name" >
+                  <input formControlName="emp_name" type="text" name="empName"  class="form-control" id="recipient-name"  placeholder="Name">
                   <small *ngIf="empName.invalid && empName.touched" class="text-danger">Employee Name is Required</small> 
               </div>
               <div class="form-group">
                 <label for="recipient-name" class="col-form-label">Contact</label>
-                <input formControlName="contact" type="text" name="contact"  class="form-control" id="recipient-name" >
+                <input formControlName="contact" type="text" name="contact"  class="form-control" id="recipient-name" placeholder="contact" >
                 <small *ngIf="contact.invalid && contact.touched" class="text-danger">Contact is Required</small> 
               </div>
               <div class="form-group">
                 <label for="recipient-name" class="col-form-label">Designation</label>
-                <input formControlName="designation" type="text" name="designation"  class="form-control" id="recipient-name" >
+                <input formControlName="designation" type="text" name="designation"  class="form-control" id="recipient-name"  placeholder="designation" >
                 <small *ngIf="designation.invalid && designation.touched" class="text-danger">Designation is Required</small> 
               </div>
               <div class="form-group">
                   <label for="recipient-name" class="col-form-label">Remarks</label>
-                  <input formControlName="remarks" type="text" name="remarks"  class="form-control" id="recipient-name" >
+                  <input formControlName="remarks" type="text" name="remarks"  class="form-control" id="recipient-name" placeholder="remarks" >
               </div>
             </div>
           </div>

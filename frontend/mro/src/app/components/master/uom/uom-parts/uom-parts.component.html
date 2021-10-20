@@ -1,5 +1,5 @@
 <section id="main-section-namepageline">
-  <h1 style="text-align:center;">UOM</h1>
+  <h1 style="text-align:center; font-weight:700">UOM</h1>
 </section>
 
 
@@ -9,11 +9,11 @@
 
  <div class="uom__search row ml-1 align-items-center">
     <app-search-uom (onSearchUomPart)="searchUom($event)"></app-search-uom>
-    <app-add-uom-part class="mt-2 pt-4 pb-1"(onCreateUomPart)="createTask($event)"></app-add-uom-part>
+    <app-add-uom-part class="mt-2 pt-4"(onCreateUomPart)="createTask($event)"></app-add-uom-part>
   </div>
 
 <div class="uom__table"> 
-  <table mat-table [dataSource]="uoms" class="demo-table">
+  <table mat-table [dataSource]="uoms" class="demo-table mt-0">
 
 
     <ng-container matColumnDef="uom_id">

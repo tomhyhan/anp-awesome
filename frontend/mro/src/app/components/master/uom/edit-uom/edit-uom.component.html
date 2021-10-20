@@ -12,7 +12,10 @@
       </div>
       <div class="modal-body">
 
-        <form  [formGroup]="editUomPartForm" (ngSubmit)="onSubmit()">
+        <form [formGroup]="editUomPartForm" (ngSubmit)="onSubmit()">
+          <div class="row">
+            <div class="col-md-6">
+
           <div class="form-group">
             <label for="recipient-name" class="col-form-label">UOM</label>
             <input formControlName="uom" type="text"  name="uom"  class="form-control" id="recipient-name" >
@@ -23,7 +26,9 @@
             <input formControlName="remarks" type="text" name="remarks"  class="form-control" id="recipient-name" >
             <app-display-error errorMsg="This field is required" [displayError]="errorhandlers.isFieldValid('remarks')" ></app-display-error>
           </div>
-          <button type="submit" class="btn btn-primary">Send message</button>
+        </div>
+      </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
         </form>
         
       </div>

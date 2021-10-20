@@ -61,7 +61,7 @@ import { EditaircraftComponent } from './components/master/aircraft/edit-aircraf
 import { aircraftsComponent } from './components/master/aircraft/aircrafts/aircrafts.component';
 import { SearchaircraftComponent } from './components/master/aircraft/search-aircraft/search-aircraft.component';
 
-import { DisplayErrorComponent } from './components/display-error/display-error.component';
+
 
 
 @NgModule({

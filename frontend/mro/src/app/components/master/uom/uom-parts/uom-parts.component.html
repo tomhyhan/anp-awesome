@@ -43,7 +43,7 @@
 
     <ng-container matColumnDef="edit">
       <th mat-header-cell *matHeaderCellDef> Update </th>
-      <td mat-cell *matCellDef="let uom"><app-edit-uom [uomPart]="uom" (onUpdateUomPart)="updateUom($event)" ></app-edit-uom></td>
+      <td mat-cell *matCellDef="let uom"><app-edit-uom [uoms]="uom" (onUpdateUomPart)="updateUom($event)" ></app-edit-uom></td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

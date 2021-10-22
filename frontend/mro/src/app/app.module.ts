@@ -60,6 +60,7 @@ import { EditaircraftComponent } from './components/master/aircraft/edit-aircraf
 import { aircraftsComponent } from './components/master/aircraft/aircrafts/aircrafts.component';
 import { DisplayErrorComponent } from './components/display-error/display-error.component';
 import { LoginComponent } from './components/login/login.component';
+import { AlertComponent } from './components/alert/alert.component';
 
 @NgModule({
   declarations: [
@@ -101,6 +102,7 @@ import { LoginComponent } from './components/login/login.component';
     AddaircraftComponent,
     DisplayErrorComponent,
     LoginComponent,
+    AlertComponent,
   ],
   imports: [
     BrowserModule,

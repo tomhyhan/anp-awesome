@@ -13,8 +13,9 @@ export async function generateCookie(res, token) {
     httpOnly: true,
     sameSite: 'none',
     secure: true,
-    maxAge: config.jwt.expiresIn,
+    maxAge: config.jwt.expiresIn * 1000,
   };
+  console.log('setting cookie');
   res.cookie('token', token, option);
 }
 

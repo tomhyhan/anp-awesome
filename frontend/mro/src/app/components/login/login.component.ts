@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ErrorHandlers } from 'src/app/utils/error-handler';
 import { AuthService } from 'src/app/services/auth.service';
+import { Router, ActivatedRoute } from '@angular/router';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -13,7 +15,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -32,7 +35,8 @@ export class LoginComponent implements OnInit {
 
     if (this.loginForm.valid) {
       this.authService.login(userData).subscribe((data) => {
-        console.log(data);
+        console.log(data)
+        this.router.navigateByUrl('/');
       });
     } else {
       this.errorhandlers.showErrors();

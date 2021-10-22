@@ -44,6 +44,7 @@ export class HttpClientHelper {
     const options = {
       params: paramsOptions,
       headers: headersOption,
+      withCredentials:true,
     };
     return this.http
       .get<any[]>(`${baseURL}${url}`, options)

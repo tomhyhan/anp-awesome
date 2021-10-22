@@ -17,12 +17,12 @@ import authRouter from './router/auth/authRouter.js';
 import { config } from './config.js';
 
 const app = express();
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
 app.use(cookieParser());
+
+app.use(express.json());
 app.use(
   cors({
-    origin: '*',
+    origin: 'http://localhost:8500',
     credentials: true,
     optionsSuccessStatus: 200,
   })

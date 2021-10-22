@@ -1,6 +1,7 @@
 import 'express-async-errors';
 import * as authUtil from '../../utils/authUtils.js';
 import * as userData from '../../data/master/employeeData.js';
+import { config } from '../../config.js';
 
 export async function login(req, res) {
   const { emp_code, password } = req.body;
@@ -20,6 +21,7 @@ export async function login(req, res) {
 
   const token = await authUtil.createJWT(employee.emp_id);
   await authUtil.generateCookie(res, token);
+
   res.status(200).json({ token, emp_code });
 }
 

@@ -22,7 +22,7 @@ export class AuthService {
     return this.http.post(
       'http://localhost:8080/auth/login',
       userData,
-      httpOptions
+      { withCredentials:true}
     );
     // return this.httpClient.post(this.apiURL, userData, {});
   }

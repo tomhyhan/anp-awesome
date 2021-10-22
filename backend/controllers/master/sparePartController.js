@@ -14,7 +14,7 @@ export async function getAllSpareParts(req, res, next) {
     ? sparePartData.getAllByFilter(filter, pageIndex, pageSize)
     : sparePartData.getAll(pageIndex, pageSize));
 
-  return res.status(200).json(sparePart);
+  res.status(200).json(sparePart);
 }
 
 export async function getById(req, res, next) {

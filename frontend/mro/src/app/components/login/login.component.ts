@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ErrorHandlers } from 'src/app/utils/error-handler';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
@@ -34,10 +35,17 @@ export class LoginComponent implements OnInit {
     };
 
     if (this.loginForm.valid) {
-      this.authService.login(userData).subscribe((data) => {
-        console.log(data)
-        this.router.navigateByUrl('/');
-      });
+      this.authService
+        .login(userData)
+        .pipe(first())
+        .subscribe({
+          next: () => {
+            this.router.navigateByUrl('/');
+          },
+          error: (err) => {
+            console.log(err);
+          },
+        });
     } else {
       this.errorhandlers.showErrors();
     }

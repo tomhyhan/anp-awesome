@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
@@ -64,6 +64,8 @@ import { AlertComponent } from './components/alert/alert.component';
 
 // interceptors
 import { JwtInterceptor } from './helpers/jwt.interceptor';
+import { appInitializer } from './helpers/app.initializer';
+import { AuthService } from './services/auth.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -126,3 +128,11 @@ import { JwtInterceptor } from './helpers/jwt.interceptor';
   bootstrap: [AppComponent],
 })
 export class AppModule {}
+
+//  Maybe later
+// {
+//   provide: APP_INITIALIZER,
+//   useFactory: appInitializer,
+//   multi: true,
+//   deps: [AuthService],
+// },

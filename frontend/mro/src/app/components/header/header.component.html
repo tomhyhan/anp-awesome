@@ -8,7 +8,7 @@
       
         <div class="navbar-collapse" [class.collapse]="collapsed" id="navbarContent">
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item" ngbDropdown>
+            <li *ngIf="employee" class="nav-item" ngbDropdown>
               <a class="nav-link" tabindex="1" ngbDropdownToggle id="navbarDropdown1" role="button"><b>Master</b></a>
               <div ngbDropdownMenu aria-labelledby="navbarDropdown1" class="dropdown-menu">
                 <a ngbDropdownItem routerLink="/master/uom" routerLinkActive="deActive" (click)="$event.preventDefault()">UOM</a>
@@ -36,11 +36,24 @@
       
             </li>
             <li class="nav-item">
-              <a  routerLink="/auth/login" (click)="$event.preventDefault()"><i class="fa fa-user px-1" style="font-size:36px"></i></a>
-            </li>
-            <li class="nav-item">
               <i class="fa fa-bars px-1" style="font-size:36px"></i>
             </li>
+            <div *ngIf="employee; then thenBlock else elseBlock"></div>
+            <ng-template #thenBlock>
+              <li *ngIf="employee" class="nav-item" ngbDropdown>
+                <a class="nav-link" tabindex="1" ngbDropdownToggle id="navbarDropdown1" role="button"><b>{{ employee.emp_code}}</b></a>
+                <div ngbDropdownMenu aria-labelledby="navbarDropdown1" class="dropdown-menu">
+                  <a ngbDropdownItem  (click)="logout()">Logout</a>
+                </div>
+              </li>
+            </ng-template>
+            <ng-template #elseBlock>
+              <li class="nav-item">
+                <a  routerLink="/auth/login" (click)="$event.preventDefault()"><i class="fa fa-user px-1" style="font-size:36px"></i></a>
+              </li>  
+            </ng-template>
+            
+
           </ul>
         </div>
       </nav>

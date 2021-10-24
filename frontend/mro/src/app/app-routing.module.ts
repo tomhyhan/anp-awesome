@@ -11,8 +11,13 @@ import { VendorsComponent } from './components/master/vendor/vendors/vendors.com
 import { aircraftsComponent } from './components/master/aircraft/aircrafts/aircrafts.component';
 import { LoginComponent } from './components/login/login.component';
 
+import { AuthGuard } from './helpers/auth.guard';
 const routes: Routes = [
-  { path: 'master/spare_part', component: SparePartsComponent },
+  {
+    path: 'master/spare_part',
+    component: SparePartsComponent,
+    canActivate: [AuthGuard],
+  },
   { path: 'master/project', component: ProjectsComponent },
   { path: 'Purchase_order', component: PurchaseOrderComponent },
   { path: 'Purchase_order/create', component: PurchaseOrderCreateComponent },

@@ -26,6 +26,7 @@ export class AddEmployeeComponent implements OnInit {
       remarks: [''],
       created_by: [''],
       created_date: [''],
+      username: ['', Validators.required],
       password: ['', Validators.required],
     });
     this.errorhandlers = new ErrorHandlers(this.addEmployeeForm);
@@ -45,6 +46,7 @@ export class AddEmployeeComponent implements OnInit {
           remarks: this.addEmployeeForm.value.remarks,
           created_by: 'Inggy',
           password: this.addEmployeeForm.value.password,
+          username: this.addEmployeeForm.value.username,
         },
       };
       this.onCreateEmployee.emit(addEmployee);

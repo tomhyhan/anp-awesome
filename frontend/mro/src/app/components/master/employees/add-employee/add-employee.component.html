@@ -54,14 +54,22 @@
                   <label for="remarks" class="col-form-label">Remarks</label>
                   <input formControlName="remarks" type="text" name="remarks"  class="form-control" id="remarks" >
               </div>
-            </div>
+            </div>  
+            
             <div class="col-md-6"> 
+              <div class="form-group">
+                <label for="username" class="col-form-label">Username</label>
+                <input formControlName="username" type="text" name="username"  class="form-control" id="username" >
+                <app-display-error errorMsg="This field is required" [displayError]="errorhandlers.isFieldValid('username')" ></app-display-error>
+              </div>
+            </div>
+            <div class="col-md-6">
               <div class="form-group">
                 <label for="password" class="col-form-label">Employee Password</label>
                 <input formControlName="password" type="password" name="password"  class="form-control" id="password" >
                 <app-display-error errorMsg="This field is required" [displayError]="errorhandlers.isFieldValid('password')" ></app-display-error>
+              </div>
             </div>
-          </div>
           </div>
           <p><button type="submit" class="button-save">Submit</button></p>
         </form>

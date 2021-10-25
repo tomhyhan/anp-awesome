@@ -4,7 +4,6 @@ import { ErrorHandlers } from 'src/app/utils/error-handler';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { first } from 'rxjs/operators';
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -22,7 +21,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
-      emp_code: [''],
+      username: [''],
       password: [''],
     });
 

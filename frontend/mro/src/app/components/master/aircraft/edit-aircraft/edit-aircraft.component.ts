@@ -2,6 +2,7 @@ import { Component, OnInit,Input, Output, EventEmitter} from '@angular/core';
 import { aircraftService } from 'src/app/services/master/aircraft/aircraft.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ErrorHandlers } from 'src/app/utils/error-handler';
 
 @Component({
   selector: 'app-edit-aircraft',
@@ -13,6 +14,7 @@ export class EditaircraftComponent implements OnInit {
   @Input() aircraft: any;
   editaircraftForm!: FormGroup | any;
   id: any;
+  errorhandlers: any;
 
   constructor(private formBuilder: FormBuilder, private router: Router) { }
 
@@ -23,6 +25,7 @@ export class EditaircraftComponent implements OnInit {
       remarks:'',
     });
     this.updateaircrafts();
+    this.errorhandlers = new ErrorHandlers(this.editaircraftForm);
   }
 
   updateaircrafts() {
@@ -35,6 +38,7 @@ export class EditaircraftComponent implements OnInit {
 
 
   onSubmit() {
+    if(this.editaircraftForm.valid){
     const updateaircraft = {
       aircraft: {
         aircraft_name: this.editaircraftForm.value.aircraft_name,
@@ -46,6 +50,9 @@ export class EditaircraftComponent implements OnInit {
     this.onUpdateaircraft.emit({
       aircraft: updateaircraft,
       id: this.aircraft.material_aircraft_id,
-    });
+    })
+  } else {
+    this.errorhandlers.showErrors();
+  }
   }
 }

@@ -5,7 +5,6 @@ import * as employeeData from '../data/master/employeeData.js';
 
 const auth_err = { message: 'Authentication invalid' };
 
-// Later also need to validate the Header auth
 export const isAuth = async (req, res, next) => {
   let token;
   const authHeader = req.get['Authorization'];
@@ -25,12 +24,13 @@ export const isAuth = async (req, res, next) => {
     if (err) {
       res.status(401).json(auth_err);
     }
-
     const employee = await employeeData.getAllById(decode.emp_id);
+    console.log(employee);
+
     if (!employee) {
       return res.status(401).json(auth_err);
     }
-    req.emp_id = employee.emp_id;
+    req.emp_id = employee[0].emp_id;
     req.token = token;
     next();
   });

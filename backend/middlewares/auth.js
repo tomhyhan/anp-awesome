@@ -7,8 +7,15 @@ const auth_err = { message: 'Authentication invalid' };
 
 // Later also need to validate the Header auth
 export const isAuth = async (req, res, next) => {
-  const token = req.cookies['token'];
-  console.log('token: ' + token);
+  let token;
+  const authHeader = req.get['Authorization'];
+  if (authHeader && authHeader.startsWith('Bearer ')) {
+    token = authHeader.split(' ')[1];
+  }
+
+  if (!token) {
+    token = req.cookies['token'];
+  }
 
   if (!token) {
     res.status(401).json(auth_err);

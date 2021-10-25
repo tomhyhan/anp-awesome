@@ -80,6 +80,14 @@ export async function getByEmployeeCode(employeeCode) {
     });
 }
 
+export async function getByEmployeeUsername(username) {
+  return db
+    .query(`SELECT * FROM employee WHERE username=?`, [username])
+    .then((result) => {
+      return result[0][0];
+    });
+}
+
 export async function create(employee) {
   const {
     emp_name,
@@ -92,13 +100,14 @@ export async function create(employee) {
     remarks,
     created_by,
     password,
+    username,
   } = employee;
 
   return db
     .query(
       `
-  INSERT INTO employee (emp_name, emp_code, site_master_id, contact, address, designation, department, remarks, created_by, created_date, password)
-  VALUES (?,?,?,?,?,?,?,?,?,?,?)
+  INSERT INTO employee (emp_name, emp_code, site_master_id, contact, address, designation, department, remarks, created_by, created_date, password, username)
+  VALUES (?,?,?,?,?,?,?,?,?,?,?,?)
     `,
       [
         emp_name,
@@ -112,6 +121,7 @@ export async function create(employee) {
         created_by,
         new Date(),
         password,
+        username,
       ]
     )
     .then((result) => {

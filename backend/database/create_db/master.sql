@@ -67,6 +67,7 @@ CREATE TABLE employee (
     created_by VARCHAR(30) NOT NULL,
     created_date Date,
     password varchar(100) NOT NULL,
+    username varchar(100) NOT NULL,
     PRIMARY KEY (emp_id)
 );
 

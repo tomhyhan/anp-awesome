@@ -1,5 +1,5 @@
 
-<button id="main-button-add_uom" type="button" data-toggle="modal"  data-whatever="@getbootstrap" data-backdrop="false" data-target="#exampleModalLong"><i class="fa fa-plus"></i> Create</button>
+<button id="add-uom-button" type="button" data-toggle="modal"  data-whatever="@getbootstrap" data-backdrop="false" data-target="#exampleModalLong"><i class="fa fa-plus"></i>Add Uom</button>
 
 <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -10,27 +10,21 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-
       <div class="modal-body">
         <form [formGroup]="addUomPartForm" (ngSubmit)="onSubmit()" >
           <div class="row">
             <div class="col-md-6">
-              
                 <div class="form-group">
                   <label for="recipient-name" class="col-form-label">UOM</label>
                   <input formControlName="uom" type="text"  name="uom"  class="form-control" id="recipient-name" > 
-                  <app-display-error errorMsg="This field is required" [displayError]="errorhandlers.isFieldValid('uom')" ></app-display-error>
                 </div>
-
                 <div class="form-group">
                     <label for="recipient-name" class="col-form-label">Remarks</label>
                     <input formControlName="remarks" type="text" name="remarks"  class="form-control" id="recipient-name" >
-                    <app-display-error errorMsg="This field is required" [displayError]="errorhandlers.isFieldValid('remarks')" ></app-display-error>
                 </div>
-
             </div>
           </div>
-          <p><button type="submit" class="button-save">Submit</button></p>
+          <p><button type="submit" id="button-save">Submit</button></p>
         </form>
       </div>
 

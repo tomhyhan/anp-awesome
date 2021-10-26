@@ -1,10 +1,11 @@
 import * as employeeData from '../../data/master/employeeData.js';
-
+import * as authUtil from '../../utils/authUtils.js';
+import 'express-async-errors';
 
 export async function getAllEmployees(req, res, next) {
   let employeeFilter = req.query.employeeFilter;
   const { pageIndex, pageSize } = req.query;
-  console.log(req.query);
+
   if (employeeFilter == null) {
     employeeFilter = '';
   } else {
@@ -43,11 +44,24 @@ export async function getById(req, res) {
   }
 }
 
-export async function postEmployee(req, res) {
+export async function addEmployee(req, res) {
   const { employee } = req.body;
+  const password = employee.password;
+  const IsEmployee = await employeeData.getByEmployeeCode(employee.emp_code);
+  if (IsEmployee) {
+    return res
+      .status(409)
+      .json({ message: `${employee.emp_name} already exist` });
+  }
 
-  const newEmployee = await employeeData.create(employee);
-
+  const hash = await authUtil.hashPassword(password);
+  const hashedEmployee = {
+    ...employee,
+    password: hash,
+  };
+  const newEmployee = await employeeData.create(hashedEmployee);
+  console.log('NEW');
+  console.log(newEmployee);
   res.status(201).json(newEmployee);
 }
 
@@ -55,6 +69,7 @@ export async function updateEmployee(req, res) {
   const { id } = req.params;
   const { employee } = req.body;
   const updatedEmployee = await employeeData.update(id, employee);
+
   if (updatedEmployee) {
     res.status(200).json(updatedEmployee);
   } else {

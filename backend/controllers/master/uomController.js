@@ -58,9 +58,9 @@ export async function postUom(req, res) {
 export async function updateUom(req, res) {
   const { id } = req.params;
   const { unit_of_measure } = req.body;
-  const uoms = await uomData.update(id, unit_of_measure);
-  if (uoms) {
-    res.status(200).json(uoms);
+  const uom = await uomData.update(id, unit_of_measure);
+  if (uom) {
+    res.status(200).json(uom);
   } else {
     res.status(404).json({ message: `Unit not Found` });
   }

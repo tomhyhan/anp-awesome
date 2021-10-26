@@ -1,6 +1,5 @@
-import { Component, OnInit,Output, EventEmitter } from '@angular/core';
+import { Component, OnInit,Output, EventEmitter, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ErrorHandlers } from 'src/app/utils/error-handler';
 
 @Component({
   selector: 'app-add-project',
@@ -16,7 +15,6 @@ export class AddProjectComponent implements OnInit {
   minDate = new Date().toLocaleDateString().replace('/','-').replace('/','-');
   @Output() onCreateproject = new EventEmitter();
   addprojectForm: FormGroup | any;
-  errorhandlers: any;
 
   constructor(private formBuilder: FormBuilder) { }
 
@@ -24,18 +22,15 @@ export class AddProjectComponent implements OnInit {
     // console.log(new Date().toLocaleDateString().replace('/','-').replace('/','-'))
     this.addprojectForm = this.formBuilder.group({
       project_code: ['', Validators.required],
-      project_name: ['', Validators.required],
+      project_name: [''],
       remarks:[''],
       active_id: ['', Validators.required],
       end_date: ['',Validators.required],
     });
-
-    this.errorhandlers = new ErrorHandlers(this.addprojectForm);
     
   }
   onSubmit() {
     
-    if (this.addprojectForm.valid) {
     const project = {
       project_user: {
         project_name: this.addprojectForm.value.project_name,
@@ -48,10 +43,5 @@ export class AddProjectComponent implements OnInit {
     };
     console.log(project)
     this.onCreateproject.emit(project);
-    this.addprojectForm.reset();
-  } else{
-    this.errorhandlers.showErrors();
-
-  }
   }
 }

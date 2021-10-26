@@ -51,16 +51,16 @@ export class UomPartsComponent implements OnInit {
   }
 
   
-  updateUom(uoms: any) {
+  updateUom(uomPart: any) {
     this.uomService
-      .updateUomPart(uoms.uoms, uoms.id)
+      .updateUomPart(uomPart.uom, uomPart.id)
       .subscribe((updated: any) => {
-        const newUomParts = this.uoms.map((uoms: any) => {
+        const newUomParts = this.uoms.map((uomPart: any) => {
           
-          if (uoms.uom_id === updated[0].uom_id) {
+          if (uomPart.uom_id === updated[0].uom_id) {
             return updated[0];
           }
-          return uoms;
+          return uomPart;
         });
         this.uoms = newUomParts;
       });

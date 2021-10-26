@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ErrorHandlers } from 'src/app/utils/error-handler';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-edit-uom',
@@ -9,34 +9,33 @@ import { ErrorHandlers } from 'src/app/utils/error-handler';
 })
 export class EditUomPartComponent implements OnInit {
   @Output() onUpdateUomPart = new EventEmitter();
-  @Input() uoms: any;
+  @Input() uomPart: any;
   editUomPartForm!: FormGroup | any;
   id: any;
-  errorhandlers: any;
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: FormBuilder, private router: Router) {}
 
   ngOnInit(): void {
     this.editUomPartForm = this.formBuilder.group({
-      uom: ['', Validators.required],
-      remarks: ['', Validators.required],
+      uom: '',
+      remarks: '',
     });
     this.updateValues();
-    this.errorhandlers = new ErrorHandlers(this.editUomPartForm);
   }
 
   updateValues() {
     this.editUomPartForm.patchValue({
-      ...this.uoms,
+      uom:this.uomPart.uom,
+      remarks:this.uomPart.remarks
     });
   }
 
   // probably better use router
   onSubmit() {
-    if (this.editUomPartForm.valid) {
     const updateUomPart = {
       unit_of_measure: {
-        ...this.editUomPartForm.value,
+        uom: this.editUomPartForm.value.uom,
+        remarks:this.editUomPartForm.value.remarks,
         created_by:"dcheng"
       },
     };
@@ -44,11 +43,8 @@ export class EditUomPartComponent implements OnInit {
     console.log(updateUomPart)
 
     this.onUpdateUomPart.emit({
-      uoms: updateUomPart,
-      id: this.uoms.uom_id,
+      uomPart: updateUomPart,
+      id: this.uomPart.uom_id,
     });
-  } else {
-    this.errorhandlers.showErrors();
-    }
   }
 }

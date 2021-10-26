@@ -1,6 +1,7 @@
 import { Component, OnInit,Input, Output, EventEmitter} from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ErrorHandlers } from 'src/app/utils/error-handler';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-edit-project',
   templateUrl: './edit-project.component.html',
@@ -10,27 +11,25 @@ export class EditProjectComponent implements OnInit {
   @Output() onUpdateproject = new EventEmitter();
   @Input() project: any;
   minDate = new Date().toLocaleDateString().replace('/','-').replace('/','-');
-  editprojectForm!: FormGroup | any;
+  projectForm!: FormGroup | any;
   id: any;
-  errorhandlers: any;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, private router: Router) { }
 
   ngOnInit(): void {
-    this.editprojectForm = this.formBuilder.group({
-      ProjectName: ['', Validators.required],
-      ProjectCode: ['', Validators.required],
+    this.projectForm = this.formBuilder.group({
+      ProjectName: '',
+      ProjectCode: '',
       Status:'',
-      remarks:[''],
+      remarks:'',
       EndDate:new Date(),
     });
     this.updateValues();
-    this.errorhandlers = new ErrorHandlers(this.editprojectForm);
   }
 
   updateValues() {
     
-    this.editprojectForm.patchValue({
+    this.projectForm.patchValue({
       ProjectName: this.project.project_name,
       ProjectCode: this.project.project_code,
       Status:this.project.active_id,
@@ -43,15 +42,14 @@ export class EditProjectComponent implements OnInit {
   onSubmit() {
     // console.log(this.project.project_master_id);
     // console.log(this.projectForm.value.ProjectName);
-    if (this.editprojectForm.valid) {
     const updateproject = {
       project_user: {
-        project_name: this.editprojectForm.value.ProjectName,
-        project_code: this.editprojectForm.value.ProjectCode,
-        remarks:this.editprojectForm.value.remarks,
-        active_id:this.editprojectForm.value.Status,
+        project_name: this.projectForm.value.ProjectName,
+        project_code: this.projectForm.value.ProjectCode,
+        remarks:this.projectForm.value.remarks,
+        active_id:this.projectForm.value.Status,
         created_by:"benny",
-        end_date:this.editprojectForm.value.EndDate
+        end_date:this.projectForm.value.EndDate
       },
     };
     console.log(updateproject)
@@ -60,9 +58,6 @@ export class EditProjectComponent implements OnInit {
       project: updateproject,
       id: this.project.project_master_id,
     });
-  } else{
-    this.errorhandlers.showErrors();
-  } 
-}
+  }
 
 }

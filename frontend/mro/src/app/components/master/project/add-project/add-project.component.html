@@ -27,7 +27,6 @@
                       placeholder="code"
                       formControlName="project_code"
                     />
-                    <app-display-error errorMsg="This field is required" [displayError]="errorhandlers.isFieldValid('project_code')" ></app-display-error>
                   </div>
                   
                   <div class="form-group">
@@ -41,7 +40,6 @@
                       id="recipient-name"
                       formControlName="project_name"
                       />
-                      <app-display-error errorMsg="This field is required" [displayError]="errorhandlers.isFieldValid('project_name')" ></app-display-error>
                     </div>
 
                   <div class="form-group">
@@ -55,7 +53,6 @@
                       id="recipient-name"
                       formControlName="end_date"
                       />
-                      <app-display-error errorMsg="This field is required" [displayError]="errorhandlers.isFieldValid('end_date')" ></app-display-error>
                   </div>
                  
 
@@ -85,7 +82,6 @@
                         <option selected value="1">Active</option>
                         <option selected value="0">Deactive</option>
                       </select>
-                      <app-display-error errorMsg="This field is required" [displayError]="errorhandlers.isFieldValid('active_id')" ></app-display-error>
                    </div>
 
 

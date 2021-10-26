@@ -1,7 +1,7 @@
 import { db } from '../../database/database.js';
-import { getFilterQuery } from '../../utils/employeeFilter.js'
+import { getFilterQuery } from '../../utils/employeeFilter.js';
 
-const SELECT_QUERY = `SELECT * FROM employee`
+const SELECT_QUERY = `SELECT * FROM employee`;
 
 export async function getAll(pageIndex, pageSize) {
   const limit = parseInt(pageSize);
@@ -14,13 +14,9 @@ export async function getAll(pageIndex, pageSize) {
 }
 
 export async function getCount() {
-  return db
-    .query(
-      `SELECT count(*) from employee`
-    )
-    .then((result) => {
-      return result[0][0]['count(*)'];
-    });
+  return db.query(`SELECT count(*) from employee`).then((result) => {
+    return result[0][0]['count(*)'];
+  });
 }
 
 export async function getAllByFilter(filter, pageIndex, pageSize) {
@@ -28,7 +24,6 @@ export async function getAllByFilter(filter, pageIndex, pageSize) {
   const currentPage = parseInt(pageIndex) * limit;
   const { query, queryArr } = getFilterQuery(filter);
   console.log(filter);
-
 
   return db
     .query(
@@ -47,10 +42,7 @@ export async function getAllByFilter(filter, pageIndex, pageSize) {
 export async function getFilterCount(filter) {
   const { query, queryArr } = getFilterQuery(filter);
   return db
-    .query(
-      `SELECT count(*) from employee ${query}`,
-      [...queryArr]
-    )
+    .query(`SELECT count(*) from employee ${query}`, [...queryArr])
     .then((result) => {
       return result[0][0]['count(*)'];
     });
@@ -58,10 +50,7 @@ export async function getFilterCount(filter) {
 
 export async function getAllByEmployeeCode(emp_code) {
   return db
-    .query(
-      `SELECT * FROM employee WHERE emp_code=?`,
-      [emp_code]
-    )
+    .query(`SELECT * FROM employee WHERE emp_code=?`, [emp_code])
     .then((result) => {
       return result[0];
     });
@@ -69,10 +58,18 @@ export async function getAllByEmployeeCode(emp_code) {
 
 export async function getAllByEmployeeName(emp_name) {
   return db
-    .query(
-      `SELECT * FROM employee WHERE emp_name=?`,
-      [emp_name]
-    )
+    .query(`SELECT * FROM employee WHERE emp_name=?`, [emp_name])
+    .then((result) => {
+      return result[0];
+    });
+}
+
+export async function getAllByUsernameAndPassword(emp_name, password) {
+  return db
+    .query(`SELECT * FROM employee WHERE emp_name=? and password=?`, [
+      emp_name,
+      password,
+    ])
     .then((result) => {
       return result[0];
     });
@@ -80,12 +77,25 @@ export async function getAllByEmployeeName(emp_name) {
 
 export async function getAllById(emp_id) {
   return db
-    .query(
-      `SELECT * FROM employee WHERE emp_id=?`,
-      [emp_id]
-    )
+    .query(`SELECT * FROM employee WHERE emp_id=?`, [emp_id])
     .then((result) => {
       return result[0];
+    });
+}
+
+export async function getByEmployeeCode(employeeCode) {
+  return db
+    .query(`SELECT * FROM employee WHERE emp_code=?`, [employeeCode])
+    .then((result) => {
+      return result[0][0];
+    });
+}
+
+export async function getByEmployeeUsername(username) {
+  return db
+    .query(`SELECT * FROM employee WHERE username=?`, [username])
+    .then((result) => {
+      return result[0][0];
     });
 }
 
@@ -100,13 +110,15 @@ export async function create(employee) {
     department,
     remarks,
     created_by,
+    password,
+    username,
   } = employee;
 
   return db
     .query(
-    `
-  INSERT INTO employee (emp_name, emp_code, site_master_id, contact, address, designation, department, remarks, created_by, created_date)
-  VALUES (?,?,?,?,?,?,?,?,?,?)
+      `
+  INSERT INTO employee (emp_name, emp_code, site_master_id, contact, address, designation, department, remarks, created_by, created_date, password, username)
+  VALUES (?,?,?,?,?,?,?,?,?,?,?,?)
     `,
       [
         emp_name,
@@ -119,9 +131,13 @@ export async function create(employee) {
         remarks,
         created_by,
         new Date(),
+        password,
+        username,
       ]
     )
-    .then((result) => getAllById(result[0].insertId));
+    .then((result) => {
+      return getAllById(result[0].insertId);
+    });
 }
 
 export async function update(id, employee) {
@@ -135,7 +151,6 @@ export async function update(id, employee) {
     department,
     remarks,
   } = employee;
-
   return db
     .query(
       `

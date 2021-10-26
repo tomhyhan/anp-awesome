@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { aircraftService } from 'src/app/services/master/aircraft/aircraft.service';
-import { startWith, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-aircraft',
@@ -10,41 +9,28 @@ import { startWith, tap } from 'rxjs/operators';
 })
 export class aircraftsComponent implements OnInit {
   aircraft: any = [];
+
   displayedColumns: string[] = [
     'aircraft_name',
     'remarks',
     'view'
   ];
-  aircraftCount: any;
-  filter = JSON.stringify('');
-  @ViewChild(MatPaginator) paginator: MatPaginator | any;
+  @ViewChild(MatPaginator)
+  paginator!: MatPaginator;
 
   constructor(private aircraftService: aircraftService) { }
 
 
   ngAfterViewInit(): void {
-    this.paginator.page
-      .pipe(
-        startWith(null),
-        tap(() =>
-          this.aircraftService
-            .getaircraft(
-              this.filter,
-              this.paginator.pageIndex,
-              this.paginator.pageSize
-            )
-            .subscribe((aircraft) => {
-              this.aircraft = aircraft;
-            })
-        )
-      )
-      .subscribe(() => {});
+    this.aircraftService.getaircraft().subscribe(aircraft => this.aircraft = aircraft);
+    this.aircraft.paginator = this.paginator;
   }
 
   ngOnInit(): void {
-    this.aircraftService.getaircraftCount().subscribe((count) => {
-      this.aircraftCount = count;
-    })
+    this.aircraftService.getaircraft().subscribe((aircraft) => {
+      console.log(aircraft);
+      this.aircraft = aircraft;
+    });
   }
   createTask(aircraft: any) {
     this.aircraftService
@@ -68,27 +54,5 @@ export class aircraftsComponent implements OnInit {
         this.aircraft = newaircrafts;
       });
   }
-  searchaircraft(filter: any) {
-    console.log(filter);
-    this.aircraftService.getaircraftFilterCount(filter).subscribe((count) => {
-      this.aircraftCount = count;
-    });
-    this.filter = filter;
-    this.paginator.page
-      .pipe(
-        startWith(null),
-        tap(() =>
-          this.aircraftService
-            .getaircraft(
-              this.filter,
-              this.paginator.pageIndex,
-              this.paginator.pageSize
-            )
-            .subscribe((aircraft) => {
-              this.aircraft = aircraft;
-            })
-        )
-      )
-      .subscribe(() => {});
-  }
+
 }

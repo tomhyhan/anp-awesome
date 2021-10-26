@@ -16,6 +16,8 @@ export class projectService {
 
   constructor(private http: HttpClient) {}
 
+
+
   getproject(filter: any, pageIndex: any, pageSize: any) {
     console.log(pageSize);
     return this.http.get(`${this.apiUrl}?projectFilter=${filter}&pageIndex=${pageIndex}&pageSize=${pageSize}$`);

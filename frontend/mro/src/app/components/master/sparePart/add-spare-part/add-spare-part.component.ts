@@ -10,9 +10,9 @@ import { ErrorHandlers } from 'src/app/utils/error-handler';
 })
 export class AddSparePartComponent implements OnInit {
   @Output() onCreateSparePart = new EventEmitter();
-  addSparePartForm: FormGroup | any;
+  addSparePartForm: FormGroup;
   uom: any = [];
-  errorhandlers: any;
+  errorhandlers: ErrorHandlers;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -20,7 +20,6 @@ export class AddSparePartComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log(this.uom);
     this.addSparePartForm = this.formBuilder.group({
       spare_part_code: ['', Validators.required],
       spare_part_desc: ['', Validators.required],

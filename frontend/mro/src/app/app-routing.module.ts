@@ -8,17 +8,24 @@ import { PurchaseOrderCreateComponent } from './components/purchase-order-create
 import { EmployeesComponent } from './components/master/employees/employees/employees.component';
 import { UomPartsComponent } from './components/master/uom/uom-parts/uom-parts.component';
 import { VendorsComponent } from './components/master/vendor/vendors/vendors.component';
-import { aircraftsComponent } from './components/master/aircraft/aircrafts/aircrafts.component'
+import { aircraftsComponent } from './components/master/aircraft/aircrafts/aircrafts.component';
+import { LoginComponent } from './components/login/login.component';
 
+import { AuthGuard } from './helpers/auth.guard';
 const routes: Routes = [
-  { path: 'master/spare_part', component: SparePartsComponent },
+  {
+    path: 'master/spare_part',
+    component: SparePartsComponent,
+    canActivate: [AuthGuard],
+  },
   { path: 'master/project', component: ProjectsComponent },
   { path: 'Purchase_order', component: PurchaseOrderComponent },
   { path: 'Purchase_order/create', component: PurchaseOrderCreateComponent },
   { path: 'master/employees', component: EmployeesComponent },
   { path: 'master/uom', component: UomPartsComponent },
-  { path: 'master/vendor', component:VendorsComponent},
-  { path: 'master/aircraft', component:aircraftsComponent},
+  { path: 'master/vendor', component: VendorsComponent },
+  { path: 'master/aircraft', component: aircraftsComponent },
+  { path: 'auth/login', component: LoginComponent },
 ];
 
 @NgModule({

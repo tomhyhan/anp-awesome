@@ -3,8 +3,6 @@ import * as aircraftController from '../../controllers/master/aircraftController
 
 const router = express.Router();
 
-router.get('/pages', aircraftController.getaircraftCount);
-router.get('/filterPages', aircraftController.getaircraftFilterCount);
 router.get('/', aircraftController.getAllAircraft);
 router.get('/:id', aircraftController.getById);
 router.post('/', aircraftController.postAircraft);

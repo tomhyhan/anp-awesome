@@ -11,7 +11,7 @@
       </div>
       <div class="modal-body">
         
-         <form  [formGroup]="editprojectForm" (ngSubmit)="onSubmit()">     
+         <form  [formGroup]="projectForm" (ngSubmit)="onSubmit()">     
 
           <div class="row">
             <div class="col-md-6">
@@ -26,7 +26,6 @@
               placeholder="code"
               formControlName="ProjectCode"
             />
-            <app-display-error errorMsg="This field is required" [displayError]="errorhandlers.isFieldValid('ProjectCode')" ></app-display-error>
           </div>
 
           <div class="form-group">
@@ -40,7 +39,6 @@
               id="recipient-name"
               formControlName="ProjectName"
               />
-              <app-display-error errorMsg="This field is required" [displayError]="errorhandlers.isFieldValid('ProjectName')" ></app-display-error>
             </div>
 
           <div class="form-group">

@@ -1,6 +1,6 @@
 import { ViewChild, Component, OnInit } from '@angular/core';
 import { EmployeeService } from 'src/app/services/master/employees/employee.service';
-import {MatPaginator} from '@angular/material/paginator';
+import { MatPaginator } from '@angular/material/paginator';
 import { startWith, tap } from 'rxjs/operators';
 
 @Component({
@@ -9,10 +9,20 @@ import { startWith, tap } from 'rxjs/operators';
   styleUrls: ['./employees.component.css'],
 })
 export class EmployeesComponent implements OnInit {
-  
-  displayedColumns: string[] = ["emp_id",	"emp_name", "emp_code", "site_master_id",	
-                                "contact", "address", "designation", "department",
-                                "remarks", "created_by", "created_date", "edit"];
+  displayedColumns: string[] = [
+    'emp_id',
+    'emp_name',
+    'emp_code',
+    'site_master_id',
+    'contact',
+    'address',
+    'designation',
+    'department',
+    'remarks',
+    'created_by',
+    'created_date',
+    'edit',
+  ];
   employees: any = [];
   employeeCount: any;
   filter = JSON.stringify('');
@@ -23,7 +33,7 @@ export class EmployeesComponent implements OnInit {
   ngOnInit(): void {
     this.employeeService.getEmployeeCount().subscribe((count) => {
       this.employeeCount = count;
-    })
+    });
   }
 
   ngAfterViewInit() {
@@ -46,29 +56,33 @@ export class EmployeesComponent implements OnInit {
   }
 
   createTask(employee: any) {
-    this.employeeService
-      .addEmployee(employee)
-      .subscribe((employee: any) => {
-        this.employees = [...this.employees, employee[0]];
+    this.employeeService.addEmployee(employee).subscribe((employee: any) => {
+      this.employeeService.getEmployeeCount().subscribe((count) => {
+        this.employeeCount = count;
       });
+      if (this.employees.length < this.paginator.pageSize) {
+        this.employees = [...this.employees, employee[0]];
+      }
+    });
   }
-  
-  updateEmployee(Employee: any) {
+
+  updateEmployee(employee: any) {
     this.employeeService
-      .updateEmployee(Employee.employee, Employee.id)
+      .updateEmployee(employee.employee, employee.id)
       .subscribe((updated: any) => {
-        const newEmployees = this.employees.map((Employee: any) => {
-          if (Employee.id === updated[0].id) {
+        const newEmployees = this.employees.map((employee: any) => {
+          if (employee.emp_id === updated[0].emp_id) {
             return updated[0];
           }
-          return Employee;
+          return employee;
         });
+        console.log(newEmployees);
+
         this.employees = newEmployees;
       });
   }
 
   searchEmployee(filter: any) {
-    console.log(filter);
     this.employeeService.getEmployeeFilterCount(filter).subscribe((count) => {
       this.employeeCount = count;
     });
@@ -91,4 +105,3 @@ export class EmployeesComponent implements OnInit {
       .subscribe(() => {});
   }
 }
-

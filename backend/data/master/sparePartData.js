@@ -1,5 +1,7 @@
 import { db } from '../../database/database.js';
 import { getFilterQuery } from '../../utils/sparePartFilter.js';
+import 'express-async-errors';
+
 const SELECT_JOIN = `
 SELECT sp.material_master_id, sp.spare_part_code, sp.spare_part_desc, sp.hsn_code ,sp.spare_part_group ,sp.rate ,uom.uom, sp.remarks, sp.photo, sp.created_by, sp.active_id, sp.created_date 
 FROM spare_part as sp 
@@ -11,7 +13,7 @@ export async function getAll(pageIndex, pageSize) {
   const limit = parseInt(pageSize);
   const currentPage = parseInt(pageIndex) * limit;
   return db
-    .query(`${SELECT_JOIN} LIMIT ? OFFSET ?`, [limit, currentPage])
+    .execute(`${SELECT_JOIN} LIMIT ? OFFSET ?`, [limit, currentPage])
     .then((result) => {
       return result[0];
     });
@@ -52,7 +54,7 @@ export async function getAllById(materialMasterId) {
 
 export async function getCount() {
   return db
-    .query(
+    .execute(
       `
       SELECT count(*) from spare_part
     `
@@ -66,7 +68,7 @@ export async function getFilterCount(filter) {
   const { query, queryArr } = getFilterQuery(filter);
 
   return db
-    .query(
+    .execute(
       `
       SELECT count(*) from spare_part
       ${query}

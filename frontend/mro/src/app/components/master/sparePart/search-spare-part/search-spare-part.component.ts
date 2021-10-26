@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
+import { SparePartFilter } from 'src/app/model/sparePart';
 @Component({
   selector: 'app-search-spare-part',
   templateUrl: './search-spare-part.component.html',
@@ -9,7 +9,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class SearchSparePartComponent implements OnInit {
   @Input() uom: any;
   @Output() onSearchSparePart = new EventEmitter();
-  searchSparePartForm: FormGroup | any;
+  searchSparePartForm: FormGroup;
 
   constructor(private formBuilder: FormBuilder) {}
 
@@ -39,7 +39,7 @@ export class SearchSparePartComponent implements OnInit {
     const frn_uom =
       this.isFalse(this.searchSparePartForm.value.frn_uom) || null;
 
-    const filter = {
+    const filter: SparePartFilter = {
       spare_part_code,
       spare_part_desc,
       hsn_code,
@@ -48,7 +48,6 @@ export class SearchSparePartComponent implements OnInit {
       active_id,
       frn_uom,
     };
-    console.log(filter);
 
     this.onSearchSparePart.emit(JSON.stringify(filter));
   }

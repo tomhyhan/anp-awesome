@@ -1,5 +1,5 @@
-create database inventory_dev;
-use inventory_dev;
+create database inventory_develop;
+use inventory_develop;
 
 CREATE TABLE uom (
   uom_id int NOT NULL AUTO_INCREMENT,
@@ -66,6 +66,8 @@ CREATE TABLE employee (
     remarks VARCHAR(100) NOT NULL,
     created_by VARCHAR(30) NOT NULL,
     created_date Date,
+    password varchar(100) NOT NULL,
+    username varchar(100) NOT NULL,
     PRIMARY KEY (emp_id)
 );
 

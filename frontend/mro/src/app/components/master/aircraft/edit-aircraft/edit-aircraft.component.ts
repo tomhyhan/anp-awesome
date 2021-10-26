@@ -1,7 +1,6 @@
 import { Component, OnInit,Input, Output, EventEmitter} from '@angular/core';
 import { aircraftService } from 'src/app/services/master/aircraft/aircraft.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-edit-aircraft',
@@ -14,12 +13,12 @@ export class EditaircraftComponent implements OnInit {
   editaircraftForm!: FormGroup | any;
   id: any;
 
-  constructor(private formBuilder: FormBuilder, private router: Router) { }
+  constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
     // console.log(this.aircraft)
     this.editaircraftForm = this.formBuilder.group({
-      aircraft_name: ['', Validators.required],
+      aircraft_name: '',
       remarks:'',
     });
     this.updateaircrafts();

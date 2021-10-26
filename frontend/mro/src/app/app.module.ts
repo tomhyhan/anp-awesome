@@ -61,6 +61,8 @@ import { aircraftsComponent } from './components/master/aircraft/aircrafts/aircr
 import { DisplayErrorComponent } from './components/display-error/display-error.component';
 import { LoginComponent } from './components/login/login.component';
 import { AlertComponent } from './components/alert/alert.component';
+import { SearchaircraftComponent } from './components/master/aircraft/search-aircraft/search-aircraft.component';
+
 
 // interceptors
 import { JwtInterceptor } from './helpers/jwt.interceptor';
@@ -104,6 +106,7 @@ import { AuthService } from './services/auth.service';
     aircraftsComponent,
     EditaircraftComponent,
     AddaircraftComponent,
+    SearchaircraftComponent,
     DisplayErrorComponent,
     LoginComponent,
     AlertComponent,

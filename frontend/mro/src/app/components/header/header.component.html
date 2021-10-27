@@ -1,7 +1,7 @@
 <header>
 
-    <nav class="navbar navbar-expand-md navbar-light bg-light">
-        <a href='/'><img src="/assets/image/Company-logo.png	"  alt="Responsive image" width="160" /></a>
+    <nav class="navbar navbar-expand-md navbar-light">
+        <a href='/'><img src="/assets/image/Company-logo.png"  alt="Responsive image" width="160" /></a>
         <button class="navbar-toggler" type="button" aria-controls="navbarContent" [attr.aria-expanded]="!collapsed" aria-label="Toggle navigation" (click)="collapsed = !collapsed">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -40,8 +40,8 @@
             <ng-template #thenBlock>
               <li *ngIf="employee" class="nav-item1" ngbDropdown>
                 <a class="nav-link" tabindex="1" ngbDropdownToggle id="navbarDropdown1" role="button">
-                <img src="/assets/image/user_photo.jpg" width="40" height="40" class="rounded">
-                <b>{{ employee.username}}</b></a>
+                <img src="/assets/image/user_photo.jpg" width="40" height="40" class="rounded"> 
+                <b>&nbsp;{{ employee.username}}</b></a>
                 <div ngbDropdownMenu aria-labelledby="navbarDropdown1" class="dropdown-menu">
                   <a ngbDropdownItem routerLink="#" routerLinkActive="deActive" (click)="$event.preventDefault()">Edit Profile</a>
                   <div class="dropdown-divider"></div>

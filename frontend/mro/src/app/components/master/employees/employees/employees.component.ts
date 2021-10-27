@@ -19,8 +19,8 @@ export class EmployeesComponent implements OnInit {
     'designation',
     'department',
     'remarks',
-    'created_by',
-    'created_date',
+    'username',
+    'password',
     'edit',
   ];
   employees: any = [];
@@ -77,7 +77,6 @@ export class EmployeesComponent implements OnInit {
           return employee;
         });
         console.log(newEmployees);
-
         this.employees = newEmployees;
       });
   }

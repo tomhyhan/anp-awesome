@@ -57,6 +57,7 @@ onSubmit() {
         designation: this.employeeForm.value.designation,
         department: this.employeeForm.value.department,
         remarks: this.employeeForm.value.remarks,
+        modified_by: 2,
       }
     }
     this.onUpdateEmployee.emit({

@@ -64,8 +64,9 @@ CREATE TABLE employee (
     designation VARCHAR(30) NOT NULL,
     department VARCHAR(30) NOT NULL,
     remarks VARCHAR(100) NOT NULL,
-    created_by VARCHAR(30) NOT NULL,
-    created_date Date,
+    created_by INT NOT NULL,
+    modified_by INT NOT NULL,
+    last_modified_date Date,
     password varchar(100) NOT NULL,
     username varchar(100) NOT NULL,
     PRIMARY KEY (emp_id)

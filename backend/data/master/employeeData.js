@@ -64,6 +64,17 @@ export async function getAllByEmployeeName(emp_name) {
     });
 }
 
+export async function getAllByUsernameAndPassword(emp_name, password) {
+  return db
+    .query(`SELECT * FROM employee WHERE emp_name=? and password=?`, [
+      emp_name,
+      password,
+    ])
+    .then((result) => {
+      return result[0];
+    });
+}
+
 export async function getAllById(emp_id) {
   return db
     .query(`SELECT * FROM employee WHERE emp_id=?`, [emp_id])

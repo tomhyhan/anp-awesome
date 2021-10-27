@@ -27,12 +27,13 @@ export async function login(req, res) {
 }
 
 export async function me(req, res) {
+  console.log(req.emp_id);
   const employee = await userData.getAllById(req.emp_id);
-  if (!user) {
-    res.status(404).json({ message: 'User not found' });
-  }
-  console.log('asdf');
-  res.status(200).json({ token: req.token, username: employee.username });
+  // if (!req.token) {
+  //   res.status(404).json({ message: 'Unauthorized' });
+  // }
+
+  res.status(200).json({ token: req.token, username: employee[0].username });
 }
 
 export async function logout(req, res) {

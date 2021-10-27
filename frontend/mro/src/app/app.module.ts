@@ -127,15 +127,15 @@ import { AuthService } from './services/auth.service';
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    {
+      provide: APP_INITIALIZER,
+      useFactory: appInitializer,
+      multi: true,
+      deps: [AuthService],
+    },
   ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
 
 //  Maybe later
-// {
-//   provide: APP_INITIALIZER,
-//   useFactory: appInitializer,
-//   multi: true,
-//   deps: [AuthService],
-// },

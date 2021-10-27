@@ -21,7 +21,7 @@ const httpOptions = {
 })
 export class AuthService {
   private apiURL: string = '/auth/login';
-  private employeeSubject: BehaviorSubject<any>;
+  public employeeSubject: BehaviorSubject<any>;
   public employee: Observable<any>;
 
   constructor(private router: Router, private http: HttpClient) {

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Employee View</title>
+</head>
+<body>
+    <form name="search_emp" action="#" style="text-align: center; margin:20px">
+        <label for="emp_code">Employee Code</label>
+        <input type="text"></input>
+        <label for="emp_name">Employee Name</label>
+        <input type="text"></input>
+        <label for="records_per_page">Records Per Page</label>
+        <select>
+            <option>10</option>
+            <option>20</option>
+            <option>30</option>
+            <option>50</option>
+        </select>
+        <button type="submit"><i class="fa fa-search"></i> Search</button>
+        <button type="submit" function=""><i class="fa fa-refresh"></i> Reset</button>
+    </form>
+    <table name="emp_table" class="table table-hover" style="max-width:80%; margin-left:auto;margin-right:auto;">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">S.No</th>
+                <th scope="col">Employee Code</th>
+                <th scope="col">Employee Name</th>
+                <th scope="col">Department</th>
+                <th scope="col">Designation</th>
+                <th scope="col">Offcial Emails</th>
+                <th scope="col">Mobile No</th>
+                <th scope="col">Manger</th>
+                <th scope="col">Status</th>
+                <th scope="col">View</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>5609</td>
+                <td>KRISHAN KUMAR</td>
+                <td>P&M</td>
+                <td>MECH.FOREMAN</td>
+                <td>KRISHARN.ACIL@GMAIL.COM</td>
+                <td>9990939247</td>
+                <td>SUSHIL KUMAR</td>
+                <td style="color:rgb(126, 204, 126);">Active</td>
+                <td><i class="fa fa-eye"></i></td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>ACL100</td>
+                <td>Admin</td>
+                <td>P&M</td>
+                <td>MECH.FOREMAN</td>
+                <td>foreman@acil.com</td>
+                <td>88754643434</td>
+                <td>NANDAN ORAON</td>
+                <td style="color:rgb(126, 204, 126);">Active</td>
+                <td><i class="fa fa-eye"></i></td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>ACL09817</td>
+                <td>DEEPAK KUMAR</td>
+                <td>MECHANICAL</td>
+                <td>MECH.FOREMAN</td>
+                <td>qq</td>
+                <td>9518138008</td>
+                <td>CHARANJEET SINGH WALIYA</td>
+                <td style="color:rgb(126, 204, 126);">Active</td>
+                <td><i class="fa fa-eye"></i></td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>ACL09252</td>
+                <td>SHALENDER</td>
+                <td>MECHANICAL</td>
+                <td>MECH.FOREMAN</td>
+                <td>qq</td>
+                <td>7827311602</td>
+                <td>CHARANJEET SINGH WALIYA</td>
+                <td style="color:red;">Inctive</td>
+                <td><i class="fa fa-eye"></i></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

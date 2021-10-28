@@ -2,6 +2,7 @@ import { ViewChild, Component, OnInit } from '@angular/core';
 import { EmployeeService } from 'src/app/services/master/employees/employee.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { startWith, tap } from 'rxjs/operators';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-employees',
@@ -26,9 +27,17 @@ export class EmployeesComponent implements OnInit {
   employees: any = [];
   employeeCount: any;
   filter = JSON.stringify('');
+  employee: any;
   @ViewChild(MatPaginator) paginator: MatPaginator | any;
 
-  constructor(private employeeService: EmployeeService) {}
+  constructor(
+    private employeeService: EmployeeService,
+    private authService: AuthService
+  ) {
+    this.authService.employee.subscribe(
+      (employee) => (this.employee = employee)
+    );
+  }
 
   ngOnInit(): void {
     this.employeeService.getEmployeeCount().subscribe((count) => {

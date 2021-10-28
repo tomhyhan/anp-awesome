@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ErrorHandlers } from 'src/app/utils/error-handler';
-
+import { AuthService } from 'src/app/services/auth.service';
 @Component({
   selector: 'app-add-employee',
   templateUrl: './add-employee.component.html',
@@ -11,8 +11,16 @@ export class AddEmployeeComponent implements OnInit {
   @Output() onCreateEmployee = new EventEmitter();
   addEmployeeForm: FormGroup | any;
   errorhandlers: any;
+  employee: any;
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private authService: AuthService
+  ) {
+    this.authService.employee.subscribe(
+      (employee) => (this.employee = employee)
+    );
+  }
   //  Validators.pattern(`^[0-9]+`) NOT WORKING ???
   ngOnInit(): void {
     this.addEmployeeForm = this.formBuilder.group({

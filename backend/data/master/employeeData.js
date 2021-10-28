@@ -64,14 +64,12 @@ export async function getAllByEmployeeName(emp_name) {
     });
 }
 
-export async function getAllByUsernameAndPassword(emp_name, password) {
+export async function getAllByUsernameAndPassword(username) {
   return db
-    .query(`SELECT * FROM employee WHERE emp_name=? and password=?`, [
-      emp_name,
-      password,
-    ])
+    .query(`SELECT * FROM employee WHERE username=? and password=?`, [username])
     .then((result) => {
-      return result[0];
+      console.log(result[0]);
+      return result[0][0];
     });
 }
 
@@ -95,7 +93,7 @@ export async function getByEmployeeUsername(username) {
   return db
     .query(`SELECT * FROM employee WHERE username=?`, [username])
     .then((result) => {
-      return result[0][0];
+      return result[0];
     });
 }
 

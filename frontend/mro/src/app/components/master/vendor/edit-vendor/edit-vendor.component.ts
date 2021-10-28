@@ -2,6 +2,8 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { VendorService } from 'src/app/services/master/vendor/vendor.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ErrorHandlers } from 'src/app/utils/error-handler'
+
 
 @Component({
   selector: 'app-edit-vendor',
@@ -11,8 +13,9 @@ import { Router } from '@angular/router';
 export class EditVendorComponent implements OnInit {
   @Output() onUpdateVendor = new EventEmitter();
   @Input() vendor: any;
-  editVendorForm!: FormGroup | any;
+  editVendorForm: FormGroup | any;
   id: any;
+  errorhandlers: any;
 
   constructor(private formBuilder: FormBuilder, private router: Router) {}
 
@@ -26,6 +29,7 @@ export class EditVendorComponent implements OnInit {
       remarks: '',
     });
     this.updateVendors();
+    this.errorhandlers = new ErrorHandlers(this.editVendorForm);
   }
 
   updateVendors() {
@@ -40,20 +44,24 @@ export class EditVendorComponent implements OnInit {
   }
 
   onSubmit() {
-    const updateVendor = {
-      vendor: {
-        vendor_code: this.editVendorForm.value.vendor_code,
-        vendor_name: this.editVendorForm.value.vendor_name,
-        contact: this.editVendorForm.value.contact,
-        address: this.editVendorForm.value.address,
-        remarks: this.editVendorForm.value.remarks,
-        created_by: 'hosung',
-      },
-    };
-    // console.log(updateVendor)
-    this.onUpdateVendor.emit({
-      vendor: updateVendor,
-      id: this.vendor.vendor_id,
-    });
-  }
+    if (this.editVendorForm.valid) {
+      const updateVendor = {
+        vendor: {
+          vendor_code: this.editVendorForm.value.vendor_code,
+          vendor_name: this.editVendorForm.value.vendor_name,
+          contact: this.editVendorForm.value.contact,
+          address: this.editVendorForm.value.address,
+          remarks: this.editVendorForm.value.remarks,
+          created_by: 'hosung',
+        },
+      };
+      // console.log(updateVendor)
+      this.onUpdateVendor.emit({
+        vendor: updateVendor,
+        id: this.vendor.vendor_id,
+    })
+  } else {
+    this.errorhandlers.showErrors();
+
+  }}
 }

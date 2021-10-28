@@ -24,7 +24,7 @@
                     placeholder="Code"
                     formControlName="vendor_code"
                   />
-                  <small *ngIf="VendorCode.invalid && VendorCode.touched" class="text-danger">Vendor Code is Required</small>
+                  <app-display-error errorMsg="This field is required" [displayError]="errorhandlers.isFieldValid('vendor_code')" ></app-display-error>
                 </div>
                 
                 <div class="form-group">
@@ -37,7 +37,7 @@
                     id="recipient-name"
                     formControlName="vendor_name"
                     />
-                    <small *ngIf="VendorName.invalid && VendorName.touched" class="text-danger">Vendor Name is Required</small> 
+                    <app-display-error errorMsg="This field is required" [displayError]="errorhandlers.isFieldValid('vendor_name')" ></app-display-error> 
                   </div>
 
                 <div class="form-group">
@@ -50,7 +50,7 @@
                     id="recipient-name"
                     formControlName="contact"
                     />
-                    <small *ngIf="Contact.invalid && Contact.touched" class="text-danger">Contact is Required</small> 
+                    <app-display-error errorMsg="This field is required" [displayError]="errorhandlers.isFieldValid('contact')" ></app-display-error> 
                 </div>
             </div>
             
@@ -66,7 +66,7 @@
                   id="recipient-name"
                   formControlName="address"
                   />
-                  <small *ngIf="Address.invalid && Address.touched" class="text-danger">Address is Required</small> 
+                  <app-display-error errorMsg="This field is required" [displayError]="errorhandlers.isFieldValid('address')" ></app-display-error> 
               </div>
 
               <div class="form-group">

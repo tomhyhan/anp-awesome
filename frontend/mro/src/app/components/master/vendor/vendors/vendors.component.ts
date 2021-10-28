@@ -68,8 +68,13 @@ export class VendorsComponent implements OnInit {
     this.vendorService
       .addVendor(vendor)
       .subscribe((vendor: any) => {
-        this.vendor = [...this.vendor, vendor[0]];
+        this.vendorService.getVendorCount().subscribe((count) => {
+          this.vendorCount = count;
       });
+      if (this.vendor.length < this.paginator.pageSize) {
+        this.vendor = [...this.vendor, vendor[0]];
+      }
+    });
   }
 
   updateVendor(Vendor: any) {

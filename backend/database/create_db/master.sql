@@ -10,7 +10,6 @@ CREATE TABLE uom (
   PRIMARY KEY (uom_id)
 );
 
-
 CREATE TABLE spare_part (
   material_master_id INTEGER PRIMARY KEY AUTO_INCREMENT,
   spare_part_code VARCHAR(100),     
@@ -40,8 +39,6 @@ CREATE TABLE project (
   
 );
 
-
-
 CREATE TABLE vendor (
 	vendor_id INT NOT NULL AUTO_INCREMENT,
     vendor_name VARCHAR(45) NOT NULL,
@@ -65,7 +62,7 @@ CREATE TABLE employee (
     department VARCHAR(30) NOT NULL,
     remarks VARCHAR(100) NOT NULL,
     created_by INT NOT NULL,
-    modified_by INT NOT NULL,
+    modified_by INT,
     last_modified_date Date,
     password varchar(100) NOT NULL,
     username varchar(100) NOT NULL,

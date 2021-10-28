@@ -115,7 +115,7 @@ export async function create(employee) {
   return db
     .query(
       `
-  INSERT INTO employee (emp_name, emp_code, site_master_id, contact, address, designation, department, remarks, created_by, created_date, password, username)
+  INSERT INTO employee (emp_name, emp_code, site_master_id, contact, address, designation, department, remarks, created_by, last_modified_date, password, username)
   VALUES (?,?,?,?,?,?,?,?,?,?,?,?)
     `,
       [
@@ -148,6 +148,7 @@ export async function update(id, employee) {
     designation,
     department,
     remarks,
+    modified_by,
   } = employee;
   return db
     .query(
@@ -162,6 +163,8 @@ export async function update(id, employee) {
     designation=?,
     department=?,
     remarks=?
+    modified_by=?
+    last_modified_date=?
   WHERE
     emp_id=?
     `,
@@ -174,6 +177,8 @@ export async function update(id, employee) {
         designation,
         department,
         remarks,
+        modified_by,
+        new Date(),
         id,
       ]
     )

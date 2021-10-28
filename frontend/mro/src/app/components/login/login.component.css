@@ -1,0 +1,38 @@
+.login {
+    width: 40vw;
+    height: 55vh;
+    background-color: white;
+    border-radius: 7px;
+    box-shadow: 0px 0px 5px 2px grey;
+    display: block;
+    margin: auto;
+    margin-top: 9vh;
+    margin-bottom: 9vh;
+}
+
+#login-backimg{
+    background: url('/assets/image/factory_background.jpg'); 
+    height: 20vh; 
+    background-size: 100vh;
+}
+
+.login-h1 {
+    text-align: center;
+    margin: 15px;
+}
+
+.login-form {
+    margin: 10px 30px;
+    height: 45%;
+}
+
+.login-forgot {
+    float: right;
+    font-size: 0.8rem;
+    margin-right: 5px;
+}
+
+#login-btn {
+    position: absolute;
+    bottom: 10;
+}

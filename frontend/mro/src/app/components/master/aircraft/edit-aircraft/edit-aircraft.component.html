@@ -1,4 +1,4 @@
-<button type="button" class="btn btn-primary button" data-toggle="modal"  attr.data-target="#{{ aircraft.material_aircraft_id }}" data-whatever="@getbootstrap" data-backdrop="false"><i class="fa fa-edit"></i></button>
+<button id="main-button-add_aircraft" type="button" class="btn btn-primary button" data-toggle="modal"  attr.data-target="#{{ aircraft.material_aircraft_id }}" data-whatever="@getbootstrap" data-backdrop="false"><i class="fa fa-edit"></i></button>
 
 <div class="modal fade" attr.id="{{ aircraft.material_aircraft_id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -15,6 +15,7 @@
             <div class="form-group col-md-6">
               <label for="aircraft_name">aircraft name</label>
               <input formControlName="aircraft_name" type="text" class="form-control" id="aircraft_name" placeholder="aircraft Name">
+              <app-display-error errorMsg="This field is required" [displayError]="errorhandlers.isFieldValid('aircraft_name')" ></app-display-error>
             </div>
             <div class="form-group col-md-6">
               <label for="remarks">Remarks</label>
@@ -24,7 +25,7 @@
           <div class="form-row">
           </div>
             
-          <button type="submit" class="btn btn-primary">Update</button>
+          <button id="main-button-add_aircraft" type="submit" class="button-update">Update</button>
         </form>
       </div>
     </div>

@@ -1,6 +1,6 @@
-#main-section-namepageline {
+/* #main-section-namepageline {
     margin-top: 20px;
-}
+} */
 
 .top {
     display: grid;
@@ -42,4 +42,3 @@ color: white;
     align-self: end;
     margin-bottom: 10px;
 }
-

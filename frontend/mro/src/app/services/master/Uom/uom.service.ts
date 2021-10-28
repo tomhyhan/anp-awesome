@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -29,8 +28,8 @@ export class UomService {
     return this.http.post(this.apiUrl, uom, httpOptions);
   }
 
-  updateUomPart(uom: any, id: any) {
-    return this.http.put(`${this.apiUrl}/${id}`, uom, httpOptions);
+  updateUomPart(uoms: any, id: any) {
+    return this.http.put(`${this.apiUrl}/${id}`, uoms, httpOptions);
   }
 
   getUomCount() {

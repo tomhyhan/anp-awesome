@@ -22,7 +22,7 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(
   cors({
-    origin: 'http://localhost:8500',
+    origin: 'http://localhost:4200',
     credentials: true,
     optionsSuccessStatus: 200,
   })

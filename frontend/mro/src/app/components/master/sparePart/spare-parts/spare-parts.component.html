@@ -1,14 +1,14 @@
 <section id="main-section-namepageline">
-  <h1 style="text-align:center;">Spare Part</h1>
+  <h1 style="text-align:center; font-weight:700">Spare Part</h1>
 </section>
 
 <section class="ml-3 mr-3 pt-0 mt-0" style="background-color: white">
-  <div class="top">
+  <div class="row ml-1 align-items-center">
     <app-search-spare-part [uom]="uom" (onSearchSparePart)="searchSparePart($event)"></app-search-spare-part>
     <app-add-spare-part id="add-button" (onCreateSparePart)="createTask($event)"></app-add-spare-part> 
   </div>
   <div class="spare-part__table">
-   <table mat-table [dataSource]="spareParts" class="mat-elevation-z1 demo-table">
+   <table mat-table [dataSource]="spareParts" class="demo-table">
      <!-- Position Column -->
      <ng-container matColumnDef="spare_part_code">
          <th mat-header-cell *matHeaderCellDef>Spare Part Code</th>

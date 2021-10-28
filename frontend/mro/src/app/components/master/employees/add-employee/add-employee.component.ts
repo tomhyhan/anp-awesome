@@ -33,7 +33,6 @@ export class AddEmployeeComponent implements OnInit {
       department: ['', Validators.required],
       remarks: [''],
       created_by: [''],
-      created_date: [''],
       username: ['', Validators.required],
       password: ['', Validators.required],
     });
@@ -52,7 +51,7 @@ export class AddEmployeeComponent implements OnInit {
           designation: this.addEmployeeForm.value.designation,
           department: this.addEmployeeForm.value.department,
           remarks: this.addEmployeeForm.value.remarks,
-          created_by: 'Inggy',
+          created_by: 1,
           password: this.addEmployeeForm.value.password,
           username: this.addEmployeeForm.value.username,
         },

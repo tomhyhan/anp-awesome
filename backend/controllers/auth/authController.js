@@ -6,34 +6,46 @@ import { config } from '../../config.js';
 export async function login(req, res) {
   const { username, password } = req.body;
 
-  const hash = await authUtil.hashPassword(password);
-  const employee = await userData.getByEmployeeCode(username, hash);
-  if (!employee) {
+  const employees = await userData.getByEmployeeUsername(username);
+
+  if (!employees) {
     return res.status(401).json({ message: 'Username or Password is Invalid' });
   }
 
-  const isValidPassword = await authUtil.comeparePassword(
-    password,
-    employee.password
-  );
-  if (!isValidPassword) {
+  let isValidPassword;
+  let currentEmployee;
+  for (const employee of employees) {
+    isValidPassword = await authUtil.comeparePassword(
+      password,
+      employee.password
+    );
+    if (isValidPassword) {
+      currentEmployee = employee;
+      break;
+    }
+  }
+
+  if (!currentEmployee) {
     return res.status(401).json({ message: 'Username or Password is Invalid' });
   }
 
-  const token = await authUtil.createJWT(employee.emp_id);
+  const token = await authUtil.createJWT(currentEmployee.emp_id);
   await authUtil.generateCookie(res, token);
 
-  res.status(200).json({ token, username });
+  res.status(200).json({ token, username, emp_id: currentEmployee.emp_id });
 }
 
 export async function me(req, res) {
-  console.log(req.emp_id);
   const employee = await userData.getAllById(req.emp_id);
-  // if (!req.token) {
-  //   res.status(404).json({ message: 'Unauthorized' });
-  // }
+  if (!req.token) {
+    res.status(404).json({ message: 'Unauthorized' });
+  }
 
-  res.status(200).json({ token: req.token, username: employee[0].username });
+  res.status(200).json({
+    token: req.token,
+    username: employee[0].username,
+    emp_id: employee[0].emp_id,
+  });
 }
 
 export async function logout(req, res) {

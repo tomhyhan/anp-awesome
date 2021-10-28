@@ -16,6 +16,11 @@ export const isAuth = async (req, res, next) => {
     token = req.cookies['token'];
   }
 
+  // user has no token
+  if (token == null) {
+    res.status(204).json({});
+  }
+
   if (!token) {
     res.status(401).json(auth_err);
   }

@@ -10,7 +10,6 @@ CREATE TABLE uom (
   PRIMARY KEY (uom_id)
 );
 
-
 CREATE TABLE spare_part (
   material_master_id INTEGER PRIMARY KEY AUTO_INCREMENT,
   spare_part_code VARCHAR(100),     
@@ -41,8 +40,6 @@ CREATE TABLE project (
   created_date Date
   
 );
-
-
 
 CREATE TABLE vendor (
 	vendor_id INT NOT NULL AUTO_INCREMENT,

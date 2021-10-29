@@ -11,14 +11,13 @@ export const isAuth = async (req, res, next) => {
   if (authHeader && authHeader.startsWith('Bearer ')) {
     token = authHeader.split(' ')[1];
   }
-
   if (!token) {
     token = req.cookies['token'];
   }
-
+  console.log(token);
   // user has no token
-  if (token == null) {
-    res.status(204).json({});
+  if (token == null || token == '') {
+    return res.status(204).json();
   }
 
   if (!token) {

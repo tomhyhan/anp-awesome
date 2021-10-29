@@ -22,8 +22,10 @@ CREATE TABLE spare_part (
   remarks VARCHAR(100),             
   active_id INTEGER DEFAULT 1,
   photo VARCHAR(255),               
-  created_by VARCHAR(100),         
+  created_by INT NOT NULL,         
   created_date Date,
+  modified_by INT,
+  modified_data Date,
   KEY `frn_spare_part_uom_idx` (`frn_uom`),
   CONSTRAINT `frn_spare_part_uom` FOREIGN KEY (`frn_uom`) REFERENCES `uom` (`uom_id`)
 );
@@ -65,7 +67,7 @@ CREATE TABLE employee (
     department VARCHAR(30) NOT NULL,
     remarks VARCHAR(100) NOT NULL,
     created_by INT NOT NULL,
-    modified_by INT NOT NULL,
+    modified_by INT,
     last_modified_date Date,
     password varchar(100) NOT NULL,
     username varchar(100) NOT NULL,

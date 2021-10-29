@@ -1,6 +1,7 @@
 import { NULL_EXPR } from '@angular/compiler/src/output/output_ast';
-import { Component, OnInit,Output, EventEmitter, ErrorHandler } from '@angular/core';
+import { Component, OnInit,Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ErrorHandlers } from 'src/app/utils/error-handler';
 
 @Component({
   selector: 'app-add-aircraft',
@@ -19,9 +20,10 @@ export class AddaircraftComponent implements OnInit {
       aircraft_name: ['', Validators.required],
       remarks: '',
     });
-    this.errorhandlers = new this.errorhandlers(this.addaircraftForm)
+    this.errorhandlers = new ErrorHandlers(this.addaircraftForm)
   }
   onSubmit() {
+    if(this.addaircraftForm.valid){
     const aircraft = {
       aircraft: {
         aircraft_name: this.addaircraftForm.value.aircraft_name,
@@ -31,6 +33,10 @@ export class AddaircraftComponent implements OnInit {
     };
     console.log(aircraft)
     this.onCreateaircraft.emit(aircraft);
+    this.addaircraftForm.reset();
+  } else{
+    this.errorhandlers.showErrors();
+  }
   }
   get aircraftName() {
     return this.addaircraftForm.get('aircraft_name');

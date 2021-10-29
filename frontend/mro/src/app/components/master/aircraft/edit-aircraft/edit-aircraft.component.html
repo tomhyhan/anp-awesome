@@ -15,7 +15,7 @@
             <div class="form-group col-md-6">
               <label for="aircraft_name">aircraft name</label>
               <input formControlName="aircraft_name" type="text" class="form-control" id="aircraft_name" placeholder="aircraft Name">
-              <small *ngIf="editaircraftForm.get('aircraft_name')?.errors?.required" class="text-danger">Aircraft Name is Required</small> 
+              <app-display-error errorMsg="This field is required" [displayError]="errorhandlers.isFieldValid('aircraft_name')" ></app-display-error>
             </div>
             <div class="form-group col-md-6">
               <label for="remarks">Remarks</label>

@@ -15,8 +15,16 @@ export const config = {
     user: required('MYSQL_USER'),
     password: required('MYSQL_PASSWORD', ''),
     database: required('MYSQL_DATABASE'),
+    port: 3306
   },
   host: {
     port: required('PORT', 8080),
+  },
+  jwt: {
+    key: required('JWT_KEY'),
+    expiresIn: required('EXPIRESIN'),
+  },
+  bcrypt: {
+    saltrounds: parseInt(required('SALTROUND')),
   },
 };

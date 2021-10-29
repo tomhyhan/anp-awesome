@@ -35,14 +35,16 @@ CREATE TABLE spare_part (
 
 CREATE TABLE project (
   project_master_id INTEGER PRIMARY KEY AUTO_INCREMENT,
-  project_name VARCHAR(100),     
-  project_code VARCHAR(100),     
-  remarks VARCHAR(100),             
-  active_id INTEGER DEFAULT 1,      
-  created_by VARCHAR(100), 
-  end_date Date,        
-  created_date Date
-  
+  project_name VARCHAR(100) NOT NULL,     
+  project_code VARCHAR(100) NOT NULL,     
+  remarks VARCHAR(100),           
+  active_id INTEGER DEFAULT 1,     
+  created_by VARCHAR(100) NOT NULL,
+  star_date Date NOT NULL,
+  end_date Date NOT NULL,        
+  created_date Date NOT NULL,
+  modified_by INT,
+  last_modified_date Date
 );
 
 CREATE TABLE vendor (

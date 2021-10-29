@@ -4,6 +4,7 @@ import { ErrorHandlers } from 'src/app/utils/error-handler';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { first } from 'rxjs/operators';
+import { AlertService } from 'src/app/services/alert/alert.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -16,7 +17,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private alertService: AlertService
   ) {}
 
   ngOnInit(): void {
@@ -32,6 +34,7 @@ export class LoginComponent implements OnInit {
     const userData = {
       ...this.loginForm.value,
     };
+    this.alertService.clear();
 
     if (this.loginForm.valid) {
       this.authService
@@ -39,6 +42,9 @@ export class LoginComponent implements OnInit {
         .pipe(first())
         .subscribe({
           next: () => {
+            this.alertService.success('Logged in Success!', {
+              autoClose: true,
+            });
             this.router.navigateByUrl('/');
           },
           error: (err) => {

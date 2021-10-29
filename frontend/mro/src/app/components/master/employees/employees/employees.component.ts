@@ -21,7 +21,6 @@ export class EmployeesComponent implements OnInit {
     'department',
     'remarks',
     'username',
-    'password',
     'edit',
   ];
   employees: any = [];

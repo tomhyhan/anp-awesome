@@ -28,23 +28,26 @@
               <a routerLink="#" class="nav-link" tabindex="1" id="navbarDropdown3" role="button"><b>Contact</b></a>
             </li>
       
-            <li class="nav-item active px-1">
+            <!-- <li class="nav-item active px-1">
               <i class="fa fa-book" style="font-size:36px"></i>
-            </li>
-            <li class="nav-item">
+            </li> -->
+            <!-- <li class="nav-item">
               <i class="fa fa-bell px-1" style="font-size:36px"></i>
       
             </li>
             <li class="nav-item">
               <i class="fa fa-bars px-1" style="font-size:36px"></i>
-            </li>
+            </li> -->
+            
+
             <div *ngIf="employee; then thenBlock else elseBlock"></div>
             <ng-template #thenBlock>
-              <li *ngIf="employee" class="nav-item" ngbDropdown>
+              <li *ngIf="employee" class="nav-item profile" ngbDropdown>
                 <a class="nav-link" tabindex="1" ngbDropdownToggle id="navbarDropdown1" role="button"><b>{{ employee.username}}</b></a>
                 <div ngbDropdownMenu aria-labelledby="navbarDropdown1" class="dropdown-menu">
                   <a ngbDropdownItem  (click)="logout()">Logout</a>
                 </div>
+                <img style="border-radius:50%" width="35" height="35" src="https://ui-avatars.com/api/?background=random&name={{employee.username}}" alt="profile" >
               </li>
             </ng-template>
             <ng-template #elseBlock>

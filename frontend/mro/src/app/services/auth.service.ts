@@ -7,6 +7,7 @@ import { map, finalize } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
 import { environment } from 'src/environments/environment';
+import { AuthData } from '../model/auth';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -14,18 +15,17 @@ const httpOptions = {
   }),
 };
 
-// NEED TO DECIDE THE TYPE OF EMPLOYEE AND NOT USE ANY
-
+type Employee = AuthData | null;
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   private apiURL: string = '/auth/login';
-  public employeeSubject: BehaviorSubject<any>;
-  public employee: Observable<any>;
+  public employeeSubject: BehaviorSubject<Employee>;
+  public employee: Observable<Employee>;
 
   constructor(private router: Router, private http: HttpClient) {
-    this.employeeSubject = new BehaviorSubject<any>(null);
+    this.employeeSubject = new BehaviorSubject<Employee>(null);
     this.employee = this.employeeSubject.asObservable();
   }
 
@@ -41,7 +41,7 @@ export class AuthService {
         withCredentials: true,
       })
       .pipe(
-        map((employee) => {
+        map((employee: any) => {
           this.employeeSubject.next(employee);
           console.log('employee data');
           console.log(this.employeeSubject.value);
@@ -56,7 +56,7 @@ export class AuthService {
     return this.http
       .post('http://localhost:8080/auth/me', {}, { withCredentials: true })
       .pipe(
-        map((employee) => {
+        map((employee: any) => {
           this.employeeSubject.next(employee);
           return employee;
         })

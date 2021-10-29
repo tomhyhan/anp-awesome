@@ -14,13 +14,14 @@ export class EditEmployeeComponent implements OnInit {
   id: any;
   errorhandlers: any;
   currentEmployee: any;
+  user: any;
 
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService
   ) {
     this.authService.employee.subscribe(
-      (employee) => (this.currentEmployee = employee)
+      (employee) => (this.user = employee)
     );
   }
 
@@ -64,7 +65,7 @@ export class EditEmployeeComponent implements OnInit {
           designation: this.employeeForm.value.designation,
           department: this.employeeForm.value.department,
           remarks: this.employeeForm.value.remarks,
-          modified_by: 2,
+          modified_by: this.user.username,
         },
       };
       this.onUpdateEmployee.emit({

@@ -44,7 +44,7 @@ export class HttpClientHelper {
     const options = {
       params: paramsOptions,
       headers: headersOption,
-      withCredentials:true,
+      withCredentials: true,
     };
     return this.http
       .get<any[]>(`${baseURL}${url}`, options)
@@ -52,28 +52,31 @@ export class HttpClientHelper {
   }
 
   post(url: string, body: {}, headers: any) {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        ...headers,
-        'Content-Type': 'application/json',
-      }),
+    const headersOption = new HttpHeaders({
+      ...headers,
+      'Content-Type': 'application/json',
+    });
+    const options = {
+      headers: headersOption,
+      withCredentials: true,
     };
 
-    console.log(body);
     return this.http
-      .post<any[]>(`${baseURL}${url}`, body, httpOptions)
+      .post<any[]>(`${baseURL}${url}`, body, options)
       .pipe(catchError(this.handleError));
   }
 
   put(url: string, body: {}, headers: any) {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        ...headers,
-        'Content-Type': 'application/json',
-      }),
+    const headersOption = new HttpHeaders({
+      ...headers,
+      'Content-Type': 'application/json',
+    });
+    const options = {
+      headers: headersOption,
+      withCredentials: true,
     };
     return this.http
-      .put<any[]>(`${baseURL}${url}`, body, httpOptions)
+      .put<any[]>(`${baseURL}${url}`, body, options)
       .pipe(catchError(this.handleError));
   }
 

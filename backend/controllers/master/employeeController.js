@@ -60,8 +60,6 @@ export async function addEmployee(req, res) {
     password: hash,
   };
   const newEmployee = await employeeData.create(hashedEmployee);
-  console.log('NEW');
-  console.log(newEmployee);
   res.status(201).json(newEmployee);
 }
 

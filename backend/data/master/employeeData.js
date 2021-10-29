@@ -23,7 +23,6 @@ export async function getAllByFilter(filter, pageIndex, pageSize) {
   const limit = parseInt(pageSize);
   const currentPage = parseInt(pageIndex) * limit;
   const { query, queryArr } = getFilterQuery(filter);
-  console.log(filter);
 
   return db
     .query(
@@ -68,7 +67,6 @@ export async function getAllByUsernameAndPassword(username) {
   return db
     .query(`SELECT * FROM employee WHERE username=? and password=?`, [username])
     .then((result) => {
-      console.log(result[0]);
       return result[0][0];
     });
 }

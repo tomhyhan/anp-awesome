@@ -24,8 +24,12 @@ CREATE TABLE spare_part (
   created_by INT NOT NULL,         
   created_date Date,
   modified_by INT,
-  modified_data Date,
+  modified_date Date,
   KEY `frn_spare_part_uom_idx` (`frn_uom`),
+  KEY `frn_spare_part_employee_idx` (`created_by`),
+  KEY `frn_modified_part_employee_idx` (`modified_by`),
+  CONSTRAINT `frn_modified_part_employee` FOREIGN KEY (`modified_by`) REFERENCES `employee` (`emp_id`),
+  CONSTRAINT `frn_spare_part_employee` FOREIGN KEY (`created_by`) REFERENCES `employee` (`emp_id`),
   CONSTRAINT `frn_spare_part_uom` FOREIGN KEY (`frn_uom`) REFERENCES `uom` (`uom_id`)
 );
 

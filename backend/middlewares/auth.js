@@ -14,8 +14,7 @@ export const isAuth = async (req, res, next) => {
   if (!token) {
     token = req.cookies['token'];
   }
-  console.log(token);
-  // user has no token
+
   if (token == null || token == '') {
     return res.status(204).json();
   }
@@ -29,7 +28,6 @@ export const isAuth = async (req, res, next) => {
       res.status(401).json(auth_err);
     }
     const employee = await employeeData.getAllById(decode.emp_id);
-    console.log(employee);
 
     if (!employee) {
       return res.status(401).json(auth_err);

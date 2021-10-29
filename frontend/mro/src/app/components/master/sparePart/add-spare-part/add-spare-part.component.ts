@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UomService } from 'src/app/services/master/Uom/uom.service';
 import * as $ from 'jquery';
 import { ErrorHandlers } from 'src/app/utils/error-handler';
+import { AuthService } from 'src/app/services/auth.service';
+import { AuthData } from 'src/app/model/auth';
 @Component({
   selector: 'app-add-spare-part',
   templateUrl: './add-spare-part.component.html',
@@ -13,10 +15,12 @@ export class AddSparePartComponent implements OnInit {
   addSparePartForm: FormGroup;
   uom: any = [];
   errorhandlers: ErrorHandlers;
+  employee: AuthData;
 
   constructor(
     private formBuilder: FormBuilder,
-    private uomService: UomService
+    private uomService: UomService,
+    private authSerive: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -37,7 +41,7 @@ export class AddSparePartComponent implements OnInit {
       active_id: ['', Validators.required],
       photo: [''],
     });
-
+    this.employee = this.authSerive.employeeValue;
     this.errorhandlers = new ErrorHandlers(this.addSparePartForm);
   }
 
@@ -48,9 +52,10 @@ export class AddSparePartComponent implements OnInit {
           ...this.addSparePartForm.value,
           rate: parseInt(this.addSparePartForm.value.rate),
           active_id: parseInt(this.addSparePartForm.value.active_id),
-          created_by: 'tom',
+          created_by: this.employee.emp_id,
         },
       };
+      console.log(sparePart);
       this.onCreateSparePart.emit(sparePart);
 
       $('#sparePartModal12').hide();

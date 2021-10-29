@@ -38,7 +38,6 @@ export class AlertComponent implements OnInit {
   }
 
   cssClasses(alert: Alert) {
-    if (!alert) return;
     const classes = ['alert', 'alert-dismissable'];
 
     const alertTypeClass = {

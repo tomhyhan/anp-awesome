@@ -1,5 +1,3 @@
-
-
   <button id="main-button-add_project" type="button" data-toggle="modal"  data-whatever="@getbootstrap" data-backdrop="false" data-target="#exampleModalLong"><i class="fa fa-plus"></i> Create</button>
 
   <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-hidden="true">
@@ -14,11 +12,10 @@
         <div class="modal-body">
           <form [formGroup]="addprojectForm" (ngSubmit)="onSubmit()" >
             <div class="row">
-              <div class="col-md-6">
 
+              <div class="col-md-6">
                   <div class="form-group">
                     <label for="recipient-name" class="col-form-label">Project Code</label>
-                    
                     <input
                      class="form-control"
                       type="text"
@@ -29,10 +26,8 @@
                     />
                     <app-display-error errorMsg="This field is required" [displayError]="errorhandlers.isFieldValid('project_code')" ></app-display-error>
                   </div>
-                  
                   <div class="form-group">
-                    <label for="recipient-name" class="col-form-label">Project Name</label>
-                    
+                    <label for="recipient-name" >Project Name</label>
                     <input
                       class="form-control"
                       type="text"
@@ -43,26 +38,21 @@
                       />
                       <app-display-error errorMsg="This field is required" [displayError]="errorhandlers.isFieldValid('project_name')" ></app-display-error>
                     </div>
-
-                  <div class="form-group">
-                    <label for="recipient-name" class="col-form-label">Endate</label>
-                    
-                    <input
-                      class="form-control"
-                      type="date"
-                      [min]="minDate"
-                      name="Enddate"
-                      id="recipient-name"
-                      formControlName="end_date"
-                      />
-                      <app-display-error errorMsg="This field is required" [displayError]="errorhandlers.isFieldValid('end_date')" ></app-display-error>
-                  </div>
-                 
-
+                    <div class="form-group">
+                      <label for="recipient-name" class="col-form-label">Start Date</label>
+                      <input
+                        class="form-control"
+                        type="date"
+                        [min]="minDate"
+                        name="Startdate"
+                        id="recipient-name"
+                        formControlName="star_date"
+                        />
+                        <app-display-error errorMsg="This field is required" [displayError]="errorhandlers.isFieldValid('star_date')" ></app-display-error>
+                    </div>
+                  
               </div>
               <div class="col-md-6"> 
-
-               
                   <div class="form-group">
                       <label for="recipient-name" class="col-form-label">Remarks</label>
                       
@@ -75,9 +65,6 @@
                       formControlName="remarks"
                       />
                   </div>
-
-                  
-
                    <div class="form-group">
                       <label for="active_id">Status</label>
                       <select formControlName="active_id" id="active_id" class="form-control">
@@ -87,6 +74,19 @@
                       </select>
                       <app-display-error errorMsg="This field is required" [displayError]="errorhandlers.isFieldValid('active_id')" ></app-display-error>
                    </div>
+                   <div class="form-group">
+                    <label for="recipient-name" class="col-form-label">End Date</label>
+                    
+                    <input
+                      class="form-control"
+                      type="date"
+                      [min]="minDate"
+                      name="Enddate"
+                      id="recipient-name"
+                      formControlName="end_date"
+                      />
+                      <app-display-error errorMsg="This field is required" [displayError]="errorhandlers.isFieldValid('end_date')" ></app-display-error>
+                  </div>
 
 
               </div>
@@ -97,63 +97,3 @@
       </div>
     </div>
   </div>
-  
-  
-  
-  
-  
-  
-  
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- <form  (ngSubmit)="onSubmit() ">
-  <section class="ml-3 mr-3 pb-0  row "  id="main-section-searchline">
-    <table id="main-table-selector">
-      <thead>
-        <tr style="color: rgb(110,144,161);">
-          <th scope="col"><label for="ProjectCode">ProjectCode</label></th>
-          <th scope="col"><label for="ProjectName">ProjectName</label></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><input
-            class="form-control"
-            type="text"
-            name="ProjectCode"
-            [(ngModel)]="ProjectCode"
-            id="ProjectCode"
-            placeholder="code"
-          /></td>
-          <td><input
-            class="form-control"
-            type="text"
-            name="ProjectName"
-            [(ngModel)]="ProjectName"
-            id="ProjectName"
-            placeholder="ProjectName"
-          /></td>
-        </tr>
-      </tbody>
-    </table>
-    <div class="ml-2 pt-5 row align-items-center">
-    <button id="main-button-add_project" type="submit" ><i class="fa fa-plus-circle"> add Project</i></button>
-  </div>
-  </section>
-  </form> -->

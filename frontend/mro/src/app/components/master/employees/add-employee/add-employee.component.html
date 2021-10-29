@@ -15,48 +15,65 @@
           <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
-                  <label for="recipient-name" class="col-form-label">Employee Code</label>
 
-                  <input formControlName="emp_code" type="text"  name="emp_code"  class="form-control" id="recipient-name" > 
+                  <label for="emp_code" class="col-form-label">Employee Code</label>
+                  <input formControlName="emp_code" type="text"  name="emp_code"  class="form-control" id="emp_code" > 
                   <app-display-error errorMsg="This field is required" [displayError]="errorhandlers.isFieldValid('emp_code')" ></app-display-error>
                 </div>
                 <div class="form-group">
-                    <label for="recipient-name" class="col-form-label">Site Master ID</label>
-                    <input formControlName="site_master_id" type="text" name="site_master_id"  class="form-control" id="recipient-name" >
+                    <label for="site_master_id" class="col-form-label">Site Master ID</label>
+                    <input formControlName="site_master_id" type="text" name="site_master_id"  class="form-control" id="site_master_id" >
                     <app-display-error errorMsg="This field is required" [displayError]="errorhandlers.isFieldValid('site_master_id')" ></app-display-error>
                   </div>
                 <div class="form-group">
-                    <label for="recipient-name" class="col-form-label">Address</label>
-                    <input formControlName="address" type="text" name="address"  class="form-control" id="recipient-name" >
+                    <label for="address" class="col-form-label">Address</label>
+                    <input formControlName="address" type="text" name="address"  class="form-control" id="address" >
                     <app-display-error errorMsg="This field is required" [displayError]="errorhandlers.isFieldValid('address')" ></app-display-error>
                 </div>
                 <div class="form-group">
-                    <label for="recipient-name" class="col-form-label">Department</label>
-                    <input formControlName="department" type="text" name="department"  class="form-control" id="recipient-name" >
+                    <label for="department" class="col-form-label">Department</label>
+                    <input formControlName="department" type="text" name="department"  class="form-control" id="department" >
+
                     <app-display-error errorMsg="This field is required" [displayError]="errorhandlers.isFieldValid('department')" ></app-display-error>
 
                   </div>
             </div>
             <div class="col-md-6"> 
                 <div class="form-group">
-                  <label for="recipient-name" class="col-form-label">Employee Name</label>
-                  <input formControlName="emp_name" type="text" name="emp_name"  class="form-control" id="recipient-name" >
+
+                  <label for="emp_name" class="col-form-label">Employee Name</label>
+                  <input formControlName="emp_name" type="text" name="emp_name"  class="form-control" id="emp_name" >
                   <app-display-error errorMsg="This field is required" [displayError]="errorhandlers.isFieldValid('emp_name')" ></app-display-error>
               </div>
               <div class="form-group">
-                <label for="recipient-name" class="col-form-label">Contact</label>
-                <input formControlName="contact" type="text" name="contact"  class="form-control" id="recipient-name" >
+                <label for="contact" class="col-form-label">Contact</label>
+                <input formControlName="contact" type="text" name="contact"  class="form-control" id="contact" >
                 <app-display-error errorMsg="This field is required" [displayError]="errorhandlers.isFieldValid('contact')" ></app-display-error>
               </div>
               <div class="form-group">
-                <label for="recipient-name" class="col-form-label">Designation</label>
-                <input formControlName="designation" type="text" name="designation"  class="form-control" id="recipient-name" >
+                <label for="designation" class="col-form-label">Designation</label>
+                <input formControlName="designation" type="text" name="designation"  class="form-control" id="designation" >
+
                 <app-display-error errorMsg="This field is required" [displayError]="errorhandlers.isFieldValid('designation')" ></app-display-error> 
 
               </div>
               <div class="form-group">
-                  <label for="recipient-name" class="col-form-label">Remarks</label>
-                  <input formControlName="remarks" type="text" name="remarks"  class="form-control" id="recipient-name" placeholder="remarks" >
+                  <label for="remarks" class="col-form-label">Remarks</label>
+                  <input formControlName="remarks" type="text" name="remarks"  class="form-control" id="remarks" >
+              </div>
+            </div>  
+            <div class="col-md-6"> 
+              <div class="form-group">
+                <label for="username" class="col-form-label">Username</label>
+                <input formControlName="username" type="text" name="username"  class="form-control" id="username" >
+                <app-display-error errorMsg="This field is required" [displayError]="errorhandlers.isFieldValid('username')" ></app-display-error>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="password" class="col-form-label">Employee Password</label>
+                <input formControlName="password" type="password" name="password"  class="form-control" id="password" >
+                <app-display-error errorMsg="This field is required" [displayError]="errorhandlers.isFieldValid('password')" ></app-display-error>
               </div>
             </div>
           </div>

@@ -15,6 +15,7 @@
           <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
+
                   <label for="emp_code" class="col-form-label">Employee Code</label>
                   <input formControlName="emp_code" type="text"  name="emp_code"  class="form-control" id="emp_code" > 
                   <app-display-error errorMsg="This field is required" [displayError]="errorhandlers.isFieldValid('emp_code')" ></app-display-error>
@@ -32,12 +33,14 @@
                 <div class="form-group">
                     <label for="department" class="col-form-label">Department</label>
                     <input formControlName="department" type="text" name="department"  class="form-control" id="department" >
+
                     <app-display-error errorMsg="This field is required" [displayError]="errorhandlers.isFieldValid('department')" ></app-display-error>
 
                   </div>
             </div>
             <div class="col-md-6"> 
                 <div class="form-group">
+
                   <label for="emp_name" class="col-form-label">Employee Name</label>
                   <input formControlName="emp_name" type="text" name="emp_name"  class="form-control" id="emp_name" >
                   <app-display-error errorMsg="This field is required" [displayError]="errorhandlers.isFieldValid('emp_name')" ></app-display-error>
@@ -50,6 +53,7 @@
               <div class="form-group">
                 <label for="designation" class="col-form-label">Designation</label>
                 <input formControlName="designation" type="text" name="designation"  class="form-control" id="designation" >
+
                 <app-display-error errorMsg="This field is required" [displayError]="errorhandlers.isFieldValid('designation')" ></app-display-error> 
 
               </div>

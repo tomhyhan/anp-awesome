@@ -105,7 +105,7 @@ export async function create(project_new) {
     star_date,
     end_date,
   } = project_new;
-
+  console.log(project_new)
   return db
     .execute(
       `

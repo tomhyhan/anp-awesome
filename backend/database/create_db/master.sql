@@ -10,6 +10,24 @@ CREATE TABLE uom (
   PRIMARY KEY (uom_id)
 );
 
+CREATE TABLE employee (
+  	emp_id INT NOT NULL AUTO_INCREMENT,
+    emp_name VARCHAR(30) NOT NULL,
+    emp_code VARCHAR(30) NOT NULL,
+    site_master_id int NOT NULL,
+    contact VARCHAR(30) NOT NULL,
+    address VARCHAR(30) NOT NULL,
+    designation VARCHAR(30) NOT NULL,
+    department VARCHAR(30) NOT NULL,
+    remarks VARCHAR(100) NOT NULL,
+    created_by INT NOT NULL,
+    modified_by INT,
+    last_modified_date Date,
+    password varchar(100) NOT NULL,
+    username varchar(100) NOT NULL,
+    PRIMARY KEY (emp_id)
+);
+
 CREATE TABLE spare_part (
   material_master_id INTEGER PRIMARY KEY AUTO_INCREMENT,
   spare_part_code VARCHAR(100),     
@@ -39,12 +57,16 @@ CREATE TABLE project (
   project_code VARCHAR(100) NOT NULL,     
   remarks VARCHAR(100),           
   active_id INTEGER DEFAULT 1,     
-  created_by VARCHAR(100) NOT NULL,
+  created_by INT NOT NULL,
   star_date Date NOT NULL,
   end_date Date NOT NULL,        
   created_date Date NOT NULL,
   modified_by INT,
-  last_modified_date Date
+  last_modified_date Date,
+  KEY `frn_project_employee_idx` (`created_by`),
+  KEY `frn_modified_project_employee_idx` (`modified_by`),
+  CONSTRAINT `frn_project_employee` FOREIGN KEY (`created_by`) REFERENCES `employee` (`emp_id`),
+  CONSTRAINT `frn_modified_project_employee` FOREIGN KEY (`modified_by`) REFERENCES `employee` (`emp_id`)
 );
 
 CREATE TABLE vendor (
@@ -59,23 +81,7 @@ CREATE TABLE vendor (
     PRIMARY KEY (vendor_id)
 );
 
-CREATE TABLE employee (
-  	emp_id INT NOT NULL AUTO_INCREMENT,
-    emp_name VARCHAR(30) NOT NULL,
-    emp_code VARCHAR(30) NOT NULL,
-    site_master_id int NOT NULL,
-    contact VARCHAR(30) NOT NULL,
-    address VARCHAR(30) NOT NULL,
-    designation VARCHAR(30) NOT NULL,
-    department VARCHAR(30) NOT NULL,
-    remarks VARCHAR(100) NOT NULL,
-    created_by INT NOT NULL,
-    modified_by INT,
-    last_modified_date Date,
-    password varchar(100) NOT NULL,
-    username varchar(100) NOT NULL,
-    PRIMARY KEY (emp_id)
-);
+
 
 
 CREATE TABLE aircraft (

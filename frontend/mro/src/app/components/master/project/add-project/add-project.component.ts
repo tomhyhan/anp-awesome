@@ -42,13 +42,14 @@ export class AddProjectComponent implements OnInit {
   onSubmit() {
     
     if (this.addprojectForm.valid) {
+      // console.log(this.user)
     const project = {
       project_user: {
         project_name: this.addprojectForm.value.project_name,
         project_code: this.addprojectForm.value.project_code,
         remarks:this.addprojectForm.value.remarks,
         active_id:parseInt(this.addprojectForm.value.active_id),
-        created_by:this.user.username,
+        created_by:this.user.emp_id,
         star_date:this.addprojectForm.value.star_date,
         end_date:this.addprojectForm.value.end_date
       },

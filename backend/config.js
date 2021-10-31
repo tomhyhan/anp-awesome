@@ -15,7 +15,6 @@ export const config = {
     user: required('MYSQL_USER'),
     password: required('MYSQL_PASSWORD', ''),
     database: required('MYSQL_DATABASE'),
-    port: 3306
   },
   host: {
     port: required('PORT', 8080),

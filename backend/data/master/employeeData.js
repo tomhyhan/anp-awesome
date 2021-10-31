@@ -160,9 +160,9 @@ export async function update(id, employee) {
     address=?,
     designation=?,
     department=?,
-    remarks=?
-    modified_by=?
-    last_modified_date=?
+    remarks=?,
+    modified_by=?,
+    last_modified_date=?,
   WHERE
     emp_id=?
     `,

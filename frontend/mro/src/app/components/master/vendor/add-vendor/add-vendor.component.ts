@@ -48,24 +48,9 @@ export class AddVendorComponent implements OnInit {
       // console.log(vendor)
       this.onCreateVendor.emit(vendor);
       this.addvendorForm.reset();
+      
   } else {
     this.errorhandlers.showErrors();
   }};
 
-
-  // get VendorCode() {
-  //   return this.addvendorForm.get('vendor_code');
-  // }
-
-  // get VendorName() {
-  //   return this.addvendorForm.get('vendor_name');
-  // }
-
-  // get Contact() {
-  //   return this.addvendorForm.get('contact');
-  // }
-
-  // get Address() {
-  //   return this.addvendorForm.get('address');
-  // }
 }

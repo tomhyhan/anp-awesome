@@ -23,7 +23,7 @@ const routes: Routes = [
   { path: 'Purchase_order/create', component: PurchaseOrderCreateComponent },
   { path: 'master/employees', component: EmployeesComponent },
   { path: 'master/uom', component: UomPartsComponent },
-  { path: 'master/vendor', component: VendorsComponent },
+  { path: 'master/vendor', component: VendorsComponent, canActivate: [AuthGuard], },
   { path: 'master/aircraft', component: aircraftsComponent },
   { path: 'auth/login', component: LoginComponent },
 ];

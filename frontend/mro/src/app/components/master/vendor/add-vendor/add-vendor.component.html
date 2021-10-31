@@ -24,7 +24,7 @@
                     placeholder="Code"
                     formControlName="vendor_code"
                   />
-                  <small *ngIf="VendorCode.invalid && VendorCode.touched" class="text-danger">Vendor Code is Required</small>
+                  <app-display-error errorMsg="This field is required" [displayError]="errorhandlers.isFieldValid('vendor_code')" ></app-display-error>
                 </div>
                 
                 <div class="form-group">
@@ -37,7 +37,7 @@
                     id="recipient-name"
                     formControlName="vendor_name"
                     />
-                    <small *ngIf="VendorName.invalid && VendorName.touched" class="text-danger">Vendor Name is Required</small> 
+                    <app-display-error errorMsg="This field is required" [displayError]="errorhandlers.isFieldValid('vendor_name')" ></app-display-error> 
                   </div>
 
                 <div class="form-group">
@@ -50,7 +50,7 @@
                     id="recipient-name"
                     formControlName="contact"
                     />
-                    <small *ngIf="Contact.invalid && Contact.touched" class="text-danger">Contact is Required</small> 
+                    <app-display-error errorMsg="This field is required" [displayError]="errorhandlers.isFieldValid('contact')" ></app-display-error> 
                 </div>
             </div>
             
@@ -66,7 +66,7 @@
                   id="recipient-name"
                   formControlName="address"
                   />
-                  <small *ngIf="Address.invalid && Address.touched" class="text-danger">Address is Required</small> 
+                  <app-display-error errorMsg="This field is required" [displayError]="errorhandlers.isFieldValid('address')" ></app-display-error> 
               </div>
 
               <div class="form-group">
@@ -89,54 +89,3 @@
     </div>
   </div>
 </div>
-  
-
-<!-- <button id="main-button-add_project" type="button" data-toggle="modal"  data-whatever="@getbootstrap" data-backdrop="false" data-target="#exampleModalLong"><i class="fa fa-plus"></i> Create</button>
-
-<div class="modal fade"  tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Add Vendor</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form [formGroup]="addVendorForm" (ngSubmit)="onSubmit()">
-          <div class="row">
-            <div class="col-md-6">
-              <label for="vendor_code">Vendor Code</label>
-              <input formControlName="vendor_code" type="text" class="form-control" id="vendor_code" placeholder="Vendor Code">
-            </div>
-            <div class="form-group col-md-6">
-              <label for="vendor_name">Vendor Name</label>
-              <input formControlName="vendor_name" type="text" class="form-control" id="vendor_name" placeholder="Vendor Name">
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group col-md-6">
-              <label for="contact">Contact</label>
-              <input formControlName="contact" type="text" class="form-control" id="contact" placeholder="Contact">
-            </div>
-            <div class="form-group col-md-6">
-              <label for="address">Address</label>
-              <input formControlName="address" type="text" class="form-control" id="address" placeholder="Address">
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group col-md-6">
-              <label for="remarks">Remarks</label>
-              <input formControlName="remarks" type="text" class="form-control" id="remarks" placeholder="Remarks">
-            </div>
-          </div>
-          <div class="form-row">
-          </div>
-            
-          <button type="submit" class="btn btn-primary">Update</button>
-        </form>
-      </div>
-    </div>
-  </div>
-</div> -->
-

@@ -1,7 +1,8 @@
-
 import { Component, OnInit,Output, EventEmitter, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
+import { ErrorHandlers } from 'src/app/utils/error-handler';
+import { AuthService } from 'src/app/services/auth.service';
+import { AuthData } from 'src/app/model/auth';
 
 @Component({
   selector: 'app-add-vendor',
@@ -9,13 +10,18 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./add-vendor.component.css']
 })
 export class AddVendorComponent implements OnInit {
-
-  Remarks:any;
+  user:AuthData;
+  // Remarks:any;
   @Output() onCreateVendor = new EventEmitter();
-  addvendorForm: FormGroup | any;
+  addvendorForm: FormGroup;
+  errorhandlers: ErrorHandlers;
 
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder,private authService: AuthService) { 
+    this.authService.employee.subscribe(
+    (employee) => (this.user = employee)
+    )
+  }
 
   ngOnInit(): void {
 
@@ -27,42 +33,28 @@ export class AddVendorComponent implements OnInit {
       address:['', Validators.required],
       remarks:[''],
     });
+    this.errorhandlers = new ErrorHandlers(this.addvendorForm);
   }
   
   onSubmit() {
-    const vendor = {
-      vendor: {
-      //   ...this.addvendorForm.value,
-        vendor_code: this.addvendorForm.value.vendor_code,
-        vendor_name: this.addvendorForm.value.vendor_name,
-        contact: this.addvendorForm.value.contact,
-        address: this.addvendorForm.value.address,
-        remarks: this.addvendorForm.value.remarks,
+    if (this.addvendorForm.valid) {
+      const vendor = {
+        vendor: {
+          vendor_code: this.addvendorForm.value.vendor_code,
+          vendor_name: this.addvendorForm.value.vendor_name,
+          contact: this.addvendorForm.value.contact,
+          address: this.addvendorForm.value.address,
+          remarks: this.addvendorForm.value.remarks,
 
-        created_by:"hosung",
-      },
-    };
-    console.log(vendor)
-    this.onCreateVendor.emit(vendor);
-  }
-
-
-  get VendorCode() {
-    return this.addvendorForm.get('vendor_code');
-  }
-
-  get VendorName() {
-    return this.addvendorForm.get('vendor_name');
-  }
-
-  get Contact() {
-    return this.addvendorForm.get('contact');
-  }
-
-  get Address() {
-    return this.addvendorForm.get('address');
-  }
-
-
+          created_by:this.user.emp_id,
+        },
+      };
+      console.log(vendor)
+      this.onCreateVendor.emit(vendor);
+      this.addvendorForm.reset();
+      
+  } else {
+    this.errorhandlers.showErrors();
+  }};
 
 }

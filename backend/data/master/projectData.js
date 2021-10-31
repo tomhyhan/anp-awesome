@@ -102,15 +102,25 @@ export async function create(project_new) {
     remarks,
     active_id,
     created_by,
+    star_date,
     end_date,
   } = project_new;
-
+  console.log(project_new)
   return db
     .execute(
       `
 
-      INSERT INTO project (project_name, project_code, remarks, active_id, created_by, end_date,created_date)
-      VALUES (?,?,?,?,?,?,?)
+      INSERT INTO project (
+        project_name, 
+        project_code, 
+        remarks, 
+        active_id, 
+        created_by,
+        star_date,
+        end_date,
+        created_date
+        )
+      VALUES (?,?,?,?,?,?,?,?)
   `,
       [
         project_name,
@@ -118,6 +128,7 @@ export async function create(project_new) {
         remarks,
         active_id,
         created_by,
+        star_date,
         end_date,
         new Date().toLocaleDateString().replace('/','-').replace('/','-'),
       ]
@@ -126,9 +137,10 @@ export async function create(project_new) {
 }
 
 export async function update(id, project_update) {
-  const { project_name, project_code, remarks, active_id, end_date } =
+  const { project_name, project_code, remarks, active_id, star_date, end_date,modified_by } =
     project_update;
-
+  console.log(project_update)
+  console.log("asd")
   return db
     .execute(
       `
@@ -138,11 +150,22 @@ export async function update(id, project_update) {
   project_code=?,     
   remarks=?,             
   active_id=?,
-  end_date=?
+  star_date=?,
+  end_date=?,
+  modified_by=?,
+  last_modified_date=?
   WHERE
     project_master_id=?
     `,
-      [project_name, project_code, remarks, active_id, end_date, id]
+      [project_name, 
+       project_code, 
+       remarks, 
+       active_id, 
+       star_date,
+       end_date,
+       modified_by,
+       new Date().toLocaleDateString().replace('/','-').replace('/','-'), 
+       id]
     )
     .then(() => getAllById(id));
 }

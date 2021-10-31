@@ -57,7 +57,9 @@ export class AddEmployeeComponent implements OnInit {
           password: this.addEmployeeForm.value.password,
           username: this.addEmployeeForm.value.username,
         },
+        
       };
+      console.log(addEmployee);
       this.onCreateEmployee.emit(addEmployee);
       this.addEmployeeForm.reset();
     } else {

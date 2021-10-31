@@ -65,7 +65,7 @@ export class EditEmployeeComponent implements OnInit {
           designation: this.employeeForm.value.designation,
           department: this.employeeForm.value.department,
           remarks: this.employeeForm.value.remarks,
-          modified_by: this.user.username,
+          modified_by: this.currentEmployee.emp_id,
         },
       };
       this.onUpdateEmployee.emit({

@@ -14,38 +14,36 @@
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="vendor_code">Vendor Code</label>
-              <input formControlName="vendor_code" type="text" class="form-control" id="vendor_code" placeholder="Vendor Code">
+              <input formControlName="vendor_code" type="text" name="vendor_code" class="form-control" id="recipient-name" placeholder="Vendor Code">
+              <app-display-error errorMsg="This field is required" [displayError]="errorhandlers.isFieldValid('vendor_code')" ></app-display-error>
 
 
             </div>
             <div class="form-group col-md-6">
               <label for="vendor_name">Vendor Name</label>
-              <input formControlName="vendor_name" type="text" class="form-control" id="vendor_name" placeholder="Vendor Name">
-
-              <small *ngIf="editVendorForm.get('vendor_name')?.errors?.required" class="text-danger">Vendor Name is Required</small>
+              <input formControlName="vendor_name" type="text" class="form-control" id="recipient-name" placeholder="Vendor Name">
+              <app-display-error errorMsg="This field is required" [displayError]="errorhandlers.isFieldValid('vendor_name')" ></app-display-error>
 
             </div>
           </div>
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="contact">Contact</label>
-              <input formControlName="contact" type="text" class="form-control" id="contact" placeholder="Contact">
+              <input formControlName="contact" type="text" class="form-control" id="recipient-name" placeholder="Contact">
 
-              <small *ngIf="editVendorForm.get('contact')?.errors?.required" class="text-danger">Contact is Required</small>
-
+              <app-display-error errorMsg="This field is required" [displayError]="errorhandlers.isFieldValid('contact')" ></app-display-error>
             </div>
             <div class="form-group col-md-6">
               <label for="address">Address</label>
               <input formControlName="address" type="text" class="form-control" id="address" placeholder="Address">
 
-              <small *ngIf="editVendorForm.get('address')?.errors?.required" class="text-danger">Address is Required</small>
-
+              <app-display-error errorMsg="This field is required" [displayError]="errorhandlers.isFieldValid('address')" ></app-display-error>
             </div>
           </div>
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="remarks">Remarks</label>
-              <input formControlName="remarks" type="text" class="form-control" id="remarks" placeholder="Remarks">
+              <input formControlName="remarks" type="text" class="form-control" id="recipient-name" placeholder="Remarks">
             </div>
           </div>
           <div class="form-row">
@@ -57,51 +55,3 @@
     </div>
   </div>
 </div>
-
-
-
-<!-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Edit Vendor</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-           <form [formGroup]="vendorForm" (ngSubmit)="onSubmit()">     
-            <div class="form-group">
-              <label for="recipient-name" class="col-form-label">Vendor Name</label>
-              <input formControlName="vendorName" type="text"  name="vendorName"  class="form-control" id="recipient-name" value="{{vendor.vendor_name}}"> 
-            </div>
-            <div class="form-group">
-              <label for="recipient-name" class="col-form-label">Vendor Code</label>
-              <input formControlName="vendorCode" type="text" name="vendorCode"  class="form-control" id="recipient-name" value="{{vendor.vendor_code}}" >
-            </div>
-            
-            <div class="form-group">
-              <label for="recipient-name" class="col-form-label">Contact</label>
-              <input formControlName="vendorContact" type="text" name="vendorContact"  class="form-control" id="recipient-name" value="{{vendor.contact}}" >
-            </div>
-            
-            <div class="form-group">
-              <label for="recipient-name" class="col-form-label">Address</label>
-              <input formControlName="vendorAddress" type="text" name="vendorAddress"  class="form-control" id="recipient-name" value="{{vendor.address}}" >
-            </div>
-
-            <div class="form-group">
-              <label for="recipient-name" class="col-form-label">Remarks</label>
-              <input formControlName="vendorRemarks" type="text" name="vendorRemarks"  class="form-control" id="recipient-name" value="{{vendor.remarks}}" >
-            </div>
-
-            <button type="submit" class="btn btn-primary">Update</button>
-          </form>
-        </div>
-        <div class="modal-footer">
-          
-        </div>
-      </div>
-    </div>
-  </div> -->
-  

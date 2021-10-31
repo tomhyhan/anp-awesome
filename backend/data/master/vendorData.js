@@ -47,6 +47,8 @@ export async function getAllByFilter(filter, pageIndex, pageSize) {
 
 export async function getFilterCount(filter) {
   const { query, queryArr } = getFilterQuery(filter);
+  console.log(`      SELECT count(*) from vendor
+  ${query}`);
   return db
     .query(
       `SELECT count(*) from vendor ${query}`,
@@ -135,8 +137,8 @@ export async function create(vendor) {
 
 // getting a vendor object
 export async function update(id, vendor) {
-  const { vendor_name, vendor_code, contact, address, remarks } = vendor;
-
+  const { vendor_name, vendor_code, contact, address, remarks, modified_by } = vendor;
+  console.log(vendor)
   return db
     .query(
       `
@@ -146,11 +148,13 @@ export async function update(id, vendor) {
     vendor_code=?,
     contact=?,
     address=?,
-    remarks=?
+    remarks=?,
+    modified_by=?,
+    last_modified_date=?
   WHERE
     vendor_id=?
     `,
-      [vendor_name, vendor_code, contact, address, remarks, id]
+      [vendor_name, vendor_code, contact, address, remarks, modified_by, new Date().toLocaleDateString().replace('/','-').replace('/','-'), id]
     )
     .then(() => getById(id));
 }

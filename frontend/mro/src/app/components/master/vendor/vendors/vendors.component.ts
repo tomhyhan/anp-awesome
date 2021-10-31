@@ -2,17 +2,18 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { VendorService } from 'src/app/services/master/vendor/vendor.service';
 import { startWith, tap } from 'rxjs/operators';
+import { vendor,VendorFilter } from 'src/app/model/vendor';
 
-
+type Filter = string | VendorFilter;
 @Component({
   selector: 'app-vendor',
   templateUrl: './vendors.component.html',
   styleUrls: ['./vendors.component.css']
 })
 export class VendorsComponent implements OnInit {
-  vendor: any = [];
+  vendor: vendor[];
   vendorCount: any;
-  filter = JSON.stringify('');
+  filter:Filter = JSON.stringify('');
 
 
   displayedColumns: string[] = [
@@ -29,12 +30,7 @@ export class VendorsComponent implements OnInit {
   constructor(private vendorService: VendorService) { }
 
 
-  // ngOnInit(): void {
-  //   this.vendorService.getVendor(this.filter).subscribe((vendor) => {
-  //     console.log(vendor);
-  //     this.vendor = vendor;
-  //   });
-  // }
+
   ngOnInit(): void {
     this.vendorService.getVendorCount().subscribe((count) => {
    this.vendorCount = count;
@@ -68,8 +64,13 @@ export class VendorsComponent implements OnInit {
     this.vendorService
       .addVendor(vendor)
       .subscribe((vendor: any) => {
-        this.vendor = [...this.vendor, vendor[0]];
+        this.vendorService.getVendorCount().subscribe((count) => {
+          this.vendorCount = count;
       });
+      if (this.vendor.length < this.paginator.pageSize) {
+        this.vendor = [...this.vendor, vendor[0]];
+      }
+    });
   }
 
   updateVendor(Vendor: any) {
@@ -87,13 +88,6 @@ export class VendorsComponent implements OnInit {
       });
   }
 
-
-  
-  // searchVendor(filter: any) {
-  //   this.vendorService.getVendor(this.filter).subscribe((vendor) => {
-  //     this.vendor = vendor;
-  //   });
-  // }
  
   searchVendor(filter: any) {
     this.vendorService.getVendorFilterCount(filter).subscribe((count) => {

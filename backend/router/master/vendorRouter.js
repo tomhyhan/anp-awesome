@@ -1,5 +1,6 @@
 import express from 'express';
 import * as vendorController from '../../controllers/master/vendorController.js';
+import { isAuth } from '../../middlewares/auth.js';
 
 const router = express.Router();
 

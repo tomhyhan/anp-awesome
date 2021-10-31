@@ -76,9 +76,15 @@ CREATE TABLE vendor (
     contact VARCHAR(45) NOT NULL,
     address VARCHAR(100) NOT NULL,
     remarks VARCHAR(100) NOT NULL,
-    created_by VARCHAR(100) NOT NULL,
-    created_date Date,
-    PRIMARY KEY (vendor_id)
+    created_by INT NOT NULL,
+    created_date Date NOT NULL,
+    modified_by INT,
+    last_modified_date Date,
+    PRIMARY KEY (vendor_id),
+    KEY `frn_vendor_employee_idx` (`created_by`),
+    KEY `frn_modified_vendor_employee_idx` (`modified_by`),
+    CONSTRAINT `frn_vendor_employee` FOREIGN KEY (`created_by`) REFERENCES `employee` (`emp_id`),
+    CONSTRAINT `frn_modified_vendor_employee` FOREIGN KEY (`modified_by`) REFERENCES `employee` (`emp_id`)
 );
 
 

@@ -21,7 +21,7 @@ export class EditEmployeeComponent implements OnInit {
     private authService: AuthService
   ) {
     this.authService.employee.subscribe(
-      (employee) => (this.user = employee)
+      (employee) => (this.currentEmployee = employee)
     );
   }
 

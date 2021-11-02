@@ -83,3 +83,40 @@ CREATE TABLE aircraft (
   created_by VARCHAR(100),            
   created_date Date
 );
+
+CREATE TABLE If NOT EXISTS `inventory_dev`.`details` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `purchase_requisition_number` VARCHAR(45) NOT NULL,
+  `vendor_id` INT NOT NULL,
+  `payment_terms` INT NULL,
+  `other_reference` VARCHAR(255) NULL,
+  `transport_mode` VARCHAR(45) NULL,
+  `purchase_order_validity` VARCHAR(45) NULL,
+  `freight_terms` INT NULL,
+  `insurance` BOOLEAN NULL,
+  `remarks` VARCHAR(255) NULL,
+  `approval_level_1` INT NOT NULL,
+  `approval_level_2` INT NOT NULL,
+  `created_by` INT NOT NULL,
+  `created_date` DATE NOT NULL,
+  `modified_by` INT NULL,
+  `modified_date` DATE NULL,
+  PRIMARY KEY (`SINo`),
+  INDEX `dt_vendor_id_idx` (`vendor_id` ASC) VISIBLE,
+  INDEX `dt_approval_level_1_idx` (`approval_level_1` ASC) VISIBLE,
+  INDEX `dt_approval_level_2_idx` (`approval_level_2` ASC) VISIBLE,
+  CONSTRAINT `dt_vendor_id`
+    FOREIGN KEY (`vendor_id`)
+    REFERENCES `inventory_dev`.`vendor` (`vendor_id`)
+    ON DELETE RESTRICT
+    ON UPDATE RESTRICT,
+  CONSTRAINT `dt_approval_level_1`
+    FOREIGN KEY (`approval_level_1`)
+    REFERENCES `inventory_dev`.`employee` (`emp_id`)
+    ON DELETE RESTRICT
+    ON UPDATE RESTRICT,
+  CONSTRAINT `dt_approval_level_2`
+    FOREIGN KEY (`approval_level_2`)
+    REFERENCES `inventory_dev`.`employee` (`emp_id`)
+    ON DELETE RESTRICT
+    ON UPDATE RESTRICT);

@@ -1,12 +1,13 @@
-import { Component, OnInit,ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { projectService } from 'src/app/services/master/project/project.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { startWith, tap } from 'rxjs/operators';
 
+import { SparePartService } from 'src/app/services/master/sparePart/spare-part.service';
 @Component({
   selector: 'app-projects',
   templateUrl: './projects.component.html',
-  styleUrls: ['./projects.component.css']
+  styleUrls: ['./projects.component.css'],
 })
 export class ProjectsComponent implements OnInit {
   projects: any = [];
@@ -24,16 +25,19 @@ export class ProjectsComponent implements OnInit {
   ];
   @ViewChild(MatPaginator) paginator: MatPaginator | any;
 
-
-  constructor(private projectService: projectService) { }
+  constructor(
+    private projectService: projectService,
+    private s: SparePartService
+  ) {
+    console.log(this.s.sparePartValue);
+  }
 
   ngOnInit(): void {
     this.projectService.getprojectCount().subscribe((count) => {
-      console.log(count);
       this.projectCount = count;
     });
+    console.log(this.s.sparePartValue);
   }
-
 
   ngAfterViewInit() {
     this.paginator.page
@@ -54,19 +58,15 @@ export class ProjectsComponent implements OnInit {
       .subscribe(() => {});
   }
   createTask(project: any) {
-    this.projectService
-      .addproject(project)
-      .subscribe((project: any) => {
-        this.projectService.getprojectCount().subscribe((count) => {
-          this.projectCount = count;
-        });
-
-        if (this.projects.length < this.paginator.pageSize) {
-          this.projects = [...this.projects, project[0]];
-        }
-     
- 
+    this.projectService.addproject(project).subscribe((project: any) => {
+      this.projectService.getprojectCount().subscribe((count) => {
+        this.projectCount = count;
       });
+
+      if (this.projects.length < this.paginator.pageSize) {
+        this.projects = [...this.projects, project[0]];
+      }
+    });
   }
 
   updateproject(project: any) {
@@ -105,5 +105,4 @@ export class ProjectsComponent implements OnInit {
       )
       .subscribe(() => {});
   }
-
 }

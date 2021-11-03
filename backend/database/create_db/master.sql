@@ -115,7 +115,7 @@ CREATE TABLE If NOT EXISTS `inventory_dev`.`details` (
   `created_date` DATE NOT NULL,
   `modified_by` INT NULL,
   `modified_date` DATE NULL,
-  PRIMARY KEY (`SINo`),
+  PRIMARY KEY (`id`),
   INDEX `dt_vendor_id_idx` (`vendor_id` ASC) VISIBLE,
   INDEX `dt_approval_level_1_idx` (`approval_level_1` ASC) VISIBLE,
   INDEX `dt_approval_level_2_idx` (`approval_level_2` ASC) VISIBLE,
@@ -134,3 +134,18 @@ CREATE TABLE If NOT EXISTS `inventory_dev`.`details` (
     REFERENCES `inventory_dev`.`employee` (`emp_id`)
     ON DELETE RESTRICT
     ON UPDATE RESTRICT);
+
+CREATE TABLE `inventory_dev`.`fileattach` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `ewaybill` BLOB NULL,
+  `invoice` BLOB NULL,
+  `other` BLOB NULL,
+  `detail_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `frn_file_detail_idx_idx` (`detail_id` ASC) VISIBLE,
+  CONSTRAINT `frn_file_detail_idx`
+    FOREIGN KEY (`detail_id`)
+    REFERENCES `inventory_dev`.`details` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+

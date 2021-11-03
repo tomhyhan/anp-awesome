@@ -10,6 +10,7 @@ On sp.frn_uom = uom.uom_id
 
 export async function create(detail) {
   const {
+    purchase_requisition_number,
     vendor_id,
     payment_terms,
     other_reference,
@@ -31,7 +32,7 @@ export async function create(detail) {
   VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
   `,
       [
-        'getPurchaseId()',
+        purchase_requisition_number,
         vendor_id,
         payment_terms,
         other_reference,

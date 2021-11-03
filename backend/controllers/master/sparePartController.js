@@ -17,6 +17,11 @@ export async function getAllSpareParts(req, res, next) {
   res.status(200).json(sparePart);
 }
 
+export async function getSpareParts(req, res) {
+  const spareParts = await sparePartData.getSpareParts();
+  res.status(200).json(spareParts);
+}
+
 export async function getById(req, res, next) {
   const { id } = req.params;
   const sparePart = await sparePartData.getAllById(id);

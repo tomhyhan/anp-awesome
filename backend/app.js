@@ -36,6 +36,7 @@ app.use('/master/uom', uomRouter);
 app.use('/master/vendor', vendorRouter);
 app.use('/master/employee', employeeRouter);
 app.use('/master/aircraft', aircraftRouter);
+app.use('/purchase/detail', aircraftRouter);
 app.use('/auth', authRouter);
 app.use(errorRouter);
 

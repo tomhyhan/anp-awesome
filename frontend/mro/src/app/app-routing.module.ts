@@ -24,7 +24,7 @@ const routes: Routes = [
   { path: 'master/employees', component: EmployeesComponent },
   { path: 'master/uom', component: UomPartsComponent },
   { path: 'master/vendor', component: VendorsComponent },
-  { path: 'master/aircraft', component: aircraftsComponent },
+  { path: 'master/aircraft', component: aircraftsComponent, canActivate: [AuthGuard],},
   { path: 'auth/login', component: LoginComponent },
 ];
 

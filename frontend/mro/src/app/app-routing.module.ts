@@ -19,7 +19,7 @@ const routes: Routes = [
     component: SparePartsComponent,
     canActivate: [AuthGuard],
   },
-  { path: 'master/project', component: ProjectsComponent },
+  { path: 'master/project', component: ProjectsComponent,canActivate: [AuthGuard],},
   { path: 'Purchase_order', component: PurchaseOrderComponent },
   { path: 'Purchase_order/create', component: PurchaseOrderCreateComponent },
   { path: 'master/employees', component: EmployeesComponent },

@@ -2,6 +2,7 @@ import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ErrorHandlers } from 'src/app/utils/error-handler';
 import { AuthService } from 'src/app/services/auth.service';
+
 @Component({
   selector: 'app-add-employee',
   templateUrl: './add-employee.component.html',
@@ -12,13 +13,14 @@ export class AddEmployeeComponent implements OnInit {
   addEmployeeForm: FormGroup | any;
   errorhandlers: any;
   employee: any;
+  user: any;
 
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService
   ) {
     this.authService.employee.subscribe(
-      (employee) => (this.employee = employee)
+      (employee) => (this.user = employee)
     );
   }
   //  Validators.pattern(`^[0-9]+`) NOT WORKING ???
@@ -51,10 +53,11 @@ export class AddEmployeeComponent implements OnInit {
           designation: this.addEmployeeForm.value.designation,
           department: this.addEmployeeForm.value.department,
           remarks: this.addEmployeeForm.value.remarks,
-          created_by: 1,
+          created_by: this.user.username,
           password: this.addEmployeeForm.value.password,
           username: this.addEmployeeForm.value.username,
         },
+        
       };
       this.onCreateEmployee.emit(addEmployee);
       this.addEmployeeForm.reset();

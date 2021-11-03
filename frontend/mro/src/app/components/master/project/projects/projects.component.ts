@@ -2,24 +2,25 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { projectService } from 'src/app/services/master/project/project.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { startWith, tap } from 'rxjs/operators';
+import { project, ProjectFilter } from 'src/app/model/project';
 
 import { SparePartService } from 'src/app/services/master/sparePart/spare-part.service';
+type Filter = string | ProjectFilter;
 @Component({
   selector: 'app-projects',
   templateUrl: './projects.component.html',
   styleUrls: ['./projects.component.css'],
 })
 export class ProjectsComponent implements OnInit {
-  projects: any = [];
+  projects: project[];
   projectCount: any;
-  filter = JSON.stringify('');
-
+  filter: Filter = JSON.stringify('');
   displayedColumns: string[] = [
     'project_name',
     'project_code',
     'remarks',
     'active_id',
-    'created_date',
+    'star_date',
     'end_date',
     'view',
   ];

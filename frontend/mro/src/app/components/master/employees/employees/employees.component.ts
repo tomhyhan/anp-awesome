@@ -68,6 +68,7 @@ export class EmployeesComponent implements OnInit {
       this.employeeService.getEmployeeCount().subscribe((count) => {
         this.employeeCount = count;
       });
+      console.log(this.employees)
       if (this.employees.length < this.paginator.pageSize) {
         this.employees = [...this.employees, employee[0]];
       }

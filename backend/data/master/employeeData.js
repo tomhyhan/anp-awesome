@@ -148,6 +148,7 @@ export async function update(id, employee) {
     remarks,
     modified_by,
   } = employee;
+  console.log( employee)
   return db
     .query(
       `
@@ -160,8 +161,8 @@ export async function update(id, employee) {
     address=?,
     designation=?,
     department=?,
-    remarks=?
-    modified_by=?
+    remarks=?,
+    modified_by=?,
     last_modified_date=?
   WHERE
     emp_id=?

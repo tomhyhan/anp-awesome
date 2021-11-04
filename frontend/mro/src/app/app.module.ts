@@ -71,6 +71,7 @@ import { JwtInterceptor } from './helpers/jwt.interceptor';
 import { appInitializer } from './helpers/app.initializer';
 import { AuthService } from './services/auth.service';
 import { DetailComponent } from './components/purchase/detail/detail.component';
+import { TabComponent } from './components/purchase/tab/tab.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -114,6 +115,7 @@ import { DetailComponent } from './components/purchase/detail/detail.component';
     LoginComponent,
     AlertComponent,
     DetailComponent,
+    TabComponent,
   ],
   imports: [
     BrowserModule,

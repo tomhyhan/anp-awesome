@@ -10,7 +10,7 @@ import { UomPartsComponent } from './components/master/uom/uom-parts/uom-parts.c
 import { VendorsComponent } from './components/master/vendor/vendors/vendors.component';
 import { aircraftsComponent } from './components/master/aircraft/aircrafts/aircrafts.component';
 import { LoginComponent } from './components/login/login.component';
-import { DetailComponent } from './components/purchase/detail/detail.component';
+import { TabComponent } from './components/purchase/tab/tab.component'
 
 import { AuthGuard } from './helpers/auth.guard';
 const routes: Routes = [
@@ -27,7 +27,7 @@ const routes: Routes = [
   { path: 'master/vendor', component: VendorsComponent },
   { path: 'master/aircraft', component: aircraftsComponent },
   { path: 'auth/login', component: LoginComponent },
-  { path: 'purchase/detail', component: DetailComponent },
+  { path: 'purchase/tab', component: TabComponent },
 ];
 
 @NgModule({

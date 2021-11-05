@@ -2,14 +2,14 @@
     <div class="form-row">
       <div class="form-group col-md-6">
         <label for="purchase_requisition_number">Purchase Requisition No</label>
-        <input formControlName="purchase_requisition_number" type="text" class="form-control" id="purchase_requisition_number" placeholder="Purchase Requisition No">
+        <input formControlName="purchase_requisition_number" type="text" class="form-control" id="purchase_requisition_number" placeholder="Purchase Requisition No" >
         <app-display-error errorMsg="This field is required" [displayError]="errorhandlers.isFieldValid('purchase_requisition_number')" ></app-display-error>
       </div>
       <div class="form-group col-md-6">
         <label for="vendor_id">Vendor</label>
         <select  formControlName="vendor_id" id="vendor_id" class="form-control">
           <option value="null" selected  disabled>Choose your vendor</option>
-          <!-- <option *ngFor="let item of uom" [ngValue]="item.uom_id">{{item.uom}}</option> -->
+          <option *ngFor="let vendor of vendors" [ngValue]="vendor.vendor_id">{{vendor.vendor_name}}</option>
         </select>
         <app-display-error errorMsg="This field is required" [displayError]="errorhandlers.isFieldValid('vendor_id')" ></app-display-error>
     </div>
@@ -18,7 +18,7 @@
       <div class="form-group col-md-6">
         <label for="payment_terms">Payment Terms</label>
         <input formControlName="payment_terms" type="text" class="form-control" id="payment_terms" placeholder="Payment Terms">
-        <app-display-error errorMsg="This field is required" [displayError]="errorhandlers.isFieldValid('payment_terms')" ></app-display-error>
+        <app-display-error errorMsg="This field must be a number" [displayError]="errorhandlers.isFieldValid('payment_terms')" ></app-display-error>
       </div>
       <div class="form-group col-md-6">
         <label for="other_reference">Other Reference</label>
@@ -42,7 +42,7 @@
         <label for="freight_terms">Freight Terms</label>
         <select  formControlName="freight_terms" id="freight_terms" class="form-control" placeholder="asdf">
           <option value="null" selected  disabled>Choose your Term</option>
-          <option value="null" selected>FOB Origin</option>
+          <option selected>FOB Origin</option>
           <!-- <option *ngFor="let item of uom" [ngValue]="item.uom_id">{{item.uom}}</option> -->
         </select>
         <app-display-error errorMsg="This field is required" [displayError]="errorhandlers.isFieldValid('freight_terms')" ></app-display-error>
@@ -51,7 +51,7 @@
         <label for="insurance">Insurance</label>
         <select  formControlName="insurance" id="insurance" class="form-control">
           <option value="null" selected  disabled>Choose your Insurance</option>
-          <option value="null" selected >Insurance</option>
+          <option selected >Insurance</option>
           <!-- <option *ngFor="let item of uom" [ngValue]="item.uom_id">{{item.uom}}</option> -->
         </select>
         <app-display-error errorMsg="This field is required" [displayError]="errorhandlers.isFieldValid('insurance')" ></app-display-error>

@@ -4,7 +4,6 @@ import 'express-async-errors';
 
 export async function getAll(req, res, next) {
   const employees = await employeeData.getAllEmployees();
-  console.log(employees);
   res.status(200).json(employees);
 }
 

@@ -15,13 +15,12 @@ export async function create(detail) {
     approval_level_1,
     approval_level_2,
     created_by,
-    created_date,
   } = detail;
 
   return db
     .query(
       `
-  INSERT INTO spare_part (purchase_requisition_number, vendor_id, payment_terms, other_reference, transport_mode, purchase_order_validity, freight_terms, insurance, remarks, approval_level_1, approval_level_2, created_by, created_date, modified_by, modified_date)
+  INSERT INTO detail (purchase_requisition_number, vendor_id, payment_terms, other_reference, transport_mode, purchase_order_validity, freight_terms, insurance, remarks, approval_level_1, approval_level_2, created_by, created_date, modified_by, modified_date)
   VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
   `,
       [
@@ -37,10 +36,10 @@ export async function create(detail) {
         approval_level_1,
         approval_level_2,
         created_by,
-        created_date,
+        new Date(),
         null,
         null,
       ]
     )
-    .then((result) => getAllById(result[0].insertId));
+    .then((result) => result[0].insertId);
 }

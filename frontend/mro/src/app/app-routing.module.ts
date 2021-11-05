@@ -26,7 +26,7 @@ const routes: Routes = [
   { path: 'master/employees', component: EmployeesComponent },
   { path: 'master/uom', component: UomPartsComponent },
   { path: 'master/vendor', component: VendorsComponent, canActivate: [AuthGuard], },
-  { path: 'master/aircraft', component: aircraftsComponent },
+  { path: 'master/aircraft', component: aircraftsComponent, canActivate: [AuthGuard],},
   { path: 'auth/login', component: LoginComponent },
   { path: 'purchase/detail', component: DetailComponent },
   { path: 'purchase/fileattach', component:FileattachComponent}

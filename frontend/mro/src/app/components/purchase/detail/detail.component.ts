@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ErrorHandlers } from 'src/app/utils/error-handler';
+import { EmployeeService } from 'src/app/services/master/employees/employee.service';
+import { SparePartService } from 'src/app/services/master/sparePart/spare-part.service';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-detail',
   templateUrl: './detail.component.html',
@@ -9,14 +12,26 @@ import { ErrorHandlers } from 'src/app/utils/error-handler';
 export class DetailComponent implements OnInit {
   addPurhaseDetail: FormGroup;
   errorhandlers: ErrorHandlers;
+  employees: any;
+  employeeSubscription: Subscription;
 
-  constructor(private formBuilder: FormBuilder) {
-    this.errorhandlers = new ErrorHandlers(this.addPurhaseDetail);
+  constructor(
+    private formBuilder: FormBuilder,
+    private employeeService: EmployeeService
+  ) {
+    this.employeeService.getAllEmployee().subscribe((employees) => {
+      this.employees = employees;
+    });
+    this.employeeSubscription = this.employeeService.employee.subscribe(
+      (employees) => {
+        this.employees = employees;
+      }
+    );
   }
 
   ngOnInit(): void {
     this.addPurhaseDetail = this.formBuilder.group({
-      purchase_requisition_number: [''],
+      purchase_requisition_number: ['', Validators.required],
       vendor_id: ['', Validators.required],
       payment_terms: ['', Validators.required],
       other_reference: ['', Validators.required],
@@ -30,7 +45,12 @@ export class DetailComponent implements OnInit {
       created_by: ['', Validators.required],
       created_date: ['', Validators.required],
     });
+    this.errorhandlers = new ErrorHandlers(this.addPurhaseDetail);
   }
+
+  // ngAfterViewInit() {
+  //   console.log(this.employees);
+  // }
 
   onSubmit() {
     const detail = {
@@ -38,6 +58,10 @@ export class DetailComponent implements OnInit {
         ...this.addPurhaseDetail.value,
       },
     };
+  }
+
+  ngOnDestroy() {
+    this.employeeSubscription.unsubscribe();
   }
 }
 

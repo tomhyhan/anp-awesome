@@ -10,6 +10,7 @@ CREATE TABLE uom (
   PRIMARY KEY (uom_id)
 );
 
+-- 11/03/2021 added created date and modified by
 CREATE TABLE employee (
   	emp_id INT NOT NULL AUTO_INCREMENT,
     emp_name VARCHAR(30) NOT NULL,
@@ -21,8 +22,9 @@ CREATE TABLE employee (
     department VARCHAR(30) NOT NULL,
     remarks VARCHAR(100) NOT NULL,
     created_by INT NOT NULL,
+    created_date Date,
     modified_by INT,
-    last_modified_date Date,
+    modified_date Date,
     password varchar(100) NOT NULL,
     username varchar(100) NOT NULL,
     PRIMARY KEY (emp_id)

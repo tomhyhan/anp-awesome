@@ -32,7 +32,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   { path: 'master/uom', component: UomPartsComponent },
-  { path: 'master/vendor', component: VendorsComponent },
+  { path: 'master/vendor', component: VendorsComponent, canActivate: [AuthGuard], },
   { path: 'master/aircraft', component: aircraftsComponent },
   { path: 'auth/login', component: LoginComponent },
   { path: 'purchase/detail', component: DetailComponent },

@@ -19,7 +19,7 @@ export class VendorService {
   constructor(private httpHelper: HttpClientHelper) {}
 
   getVendor(filter: any, pageIndex: any, pageSize: any) {
-    const queryString = `vendorFilter=&pageIndex=${pageIndex}&pageSize=${pageSize}`
+    const queryString = `vendorFilter=${filter}&pageIndex=${pageIndex}&pageSize=${pageSize}`
     return this.httpHelper.get(this.apiUrl, queryString, {});
 
   }

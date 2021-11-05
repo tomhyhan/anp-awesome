@@ -18,7 +18,11 @@ export class EditVendorComponent implements OnInit {
   errorhandlers: any;
   user: AuthData;
 
-  constructor(private formBuilder: FormBuilder, private authService: AuthService) {}
+  constructor(private formBuilder: FormBuilder, private authService: AuthService) {
+    this.authService.employee.subscribe(
+      (employee) => (this.user = employee)
+      )
+  }
 
   ngOnInit(): void {
     this.editVendorForm = this.formBuilder.group({

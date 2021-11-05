@@ -70,6 +70,8 @@ import { SearchaircraftComponent } from './components/master/aircraft/search-air
 import { JwtInterceptor } from './helpers/jwt.interceptor';
 import { appInitializer } from './helpers/app.initializer';
 import { AuthService } from './services/auth.service';
+import { DetailComponent } from './components/purchase/detail/detail.component';
+import { FileattachComponent } from './components/purchase/fileattach/fileattach.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -112,6 +114,8 @@ import { AuthService } from './services/auth.service';
     DisplayErrorComponent,
     LoginComponent,
     AlertComponent,
+    DetailComponent,
+    FileattachComponent,
   ],
   imports: [
     BrowserModule,

@@ -14,6 +14,7 @@ export class EditEmployeeComponent implements OnInit {
   id: any;
   errorhandlers: any;
   currentEmployee: any;
+  user: any;
 
   constructor(
     private formBuilder: FormBuilder,

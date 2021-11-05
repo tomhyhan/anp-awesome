@@ -9,6 +9,12 @@ JOIN uom
 On sp.frn_uom = uom.uom_id
 `;
 
+export async function getSpareParts() {
+  return db.query('Select * from spare_part').then((result) => {
+    return result[0];
+  });
+}
+
 export async function getAll(pageIndex, pageSize) {
   const limit = parseInt(pageSize);
   const currentPage = parseInt(pageIndex) * limit;

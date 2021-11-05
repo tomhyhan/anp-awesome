@@ -10,6 +10,8 @@ import { UomPartsComponent } from './components/master/uom/uom-parts/uom-parts.c
 import { VendorsComponent } from './components/master/vendor/vendors/vendors.component';
 import { aircraftsComponent } from './components/master/aircraft/aircrafts/aircrafts.component';
 import { LoginComponent } from './components/login/login.component';
+import { DetailComponent } from './components/purchase/detail/detail.component';
+import { FileattachComponent } from './components/purchase/fileattach/fileattach.component';
 
 import { AuthGuard } from './helpers/auth.guard';
 const routes: Routes = [
@@ -23,9 +25,11 @@ const routes: Routes = [
   { path: 'Purchase_order/create', component: PurchaseOrderCreateComponent },
   { path: 'master/employees', component: EmployeesComponent },
   { path: 'master/uom', component: UomPartsComponent },
-  { path: 'master/vendor', component: VendorsComponent },
+  { path: 'master/vendor', component: VendorsComponent, canActivate: [AuthGuard], },
   { path: 'master/aircraft', component: aircraftsComponent, canActivate: [AuthGuard],},
   { path: 'auth/login', component: LoginComponent },
+  { path: 'purchase/detail', component: DetailComponent },
+  { path: 'purchase/fileattach', component:FileattachComponent}
 ];
 
 @NgModule({

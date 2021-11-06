@@ -20,13 +20,23 @@ const routes: Routes = [
     component: SparePartsComponent,
     canActivate: [AuthGuard],
   },
-  { path: 'master/project', component: ProjectsComponent,canActivate: [AuthGuard],},
+  {
+    path: 'master/project',
+    component: ProjectsComponent,
+    canActivate: [AuthGuard],
+  },
   { path: 'Purchase_order', component: PurchaseOrderComponent },
   { path: 'Purchase_order/create', component: PurchaseOrderCreateComponent },
-  { path: 'master/employees', component: EmployeesComponent },
+  {
+    path: 'master/employees',
+    component: EmployeesComponent,
+    canActivate: [AuthGuard],
+  },
   { path: 'master/uom', component: UomPartsComponent },
   { path: 'master/vendor', component: VendorsComponent, canActivate: [AuthGuard], },
+
   { path: 'master/aircraft', component: aircraftsComponent, canActivate: [AuthGuard],},
+
   { path: 'auth/login', component: LoginComponent },
   { path: 'purchase/detail', component: DetailComponent },
   { path: 'purchase/fileattach', component:FileattachComponent}

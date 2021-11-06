@@ -10,6 +10,7 @@ CREATE TABLE uom (
   PRIMARY KEY (uom_id)
 );
 
+-- 11/03/2021 added created date and modified by
 CREATE TABLE employee (
   	emp_id INT NOT NULL AUTO_INCREMENT,
     emp_name VARCHAR(30) NOT NULL,
@@ -21,8 +22,9 @@ CREATE TABLE employee (
     department VARCHAR(30) NOT NULL,
     remarks VARCHAR(100) NOT NULL,
     created_by INT NOT NULL,
+    created_date Date,
     modified_by INT,
-    last_modified_date Date,
+    modified_date Date,
     password varchar(100) NOT NULL,
     username varchar(100) NOT NULL,
     PRIMARY KEY (emp_id)
@@ -98,7 +100,7 @@ CREATE TABLE aircraft (
   created_date Date
 );
 
-CREATE TABLE If NOT EXISTS `inventory_dev`.`details` (
+CREATE TABLE If NOT EXISTS `inventory_dev`.`detail` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `purchase_requisition_number` VARCHAR(45) NOT NULL,
   `vendor_id` INT NOT NULL,
@@ -106,8 +108,8 @@ CREATE TABLE If NOT EXISTS `inventory_dev`.`details` (
   `other_reference` VARCHAR(255) NULL,
   `transport_mode` VARCHAR(45) NULL,
   `purchase_order_validity` VARCHAR(45) NULL,
-  `freight_terms` INT NULL,
-  `insurance` BOOLEAN NULL,
+  `freight_terms` VARCHAR(45) NULL,
+  `insurance` VARCHAR(45) NULL,
   `remarks` VARCHAR(255) NULL,
   `approval_level_1` INT NOT NULL,
   `approval_level_2` INT NOT NULL,
@@ -122,18 +124,18 @@ CREATE TABLE If NOT EXISTS `inventory_dev`.`details` (
   CONSTRAINT `dt_vendor_id`
     FOREIGN KEY (`vendor_id`)
     REFERENCES `inventory_dev`.`vendor` (`vendor_id`)
-    ON DELETE RESTRICT
-    ON UPDATE RESTRICT,
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
   CONSTRAINT `dt_approval_level_1`
     FOREIGN KEY (`approval_level_1`)
     REFERENCES `inventory_dev`.`employee` (`emp_id`)
-    ON DELETE RESTRICT
-    ON UPDATE RESTRICT,
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
   CONSTRAINT `dt_approval_level_2`
     FOREIGN KEY (`approval_level_2`)
     REFERENCES `inventory_dev`.`employee` (`emp_id`)
-    ON DELETE RESTRICT
-    ON UPDATE RESTRICT);
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
 
 CREATE TABLE `inventory_dev`.`fileattach` (
   `id` INT NOT NULL AUTO_INCREMENT,
@@ -148,4 +150,5 @@ CREATE TABLE `inventory_dev`.`fileattach` (
     REFERENCES `inventory_dev`.`details` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
+
 

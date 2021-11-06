@@ -39,7 +39,7 @@ const routes: Routes = [
 
   { path: 'auth/login', component: LoginComponent },
   { path: 'purchase/detail', component: DetailComponent },
-  { path: 'purchase/fileattach', component:FileattachComponent}
+  { path: 'purchase/fileattach', component:FileattachComponent,canActivate: [AuthGuard]}
 ];
 
 @NgModule({

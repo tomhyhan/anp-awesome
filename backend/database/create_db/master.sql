@@ -136,3 +136,19 @@ CREATE TABLE If NOT EXISTS `inventory_dev`.`detail` (
     REFERENCES `inventory_dev`.`employee` (`emp_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
+
+CREATE TABLE `inventory_dev`.`fileattach` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `ewaybill` BLOB NULL,
+  `invoice` BLOB NULL,
+  `other` BLOB NULL,
+  `detail_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `frn_file_detail_idx_idx` (`detail_id` ASC) VISIBLE,
+  CONSTRAINT `frn_file_detail_idx`
+    FOREIGN KEY (`detail_id`)
+    REFERENCES `inventory_dev`.`details` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
+

@@ -1,0 +1,23 @@
+<form  class="m-3" [formGroup]="fileattachform" (ngSubmit)="onSubmit()">
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="purchase_requisition_number">Eway Bill</label>
+        <input formControlName="ewaybill" type="file"  id="ewaybill" placeholder="upload">
+
+      </div>
+      <div class="form-group col-md-6">
+        <label for="vendor_id">Invoice</label>
+        <input formControlName="invoice" type="file"  id="invoice" placeholder="upload">
+
+    </div>
+
+    <div class="form-group col-md-6">
+        <label for="vendor_id">Other</label>
+        <input formControlName="other" type="file"  id="other" placeholder="upload">
+    </div>
+    </div>
+
+    <div class="updateButton">
+      <button id="addButton" type="submit" class="button-save" >Submit</button>
+    </div>
+  </form>

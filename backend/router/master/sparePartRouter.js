@@ -5,6 +5,7 @@ import { isAuth } from '../../middlewares/auth.js';
 
 const router = express.Router();
 
+router.get('/all', isAuth, sparePartController.getSpareParts);
 router.get('/pages', isAuth, sparePartController.getSparePartCount);
 router.get('/filterPages', isAuth, sparePartController.getSparePartFilterCount);
 router.get('/:id', isAuth, sparePartController.getById);

@@ -21,7 +21,7 @@ type Employee = AuthData | null;
 })
 export class AuthService {
   private apiURL: string = '/auth/login';
-  public employeeSubject: BehaviorSubject<Employee>;
+  private employeeSubject: BehaviorSubject<Employee>;
   public employee: Observable<Employee>;
 
   constructor(private router: Router, private http: HttpClient) {
@@ -43,8 +43,6 @@ export class AuthService {
       .pipe(
         map((employee: any) => {
           this.employeeSubject.next(employee);
-          console.log('employee data');
-          console.log(this.employeeSubject.value);
 
           return employee;
         })

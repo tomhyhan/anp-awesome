@@ -55,7 +55,6 @@ export class AddSparePartComponent implements OnInit {
           created_by: this.employee.emp_id,
         },
       };
-      console.log(sparePart);
       this.onCreateSparePart.emit(sparePart);
 
       $('#sparePartModal12').hide();

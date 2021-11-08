@@ -46,6 +46,7 @@ export async function getById(req, res) {
 
 export async function addEmployee(req, res) {
   const { employee } = req.body;
+  console.log(employee)
   const password = employee.password;
   const IsEmployee = await employeeData.getByEmployeeCode(employee.emp_code);
   if (IsEmployee) {

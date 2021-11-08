@@ -14,6 +14,7 @@ import employeeRouter from './router/master/employeeRouter.js';
 import aircraftRouter from './router/master/aircraftRouter.js';
 import errorRouter from './router/error.js';
 import authRouter from './router/auth/authRouter.js';
+import fileRouter from './router/purchase/fileattach.js'
 import { config } from './config.js';
 
 const app = express();
@@ -36,6 +37,8 @@ app.use('/master/uom', uomRouter);
 app.use('/master/vendor', vendorRouter);
 app.use('/master/employee', employeeRouter);
 app.use('/master/aircraft', aircraftRouter);
+app.use('/purchase/detail', aircraftRouter);
+app.use('/purchase/file', fileRouter);
 app.use('/auth', authRouter);
 app.use(errorRouter);
 

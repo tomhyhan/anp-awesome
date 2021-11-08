@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { HttpClientHelper } from 'src/network/httpClient';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -12,33 +13,31 @@ const httpOptions = {
   providedIn: 'root',
 })
 export class aircraftService {
-  apiUrl = 'http://localhost:8080/master/aircraft';
+  url = '/master/aircraft';
 
-  constructor(private http: HttpClient) {}
+  constructor(private httpHelper: HttpClientHelper) {}
 
   getaircraft(filter: any, pageIndex: any, pageSize: any) {
     console.log(filter);
-    return this.http.get(
-      `${this.apiUrl}?aircraftFilter=${filter}&pageIndex=${pageIndex}&pageSize=${pageSize}$`
-      
-    );
+    const queryString = `aircraftFilter=${filter}&pageIndex=${pageIndex}&pageSize=${pageSize}`
+    return this.httpHelper.get(this.url, queryString, {});
   }
 
   addaircraft(aircraft: any) {
-    return this.http.post(this.apiUrl, aircraft, httpOptions);
+    return this.httpHelper.post(this.url, aircraft, httpOptions);
   }
 
   updateaircraft(aircraft: any, id: any) {
-    return this.http.put(`${this.apiUrl}/${id}`, aircraft, httpOptions);
+    return this.httpHelper.put(`${this.url}/${id}`, aircraft, httpOptions);
   }
 
   getaircraftCount() {
-    return this.http.get(`${this.apiUrl}/pages`, httpOptions);
+    const queryString = '';
+    return this.httpHelper.get(`${this.url}/pages`, queryString,{});
   }
 
   getaircraftFilterCount(filter: any) {
-    return this.http.get(
-      `${this.apiUrl}/filterPages?aircraftFilter=${filter}`, httpOptions
-    );
+    const queryString=`aircraftFilter=${filter}`
+    return this.httpHelper.get(`${this.url}/filterPages`, queryString,{});
   }
 }

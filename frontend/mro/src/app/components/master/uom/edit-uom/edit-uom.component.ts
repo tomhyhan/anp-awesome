@@ -9,7 +9,7 @@ import { ErrorHandlers } from 'src/app/utils/error-handler';
 })
 export class EditUomPartComponent implements OnInit {
   @Output() onUpdateUomPart = new EventEmitter();
-  @Input() uomPart: any;
+  @Input() uoms: any;
   editUomPartForm!: FormGroup | any;
   id: any;
   errorhandlers: any;
@@ -19,7 +19,9 @@ export class EditUomPartComponent implements OnInit {
   ngOnInit(): void {
     this.editUomPartForm = this.formBuilder.group({
       uom: ['', Validators.required],
-      remarks: ['', Validators.required],
+
+      remarks: [''],
+
     });
     this.updateValues();
     this.errorhandlers = new ErrorHandlers(this.editUomPartForm);
@@ -27,13 +29,17 @@ export class EditUomPartComponent implements OnInit {
 
   updateValues() {
     this.editUomPartForm.patchValue({
-      ...this.uomPart
+
+      ...this.uoms,
+
     });
   }
 
   // probably better use router
   onSubmit() {
-    if (this.editUomPartForm.valid){
+
+    if (this.editUomPartForm.valid) {
+
     const updateUomPart = {
       unit_of_measure: {
         ...this.editUomPartForm.value,
@@ -44,11 +50,13 @@ export class EditUomPartComponent implements OnInit {
     console.log(updateUomPart)
 
     this.onUpdateUomPart.emit({
-      uomPart: updateUomPart,
-      id: this.uomPart.uom_id,
+      uoms: updateUomPart,
+      id: this.uoms.uom_id,
     });
-    } else {
-      this.errorhandlers.showErrors();
+
+  } else {
+    this.errorhandlers.showErrors();
+
     }
   }
 }

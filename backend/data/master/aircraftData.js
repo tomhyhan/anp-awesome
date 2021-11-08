@@ -1,18 +1,66 @@
 import { db } from '../../database/database.js';
+import { getFilterQuery } from '../../utils/aircraftFilter.js'
 
-export async function getAll() {
-  return db.execute(`SELECT * FROM aircraft`).then((result) => {
-    return result[0];
-  });
+const SELECT_QUERY = `SELECT * FROM aircraft`
+
+export async function getAll(pageIndex, pageSize) {
+  const limit = parseInt(pageSize);
+  const currentPage = parseInt(pageIndex) * limit;
+  return db
+    .query(`${SELECT_QUERY} LIMIT ? OFFSET ?`, [limit, currentPage])
+    .then((result) => {
+      return result[0];
+    });
 }
 
-export async function getallbyAircraftName(aircraft_name) {
+export async function getCount() {
   return db
-    .execute(
+    .query(
+      `SELECT count(*) from aircraft`
+    )
+    .then((result) => {
+      return result[0][0]['count(*)'];
+    });
+}
+
+export async function getAllByFilter(filter, pageIndex, pageSize) {
+  const limit = parseInt(pageSize);
+  const currentPage = parseInt(pageIndex) * limit;
+  const { query, queryArr } = getFilterQuery(filter);
+  console.log(filter);
+
+
+  return db
+    .query(
       `
-    SELECT * FROM aircraft
-    WHERE aircraft_name=?
-    `,
+      ${SELECT_QUERY}
+      ${query}
+      LIMIT ? OFFSET ?
+      `,
+      [...queryArr, limit, currentPage]
+    )
+    .then((result) => {
+      return result[0];
+    });
+}
+
+export async function getFilterCount(filter) {
+  const { query, queryArr } = getFilterQuery(filter);
+  return db
+    .query(
+      `SELECT count(*) from aircraft ${query}`,
+      [...queryArr]
+    )
+    .then((result) => {
+      return result[0][0]['count(*)'];
+    });
+}
+
+
+export async function getAllByaircraftName(aircraft_name) {
+  return db
+    .query(
+      `SELECT * FROM aircraft WHERE aircraft_name=?`,
       [aircraft_name]
     )
     .then((result) => {
@@ -22,7 +70,7 @@ export async function getallbyAircraftName(aircraft_name) {
 
 export async function getById(aircraftid) {
   return db
-    .execute(
+    .query(
       `
     SELECT * FROM aircraft
     WHERE material_aircraft_id=?
@@ -38,7 +86,7 @@ export async function create(aircraft) {
   const { aircraft_name, remarks, created_by } = aircraft;
 
   return db
-    .execute(
+    .query(
       `
   INSERT INTO aircraft (aircraft_name, remarks, created_by, created_date)
   VALUES (?,?,?,?)
@@ -50,7 +98,7 @@ export async function create(aircraft) {
 
 // getting a aircraft object
 export async function update(id, aircraft) {
-  const { aircraft_name, remarks } = aircraft;
+  const { aircraft_name, remarks, modified_by } = aircraft;
 
   return db
     .execute(
@@ -58,11 +106,13 @@ export async function update(id, aircraft) {
   Update aircraft
   SET 
     aircraft_name=?,
-    remarks=?
+    remarks=?,
+    modified_by=?,
+    last_modified_date=?
   WHERE
     material_aircraft_id=?
     `,
-      [aircraft_name, remarks, id]
+      [aircraft_name, remarks, modified_by, new Date().toLocaleDateString().replace('/','-').replace('/','-'),,id]
     )
     .then(() => getById(id));
 }

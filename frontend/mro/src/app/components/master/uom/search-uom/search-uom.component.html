@@ -3,7 +3,7 @@
       <table id="main-table-selector">
         <thead>
           <tr style="color: rgb(110,144,161);">
-            <th><label for="uom">UOM</label></th>
+            <th><label for="uom">Unit name</label></th>
             <th><label for="remarks">Remarks</label></th>
           </tr>
         </thead>
@@ -26,7 +26,7 @@
               formControlName="remarks"
             /></td>
             <td class="button ext-center">
-              <button class="text-center m-2" id="main-button-search_uom" type="submit" [disabled]="!searchUomPartForm.valid">search</button>
+              <button class="text-center m-2" id="main-button-search_uom" type="submit" [disabled]="!searchUomPartForm.valid"><i class="fa fa-search"></i> Search</button>
             </td>
           </tr>
         </tbody>

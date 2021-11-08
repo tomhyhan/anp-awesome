@@ -1,13 +1,34 @@
 import * as aircraftData from '../../data/master/aircraftData.js';
 
 export async function getAllAircraft(req, res, next) {
-  const aircraftName = req.query.aircraft_name;
+  let aircraftFilter = req.query.aircraftFilter;
+  const { pageIndex, pageSize } = req.query;
+  console.log(req.query);
+  if (aircraftFilter == null) {
+    aircraftFilter = '';
+  } else {
+    aircraftFilter = JSON.parse(aircraftFilter);
+  }
 
-  const aircraft = await (aircraftName
-    ? await aircraftData.getallbyAircraftName(aircraftName)
-    : await aircraftData.getAll());
+  const filter =
+    aircraftFilter === '' || isEmpty(aircraftFilter) ? '' : aircraftFilter;
 
-  return res.status(200).json(aircraft);
+  const aircrafts = await (filter
+    ? aircraftData.getAllByFilter(filter, pageIndex, pageSize)
+    : aircraftData.getAll(pageIndex, pageSize));
+
+  return res.status(200).json(aircrafts);
+}
+
+export async function getaircraftCount(req, res) {
+  const count = await aircraftData.getCount();
+  res.status(200).json(count);
+}
+
+export async function getaircraftFilterCount(req, res) {
+  const aircraftFilter = JSON.parse(req.query.aircraftFilter);
+  const count = await aircraftData.getFilterCount(aircraftFilter);
+  res.status(200).json(count);
 }
 
 export async function getById(req, res, next) {
@@ -38,3 +59,7 @@ export async function updateAircraft(req, res) {
     res.status(404).json({ message: `Aircraft not Found` });
   }
 }
+
+function isEmpty(filter) {
+  const empty = Object.values(filter).find((value) => value !== null);
+  return empty == null ? true : false;}

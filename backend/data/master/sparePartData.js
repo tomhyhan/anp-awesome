@@ -1,5 +1,7 @@
 import { db } from '../../database/database.js';
 import { getFilterQuery } from '../../utils/sparePartFilter.js';
+import 'express-async-errors';
+
 const SELECT_JOIN = `
 SELECT sp.material_master_id, sp.spare_part_code, sp.spare_part_desc, sp.hsn_code ,sp.spare_part_group ,sp.rate ,uom.uom, sp.remarks, sp.photo, sp.created_by, sp.active_id, sp.created_date 
 FROM spare_part as sp 
@@ -7,11 +9,17 @@ JOIN uom
 On sp.frn_uom = uom.uom_id
 `;
 
+export async function getSpareParts() {
+  return db.query('Select * from spare_part').then((result) => {
+    return result[0];
+  });
+}
+
 export async function getAll(pageIndex, pageSize) {
   const limit = parseInt(pageSize);
   const currentPage = parseInt(pageIndex) * limit;
   return db
-    .execute(`${SELECT_JOIN} LIMIT ? OFFSET ?`, [limit, currentPage])
+    .query(`${SELECT_JOIN} LIMIT ? OFFSET ?`, [limit, currentPage])
     .then((result) => {
       return result[0];
     });
@@ -52,7 +60,7 @@ export async function getAllById(materialMasterId) {
 
 export async function getCount() {
   return db
-    .execute(
+    .query(
       `
       SELECT count(*) from spare_part
     `
@@ -66,7 +74,7 @@ export async function getFilterCount(filter) {
   const { query, queryArr } = getFilterQuery(filter);
 
   return db
-    .execute(
+    .query(
       `
       SELECT count(*) from spare_part
       ${query}
@@ -98,8 +106,8 @@ export async function create(spare_part) {
   return db
     .query(
       `
-  INSERT INTO spare_part (spare_part_code, spare_part_desc, hsn_code, spare_part_group, rate, frn_uom, remarks, active_id, photo, created_by, created_date)
-  VALUES (?,?,?,?,?,?,?,?,?,?,?)
+  INSERT INTO spare_part (spare_part_code, spare_part_desc, hsn_code, spare_part_group, rate, frn_uom, remarks, active_id, photo, created_by, created_date, modified_by, modified_date)
+  VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)
   `,
       [
         spare_part_code,
@@ -113,6 +121,8 @@ export async function create(spare_part) {
         photo,
         created_by,
         new Date(),
+        null,
+        null,
       ]
     )
     .then((result) => getAllById(result[0].insertId));
@@ -131,6 +141,7 @@ export async function update(id, spare_part) {
     frn_uom,
     active_id,
     photo,
+    modified_by,
   } = spare_part;
 
   return db
@@ -146,7 +157,9 @@ export async function update(id, spare_part) {
     remarks=?,
     frn_uom=?,
     active_id=?,
-    photo=?
+    photo=?,
+    modified_by=?,
+    modified_date=?
   WHERE
     material_master_id=?
     `,
@@ -160,6 +173,8 @@ export async function update(id, spare_part) {
         frn_uom,
         active_id,
         photo,
+        modified_by,
+        new Date(),
         id,
       ]
     )

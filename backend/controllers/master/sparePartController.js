@@ -1,3 +1,4 @@
+import 'express-async-errors';
 import * as sparePartData from '../../data/master/sparePartData.js';
 
 export async function getAllSpareParts(req, res, next) {
@@ -13,7 +14,12 @@ export async function getAllSpareParts(req, res, next) {
     ? sparePartData.getAllByFilter(filter, pageIndex, pageSize)
     : sparePartData.getAll(pageIndex, pageSize));
 
-  return res.status(200).json(sparePart);
+  res.status(200).json(sparePart);
+}
+
+export async function getSpareParts(req, res) {
+  const spareParts = await sparePartData.getSpareParts();
+  res.status(200).json(spareParts);
 }
 
 export async function getById(req, res, next) {

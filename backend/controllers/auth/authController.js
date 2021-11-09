@@ -7,7 +7,7 @@ export async function login(req, res) {
   const { username, password } = req.body;
 
   const employees = await userData.getByEmployeeUsername(username);
-
+  //console.log(employees)
   if (!employees) {
     return res.status(401).json({ message: 'Username or Password is Invalid' });
   }
@@ -15,16 +15,20 @@ export async function login(req, res) {
   let isValidPassword;
   let currentEmployee;
   for (const employee of employees) {
+    // console.log(employee.password)
+    console.log(password)
     isValidPassword = await authUtil.comeparePassword(
       password,
       employee.password
     );
     if (isValidPassword) {
+      //console.log(isValidPassword)
+     //console.log(employee)
       currentEmployee = employee;
       break;
     }
   }
-
+  // console.log(currentEmployee)
   if (!currentEmployee) {
     return res.status(401).json({ message: 'Username or Password is Invalid' });
   }

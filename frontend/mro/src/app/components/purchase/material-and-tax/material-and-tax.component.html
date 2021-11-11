@@ -1,28 +1,77 @@
-
-<form [formGroup]='addMaterialsAndTax'>
-    <div 
-    formArrayName='items'
-    *ngFor="let item of addMaterialsAndTax.get('items')['controls']; let i = index;"
-    >
-      <div [formGroupName]="i">
-        <input formControlName="material_code" placeholder="material Code">
-        <input formControlName="material_description" placeholder="description">
-        <input formControlName="make" placeholder="Make">
-        <input formControlName="delivery_date" placeholder="Delivery Date">
-        <input formControlName="accout_assignment" placeholder="Account Assingment">
-        <input formControlName="cost_center" placeholder="Cost Center">
-        <input formControlName="plant" placeholder="plant">
-        <input (change)='onChange(i)' formControlName="quantity" placeholder="quantity">
-        <input formControlName="unit" placeholder="unit">
-        <input (change)='onChange(i)' formControlName="rate" placeholder="rate">
-        <input (change)='onChange(i)' formControlName="dics" placeholder="dics %">
-        <input (change)='onChange(i)' formControlName="disc_amount" placeholder="disc amount">
-        <input (change)='onChange(i)' formControlName="total_amount" placeholder="Total Amount">
-
-      </div>
-      <button type="button" (click)="addItem(i)">Add Item</button>
-      <button type="button" (click)="removeItem(i)">Remove</button>
-    </div>
-    <button type="button" (click)="addItemAtEnd()">Add Item</button>
-
+<form class="form-horizontal" [formGroup]='addMaterialsAndTax'>
+  <table class="table table-bordered table-striped table-highlight">
+    <thead>
+      <tr>
+        <th><label for="sparePartCode">Material Code</label></th>
+        <th><label for="hsnCode">Description</label></th>
+        <th><label for="sparePartDesc">Make</label></th>
+        <th><label for="sparePartGroup">Delivery Date</label></th>
+        <th><label for="rate">Account Assingment</label></th>
+        <th><label for="active_id">Cost Center</label></th>
+        <th><label for="active_id">Plant</label></th>
+        <th><label for="active_id">Quantity</label></th>
+        <th><label for="active_id">Unit</label></th>
+        <th><label for="active_id">Rate</label></th>
+        <th><label for="active_id">Discount %</label></th>
+        <th><label for="active_id">Discount Amount</label></th>
+        <th><label for="active_id">Total Amount</label></th>
+        <th><label for="active_id"> </label></th>
+        <th><label for="active_id"> </label></th>
+      </tr>
+    </thead>
+    <tbody>
+      <div formArrayName='items' *ngFor="let item of addMaterialsAndTax.get('items')['controls']; let i = index;">
+        <div [formGroupName]="i">
+          <tr>
+            <td>
+              <input formControlName="material_code" placeholder="Material Code">
+            </td>
+            <td>
+              <input formControlName="material_description" placeholder="Description">
+            </td>
+            <td>
+              <input formControlName="make" placeholder="Make">
+            </td>
+            <td>
+              <input formControlName="delivery_date" placeholder="Delivery Date">
+            </td>
+            <td>
+              <input formControlName="accout_assignment" placeholder="Account Assingment">
+            </td>
+            <td>
+              <input formControlName="cost_center" placeholder="Cost Center">
+            </td>
+            <td>
+              <input formControlName="plant" placeholder="Plant">
+            </td>
+            <td>
+              <input (change)='onChange(i)' formControlName="quantity" placeholder="Quantity">
+            </td>
+            <td>
+              <input formControlName="unit" placeholder="Unit">
+            </td>
+            <td>
+              <input (change)='onChange(i)' formControlName="rate" placeholder="Rate">
+            </td>
+            <td>
+              <input (change)='onChange(i)' formControlName="dics" placeholder="Dics %">
+            </td>
+            <td>
+              <input (change)='onChange(i)' formControlName="disc_amount" placeholder="Disc Amount">
+            </td>
+            <td>
+              <input (change)='onChange(i)' formControlName="total_amount" placeholder="Total Amount">
+            </td>
+            <td>
+              <button type="button" (click)="addItem(i)">+</button>
+            </td>
+            <td>
+              <button type="button" (click)="removeItem(i)">—</button>
+            </td>
+          </tr>
+          </div>
+        </div>
+      </tbody>
+    </table> 
+  <button id="addButton" type="button" (click)="addItemAtEnd()">Add Item</button>
 </form>

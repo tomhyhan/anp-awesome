@@ -12,6 +12,7 @@ import { aircraftsComponent } from './components/master/aircraft/aircrafts/aircr
 import { LoginComponent } from './components/login/login.component';
 import { DetailComponent } from './components/purchase/detail/detail.component';
 import { FileattachComponent } from './components/purchase/fileattach/fileattach.component';
+import { TabComponent } from './components/purchase/tab/tab.component';
 
 import { AuthGuard } from './helpers/auth.guard';
 import { MaterialAndTaxComponent } from './components/purchase/material-and-tax/material-and-tax.component';
@@ -41,14 +42,15 @@ const routes: Routes = [
   },
   { path: 'master/aircraft', component: aircraftsComponent },
   { path: 'auth/login', component: LoginComponent },
+  { path: 'purchase/create_purchase_form', component: TabComponent},
   { path: 'purchase/detail', component: DetailComponent },
   { path: 'purchase/mat_tax', component: MaterialAndTaxComponent },
+  { path: 'purchase/fileattach', component: FileattachComponent },
   {
     path: 'master/vendor',
     component: VendorsComponent,
     canActivate: [AuthGuard],
   },
-  { path: 'purchase/fileattach', component: FileattachComponent },
 ];
 
 @NgModule({

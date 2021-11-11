@@ -11,6 +11,9 @@ import { AuthService } from 'src/app/services/auth.service';
 export class MaterialAndTaxComponent implements OnInit {
   addMaterialsAndTax: FormGroup;
   items: FormArray;
+  displayedColumns: string[] = ["Material Code",	"Description", "Make", "Delivery Date",	
+  "Account Assignment", "Cost Center", "Plant", "Quantity", "Unit", "Rate", "Discount %",
+  "Discoumt Amount", "Total Amount", " ", " "];
 
   constructor(
     private authservice: AuthService,

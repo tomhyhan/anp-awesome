@@ -55,7 +55,6 @@ export class MaterialAndTaxComponent implements OnInit {
     const rate = this.items.getRawValue()[index].rate || 0;
     const discountPercent = this.items.getRawValue()[index].dics || 0;
     const discountAmount = this.items.getRawValue()[index].disc_amount || 0;
-    // console.log(quantity * rate * (1 - discountPercent / 100) - discountAmount);
     const total =
       quantity * rate * (1 - discountPercent / 100) - discountAmount;
     this.items.controls[index].get('total_amount').setValue(total);

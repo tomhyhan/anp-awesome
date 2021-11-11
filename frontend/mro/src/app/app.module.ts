@@ -69,12 +69,8 @@ import { JwtInterceptor } from './helpers/jwt.interceptor';
 import { appInitializer } from './helpers/app.initializer';
 import { AuthService } from './services/auth.service';
 import { DetailComponent } from './components/purchase/detail/detail.component';
-<<<<<<< HEAD
-import { TabComponent } from './components/purchase/tab/tab.component';
-=======
 import { MaterialAndTaxComponent } from './components/purchase/material-and-tax/material-and-tax.component';
 import { FileattachComponent } from './components/purchase/fileattach/fileattach.component';
->>>>>>> origin/tom
 @NgModule({
   declarations: [
     AppComponent,
@@ -118,12 +114,8 @@ import { FileattachComponent } from './components/purchase/fileattach/fileattach
     LoginComponent,
     AlertComponent,
     DetailComponent,
-<<<<<<< HEAD
-    TabComponent,
-=======
     MaterialAndTaxComponent,
     FileattachComponent,
->>>>>>> origin/tom
   ],
   imports: [
     BrowserModule,

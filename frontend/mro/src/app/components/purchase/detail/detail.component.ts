@@ -14,8 +14,8 @@ import { AuthService } from 'src/app/services/auth.service';
 export class DetailComponent implements OnInit {
   addPurhaseDetail: FormGroup;
   errorhandlers: ErrorHandlers;
-  employees: any;
-  vendors: any;
+  employees;
+  vendors;
   employeeSubscription: Subscription;
   vendorSubscription: Subscription;
   dateObj: Date = new Date();

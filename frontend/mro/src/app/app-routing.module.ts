@@ -13,6 +13,7 @@ import { LoginComponent } from './components/login/login.component';
 import { DetailComponent } from './components/purchase/detail/detail.component';
 
 import { AuthGuard } from './helpers/auth.guard';
+import { MaterialAndTaxComponent } from './components/purchase/material-and-tax/material-and-tax.component';
 const routes: Routes = [
   {
     path: 'master/spare_part',
@@ -32,10 +33,15 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   { path: 'master/uom', component: UomPartsComponent },
-  { path: 'master/vendor', component: VendorsComponent, canActivate: [AuthGuard], },
+  {
+    path: 'master/vendor',
+    component: VendorsComponent,
+    canActivate: [AuthGuard],
+  },
   { path: 'master/aircraft', component: aircraftsComponent },
   { path: 'auth/login', component: LoginComponent },
   { path: 'purchase/detail', component: DetailComponent },
+  { path: 'purchase/mat_tax', component: MaterialAndTaxComponent },
 ];
 
 @NgModule({

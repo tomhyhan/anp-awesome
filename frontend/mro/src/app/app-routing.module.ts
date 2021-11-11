@@ -10,24 +10,53 @@ import { UomPartsComponent } from './components/master/uom/uom-parts/uom-parts.c
 import { VendorsComponent } from './components/master/vendor/vendors/vendors.component';
 import { aircraftsComponent } from './components/master/aircraft/aircrafts/aircrafts.component';
 import { LoginComponent } from './components/login/login.component';
+<<<<<<< HEAD
 import { TabComponent } from './components/purchase/tab/tab.component'
+=======
+import { DetailComponent } from './components/purchase/detail/detail.component';
+import { FileattachComponent } from './components/purchase/fileattach/fileattach.component';
+>>>>>>> origin/tom
 
 import { AuthGuard } from './helpers/auth.guard';
+import { MaterialAndTaxComponent } from './components/purchase/material-and-tax/material-and-tax.component';
 const routes: Routes = [
   {
     path: 'master/spare_part',
     component: SparePartsComponent,
     canActivate: [AuthGuard],
   },
-  { path: 'master/project', component: ProjectsComponent,canActivate: [AuthGuard],},
+  {
+    path: 'master/project',
+    component: ProjectsComponent,
+    canActivate: [AuthGuard],
+  },
   { path: 'Purchase_order', component: PurchaseOrderComponent },
   { path: 'Purchase_order/create', component: PurchaseOrderCreateComponent },
-  { path: 'master/employees', component: EmployeesComponent },
+  {
+    path: 'master/employees',
+    component: EmployeesComponent,
+    canActivate: [AuthGuard],
+  },
   { path: 'master/uom', component: UomPartsComponent },
-  { path: 'master/vendor', component: VendorsComponent },
+  {
+    path: 'master/vendor',
+    component: VendorsComponent,
+    canActivate: [AuthGuard],
+  },
   { path: 'master/aircraft', component: aircraftsComponent },
   { path: 'auth/login', component: LoginComponent },
+<<<<<<< HEAD
   { path: 'purchase/tab', component: TabComponent },
+=======
+  { path: 'purchase/detail', component: DetailComponent },
+  { path: 'purchase/mat_tax', component: MaterialAndTaxComponent },
+  {
+    path: 'master/vendor',
+    component: VendorsComponent,
+    canActivate: [AuthGuard],
+  },
+  { path: 'purchase/fileattach', component: FileattachComponent },
+>>>>>>> origin/tom
 ];
 
 @NgModule({

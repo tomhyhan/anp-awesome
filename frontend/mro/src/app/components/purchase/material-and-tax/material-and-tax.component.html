@@ -1,0 +1,28 @@
+
+<form [formGroup]='addMaterialsAndTax'>
+    <div 
+    formArrayName='items'
+    *ngFor="let item of addMaterialsAndTax.get('items')['controls']; let i = index;"
+    >
+      <div [formGroupName]="i">
+        <input formControlName="material_code" placeholder="material Code">
+        <input formControlName="material_description" placeholder="description">
+        <input formControlName="make" placeholder="Make">
+        <input formControlName="delivery_date" placeholder="Delivery Date">
+        <input formControlName="accout_assignment" placeholder="Account Assingment">
+        <input formControlName="cost_center" placeholder="Cost Center">
+        <input formControlName="plant" placeholder="plant">
+        <input (change)='onChange(i)' formControlName="quantity" placeholder="quantity">
+        <input formControlName="unit" placeholder="unit">
+        <input (change)='onChange(i)' formControlName="rate" placeholder="rate">
+        <input (change)='onChange(i)' formControlName="dics" placeholder="dics %">
+        <input (change)='onChange(i)' formControlName="disc_amount" placeholder="disc amount">
+        <input (change)='onChange(i)' formControlName="total_amount" placeholder="Total Amount">
+
+      </div>
+      <button type="button" (click)="addItem(i)">Add Item</button>
+      <button type="button" (click)="removeItem(i)">Remove</button>
+    </div>
+    <button type="button" (click)="addItemAtEnd()">Add Item</button>
+
+</form>

@@ -3,6 +3,7 @@ import { aircraftService } from 'src/app/services/master/aircraft/aircraft.servi
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ErrorHandlers } from 'src/app/utils/error-handler';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-edit-aircraft',
@@ -15,8 +16,13 @@ export class EditaircraftComponent implements OnInit {
   editaircraftForm!: FormGroup | any;
   id: any;
   errorhandlers: any;
+  user:any;
 
-  constructor(private formBuilder: FormBuilder, private router: Router) { }
+  constructor(private formBuilder: FormBuilder, private authService: AuthService) {
+    this.authService.employee.subscribe(
+      (employee) => (this.user = employee)
+    );
+   }
 
   ngOnInit(): void {
     // console.log(this.aircraft)
@@ -43,7 +49,7 @@ export class EditaircraftComponent implements OnInit {
       aircraft: {
         aircraft_name: this.editaircraftForm.value.aircraft_name,
         remarks: this.editaircraftForm.value.remarks,
-        created_by:"tama",
+        modified_by:this.user.emp_id,
       },
     };
     // console.log(updateaircraft)

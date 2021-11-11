@@ -64,14 +64,17 @@ import { LoginComponent } from './components/login/login.component';
 import { AlertComponent } from './components/alert/alert.component';
 import { SearchaircraftComponent } from './components/master/aircraft/search-aircraft/search-aircraft.component';
 
-
-
 // interceptors
 import { JwtInterceptor } from './helpers/jwt.interceptor';
 import { appInitializer } from './helpers/app.initializer';
 import { AuthService } from './services/auth.service';
 import { DetailComponent } from './components/purchase/detail/detail.component';
+<<<<<<< HEAD
 import { TabComponent } from './components/purchase/tab/tab.component';
+=======
+import { MaterialAndTaxComponent } from './components/purchase/material-and-tax/material-and-tax.component';
+import { FileattachComponent } from './components/purchase/fileattach/fileattach.component';
+>>>>>>> origin/tom
 @NgModule({
   declarations: [
     AppComponent,
@@ -115,7 +118,12 @@ import { TabComponent } from './components/purchase/tab/tab.component';
     LoginComponent,
     AlertComponent,
     DetailComponent,
+<<<<<<< HEAD
     TabComponent,
+=======
+    MaterialAndTaxComponent,
+    FileattachComponent,
+>>>>>>> origin/tom
   ],
   imports: [
     BrowserModule,

@@ -10,12 +10,8 @@ import { UomPartsComponent } from './components/master/uom/uom-parts/uom-parts.c
 import { VendorsComponent } from './components/master/vendor/vendors/vendors.component';
 import { aircraftsComponent } from './components/master/aircraft/aircrafts/aircrafts.component';
 import { LoginComponent } from './components/login/login.component';
-<<<<<<< HEAD
-import { TabComponent } from './components/purchase/tab/tab.component'
-=======
 import { DetailComponent } from './components/purchase/detail/detail.component';
 import { FileattachComponent } from './components/purchase/fileattach/fileattach.component';
->>>>>>> origin/tom
 
 import { AuthGuard } from './helpers/auth.guard';
 import { MaterialAndTaxComponent } from './components/purchase/material-and-tax/material-and-tax.component';
@@ -45,9 +41,6 @@ const routes: Routes = [
   },
   { path: 'master/aircraft', component: aircraftsComponent },
   { path: 'auth/login', component: LoginComponent },
-<<<<<<< HEAD
-  { path: 'purchase/tab', component: TabComponent },
-=======
   { path: 'purchase/detail', component: DetailComponent },
   { path: 'purchase/mat_tax', component: MaterialAndTaxComponent },
   {
@@ -56,7 +49,6 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   { path: 'purchase/fileattach', component: FileattachComponent },
->>>>>>> origin/tom
 ];
 
 @NgModule({

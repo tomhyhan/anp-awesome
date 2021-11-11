@@ -45,3 +45,5 @@ app.use(errorRouter);
 app.listen(config.host.port, () => {
   console.info(`Listening on http://localhost:${config.host.port} 🤗`);
 });
+
+export default app;

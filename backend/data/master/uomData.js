@@ -111,7 +111,7 @@ export async function create(unit_of_measure) {
 
 export async function update(uom_id, unit_of_measure) {
   
-  const { uom, remarks } = unit_of_measure;
+  const { uom, remarks, modified_by} = unit_of_measure;
   console.log(unit_of_measure)
 
   return db
@@ -120,11 +120,17 @@ export async function update(uom_id, unit_of_measure) {
   Update uom
   SET 
   uom=?,
-  remarks=?     
+  remarks=?
+  modified_by=?,
+  last_modified_date=?     
   WHERE
     uom_id=?
     `,
-      [uom, remarks, uom_id]
+      [uom, 
+      remarks, 
+      modified_by, 
+      new Date().toLocaleDateString().replace('/','-').replace('/','-'),  
+      uom_id]
     )
     .then(() => getById(uom_id));
 }

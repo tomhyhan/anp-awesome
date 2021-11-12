@@ -1,9 +1,9 @@
 import express from 'express';
 import * as uomController from '../../controllers/master/uomController.js';
-
+import { isAuth } from '../../middlewares/auth.js';
 const router = express.Router();
 
-router.get('/uomservices', uomController.getAllUom2);
+router.get('/uomservices', isAuth, uomController.getAllUom2);
 router.get('/pages',isAuth , uomController.getUomPartCount);
 router.get('/filterPages',isAuth , uomController.getUomPartFilterCount);
 router.get('/',isAuth , uomController.getAllUom);

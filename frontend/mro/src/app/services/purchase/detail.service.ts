@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
-import { map, finalize } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { HttpClientHelper } from 'src/network/httpClient';
@@ -11,12 +11,28 @@ import { HttpClientHelper } from 'src/network/httpClient';
 })
 export class DetailService {
   private url = '/purchase/detail';
-  constructor(private httpHelper: HttpClientHelper) {}
+  private detailSubject: BehaviorSubject<any>;
+  public detail: Observable<any>;
+
+  constructor(private httpHelper: HttpClientHelper) {
+    this.detailSubject = new BehaviorSubject<any>(null);
+    this.detail = this.detailSubject.asObservable();
+  }
+
+  getAllDetail() {
+    const queryString = '';
+    return this.httpHelper.get(`${this.url}/all`, queryString, {}).pipe(
+      map((detail) => {
+        this.detailSubject.next(detail);
+        return detail;
+      })
+    );
+  }
 
   addDetail(detail) {
-    console.log(detail);
     return this.httpHelper.post(this.url, detail, {}).pipe(
       map((detail) => {
+        this.getAllDetail().subscribe();
         return detail;
       })
     );

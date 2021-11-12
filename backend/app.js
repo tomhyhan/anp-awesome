@@ -16,9 +16,8 @@ import errorRouter from './router/error.js';
 import authRouter from './router/auth/authRouter.js';
 
 import detailRouter from './router/purchase/detailRouter.js';
-
-
-import fileRouter from './router/purchase/fileattach.js'
+import materialTaxRouter from './router/purchase/materialTaxRouter.js';
+import fileRouter from './router/purchase/fileattach.js';
 
 import { config } from './config.js';
 
@@ -44,6 +43,7 @@ app.use('/master/employee', employeeRouter);
 app.use('/master/aircraft', aircraftRouter);
 
 app.use('/purchase/detail', detailRouter);
+app.use('/purchase/material_tax', materialTaxRouter);
 
 app.use('/purchase/file', fileRouter);
 

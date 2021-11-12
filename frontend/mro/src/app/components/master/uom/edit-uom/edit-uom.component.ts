@@ -1,5 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthData } from 'src/app/model/auth';
+import { AuthService } from 'src/app/services/auth.service';
 import { ErrorHandlers } from 'src/app/utils/error-handler';
 
 @Component({
@@ -13,8 +15,11 @@ export class EditUomPartComponent implements OnInit {
   editUomPartForm!: FormGroup | any;
   id: any;
   errorhandlers: any;
+  employee: AuthData
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: FormBuilder, private authService: AuthService) {
+    this.employee = this.authService.employeeValue;
+  }
 
   ngOnInit(): void {
     this.editUomPartForm = this.formBuilder.group({
@@ -43,8 +48,8 @@ export class EditUomPartComponent implements OnInit {
     const updateUomPart = {
       unit_of_measure: {
         ...this.editUomPartForm.value,
-        created_by:"dcheng"
       },
+      modified_by: this.employee.emp_id,
     };
 
     console.log(updateUomPart)

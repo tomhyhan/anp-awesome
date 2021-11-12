@@ -21,7 +21,7 @@ export async function getAllUom(req, res, next) {
 }
 
 //old version
-export async function getAllUom2(req, res) {
+export async function getUomPart(req, res) {
   const uom = await uomData.getAll2();
 
   return res.status(200).json(uom);

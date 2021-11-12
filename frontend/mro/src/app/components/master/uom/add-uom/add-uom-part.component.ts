@@ -2,6 +2,8 @@ import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import * as $ from 'jquery';
 import { ErrorHandlers } from 'src/app/utils/error-handler';
+import { AuthService } from 'src/app/services/auth.service';
+import { AuthData } from 'src/app/model/auth';
 
 @Component({
   selector: 'app-add-uom-part',
@@ -11,18 +13,20 @@ import { ErrorHandlers } from 'src/app/utils/error-handler';
 export class AddUomComponent implements OnInit {
   uom: any;
   remarks: any;
-  created_by: any;
+  employee: AuthData
+
   @Output() onCreateUomPart = new EventEmitter();
   addUomPartForm: FormGroup | any;
   errorhandlers: ErrorHandlers;
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: FormBuilder, private authSerive: AuthService) {}
 
   ngOnInit(): void { 
     this.addUomPartForm = this.formBuilder.group({
     uom: ['', Validators.required],
     remarks: [''],
   });
+  this.employee = this.authSerive.employeeValue;
   this.errorhandlers = new ErrorHandlers(this.addUomPartForm);
 
 }
@@ -33,7 +37,7 @@ export class AddUomComponent implements OnInit {
         unit_of_measure: {
           uom: this.addUomPartForm.value.uom,
           remarks: this.addUomPartForm.value.remarks,
-          created_by: 'dcheng',
+          created_by: this.employee.emp_id
         },
     };
     console.log(uomPart)

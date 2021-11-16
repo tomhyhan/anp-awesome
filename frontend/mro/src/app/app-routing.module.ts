@@ -12,24 +12,45 @@ import { aircraftsComponent } from './components/master/aircraft/aircrafts/aircr
 import { LoginComponent } from './components/login/login.component';
 import { DetailComponent } from './components/purchase/detail/detail.component';
 import { FileattachComponent } from './components/purchase/fileattach/fileattach.component';
+import { TabComponent } from './components/purchase/tab/tab.component';
 
 import { AuthGuard } from './helpers/auth.guard';
+import { MaterialAndTaxComponent } from './components/purchase/material-and-tax/material-and-tax.component';
 const routes: Routes = [
   {
     path: 'master/spare_part',
     component: SparePartsComponent,
     canActivate: [AuthGuard],
   },
-  { path: 'master/project', component: ProjectsComponent,canActivate: [AuthGuard],},
+  {
+    path: 'master/project',
+    component: ProjectsComponent,
+    canActivate: [AuthGuard],
+  },
   { path: 'Purchase_order', component: PurchaseOrderComponent },
   { path: 'Purchase_order/create', component: PurchaseOrderCreateComponent },
-  { path: 'master/employees', component: EmployeesComponent },
+  {
+    path: 'master/employees',
+    component: EmployeesComponent,
+    canActivate: [AuthGuard],
+  },
   { path: 'master/uom', component: UomPartsComponent },
-  { path: 'master/vendor', component: VendorsComponent, canActivate: [AuthGuard], },
-  { path: 'master/aircraft', component: aircraftsComponent, canActivate: [AuthGuard],},
+  {
+    path: 'master/vendor',
+    component: VendorsComponent,
+    canActivate: [AuthGuard],
+  },
+  { path: 'master/aircraft', component: aircraftsComponent },
   { path: 'auth/login', component: LoginComponent },
+  { path: 'purchase/create_purchase_form', component: TabComponent},
   { path: 'purchase/detail', component: DetailComponent },
-  { path: 'purchase/fileattach', component:FileattachComponent}
+  { path: 'purchase/mat_tax', component: MaterialAndTaxComponent },
+  { path: 'purchase/fileattach', component: FileattachComponent },
+  {
+    path: 'master/vendor',
+    component: VendorsComponent,
+    canActivate: [AuthGuard],
+  },
 ];
 
 @NgModule({

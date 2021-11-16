@@ -1,24 +1,9 @@
-.form-row {
-    display: block;
-    width: 40%;
-}
-
-.boxed {
-    border-style: dashed;
-    border-color: #ECECEC;
-    border-radius: 15px;
-    padding: 1% 1%;
-    margin: 10px;
-}
-
 label {
-    margin-bottom: -1px;
-    font-weight: 700;
+    margin-bottom: -5px;
 }
 
 #addButton {
-    position: fixed;
-    left: 1.5%;   
+    margin-top: 10px;
     box-shadow: 0px 0px 0px 2px rgb(110,144,161);
     background-color:rgb(110,144,161);
     display:block;

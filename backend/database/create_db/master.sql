@@ -7,6 +7,8 @@ CREATE TABLE uom (
   remarks varchar(250) DEFAULT NULL,
   created_by varchar(100) DEFAULT NULL,
   created_date  Date,
+  modified_by INT,
+  modified_date Date,
   PRIMARY KEY (uom_id)
 );
 

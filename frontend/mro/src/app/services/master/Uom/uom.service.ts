@@ -1,5 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpHeaders } from '@angular/common/http';
+import { Observable, BehaviorSubject } from 'rxjs';
+import { UomPart, UomPartFilter } from 'src/app/model/uom';
+import { map, finalize } from 'rxjs/operators';
+import { HttpClientHelper } from 'src/network/httpClient'
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -11,35 +15,57 @@ const httpOptions = {
   providedIn: 'root',
 })
 export class UomService {
-  apiUrl = 'http://localhost:8080/master/uom';
+  apiUrl = '/master/uom';
+  public uompartSubject: BehaviorSubject<UomPart>;
+  public uompart: Observable<UomPart>;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClientHelper) {
+    this.uompartSubject = new BehaviorSubject<UomPart>(null);
+    this.uompart = this.uompartSubject.asObservable();
+  }
+ 
+  get uomPartValue() {
+    return this.uompartSubject.value;
+  }
 
-  getUomPart(filter: any, pageIndex: any, pageSize: any) {
-    return this.http.get(
-      `${this.apiUrl}?uomPartFilter=${filter}&pageIndex=${pageIndex}&pageSize=${pageSize}$`
+  getUomPart(filter: UomPartFilter | string, pageIndex: number, pageSize: number) {
+    const queryString = `UomPartFilter=${filter}&pageIndex=${pageIndex}&pageSize=${pageSize}`;
+    return this.http.get(this.apiUrl, queryString, {});
+  }
+
+  getAllUom(){
+     const queryString = '';
+    return this.http.get(`${this.apiUrl}/all`, queryString, {}).pipe(
+      map((uomPart: any) => {
+        this.uompartSubject.next(uomPart);
+        return uomPart;
+      })
     );
   }
-  getUomPartforservice() {
-    return this.http.get(`${this.apiUrl}/uomservices`);
-  }
 
-  addUomPart(uom: any) {
-    return this.http.post(this.apiUrl, uom, httpOptions);
+  addUomPart(uom: UomPart) {
+    return this.http.post(this.apiUrl, uom, {}).pipe(
+      map((uom: any) => {
+        this.getAllUom.subscribe();
+        return uom;
+      })
+    );
   }
+  // return this.http.post(this.apiUrl, uom, httpOptions);
+  //} 
 
-  updateUomPart(uoms: any, id: any) {
+  updateUomPart(uoms: UomPart, id: string) {
     return this.http.put(`${this.apiUrl}/${id}`, uoms, httpOptions);
   }
 
   getUomCount() {
-    return this.http.get(`${this.apiUrl}/pages`, httpOptions);
+    const queryString = '';
+    return this.http.get(`${this.apiUrl}/pages`, queryString, {});
   }
 
-  getUomFilterCount(filter: any) {
-    return this.http.get(
-      `${this.apiUrl}/filterPages?uomPartFilter=${filter}`,
-      httpOptions
+  getUomFilterCount(filter: UomPartFilter) {
+    const queryString = `UomPartFilter=${filter}`;
+    return this.http.get(`${this.apiUrl}/filterPages`, queryString, {}
     );
   }
 }

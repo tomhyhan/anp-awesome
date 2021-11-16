@@ -10,7 +10,6 @@ export async function getAll2() {
   });
 }
 
-
 export async function getAll(pageIndex, pageSize) {
   const limit = parseInt(pageSize);
   const currentPage = parseInt(pageIndex) * limit;
@@ -95,25 +94,23 @@ export async function getById(uom_id) {
 }
 
 export async function create(unit_of_measure) {
-  const { uom, remarks, created_by } = unit_of_measure;
+  const { uom, remarks, created_by, } = unit_of_measure;
 
   return db
     .query(
       `
-  INSERT INTO uom (uom, remarks, created_by, created_date)
+  INSERT INTO uom (uom, remarks, created_by, created_date, modified_by, modified_date)
   VALUES (?,?,?,?)
   `,
-      [uom, remarks, created_by, new Date()]
+      [uom, remarks, created_by, new Date(), null, null,]
     )
     .then((result) => getById(result[0].insertId));
 }
 
-
 export async function update(uom_id, unit_of_measure) {
   
-  const { uom, remarks, modified_by} = unit_of_measure;
+  const { uom, remarks, modified_by } = unit_of_measure;
   console.log(unit_of_measure)
-
   return db
     .query(
       `
@@ -122,15 +119,11 @@ export async function update(uom_id, unit_of_measure) {
   uom=?,
   remarks=?
   modified_by=?,
-  last_modified_date=?     
+  modified_date=?     
   WHERE
     uom_id=?
     `,
-      [uom, 
-      remarks, 
-      modified_by, 
-      new Date().toLocaleDateString().replace('/','-').replace('/','-'),  
-      uom_id]
+      [uom, remarks, modified_by, new Date(), uom_id]
     )
     .then(() => getById(uom_id));
 }

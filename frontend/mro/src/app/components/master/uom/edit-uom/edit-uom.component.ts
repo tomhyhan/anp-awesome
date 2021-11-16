@@ -1,8 +1,9 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthData } from 'src/app/model/auth';
-import { AuthService } from 'src/app/services/auth.service';
 import { ErrorHandlers } from 'src/app/utils/error-handler';
+
+import { AuthService } from 'src/app/services/auth.service';
+import { AuthData } from 'src/app/model/auth';
 
 @Component({
   selector: 'app-edit-uom',
@@ -15,18 +16,14 @@ export class EditUomPartComponent implements OnInit {
   editUomPartForm!: FormGroup | any;
   id: any;
   errorhandlers: any;
-  employee: AuthData
+  employee: AuthData;
 
-  constructor(private formBuilder: FormBuilder, private authService: AuthService) {
-    this.employee = this.authService.employeeValue;
-  }
+  constructor(private formBuilder: FormBuilder, private authService: AuthService) {}
 
   ngOnInit(): void {
     this.editUomPartForm = this.formBuilder.group({
       uom: ['', Validators.required],
-
       remarks: [''],
-
     });
     this.updateValues();
     this.errorhandlers = new ErrorHandlers(this.editUomPartForm);
@@ -34,22 +31,18 @@ export class EditUomPartComponent implements OnInit {
 
   updateValues() {
     this.editUomPartForm.patchValue({
-
       ...this.uoms,
-
     });
   }
 
   // probably better use router
   onSubmit() {
-
     if (this.editUomPartForm.valid) {
-
     const updateUomPart = {
       unit_of_measure: {
         ...this.editUomPartForm.value,
+        modified_by: this.employee.emp_id,
       },
-      modified_by: this.employee.emp_id,
     };
 
     console.log(updateUomPart)
@@ -58,10 +51,8 @@ export class EditUomPartComponent implements OnInit {
       uoms: updateUomPart,
       id: this.uoms.uom_id,
     });
-
   } else {
     this.errorhandlers.showErrors();
-
     }
   }
 }

@@ -51,7 +51,7 @@ export class AddEmployeeComponent implements OnInit {
           designation: this.addEmployeeForm.value.designation,
           department: this.addEmployeeForm.value.department,
           remarks: this.addEmployeeForm.value.remarks,
-          created_by: this.user.emp_id,
+          created_by: "yungyun",
           password: this.addEmployeeForm.value.password,
           username: this.addEmployeeForm.value.username,
         },

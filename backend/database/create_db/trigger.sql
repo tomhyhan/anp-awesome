@@ -1,8 +1,8 @@
-create table systemvariables (
+create table systemvariables {
     id INTEGER PRIMARY KEY AUTO_INCREMENT,
     keyname varchar(25),
     thevalue varchar(250)
-);
+};
 
 'insert into systemvariables values (purchase_requisition_number, 0)'
 

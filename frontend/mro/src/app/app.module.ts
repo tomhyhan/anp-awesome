@@ -71,7 +71,6 @@ import { AuthService } from './services/auth.service';
 import { DetailComponent } from './components/purchase/detail/detail.component';
 import { MaterialAndTaxComponent } from './components/purchase/material-and-tax/material-and-tax.component';
 import { FileattachComponent } from './components/purchase/fileattach/fileattach.component';
-import { TabComponent } from './components/purchase/tab/tab.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -114,7 +113,6 @@ import { TabComponent } from './components/purchase/tab/tab.component';
     DisplayErrorComponent,
     LoginComponent,
     AlertComponent,
-    TabComponent,
     DetailComponent,
     MaterialAndTaxComponent,
     FileattachComponent,

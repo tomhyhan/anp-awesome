@@ -13,13 +13,14 @@ import { AuthData } from 'src/app/model/auth';
 export class AddUomComponent implements OnInit {
   uom: any;
   remarks: any;
-  employee: AuthData
-
+  created_by: any;
   @Output() onCreateUomPart = new EventEmitter();
   addUomPartForm: FormGroup | any;
   errorhandlers: ErrorHandlers;
+  employee: AuthData;
 
-  constructor(private formBuilder: FormBuilder, private authSerive: AuthService) {}
+  constructor(private formBuilder: FormBuilder,
+              private authSerive: AuthService) {}
 
   ngOnInit(): void { 
     this.addUomPartForm = this.formBuilder.group({
@@ -37,7 +38,7 @@ export class AddUomComponent implements OnInit {
         unit_of_measure: {
           uom: this.addUomPartForm.value.uom,
           remarks: this.addUomPartForm.value.remarks,
-          created_by: this.employee.emp_id
+          created_by: this.employee.emp_id,
         },
     };
     console.log(uomPart)

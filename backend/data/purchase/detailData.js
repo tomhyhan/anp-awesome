@@ -1,6 +1,18 @@
 import { db } from '../../database/database.js';
 import 'express-async-errors';
 
+export async function getAll() {
+  return db
+    .query(
+      `
+  SELECT * FROM detail
+  `
+    )
+    .then((result) => {
+      return result[0];
+    });
+}
+
 export async function create(detail) {
   const {
     purchase_requisition_number,

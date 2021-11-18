@@ -4,7 +4,6 @@ import * as sparePartData from '../../data/master/sparePartData.js';
 export async function getAllSpareParts(req, res, next) {
   let sparePartFilter = req.query.sparePartFilter || '';
   const { pageIndex, pageSize } = req.query;
-
   const filter =
     sparePartFilter === '' || isEmpty(sparePartFilter)
       ? ''

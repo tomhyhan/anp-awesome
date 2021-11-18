@@ -4,6 +4,8 @@ import * as detailController from '../../controllers/purchase/detailController.j
 import { isAuth } from '../../middlewares/auth.js';
 
 const router = express.Router();
+
+router.get('/all', detailController.getDetail);
 // isAuth
 router.post('/', detailController.postDetail);
 

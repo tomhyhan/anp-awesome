@@ -95,12 +95,13 @@ export async function getById(uom_id) {
 
 export async function create(unit_of_measure) {
   const { uom, remarks, created_by, } = unit_of_measure;
+  console.log(unit_of_measure)
 
   return db
     .query(
       `
   INSERT INTO uom (uom, remarks, created_by, created_date, modified_by, modified_date)
-  VALUES (?,?,?,?)
+  VALUES (?,?,?,?,?,?)
   `,
       [uom, remarks, created_by, new Date(), null, null,]
     )

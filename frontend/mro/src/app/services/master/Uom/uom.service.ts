@@ -37,9 +37,8 @@ export class UomService {
   getUomPartforservice() {
 //    return this.http.get(`${this.apiUrl}/uomservices`);
   const queryString = '';
-  return this.httpHelper.get(`${this.apiUrl}/all`, queryString, {}).pipe(
+  return this.httpHelper.get(`${this.apiUrl}/uomservices`, queryString, {}).pipe(
     map((uoms: any) => {
-      this.uomSubject.next(uoms);
       return uoms;
     })
   );

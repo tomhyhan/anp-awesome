@@ -17,7 +17,6 @@ export class UomPartsComponent implements OnInit {
     'uom',
     'remarks',
     'created_by',
-    'created_date',
     'edit',
   ];
 

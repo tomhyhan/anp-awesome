@@ -34,7 +34,7 @@ const routes: Routes = [
     //canActivate: [AuthGuard],
   },
   { path: 'master/uom', component: UomPartsComponent, 
-    canActivate: [AuthGuard],
+    //canActivate: [AuthGuard],
   },
 
   {

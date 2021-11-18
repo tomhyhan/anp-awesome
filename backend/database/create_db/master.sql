@@ -23,7 +23,7 @@ CREATE TABLE employee (
     designation VARCHAR(30) NOT NULL,
     department VARCHAR(30) NOT NULL,
     remarks VARCHAR(100) NOT NULL,
-    created_by INT NOT NULL,
+    created_by varchar(100),
     created_date Date,
     modified_by INT,
     modified_date Date,
@@ -54,8 +54,7 @@ CREATE TABLE spare_part (
   CONSTRAINT `frn_spare_part_employee` FOREIGN KEY (`created_by`) REFERENCES `employee` (`emp_id`),
   CONSTRAINT `frn_spare_part_uom` FOREIGN KEY (`frn_uom`) REFERENCES `uom` (`uom_id`)
 );
-  KEY `frn_spare_part_uom_idx` (`frn_uom`),
-  CONSTRAINT `frn_spare_part_uom` FOREIGN KEY (`frn_uom`) REFERENCES `uom` (`uom_id`)
+
 
 CREATE TABLE project (
   project_master_id INTEGER PRIMARY KEY AUTO_INCREMENT,
@@ -143,15 +142,18 @@ CREATE TABLE If NOT EXISTS `inventory_dev`.`detail` (
 
 CREATE TABLE `inventory_dev`.`fileattach` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `ewaybill` BLOB NULL,
-  `invoice` BLOB NULL,
-  `other` BLOB NULL,
+  `ewaybill` VARCHAR(255) NULL,
+  `invoice` VARCHAR(255) NULL,
+  `other` VARCHAR(255) NULL,
   `detail_id` INT NOT NULL,
+  `created_by` INT NOT NULL,
+  `created_date` DATE NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `frn_file_detail_idx_idx` (`detail_id` ASC) VISIBLE,
+  KEY `frn_filleattach_employee_idx` (`created_by`),
+  CONSTRAINT `frn_filleattach_employee` FOREIGN KEY (`created_by`) REFERENCES `employee` (`emp_id`),
   CONSTRAINT `frn_file_detail_idx`
     FOREIGN KEY (`detail_id`)
-    REFERENCES `inventory_dev`.`details` (`id`)
+    REFERENCES `inventory_dev`.`detail` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 

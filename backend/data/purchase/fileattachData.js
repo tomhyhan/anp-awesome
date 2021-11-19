@@ -1,4 +1,5 @@
 import 'express-async-errors';
+import { db } from '../../database/database.js';
 
 
 export async function create(files) {
@@ -7,6 +8,7 @@ export async function create(files) {
         invoice,
         other,
         detail_id,
+        created_by
     } = files;
   
     return db
@@ -16,17 +18,21 @@ export async function create(files) {
         ewaybill,
         invoice,
         other,
-        detail_id
+        detail_id,
+        created_by,
+        created_date
     )
-    VALUES (?,?,?,?)
+    VALUES (?,?,?,?,?,?)
     `,
         [
-        ewaybill,
-        invoice,
-        other,
+        ewaybill.join(","),
+        invoice.join(","),
+        other.join(","),
         detail_id,
+        created_by,
+        new Date(),
  
         ]
       )
-      .then((result) => getAllById(result[0].insertId));
+      .then((result) => result[0].insertId);
   }

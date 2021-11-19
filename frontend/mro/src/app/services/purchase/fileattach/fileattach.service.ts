@@ -13,14 +13,14 @@ const httpOptions = {
   providedIn: 'root',
 })
 export class fileattachService {
-  url = 'http://localhost:8080/purchase/file';
+  url = '/purchase/file';
 
-  constructor(private httpHelper: HttpClientHelper,private http: HttpClient) {}
+  constructor(private httpHelper: HttpClientHelper) {}
 
 
   postfiles(files:any) {
-    // console.log(filter);
-    return this.http.post(this.url, files, httpOptions);
+    console.log(files);
+    return this.httpHelper.post(this.url, files, httpOptions);
   }
 
 }

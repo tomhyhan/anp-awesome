@@ -52,6 +52,8 @@ CREATE TABLE spare_part (
   CONSTRAINT `frn_spare_part_employee` FOREIGN KEY (`created_by`) REFERENCES `employee` (`emp_id`),
   CONSTRAINT `frn_spare_part_uom` FOREIGN KEY (`frn_uom`) REFERENCES `uom` (`uom_id`)
 );
+  KEY `frn_spare_part_uom_idx` (`frn_uom`),
+  CONSTRAINT `frn_spare_part_uom` FOREIGN KEY (`frn_uom`) REFERENCES `uom` (`uom_id`)
 
 CREATE TABLE project (
   project_master_id INTEGER PRIMARY KEY AUTO_INCREMENT,
@@ -154,4 +156,52 @@ CREATE TABLE `inventory_dev`.`fileattach` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
+CREATE TABLE `inventory_dev`.`material_tax` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `sp_no` INT NOT NULL,
+  `make` INT NOT NULL,
+  `delivery_date` DATE NULL,
+  `account_assignment` varchar(100) NOT NULL,
+  `cost_center`varchar(100) NOT NULL,
+  `plant`varchar(100) NOT NULL,
+  `quantity` INT NOT NULL,
+  `unit` INT NULL,
+  `rate` INT NOT NULL,
+  `dics` INT NULL,
+  `disc_amount` INT NULL,
+  `created_by` INT NOT NULL,
+  `created_date` DATE NOT NULL,
+  `modified_by` INT NULL,
+  `modified_date` DATE NULL,
+  PRIMARY KEY (`id`),
+  INDEX `mt_sp_no_idx` (`id` ASC) VISIBLE,
+  INDEX `mt_created_by_idx` (`created_by` ASC) VISIBLE,
+  INDEX `mt_make_idx` (`make` ASC) VISIBLE,
+  INDEX `mt_modified_by_idx` (`modified_by` ASC) VISIBLE,
+  CONSTRAINT `mt_make`
+    FOREIGN KEY (`make`)
+    REFERENCES `inventory_dev`.`detail` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `mt_sp_no`
+    FOREIGN KEY (`sp_no`)
+    REFERENCES `inventory_dev`.`spare_part` (`material_master_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `mt_created_by`
+    FOREIGN KEY (`created_by`)
+    REFERENCES `inventory_dev`.`employee` (`emp_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `mt_modified_by`
+    FOREIGN KEY (`modified_by`)
+    REFERENCES `inventory_dev`.`employee` (`emp_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `mt_unit`
+    FOREIGN KEY (`unit`)
+    REFERENCES `inventory_dev`.`uom` (`uom_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION
+);
 

@@ -14,6 +14,7 @@ import { DetailComponent } from './components/purchase/detail/detail.component';
 import { FileattachComponent } from './components/purchase/fileattach/fileattach.component';
 
 import { AuthGuard } from './helpers/auth.guard';
+import { MaterialAndTaxComponent } from './components/purchase/material-and-tax/material-and-tax.component';
 const routes: Routes = [
   {
     path: 'master/spare_part',
@@ -33,13 +34,23 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   { path: 'master/uom', component: UomPartsComponent },
-  { path: 'master/vendor', component: VendorsComponent, canActivate: [AuthGuard], },
-
-  { path: 'master/aircraft', component: aircraftsComponent, canActivate: [AuthGuard],},
-
+  {
+    path: 'master/vendor',
+    component: VendorsComponent,
+    canActivate: [AuthGuard],
+  },
+  { path: 'master/aircraft', component: aircraftsComponent },
   { path: 'auth/login', component: LoginComponent },
   { path: 'purchase/detail', component: DetailComponent },
-  { path: 'purchase/fileattach', component:FileattachComponent,canActivate: [AuthGuard]}
+
+  { path: 'purchase/mat_tax', component: MaterialAndTaxComponent },
+  {
+    path: 'master/vendor',
+    component: VendorsComponent,
+    canActivate: [AuthGuard],
+  },
+  { path: 'purchase/fileattach', component: FileattachComponent },
+
 ];
 
 @NgModule({

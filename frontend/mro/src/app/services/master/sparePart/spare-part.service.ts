@@ -17,7 +17,7 @@ const httpOptions = {
 })
 export class SparePartService {
   url = '/master/spare_part';
-  public sparepartSubject: BehaviorSubject<SparePart>;
+  private sparepartSubject: BehaviorSubject<SparePart>;
   public sparepart: Observable<SparePart>;
 
   constructor(private httpHelper: HttpClientHelper) {

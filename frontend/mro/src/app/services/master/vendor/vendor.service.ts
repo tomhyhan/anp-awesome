@@ -16,7 +16,7 @@ const httpOptions = {
 })
 export class VendorService {
   apiUrl = '/master/vendor';
-  public vendorSubject: BehaviorSubject<any>;
+  private vendorSubject: BehaviorSubject<any>;
   public vendor: Observable<any>;
 
   constructor(private httpHelper: HttpClientHelper) {

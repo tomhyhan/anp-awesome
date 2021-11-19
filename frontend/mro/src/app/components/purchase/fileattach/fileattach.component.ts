@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup} from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import {fileattachService}from 'src/app/services/purchase/fileattach/fileattach.service'
+import { DetailService } from 'src/app/services/purchase/detail.service';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-fileattach',
   templateUrl: './fileattach.component.html',
@@ -11,10 +13,23 @@ export class FileattachComponent implements OnInit {
   filelist:any;
   user:any;
   fileattachform: FormGroup;
-  constructor(private formBuilder: FormBuilder,private authService: AuthService,private fileattachService: fileattachService,) {
+  details = [];
+  detailSubscription: Subscription;
+  constructor(private formBuilder: FormBuilder,
+    private authService: AuthService,
+    private fileattachService: fileattachService,
+    private detailService: DetailService,) {
     this.authService.employee.subscribe(
       (employee) => (this.user = employee)
     );
+    this.detailService.getAllDetail().subscribe((detail) => {
+      this.details = detail;
+    });
+    this.detailSubscription = this.detailService.detail.subscribe((detail) => {
+      this.details = detail;
+      console.log(detail);
+    });
+    
    }
 
   ngOnInit(): void {
@@ -24,9 +39,11 @@ export class FileattachComponent implements OnInit {
       other:[]
     };
     this.fileattachform = this.formBuilder.group({
+      detail_id:"",
       ewaybill: [],
       invoice: [],
       other:[],
+      
     });
   }
 
@@ -45,22 +62,13 @@ export class FileattachComponent implements OnInit {
   }
 
   onSubmit() {
-    // const files = {
-    //   files: {
-    //     ewaybill:this.fileattachform.value.ewaybill,
-    //     invoice:this.fileattachform.value.invoice,
-    //     other:this.fileattachform.value.other,
-    //     detail_id:1
-    //   },
-    // };
 
-    // console.log(this.user)
     const files = {
       files: {
         ewaybill:this.filelist["ewaybill"],
         invoice:this.filelist["invoice"],
         other:this.filelist["other"],
-        detail_id:1,
+        detail_id:this.fileattachform.value.detail_id,
         created_by:this.user.emp_id,
       },
     };

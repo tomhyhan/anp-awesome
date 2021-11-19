@@ -152,7 +152,7 @@ CREATE TABLE `inventory_dev`.`fileattach` (
   CONSTRAINT `frn_filleattach_employee` FOREIGN KEY (`created_by`) REFERENCES `employee` (`emp_id`),
   CONSTRAINT `frn_file_detail_idx`
     FOREIGN KEY (`detail_id`)
-    REFERENCES `inventory_dev`.`details` (`id`)
+    REFERENCES `inventory_dev`.`detail` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 

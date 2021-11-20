@@ -141,12 +141,15 @@ CREATE TABLE If NOT EXISTS `inventory_dev`.`detail` (
 
 CREATE TABLE If NOT EXISTS `inventory_dev`.`fileattach` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `ewaybill` BLOB NULL,
-  `invoice` BLOB NULL,
-  `other` BLOB NULL,
+  `ewaybill` VARCHAR(255) NULL,
+  `invoice` VARCHAR(255) NULL,
+  `other` VARCHAR(255) NULL,
   `detail_id` INT NOT NULL,
+  `created_by` INT NOT NULL,
+  `created_date` DATE NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `frn_file_detail_idx_idx` (`detail_id` ASC) VISIBLE,
+  KEY `frn_filleattach_employee_idx` (`created_by`),
+  CONSTRAINT `frn_filleattach_employee` FOREIGN KEY (`created_by`) REFERENCES `employee` (`emp_id`),
   CONSTRAINT `frn_file_detail_idx`
     FOREIGN KEY (`detail_id`)
     REFERENCES `inventory_dev`.`details` (`id`)

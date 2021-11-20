@@ -42,6 +42,7 @@ const routes: Routes = [
   { path: 'master/aircraft', component: aircraftsComponent },
   { path: 'auth/login', component: LoginComponent },
   { path: 'purchase/detail', component: DetailComponent },
+
   { path: 'purchase/mat_tax', component: MaterialAndTaxComponent },
   {
     path: 'master/vendor',
@@ -49,6 +50,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   { path: 'purchase/fileattach', component: FileattachComponent },
+
 ];
 
 @NgModule({

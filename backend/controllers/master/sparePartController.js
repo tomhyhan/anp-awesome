@@ -7,7 +7,6 @@ export class sparePartControllers {
   }
 
   getAllSpareParts = async (req, res, next) => {
-    console.log(this.database);
     let sparePartFilter = req.query.sparePartFilter || '';
     const { pageIndex, pageSize } = req.query;
     const filter =
@@ -24,7 +23,7 @@ export class sparePartControllers {
 }
 
 export async function getSpareParts(req, res) {
-  const spareParts = await this.database.getSpareParts();
+  const spareParts = await this.sparePartData.getSpareParts();
   res.status(200).json(spareParts);
 }
 

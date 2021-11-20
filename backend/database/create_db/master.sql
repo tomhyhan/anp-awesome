@@ -163,7 +163,7 @@ CREATE TABLE If NOT EXISTS `inventory_dev`.`material_tax` (
   `delivery_date` DATE NULL,
   `account_assignment` varchar(100) NOT NULL,
   `cost_center`varchar(100) NOT NULL,
-  `plant`varchar(100) NOT NULL,
+  `plant` INT NOT NULL,
   `quantity` INT NOT NULL,
   `unit` INT NULL,
   `rate` INT NOT NULL,

@@ -139,7 +139,7 @@ CREATE TABLE If NOT EXISTS `inventory_dev`.`detail` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
-CREATE TABLE `inventory_dev`.`fileattach` (
+CREATE TABLE If NOT EXISTS `inventory_dev`.`fileattach` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `ewaybill` BLOB NULL,
   `invoice` BLOB NULL,
@@ -153,7 +153,7 @@ CREATE TABLE `inventory_dev`.`fileattach` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
-CREATE TABLE `inventory_dev`.`material_tax` (
+CREATE TABLE If NOT EXISTS `inventory_dev`.`material_tax` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `sp_no` INT NOT NULL,
   `make` INT NOT NULL,

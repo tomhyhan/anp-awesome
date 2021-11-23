@@ -2,6 +2,13 @@ import { db } from '../../database/database.js';
 import { getFilterQuery } from '../../utils/employeeFilter.js';
 
 const SELECT_QUERY = `SELECT * FROM employee`;
+const SELECT_ALL = 'SELECT emp_id, emp_name FROM employee';
+
+export async function getAllEmployees() {
+  return db.query(SELECT_ALL).then((result) => {
+    return result[0];
+  });
+}
 
 export async function getAll(pageIndex, pageSize) {
   const limit = parseInt(pageSize);
@@ -113,8 +120,8 @@ export async function create(employee) {
   return db
     .query(
       `
-  INSERT INTO employee (emp_name, emp_code, site_master_id, contact, address, designation, department, remarks, created_by, last_modified_date, password, username)
-  VALUES (?,?,?,?,?,?,?,?,?,?,?,?)
+  INSERT INTO employee (emp_name, emp_code, site_master_id, contact, address, designation, department, remarks, created_by, created_date, modified_by, modified_date, password, username)
+  VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)
     `,
       [
         emp_name,
@@ -127,6 +134,8 @@ export async function create(employee) {
         remarks,
         created_by,
         new Date(),
+        null,
+        null,
         password,
         username,
       ]
@@ -148,7 +157,7 @@ export async function update(id, employee) {
     remarks,
     modified_by,
   } = employee;
-  console.log( employee)
+  console.log(employee);
   return db
     .query(
       `

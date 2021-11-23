@@ -3,9 +3,18 @@ import 'express-async-errors';
 import * as authContoller from '../../controllers/auth/authController.js';
 import { isAuth } from '../../middlewares/auth.js';
 
-const router = express.Router();
+// Refactoring
+import { AuthControllers } from '../../controllers/auth/authController.js';
 
-router.post('/login', authContoller.login);
-router.post('/logout', authContoller.logout);
-router.post('/me', isAuth, authContoller.me);
-export default router;
+export default function (authData) {
+  const router = express.Router();
+  const authControllers = new AuthControllers(authData);
+
+  router.post('/login', authControllers.login);
+  router.post('/logout', authContoller.logout);
+  router.post('/me', isAuth, authContoller.me);
+
+  return router;
+}
+
+// export default router;

@@ -27,6 +27,8 @@ export class EmployeesComponent implements OnInit {
   employeeCount: any;
   filter = JSON.stringify('');
   employee: any;
+  s: any;
+
   @ViewChild(MatPaginator) paginator: MatPaginator | any;
 
   constructor(
@@ -56,7 +58,7 @@ export class EmployeesComponent implements OnInit {
               this.paginator.pageSize
             )
             .subscribe((employees) => {
-              this.employees = employees;
+              this.employees = employees || [];
             })
         )
       )
@@ -68,8 +70,7 @@ export class EmployeesComponent implements OnInit {
       this.employeeService.getEmployeeCount().subscribe((count) => {
         this.employeeCount = count;
       });
-      console.log(this.employees)
-      if (this.employees.length < this.paginator.pageSize) {
+      if (employee && this.employees.length < this.paginator.pageSize) {
         this.employees = [...this.employees, employee[0]];
       }
     });

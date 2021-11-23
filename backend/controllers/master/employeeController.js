@@ -2,6 +2,11 @@ import * as employeeData from '../../data/master/employeeData.js';
 import * as authUtil from '../../utils/authUtils.js';
 import 'express-async-errors';
 
+export async function getAll(req, res, next) {
+  const employees = await employeeData.getAllEmployees();
+  res.status(200).json(employees);
+}
+
 export async function getAllEmployees(req, res, next) {
   let employeeFilter = req.query.employeeFilter;
   const { pageIndex, pageSize } = req.query;
@@ -46,7 +51,7 @@ export async function getById(req, res) {
 
 export async function addEmployee(req, res) {
   const { employee } = req.body;
-  console.log(employee)
+
   const password = employee.password;
   const IsEmployee = await employeeData.getByEmployeeCode(employee.emp_code);
   if (IsEmployee) {

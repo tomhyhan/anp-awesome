@@ -4,11 +4,14 @@ import { isAuth } from '../../middlewares/auth.js';
 
 const router = express.Router();
 
-router.get('/pages', isAuth,vendorController.getVendorCount);
-router.get('/filterPages', isAuth,vendorController.getVendorFilterCount);
-router.get('/:id', isAuth,vendorController.getById);
-router.get('/', isAuth,vendorController.getAllVendors);
-router.post('/', isAuth,vendorController.postVendor);
-router.put('/:id', isAuth,vendorController.updateVendor);
+
+router.get('/all', vendorController.getAll);
+router.get('/pages', isAuth, vendorController.getVendorCount);
+router.get('/filterPages', isAuth, vendorController.getVendorFilterCount);
+router.get('/:id', isAuth, vendorController.getById);
+router.get('/', isAuth, vendorController.getAllVendors);
+router.post('/', isAuth, vendorController.postVendor);
+router.put('/:id', isAuth, vendorController.updateVendor);
+
 
 export default router;

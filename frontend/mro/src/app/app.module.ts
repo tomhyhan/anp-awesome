@@ -25,11 +25,6 @@ import { SearchSparePartComponent } from './components/master/sparePart/search-s
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 
-//PurchaseOrderPart
-import { BackgroundComponent } from './components/background/background.component';
-import { PurchaseOrderComponent } from './components/purchase-order/purchase-order.component';
-import { PurchaseOrderCreateComponent } from './components/purchase-order-create/purchase-order-create.component';
-
 //ProjectPart
 import { AddProjectComponent } from './components/master/project/add-project/add-project.component';
 import { EditProjectComponent } from './components/master/project/edit-project/edit-project.component';
@@ -77,9 +72,6 @@ import { FileattachComponent } from './components/purchase/fileattach/fileattach
 
     HeaderComponent,
     FooterComponent,
-    BackgroundComponent,
-    PurchaseOrderComponent,
-    PurchaseOrderCreateComponent,
 
     SparePartsComponent,
     AddSparePartComponent,

@@ -23,7 +23,9 @@ export class EditUomPartComponent implements OnInit {
   ngOnInit(): void {
     this.editUomPartForm = this.formBuilder.group({
       uom: ['', Validators.required],
+
       remarks: [''],
+
     });
     this.updateValues();
     this.errorhandlers = new ErrorHandlers(this.editUomPartForm);
@@ -31,13 +33,17 @@ export class EditUomPartComponent implements OnInit {
 
   updateValues() {
     this.editUomPartForm.patchValue({
+
       ...this.uoms,
+
     });
   }
 
   // probably better use router
   onSubmit() {
+
     if (this.editUomPartForm.valid) {
+
     const updateUomPart = {
       unit_of_measure: {
         ...this.editUomPartForm.value,
@@ -51,8 +57,10 @@ export class EditUomPartComponent implements OnInit {
       uoms: updateUomPart,
       id: this.uoms.uom_id,
     });
+
   } else {
     this.errorhandlers.showErrors();
+
     }
   }
 }

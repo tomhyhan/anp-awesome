@@ -3,8 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { SparePartsComponent } from './components/master/sparePart/spare-parts/spare-parts.component';
 import { ProjectsComponent } from './components/master/project/projects/projects.component';
-import { PurchaseOrderComponent } from './components/purchase-order/purchase-order.component';
-import { PurchaseOrderCreateComponent } from './components/purchase-order-create/purchase-order-create.component';
 import { EmployeesComponent } from './components/master/employees/employees/employees.component';
 import { UomPartsComponent } from './components/master/uom/uom-parts/uom-parts.component';
 import { VendorsComponent } from './components/master/vendor/vendors/vendors.component';
@@ -26,8 +24,6 @@ const routes: Routes = [
     component: ProjectsComponent,
     canActivate: [AuthGuard],
   },
-  { path: 'Purchase_order', component: PurchaseOrderComponent },
-  { path: 'Purchase_order/create', component: PurchaseOrderCreateComponent },
   {
     path: 'master/employees',
     component: EmployeesComponent,
@@ -44,7 +40,10 @@ const routes: Routes = [
   },
   { path: 'master/aircraft', component: aircraftsComponent },
   { path: 'auth/login', component: LoginComponent },
+  { path: 'purchase/create_purchase_form', component: TabComponent },
+
   { path: 'purchase/detail', component: DetailComponent },
+
   { path: 'purchase/mat_tax', component: MaterialAndTaxComponent },
   {
     path: 'master/vendor',

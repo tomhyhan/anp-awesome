@@ -54,6 +54,8 @@ CREATE TABLE spare_part (
   CONSTRAINT `frn_spare_part_employee` FOREIGN KEY (`created_by`) REFERENCES `employee` (`emp_id`),
   CONSTRAINT `frn_spare_part_uom` FOREIGN KEY (`frn_uom`) REFERENCES `uom` (`uom_id`)
 );
+  KEY `frn_spare_part_uom_idx` (`frn_uom`),
+  CONSTRAINT `frn_spare_part_uom` FOREIGN KEY (`frn_uom`) REFERENCES `uom` (`uom_id`)
 
 
 CREATE TABLE project (
@@ -140,7 +142,7 @@ CREATE TABLE If NOT EXISTS `inventory_dev`.`detail` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
-CREATE TABLE `inventory_dev`.`fileattach` (
+CREATE TABLE If NOT EXISTS `inventory_dev`.`fileattach` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `ewaybill` VARCHAR(255) NULL,
   `invoice` VARCHAR(255) NULL,
@@ -157,14 +159,16 @@ CREATE TABLE `inventory_dev`.`fileattach` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
-CREATE TABLE `inventory_dev`.`material_tax` (
+
+CREATE TABLE If NOT EXISTS `inventory_dev`.`material_tax` (
+
   `id` INT NOT NULL AUTO_INCREMENT,
   `sp_no` INT NOT NULL,
   `make` INT NOT NULL,
   `delivery_date` DATE NULL,
   `account_assignment` varchar(100) NOT NULL,
   `cost_center`varchar(100) NOT NULL,
-  `plant`varchar(100) NOT NULL,
+  `plant` INT NOT NULL,
   `quantity` INT NOT NULL,
   `unit` INT NULL,
   `rate` INT NOT NULL,

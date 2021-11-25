@@ -7,6 +7,8 @@ CREATE TABLE uom (
   remarks varchar(250) DEFAULT NULL,
   created_by varchar(100) DEFAULT NULL,
   created_date  Date,
+  modified_by INT,
+  modified_date Date,
   PRIMARY KEY (uom_id)
 );
 
@@ -21,7 +23,7 @@ CREATE TABLE employee (
     designation VARCHAR(30) NOT NULL,
     department VARCHAR(30) NOT NULL,
     remarks VARCHAR(100) NOT NULL,
-    created_by INT NOT NULL,
+    created_by varchar(100),
     created_date Date,
     modified_by INT,
     modified_date Date,
@@ -52,6 +54,7 @@ CREATE TABLE spare_part (
   CONSTRAINT `frn_spare_part_employee` FOREIGN KEY (`created_by`) REFERENCES `employee` (`emp_id`),
   CONSTRAINT `frn_spare_part_uom` FOREIGN KEY (`frn_uom`) REFERENCES `uom` (`uom_id`)
 );
+
 
 CREATE TABLE project (
   project_master_id INTEGER PRIMARY KEY AUTO_INCREMENT,
@@ -154,7 +157,9 @@ CREATE TABLE If NOT EXISTS `inventory_dev`.`fileattach` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
+
 CREATE TABLE If NOT EXISTS `inventory_dev`.`material_tax` (
+
   `id` INT NOT NULL AUTO_INCREMENT,
   `sp_no` INT NOT NULL,
   `make` INT NOT NULL,
@@ -203,3 +208,7 @@ CREATE TABLE If NOT EXISTS `inventory_dev`.`material_tax` (
     ON UPDATE NO ACTION
 );
 
+
+insert into employee(emp_id,emp_name,emp_code, site_master_id, contact, address, designation, department, remarks, created_by, created_date, modified_by, modified_date, password, username) 
+VALUES(1,44,44,44,44,44,44,44,44,1,"2021-11-25",NULL,NULL, "$2b$04$/xIn4oH6znndcVgoxmejd.b7Dh/QhRdrWwK/ToEtKUBO1KTSpTp1i","administrator")
+;

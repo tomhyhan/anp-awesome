@@ -1,6 +1,15 @@
 <form  class="m-3" [formGroup]="fileattachform" (ngSubmit)="onSubmit()">
   <div>
+    
     <div class="form-row">
+      <div class="boxed">
+      <label >Purchase details</label>
+      <select class='select' formControlName="detail_id" id="detail_id">
+        <option value="null" selected >Choose Purchase Detail</option>
+        <option *ngFor="let detail of details" [ngValue]="detail.id">{{detail.purchase_requisition_number}}</option>
+      </select>
+      </div>
+      
         <div class="boxed">
           <label for="purchase_requisition_number">Eway Bill</label>
           <input formControlName="ewaybill" class="form-control-file" type="file"  id="ewaybill" placeholder="upload">
@@ -16,7 +25,7 @@
           <input formControlName="other" class="form-control-file" type="file"  id="other" placeholder="upload">
         </div>
       </div>
-  
+
       <button id="addButton" type="submit" class="button-save" >Submit</button>
   
     </div>  

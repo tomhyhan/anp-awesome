@@ -52,8 +52,6 @@ CREATE TABLE spare_part (
   CONSTRAINT `frn_spare_part_employee` FOREIGN KEY (`created_by`) REFERENCES `employee` (`emp_id`),
   CONSTRAINT `frn_spare_part_uom` FOREIGN KEY (`frn_uom`) REFERENCES `uom` (`uom_id`)
 );
-  KEY `frn_spare_part_uom_idx` (`frn_uom`),
-  CONSTRAINT `frn_spare_part_uom` FOREIGN KEY (`frn_uom`) REFERENCES `uom` (`uom_id`)
 
 CREATE TABLE project (
   project_master_id INTEGER PRIMARY KEY AUTO_INCREMENT,

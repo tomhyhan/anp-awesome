@@ -3,20 +3,39 @@ import * as authUtil from '../../utils/authUtils.js';
 import * as userData from '../../data/master/employeeData.js';
 import { config } from '../../config.js';
 
-export class AuthControllers {
-  constructor(authDatabase) {
-    this.authDatabase = authDatabase;
+export async function login(req, res) {
+  const { username, password } = req.body;
+
+  const employees = await userData.getByEmployeeUsername(username);
+  //console.log(employees)
+  if (!employees) {
+    return res.status(401).json({ message: 'Username or Password is Invalid' });
   }
 
-  login = async (req, res) => {
-    const { username, password } = req.body;
-
-    const employees = await this.authDatabase.getByEmployeeUsername(username);
-    if (!employees) {
-      return res
-        .status(401)
-        .json({ message: 'Username or Password is Invalid' });
+  let isValidPassword;
+  let currentEmployee;
+  for (const employee of employees) {
+    // console.log(employee.password)
+    console.log(password)
+    isValidPassword = await authUtil.comeparePassword(
+      password,
+      employee.password
+    );
+    if (isValidPassword) {
+      //console.log(isValidPassword)
+     //console.log(employee)
+      currentEmployee = employee;
+      break;
     }
+  }
+  // console.log(currentEmployee)
+  if (!currentEmployee) {
+    return res.status(401).json({ message: 'Username or Password is Invalid' });
+  }
+
+  const token = await authUtil.createJWT(currentEmployee.emp_id);
+  await authUtil.generateCookie(res, token);
+
 
     let isValidPassword;
     let currentEmployee;

@@ -19,9 +19,7 @@ export class AddEmployeeComponent implements OnInit {
     private formBuilder: FormBuilder,
     private authService: AuthService
   ) {
-    this.authService.employee.subscribe(
-      (employee) => (this.user = employee)
-    );
+    this.authService.employee.subscribe((employee) => (this.user = employee));
   }
   //  Validators.pattern(`^[0-9]+`) NOT WORKING ???
   ngOnInit(): void {
@@ -53,11 +51,10 @@ export class AddEmployeeComponent implements OnInit {
           designation: this.addEmployeeForm.value.designation,
           department: this.addEmployeeForm.value.department,
           remarks: this.addEmployeeForm.value.remarks,
-          created_by: this.user.username,
+          created_by: this.user.emp_id,
           password: this.addEmployeeForm.value.password,
           username: this.addEmployeeForm.value.username,
         },
-        
       };
       this.onCreateEmployee.emit(addEmployee);
       this.addEmployeeForm.reset();

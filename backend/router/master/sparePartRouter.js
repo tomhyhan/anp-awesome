@@ -5,14 +5,26 @@ import { isAuth } from '../../middlewares/auth.js';
 import { postTrim } from '../../middlewares/trim.js';
 
 
-const router = express.Router();
+import { sparePartControllers } from '../../controllers/master/sparePartController.js';
 
-router.get('/all', isAuth, sparePartController.getSpareParts);
-router.get('/pages', isAuth, sparePartController.getSparePartCount);
-router.get('/filterPages', isAuth, sparePartController.getSparePartFilterCount);
-router.get('/:id', isAuth, sparePartController.getById);
-router.get('/', isAuth, sparePartController.getAllSpareParts);
-router.post('/', [isAuth,postTrim], sparePartController.postSparePart);
-router.put('/:id', isAuth, sparePartController.updateSparePart);
 
-export default router;
+export default function (database) {
+  const router = express.Router();
+
+  router.get('/all', isAuth, sparePartController.getSpareParts);
+  router.get('/pages', isAuth, sparePartController.getSparePartCount);
+  router.get(
+    '/filterPages',
+    isAuth,
+    sparePartController.getSparePartFilterCount
+  );
+  const sp = new sparePartControllers(database);
+  router.get('/:id', isAuth, sparePartController.getById);
+  router.get('/', isAuth, sp.getAllSpareParts);
+  router.post('/', isAuth, postTrim, sparePartController.postSparePart);
+  router.put('/:id', isAuth, sparePartController.updateSparePart);
+
+  return router;
+}
+
+// export default router;

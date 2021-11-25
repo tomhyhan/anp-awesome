@@ -36,7 +36,28 @@ export async function login(req, res) {
   const token = await authUtil.createJWT(currentEmployee.emp_id);
   await authUtil.generateCookie(res, token);
 
-  res.status(200).json({ token, username, emp_id: currentEmployee.emp_id });
+
+    let isValidPassword;
+    let currentEmployee;
+    for (const employee of employees) {
+      isValidPassword = await authUtil.comeparePassword(
+        password,
+        employee.password
+      );
+      if (isValidPassword) {
+        currentEmployee = employee;
+        break;
+      }
+    }
+    if (!currentEmployee) {
+      return res
+        .status(401)
+        .json({ message: 'Username or Password is Invalid' });
+    }
+    const token = await authUtil.createJWT(currentEmployee.emp_id);
+    await authUtil.generateCookie(res, token);
+    res.status(200).json({ token, username, emp_id: currentEmployee.emp_id });
+  };
 }
 
 export async function me(req, res) {

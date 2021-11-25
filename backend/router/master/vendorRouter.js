@@ -6,11 +6,13 @@ import { postTrim } from '../../middlewares/trim.js';
 
 const router = express.Router();
 
+
 router.get('/pages', isAuth,vendorController.getVendorCount);
 router.get('/filterPages', isAuth,vendorController.getVendorFilterCount);
 router.get('/:id', isAuth, vendorController.getById);
 router.get('/', isAuth,vendorController.getAllVendors);
 router.post('/', [isAuth,postTrim], vendorController.postVendor);
 router.put('/:id', isAuth,vendorController.updateVendor);
+
 
 export default router;

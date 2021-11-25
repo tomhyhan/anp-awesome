@@ -1,24 +1,29 @@
 import 'express-async-errors';
 import * as sparePartData from '../../data/master/sparePartData.js';
 
-export async function getAllSpareParts(req, res, next) {
-  let sparePartFilter = req.query.sparePartFilter || '';
-  const { pageIndex, pageSize } = req.query;
+export class sparePartControllers {
+  constructor(database) {
+    this.database = database;
+  }
 
-  const filter =
-    sparePartFilter === '' || isEmpty(sparePartFilter)
-      ? ''
-      : JSON.parse(sparePartFilter);
+  getAllSpareParts = async (req, res, next) => {
+    let sparePartFilter = req.query.sparePartFilter || '';
+    const { pageIndex, pageSize } = req.query;
+    const filter =
+      sparePartFilter === '' || isEmpty(sparePartFilter)
+        ? ''
+        : JSON.parse(sparePartFilter);
 
-  const sparePart = await (filter
-    ? sparePartData.getAllByFilter(filter, pageIndex, pageSize)
-    : sparePartData.getAll(pageIndex, pageSize));
+    const sparePart = await (filter
+      ? this.database.getAllByFilter(filter, pageIndex, pageSize)
+      : this.database.getAll(pageIndex, pageSize));
 
-  res.status(200).json(sparePart);
+    res.status(200).json(sparePart);
+  };
 }
 
 export async function getSpareParts(req, res) {
-  const spareParts = await sparePartData.getSpareParts();
+  const spareParts = await this.sparePartData.getSpareParts();
   res.status(200).json(spareParts);
 }
 

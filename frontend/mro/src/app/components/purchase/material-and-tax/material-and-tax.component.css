@@ -1,0 +1,92 @@
+table {
+    margin-left: 1.2%;
+    margin-top: 20px;
+}
+
+#search {
+    width: 4.5%;
+}
+
+th {
+    width: 7.3%;
+}
+
+#icon {
+    width: 2%;
+}
+
+.material_form {
+    margin-left: 1%;
+}
+
+.material_form_row {
+    border: 1px solid #ECECEC;
+    margin: 3px;
+    background-color: #fcfdfe;
+}
+
+.search-container {
+    display: inline-block;
+}
+
+.search-box {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    border: 1px solid;
+    background-color: rgb(110, 107, 107);
+}
+
+#search_parts {
+    width: 100%;
+}
+
+#search_parts_input {
+    all: unset;
+    background-color: white;
+    width: 180px;
+    margin: 5px;
+    border-radius: 1px;
+}
+
+.spare-part-code {
+    margin-top: 1rem;
+    cursor: pointer;
+    color: rgb(131, 247, 131);
+}
+
+
+.select {
+    vertical-align: top;
+    height: 26px;
+    max-width: 7%;
+    margin-bottom: 5px;
+}
+
+input {
+    vertical-align: top;
+    max-width: 7%;
+    margin-bottom: 5px;
+}
+
+i {
+    height: 15px;
+    width: auto;
+}
+
+button { 
+    vertical-align: top; 
+    background-color:rgb(110,144,161);
+    cursor:pointer;
+    color:#ffffff;
+    font-family:Arial;
+    text-decoration:none;
+    text-shadow:0px 1px 0px #283966;
+    margin-left: 3px;
+    margin-right: 3px;
+}
+
+button:hover {
+    background:linear-gradient(to bottom, #476e9e 5%, #7892c2 100%);
+    background-color:#476e9e;
+}

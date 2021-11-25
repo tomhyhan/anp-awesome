@@ -28,7 +28,7 @@ const routes: Routes = [
   {
     path: 'master/employees',
     component: EmployeesComponent,
-    
+    canActivate: [AuthGuard],
   },
   { path: 'master/uom', component: UomPartsComponent },
   {

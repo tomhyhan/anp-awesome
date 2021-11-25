@@ -65,8 +65,9 @@ export class DetailComponent implements OnInit {
         { value: newPR, disabled: true },
         Validators.required,
       ],
+      // , Validators.required, Validators.pattern(`^[0-9]*$`)
       vendor_id: ['', Validators.required],
-      payment_terms: ['', Validators.required, Validators.pattern(`^[0-9]*$`)],
+      payment_terms: [''],
       other_reference: ['', Validators.required],
       transport_mode: ['', Validators.required],
       purchase_order_validity: ['', Validators.required],
@@ -91,6 +92,8 @@ export class DetailComponent implements OnInit {
         created_by: this.user.emp_id,
       },
     };
+    console.log(detail);
+    
     this.detailService.addDetail(detail).subscribe();
   }
 

@@ -25,11 +25,6 @@ import { SearchSparePartComponent } from './components/master/sparePart/search-s
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 
-//PurchaseOrderPart
-import { BackgroundComponent } from './components/background/background.component';
-import { PurchaseOrderComponent } from './components/purchase-order/purchase-order.component';
-import { PurchaseOrderCreateComponent } from './components/purchase-order-create/purchase-order-create.component';
-
 //ProjectPart
 import { AddProjectComponent } from './components/master/project/add-project/add-project.component';
 import { EditProjectComponent } from './components/master/project/edit-project/edit-project.component';
@@ -71,15 +66,13 @@ import { AuthService } from './services/auth.service';
 import { DetailComponent } from './components/purchase/detail/detail.component';
 import { MaterialAndTaxComponent } from './components/purchase/material-and-tax/material-and-tax.component';
 import { FileattachComponent } from './components/purchase/fileattach/fileattach.component';
+import { TabComponent } from './components/purchase/tab/tab.component';
 @NgModule({
   declarations: [
     AppComponent,
 
     HeaderComponent,
     FooterComponent,
-    BackgroundComponent,
-    PurchaseOrderComponent,
-    PurchaseOrderCreateComponent,
 
     SparePartsComponent,
     AddSparePartComponent,
@@ -113,6 +106,7 @@ import { FileattachComponent } from './components/purchase/fileattach/fileattach
     DisplayErrorComponent,
     LoginComponent,
     AlertComponent,
+    TabComponent,
     DetailComponent,
     MaterialAndTaxComponent,
     FileattachComponent,

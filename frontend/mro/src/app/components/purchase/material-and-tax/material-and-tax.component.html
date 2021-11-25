@@ -1,47 +1,68 @@
+<table>
+  <tr>
+    <th>Material Code</th>
+    <th id="search">Search</th>
+    <th>Description</th>
+    <th>Make</th>
+    <th>Delivery Date</th>
+    <th>Account</th>
+    <th>Cost Center</th>
+    <th>Plant</th>
+    <th>Quantity</th>
+    <th>Unit</th>
+    <th>Rate</th>
+    <th>Discount %</th>
+    <th>Discount $</th>
+    <th>Total Amount</th>
+    <th id="icon">Add</th>
+    <th id="icon">Delete</th>
+  </tr>
+</table>
 
-<form [formGroup]='addMaterialsAndTax'>
-    <div 
-    formArrayName='items'
-    *ngFor="let item of addMaterialsAndTax.get('items')['controls']; let i = index;"
-    >
-      <div [formGroupName]="i">
-        <input formControlName="material_code" placeholder="material Code">
+<form [formGroup]='addMaterialsAndTax' class="material_form">
+    <div formArrayName='items'>
+      <div *ngFor="let item of addMaterialsAndTax.get('items')['controls']; let i = index;" 
+        [formGroupName]="i" class="material_form_row">
+
+        <input formControlName="material_code" placeholder="Material Code">
         <div class='search-container'> 
           <button attr.id="search-btn{{ i }}" type="button" data-toggle="collapse" attr.data-target="#{{ i }}" aria-expanded="false" aria-controls="collapseExample">
             Search
         </button>
         <div class="collapse search-box" attr.id="{{ i }}">
-          <form [formGroup]='searchSparePart'>
-            <input formControlName="filter" type="text">
+          <form [formGroup]='searchSparePart' id="search_parts">
+            <input formControlName="filter" type="text" id="search_parts_input">
           </form>
           <button type="button" (click)="onSearchSparePart()">Search</button>
           <p class='spare-part-code' *ngIf='spareParts' (click)='setSparePart(i)'>{{spareParts.spare_part_code}}</p>
         </div>
         </div>
-        <input formControlName="material_description" placeholder="description">
+        <input formControlName="material_description" placeholder="Description">
         <select class='select' formControlName="make" id="make">
-          <option value="null" selected >Choose Purchase Detail</option>
+          <option value="null" selected >Purchase Detail</option>
           <option *ngFor="let detail of details" [ngValue]="detail.id">{{detail.purchase_requisition_number}}</option>
         </select>
-        <input formControlName="delivery_date" placeholder="Delivery Date">
-        <input formControlName="account_assignment" placeholder="Account Assingment">
+        <input type="date" formControlName="delivery_date" placeholder="Delivery Date">
+        <input formControlName="account_assignment" placeholder="Account Assignment">
         <input formControlName="cost_center" placeholder="Cost Center">
-        <input formControlName="plant" placeholder="plant">
-        <input (change)='onChange(i)' formControlName="quantity" placeholder="quantity">
+        <select class='select' formControlName="plant" id="plant">
+          <option value="null" selected  disabled>Select Your Project</option>
+          <option *ngFor="let project of projects" [ngValue]="project.project_master_id">{{project.project_name}}</option>
+        </select>
+        <input (change)='onChange(i)' formControlName="quantity" placeholder="Quantity">
         <select class='select' formControlName="unit" id="unit">
           <option value="null" selected  disabled>Select Your Unit</option>
           <option *ngFor="let uom of uoms" [ngValue]="uom.uom_id">{{uom.uom}}</option>
         </select>
-        <input (change)='onChange(i)' formControlName="rate" placeholder="rate">
-        <input (change)='onChange(i)' formControlName="dics" placeholder="dics %">
-        <input (change)='onChange(i)' formControlName="disc_amount" placeholder="disc amount">
+        <input (change)='onChange(i)' formControlName="rate" placeholder="Rate">
+        <input (change)='onChange(i)' formControlName="dics" placeholder="Dics %">
+        <input (change)='onChange(i)' formControlName="disc_amount" placeholder="Disc Amount">
         <input (change)='onChange(i)' formControlName="total_amount" placeholder="Total Amount">
 
+        <button type="button" (click)="addItem(i)"><i class="fa fa-plus"></i></button>
+        <button type="button" (click)="removeItem(i)"><i class="fa fa-minus"></i></button>
       </div>
-      <button type="button" (click)="addItem(i)">Add Item</button>
-      <button type="button" (click)="removeItem(i)">Remove</button>
     </div>
     <button type="button" (click)="addItemAtEnd()">Add Item</button>
     <button type="button" (click)="onSubmit()">Save</button>
-
 </form>

@@ -72,7 +72,8 @@ export class FileattachComponent implements OnInit {
         created_by:this.user.emp_id,
       },
     };
-    // console.log(files);
+    console.log(files);
+    // console.log(files.files.ewaybill)
     this.fileattachService.postfiles(files).subscribe();
     
   }

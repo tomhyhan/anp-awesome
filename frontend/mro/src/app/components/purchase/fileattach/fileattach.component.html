@@ -12,17 +12,17 @@
       
         <div class="boxed">
           <label for="purchase_requisition_number">Eway Bill</label>
-          <input formControlName="ewaybill" class="form-control-file" type="file"  id="ewaybill" placeholder="upload">
+          <input formControlName="ewaybill" class="form-control-file" type="file"  id="ewaybill" placeholder="upload" (change)="onChangeFile($event)">
         </div>
         
         <div class="boxed">
           <label for="vendor_id">Invoice</label>
-          <input formControlName="invoice" class="form-control-file" type="file"  id="invoice" placeholder="upload">
+          <input formControlName="invoice" class="form-control-file" type="file"  id="invoice" placeholder="upload" (change)="onChangeFile($event)">
         </div>
         
         <div class="boxed">
           <label for="vendor_id">Other</label>
-          <input formControlName="other" class="form-control-file" type="file"  id="other" placeholder="upload">
+          <input formControlName="other" class="form-control-file" type="file"  id="other" placeholder="upload" (change)="onChangeFile($event)">
         </div>
       </div>
 

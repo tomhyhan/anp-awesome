@@ -8,4 +8,9 @@ const pool = mysql.createPool({
   database: config.mysqlDb.database,
 });
 
+pool.getConnection(function(err){
+  if(err) throw err;
+  console.log('connected!');
+});
+
 export const db = pool.promise();

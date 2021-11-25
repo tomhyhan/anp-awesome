@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -24,12 +24,6 @@ import { SearchSparePartComponent } from './components/master/sparePart/search-s
 //HomePage
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { DisplayErrorComponent } from './components/display-error/display-error.component';
-
-//PurchaseOrderPart
-import { BackgroundComponent } from './components/background/background.component';
-import { PurchaseOrderComponent } from './components/purchase-order/purchase-order.component';
-import { PurchaseOrderCreateComponent } from './components/purchase-order-create/purchase-order-create.component';
 
 //ProjectPart
 import { AddProjectComponent } from './components/master/project/add-project/add-project.component';
@@ -59,20 +53,26 @@ import { SearchVendorComponent } from './components/master/vendor/search-vendor/
 import { AddaircraftComponent } from './components/master/aircraft/add-aircraft/add-aircraft.component';
 import { EditaircraftComponent } from './components/master/aircraft/edit-aircraft/edit-aircraft.component';
 import { aircraftsComponent } from './components/master/aircraft/aircrafts/aircrafts.component';
+
+import { DisplayErrorComponent } from './components/display-error/display-error.component';
+import { LoginComponent } from './components/login/login.component';
+import { AlertComponent } from './components/alert/alert.component';
 import { SearchaircraftComponent } from './components/master/aircraft/search-aircraft/search-aircraft.component';
 
-
-
-
+// interceptors
+import { JwtInterceptor } from './helpers/jwt.interceptor';
+import { appInitializer } from './helpers/app.initializer';
+import { AuthService } from './services/auth.service';
+import { DetailComponent } from './components/purchase/detail/detail.component';
+import { MaterialAndTaxComponent } from './components/purchase/material-and-tax/material-and-tax.component';
+import { FileattachComponent } from './components/purchase/fileattach/fileattach.component';
+import { TabComponent } from './components/purchase/tab/tab.component';
 @NgModule({
   declarations: [
     AppComponent,
 
     HeaderComponent,
     FooterComponent,
-    BackgroundComponent,
-    PurchaseOrderComponent,
-    PurchaseOrderCreateComponent,
 
     SparePartsComponent,
     AddSparePartComponent,
@@ -104,6 +104,12 @@ import { SearchaircraftComponent } from './components/master/aircraft/search-air
     AddaircraftComponent,
     SearchaircraftComponent,
     DisplayErrorComponent,
+    LoginComponent,
+    AlertComponent,
+    TabComponent,
+    DetailComponent,
+    MaterialAndTaxComponent,
+    FileattachComponent,
   ],
   imports: [
     BrowserModule,
@@ -119,7 +125,17 @@ import { SearchaircraftComponent } from './components/master/aircraft/search-air
     MatNativeDateModule,
     BrowserAnimationsModule,
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    {
+      provide: APP_INITIALIZER,
+      useFactory: appInitializer,
+      multi: true,
+      deps: [AuthService],
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
+
+//  Maybe later

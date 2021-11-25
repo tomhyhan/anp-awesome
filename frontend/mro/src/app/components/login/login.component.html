@@ -1,0 +1,16 @@
+<div class="login">
+  <section id="login-backimg">
+  </section>
+  <h1 class="login-h1">Login to Masters</h1>
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input formControlName="username" type="text" class="form-control" id="username" aria-describedby="username" placeholder="Enter Your Username">
+      </div>
+      <div class="form-group">
+        <label for="Password">Password</label>
+        <input formControlName="password"type="password" class="form-control" id="Password" placeholder="Password">
+      </div>
+      <p><button type="submit" class="btn btn-primary" id="login-btn">Submit</button></p>
+    </form>
+</div>

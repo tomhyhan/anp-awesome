@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
+import { HttpClientHelper } from 'src/network/httpClient';
+import { map } from 'rxjs/operators';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -12,31 +14,43 @@ const httpOptions = {
   providedIn: 'root',
 })
 export class projectService {
-  apiUrl = 'http://localhost:8080/master/project';
+  url = '/master/project';
+  private projectSubject: BehaviorSubject<any>;
+  public project: Observable<any>;
 
-  constructor(private http: HttpClient) {}
-
-  getproject(filter: any, pageIndex: any, pageSize: any) {
-    console.log(pageSize);
-    return this.http.get(`${this.apiUrl}?projectFilter=${filter}&pageIndex=${pageIndex}&pageSize=${pageSize}$`);
+  constructor(private httpHelper: HttpClientHelper) {
+    this.projectSubject = new BehaviorSubject(null);
+    this.project = this.projectSubject.asObservable();
+  }
+  getAllproject() {
+    const queryString = '';
+    return this.httpHelper.get(`${this.url}/all`, queryString, {}).pipe(
+      map((project) => {
+        this.projectSubject.next(project);
+        return project;
+      })
+    );
+  }
+  getproject(filter, pageIndex, pageSize) {
+    const queryString = `projectFilter=${filter}&pageIndex=${pageIndex}&pageSize=${pageSize}`;
+    return this.httpHelper.get(this.url, queryString, {});
   }
 
-  addproject( project: any) {
-    return this.http.post(this.apiUrl, project, httpOptions);
+  addproject(project) {
+    return this.httpHelper.post(this.url, project, httpOptions);
   }
 
-  updateproject( project: any, id: any) {
-    return this.http.put(`${this.apiUrl}/${id}`, project, httpOptions);
+  updateproject(project, id) {
+    return this.httpHelper.put(`${this.url}/${id}`, project, httpOptions);
   }
 
   getprojectCount() {
-    return this.http.get(`${this.apiUrl}/pages`, httpOptions);
+    const queryString = '';
+    return this.httpHelper.get(`${this.url}/pages`, queryString, {});
   }
 
-  getprojectFilterCount(filter: any) {
-    return this.http.get(
-      `${this.apiUrl}/filterPages?projectFilter=${filter}`,
-      httpOptions
-    );
+  getprojectFilterCount(filter) {
+    const queryString = `projectFilter=${filter}`;
+    return this.httpHelper.get(`${this.url}/filterPages`, queryString, {});
   }
 }

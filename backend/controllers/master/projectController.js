@@ -21,15 +21,18 @@ export async function getAllproject(req, res, next) {
   }
 
   const filter =
-  projectFilter === '' || isEmpty(projectFilter) ? '' : projectFilter;
-    
-  
+    projectFilter === '' || isEmpty(projectFilter) ? '' : projectFilter;
 
   const project = await (filter
     ? projectData.getAllByFilter(filter, pageIndex, pageSize)
     : projectData.getAll(pageIndex, pageSize));
 
   return res.status(200).json(project);
+}
+
+export async function getAll(req, res) {
+  const projects = await projectData.getProjects();
+  res.status(200).json(projects);
 }
 
 export async function getById(req, res, next) {
@@ -52,7 +55,6 @@ export async function getprojectFilterCount(req, res) {
   const count = await projectData.getFilterCount(projectFilter);
   res.status(200).json(count);
 }
-
 
 export async function postproject(req, res) {
   const { project_user } = req.body;

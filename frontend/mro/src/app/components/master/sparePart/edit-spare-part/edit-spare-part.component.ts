@@ -2,6 +2,9 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UomService } from 'src/app/services/master/Uom/uom.service';
 import { ErrorHandlers } from 'src/app/utils/error-handler';
+
+import { AuthService } from 'src/app/services/auth.service';
+import { AuthData } from 'src/app/model/auth';
 @Component({
   selector: 'app-edit-spare-part',
   templateUrl: './edit-spare-part.component.html',
@@ -14,11 +17,15 @@ export class EditSparePartComponent implements OnInit {
   id: any;
   uom: any = [];
   errorhandlers: any;
+  employee: AuthData;
 
   constructor(
     private formBuilder: FormBuilder,
-    private uomService: UomService
-  ) {}
+    private uomService: UomService,
+    private authService: AuthService
+  ) {
+    this.employee = this.authService.employeeValue;
+  }
 
   ngOnInit(): void {
     this.editSparePartForm = this.formBuilder.group({
@@ -61,6 +68,7 @@ export class EditSparePartComponent implements OnInit {
               (uom: any) => uom.uom === this.editSparePartForm.value.frn_uom
             ).uom_id
           ),
+          modified_by: this.employee.emp_id,
         },
       };
 

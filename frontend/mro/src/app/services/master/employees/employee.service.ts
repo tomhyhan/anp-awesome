@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClientHelper } from 'src/network/httpClient';
+import { Observable, BehaviorSubject } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -11,32 +14,59 @@ const httpOptions = {
   providedIn: 'root',
 })
 export class EmployeeService {
-  apiUrl = 'http://localhost:8080/master/employee';
+  apiUrl = '/master/employee';
+  private employeeSubject: BehaviorSubject<any>;
+  public employee: Observable<any>;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private httpHelper: HttpClientHelper) {
+    this.employeeSubject = new BehaviorSubject<any>(null);
+    this.employee = this.employeeSubject.asObservable();
+  }
+
+  get employeeValue() {
+    return this.employeeSubject.value;
+  }
+
+  getAllEmployee() {
+    const queryString = '';
+    return this.httpHelper.get(`${this.apiUrl}/all`, queryString, {}).pipe(
+      map((employees: any) => {
+        this.employeeSubject.next(employees);
+        return employees;
+      })
+    );
+  }
 
   getEmployee(filter: any, pageIndex: any, pageSize: any) {
-    return this.http.get(
-      `${this.apiUrl}?employeeFilter=${filter}&pageIndex=${pageIndex}&pageSize=${pageSize}$`
-      
-    );
+    const queryString = `employeeFilter=${filter}&pageIndex=${pageIndex}&pageSize=${pageSize}$`;
+    return this.httpHelper.get(this.apiUrl, queryString, {});
   }
 
   addEmployee(employee: any) {
-    return this.http.post(this.apiUrl, employee, httpOptions);
+    console.log('Emp service');
+    console.log(employee);
+
+    return this.httpHelper.post(this.apiUrl, employee, {}).pipe(
+      map((employee: any) => {
+        this.getAllEmployee().subscribe(() => {
+          console.log('subscribing...');
+        });
+        return employee;
+      })
+    );
   }
 
   updateEmployee(employee: any, id: any) {
-    return this.http.put(`${this.apiUrl}/${id}`, employee, httpOptions);
+    return this.httpHelper.put(`${this.apiUrl}/${id}`, employee, httpOptions);
   }
 
   getEmployeeCount() {
-    return this.http.get(`${this.apiUrl}/pages`, httpOptions);
+    const queryString = '';
+    return this.httpHelper.get(`${this.apiUrl}/pages`, queryString, {});
   }
 
   getEmployeeFilterCount(filter: any) {
-    return this.http.get(
-      `${this.apiUrl}/filterPages?employeeFilter=${filter}`, httpOptions
-    );
+    const queryString = `employeeFilter=${filter}`;
+    return this.httpHelper.get(`${this.apiUrl}/filterPages?`, queryString, {});
   }
 }

@@ -1,13 +1,27 @@
 import express from 'express';
+import 'express-async-errors';
 import * as sparePartController from '../../controllers/master/sparePartController.js';
+import { isAuth } from '../../middlewares/auth.js';
 
-const router = express.Router();
+import { sparePartControllers } from '../../controllers/master/sparePartController.js';
 
-router.get('/pages', sparePartController.getSparePartCount);
-router.get('/filterPages', sparePartController.getSparePartFilterCount);
-router.get('/:id', sparePartController.getById);
-router.get('/', sparePartController.getAllSpareParts);
-router.post('/', sparePartController.postSparePart);
-router.put('/:id', sparePartController.updateSparePart);
+export default function (database) {
+  const router = express.Router();
 
-export default router;
+  router.get('/all', isAuth, sparePartController.getSpareParts);
+  router.get('/pages', isAuth, sparePartController.getSparePartCount);
+  router.get(
+    '/filterPages',
+    isAuth,
+    sparePartController.getSparePartFilterCount
+  );
+  const sp = new sparePartControllers(database);
+  router.get('/:id', isAuth, sparePartController.getById);
+  router.get('/', isAuth, sp.getAllSpareParts);
+  router.post('/', isAuth, sparePartController.postSparePart);
+  router.put('/:id', isAuth, sparePartController.updateSparePart);
+
+  return router;
+}
+
+// export default router;

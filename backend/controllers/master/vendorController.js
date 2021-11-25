@@ -1,11 +1,13 @@
 import * as vendorData from '../../data/master/vendorData.js';
 
-
+export async function getAll(req, res) {
+  const vendors = await vendorData.getAllVendors();
+  res.status(200).json(vendors);
+}
 
 export async function getAllVendors(req, res, next) {
   let vendorFilter = req.query.vendorFilter;
   const { pageIndex, pageSize } = req.query;
-  console.log(req.query);
   if (vendorFilter == null) {
     vendorFilter = '';
   } else {
@@ -32,7 +34,6 @@ export async function getVendorFilterCount(req, res) {
   const count = await vendorData.getFilterCount(vendorFilter);
   res.status(200).json(count);
 }
-
 
 export async function getById(req, res) {
   const { id } = req.params;

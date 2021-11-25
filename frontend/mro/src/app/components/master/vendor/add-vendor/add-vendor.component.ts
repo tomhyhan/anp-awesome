@@ -1,8 +1,8 @@
-
 import { Component, OnInit,Output, EventEmitter, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ErrorHandlers } from 'src/app/utils/error-handler';
-
+import { AuthService } from 'src/app/services/auth.service';
+import { AuthData } from 'src/app/model/auth';
 
 @Component({
   selector: 'app-add-vendor',
@@ -10,14 +10,18 @@ import { ErrorHandlers } from 'src/app/utils/error-handler';
   styleUrls: ['./add-vendor.component.css']
 })
 export class AddVendorComponent implements OnInit {
-
-  Remarks:any;
+  user:AuthData;
+  // Remarks:any;
   @Output() onCreateVendor = new EventEmitter();
-  addvendorForm: FormGroup | any;
-  errorhandlers: any;
+  addvendorForm: FormGroup;
+  errorhandlers: ErrorHandlers;
 
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder,private authService: AuthService) { 
+    this.authService.employee.subscribe(
+    (employee) => (this.user = employee)
+    )
+  }
 
   ngOnInit(): void {
 
@@ -42,10 +46,10 @@ export class AddVendorComponent implements OnInit {
           address: this.addvendorForm.value.address,
           remarks: this.addvendorForm.value.remarks,
 
-          created_by:"hosung",
+          created_by:this.user.emp_id,
         },
       };
-      // console.log(vendor)
+      console.log(vendor)
       this.onCreateVendor.emit(vendor);
       this.addvendorForm.reset();
       

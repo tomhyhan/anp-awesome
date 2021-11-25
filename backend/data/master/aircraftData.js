@@ -98,19 +98,21 @@ export async function create(aircraft) {
 
 // getting a aircraft object
 export async function update(id, aircraft) {
-  const { aircraft_name, remarks } = aircraft;
+  const { aircraft_name, remarks, modified_by } = aircraft;
 
   return db
-    .query(
+    .execute(
       `
   Update aircraft
   SET 
     aircraft_name=?,
-    remarks=?
+    remarks=?,
+    modified_by=?,
+    last_modified_date=?
   WHERE
     material_aircraft_id=?
     `,
-      [aircraft_name, remarks, id]
+      [aircraft_name, remarks, modified_by, new Date().toLocaleDateString().replace('/','-').replace('/','-'),,id]
     )
     .then(() => getById(id));
 }

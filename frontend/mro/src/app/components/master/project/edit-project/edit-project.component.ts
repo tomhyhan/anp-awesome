@@ -1,6 +1,7 @@
 import { Component, OnInit,Input, Output, EventEmitter} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ErrorHandlers } from 'src/app/utils/error-handler';
+import { AuthService } from 'src/app/services/auth.service';
 @Component({
   selector: 'app-edit-project',
   templateUrl: './edit-project.component.html',
@@ -13,8 +14,13 @@ export class EditProjectComponent implements OnInit {
   editprojectForm!: FormGroup | any;
   id: any;
   errorhandlers: any;
+  user:any;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder,private authService: AuthService) { 
+    this.authService.employee.subscribe(
+      (employee) => (this.user = employee)
+    );
+  }
 
   ngOnInit(): void {
     this.editprojectForm = this.formBuilder.group({
@@ -22,6 +28,7 @@ export class EditProjectComponent implements OnInit {
       ProjectCode: ['', Validators.required],
       Status:'',
       remarks:[''],
+      StartDate:new Date(),
       EndDate:new Date(),
     });
     this.updateValues();
@@ -35,6 +42,7 @@ export class EditProjectComponent implements OnInit {
       ProjectCode: this.project.project_code,
       Status:this.project.active_id,
       remarks:this.project.remarks,
+      StartDate:this.project.star_date.split('T')[0],
       EndDate:this.project.end_date.split('T')[0],
     });
   }
@@ -50,8 +58,9 @@ export class EditProjectComponent implements OnInit {
         project_code: this.editprojectForm.value.ProjectCode,
         remarks:this.editprojectForm.value.remarks,
         active_id:this.editprojectForm.value.Status,
-        created_by:"benny",
-        end_date:this.editprojectForm.value.EndDate
+        star_date:this.editprojectForm.value.StartDate,
+        end_date:this.editprojectForm.value.EndDate,
+        modified_by:this.user.emp_id,
       },
     };
     console.log(updateproject)

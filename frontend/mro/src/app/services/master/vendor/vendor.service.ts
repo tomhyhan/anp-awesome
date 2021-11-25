@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
+import { HttpClientHelper } from 'src/network/httpClient';
+import { query } from '@angular/animations';
+import { map, finalize } from 'rxjs/operators';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -12,33 +15,58 @@ const httpOptions = {
   providedIn: 'root',
 })
 export class VendorService {
-  apiUrl = 'http://localhost:8080/master/vendor';
+  apiUrl = '/master/vendor';
+  private vendorSubject: BehaviorSubject<any>;
+  public vendor: Observable<any>;
 
-  constructor(private http: HttpClient) {}
-
-  getVendor(filter: any, pageIndex: any, pageSize: any) {
-    return this.http.get(`${this.apiUrl}?vendorFilter=${filter}&pageIndex=${pageIndex}&pageSize=${pageSize}$`);
-
+  constructor(private httpHelper: HttpClientHelper) {
+    this.vendorSubject = new BehaviorSubject<any>(null);
+    this.vendor = this.vendorSubject.asObservable();
   }
 
-  addVendor( vendor: any) {
-    return this.http.post(this.apiUrl, vendor, httpOptions);
-  }
-
-  updateVendor( vendor: any, id: any) {
-    return this.http.put(`${this.apiUrl}/${id}`, vendor, httpOptions);
-  }
-
-
-  
-  getVendorCount() {
-    return this.http.get(`${this.apiUrl}/pages`, httpOptions);
-  }
-
-  getVendorFilterCount(filter: any) {
-    return this.http.get(
-      `${this.apiUrl}/filterPages?vendorFilter=${filter}`, httpOptions
+  getAllVendor() {
+    const queryString = ``;
+    return this.httpHelper.get(`${this.apiUrl}/all`, queryString, {}).pipe(
+      map((vendor: any) => {
+        this.vendorSubject.next(vendor);
+        return vendor;
+      })
     );
   }
 
+  getVendor(filter: any, pageIndex: any, pageSize: any) {
+    const queryString = `vendorFilter=${filter}&pageIndex=${pageIndex}&pageSize=${pageSize}`;
+
+    return this.httpHelper.get(this.apiUrl, queryString, {});
+  }
+
+  addVendor(vendor: any) {
+    return this.httpHelper.post(this.apiUrl, vendor, httpOptions).pipe(
+      map((vendor: any) => {
+        this.getAllVendor().subscribe();
+        return vendor;
+      })
+    );
+  }
+
+  updateVendor(vendor: any, id: any) {
+    return this.httpHelper
+      .put(`${this.apiUrl}/${id}`, vendor, httpOptions)
+      .pipe(
+        map((vendor: any) => {
+          this.getAllVendor().subscribe();
+          return vendor;
+        })
+      );
+  }
+
+  getVendorCount() {
+    const queryString = '';
+    return this.httpHelper.get(`${this.apiUrl}/pages`, queryString, {});
+  }
+
+  getVendorFilterCount(filter: any) {
+    const queryString = `vendorFilter=${filter}`;
+    return this.httpHelper.get(`${this.apiUrl}/filterPages`, queryString, {});
+  }
 }

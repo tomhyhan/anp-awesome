@@ -2,21 +2,23 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { aircraftService } from 'src/app/services/master/aircraft/aircraft.service';
 import { startWith, tap } from 'rxjs/operators';
+import { aircraft,aircraftFilter } from 'src/app/model/aircraft';
 
+type Filter = string | aircraftFilter;
 @Component({
   selector: 'app-aircraft',
   templateUrl: './aircrafts.component.html',
   styleUrls: ['./aircrafts.component.css']
 })
 export class aircraftsComponent implements OnInit {
-  aircraft: any = [];
+  aircraft: aircraft[];
   displayedColumns: string[] = [
     'aircraft_name',
     'remarks',
     'view'
   ];
   aircraftCount: any;
-  filter = JSON.stringify('');
+  filter:Filter = JSON.stringify('');
   @ViewChild(MatPaginator) paginator: MatPaginator | any;
 
   constructor(private aircraftService: aircraftService) { }

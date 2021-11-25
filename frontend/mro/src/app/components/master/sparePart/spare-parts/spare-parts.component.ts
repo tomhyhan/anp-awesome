@@ -3,16 +3,20 @@ import { SparePartService } from 'src/app/services/master/sparePart/spare-part.s
 import { UomService } from 'src/app/services/master/Uom/uom.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { startWith, tap } from 'rxjs/operators';
+import { SparePart, SparePartFilter } from 'src/app/model/sparePart';
+import { Observable } from 'rxjs';
+
+type Filter = string | SparePartFilter;
 @Component({
   selector: 'app-spare-parts',
   templateUrl: './spare-parts.component.html',
   styleUrls: ['./spare-parts.component.css'],
 })
 export class SparePartsComponent implements OnInit {
-  spareParts: any;
+  spareParts: SparePart[];
   uom: any = [];
   sparePartCount: any;
-  filter = JSON.stringify('');
+  filter: Filter = JSON.stringify('');
   displayedColumns: string[] = [
     'spare_part_code',
     'spare_part_desc',
@@ -24,7 +28,7 @@ export class SparePartsComponent implements OnInit {
     'view',
   ];
 
-  @ViewChild(MatPaginator) paginator: MatPaginator | any;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(
     private sparePartService: SparePartService,
@@ -59,10 +63,10 @@ export class SparePartsComponent implements OnInit {
       .subscribe(() => {});
   }
 
-  createTask(sparePart: any) {
+  createTask(sparePart: SparePart) {
     this.sparePartService
       .addSparePart(sparePart)
-      .subscribe((sparePart: any) => {
+      .subscribe((sparePart: SparePart[]) => {
         this.sparePartService.getSparePartCount().subscribe((count) => {
           this.sparePartCount = count;
         });
@@ -72,10 +76,10 @@ export class SparePartsComponent implements OnInit {
       });
   }
 
-  updateSparePart(sparePart: any) {
+  updateSparePart(sparePart: { sparePart: SparePart; id: string }) {
     this.sparePartService
       .updateSparePart(sparePart.sparePart, sparePart.id)
-      .subscribe((updated: any) => {
+      .subscribe((updated: SparePart[]) => {
         const newSpareParts = this.spareParts.map((sparePart: any) => {
           if (sparePart.material_master_id === updated[0].material_master_id) {
             return updated[0];
@@ -87,7 +91,7 @@ export class SparePartsComponent implements OnInit {
       });
   }
 
-  searchSparePart(filter: any) {
+  searchSparePart(filter: Filter) {
     this.sparePartService.getSparePartFilterCount(filter).subscribe((count) => {
       this.sparePartCount = count;
     });

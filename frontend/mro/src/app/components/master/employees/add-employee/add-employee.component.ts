@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ErrorHandlers } from 'src/app/utils/error-handler';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-add-employee',
@@ -8,13 +9,19 @@ import { ErrorHandlers } from 'src/app/utils/error-handler';
   styleUrls: ['./add-employee.component.css'],
 })
 export class AddEmployeeComponent implements OnInit {
-
   @Output() onCreateEmployee = new EventEmitter();
   addEmployeeForm: FormGroup | any;
   errorhandlers: any;
+  employee: any;
+  user: any;
 
-  constructor(private formBuilder: FormBuilder) {};
-
+  constructor(
+    private formBuilder: FormBuilder,
+    private authService: AuthService
+  ) {
+    this.authService.employee.subscribe((employee) => (this.user = employee));
+  }
+  //  Validators.pattern(`^[0-9]+`) NOT WORKING ???
   ngOnInit(): void {
     this.addEmployeeForm = this.formBuilder.group({
       emp_name: ['', Validators.required],
@@ -26,7 +33,8 @@ export class AddEmployeeComponent implements OnInit {
       department: ['', Validators.required],
       remarks: [''],
       created_by: [''],
-      created_date: [''],
+      username: ['', Validators.required],
+      password: ['', Validators.required],
     });
     this.errorhandlers = new ErrorHandlers(this.addEmployeeForm);
   }
@@ -43,13 +51,15 @@ export class AddEmployeeComponent implements OnInit {
           designation: this.addEmployeeForm.value.designation,
           department: this.addEmployeeForm.value.department,
           remarks: this.addEmployeeForm.value.remarks,
-          created_by: "Inggy",
-          created_date: new Date(),
+          created_by: this.user.emp_id,
+          password: this.addEmployeeForm.value.password,
+          username: this.addEmployeeForm.value.username,
         },
-    };
+      };
       this.onCreateEmployee.emit(addEmployee);
       this.addEmployeeForm.reset();
-  } else {
-    this.errorhandlers.showErrors();
-  }};
+    } else {
+      this.errorhandlers.showErrors();
+    }
+  }
 }

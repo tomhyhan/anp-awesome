@@ -4,7 +4,11 @@
 
 .top {
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-rows: 1;
+}
+
+.top-search, .top-add {
+    grid-row: 1;
 }
 
 .mat-row .mat-cell {

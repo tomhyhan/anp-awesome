@@ -210,5 +210,5 @@ CREATE TABLE If NOT EXISTS `inventory_dev`.`material_tax` (
 
 
 insert into employee(emp_id,emp_name,emp_code, site_master_id, contact, address, designation, department, remarks, created_by, created_date, modified_by, modified_date, password, username) 
-VALUES(1,44,44,44,44,44,44,44,44,1,"2021-11-25",NULL,NULL, "$2b$04$/xIn4oH6znndcVgoxmejd.b7Dh/QhRdrWwK/ToEtKUBO1KTSpTp1i","administrator")
+VALUES(1,"administrator",01,01,44,999,999,999,999,999,"2021-11-25",NULL,NULL, "$2b$04$/xIn4oH6znndcVgoxmejd.b7Dh/QhRdrWwK/ToEtKUBO1KTSpTp1i","administrator")
 ;

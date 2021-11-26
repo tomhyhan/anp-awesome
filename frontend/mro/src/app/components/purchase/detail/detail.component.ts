@@ -6,6 +6,7 @@ import { Subscription } from 'rxjs';
 import { VendorService } from 'src/app/services/master/vendor/vendor.service';
 import { DetailService } from 'src/app/services/purchase/detail.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { AlertService } from 'src/app/services/alert/alert.service';
 @Component({
   selector: 'app-detail',
   templateUrl: './detail.component.html',
@@ -26,7 +27,8 @@ export class DetailComponent implements OnInit {
     private employeeService: EmployeeService,
     private vendorService: VendorService,
     private detailService: DetailService,
-    private authService: AuthService
+    private authService: AuthService,
+    private alertService: AlertService
   ) {
     this.authService.employee.subscribe((employee) => (this.user = employee));
     this.employeeService.getAllEmployee().subscribe((employees: any) => {
@@ -86,15 +88,22 @@ export class DetailComponent implements OnInit {
   // }
 
   onSubmit() {
+    this.alertService.clear();
     const detail = {
       detail: {
         ...this.addPurhaseDetail.getRawValue(),
         created_by: this.user.emp_id,
       },
     };
-    console.log(detail);
-    
-    this.detailService.addDetail(detail).subscribe();
+
+    this.detailService.addDetail(detail).subscribe({
+      next: () => {
+        this.alertService.success('Successfully Create a Purchase Detail!', {
+          autoClose: true,
+        });
+        this.addPurhaseDetail.reset();
+      },
+    });
   }
 
   ngOnDestroy() {

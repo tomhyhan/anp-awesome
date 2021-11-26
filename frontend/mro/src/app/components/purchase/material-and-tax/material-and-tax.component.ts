@@ -8,6 +8,7 @@ import { DetailService } from 'src/app/services/purchase/detail.service';
 import { ErrorHandlers } from 'src/app/utils/error-handler';
 import { UomService } from 'src/app/services/master/Uom/uom.service';
 import { projectService } from 'src/app/services/master/project/project.service';
+import { AlertService } from 'src/app/services/alert/alert.service';
 @Component({
   selector: 'app-material-and-tax',
   templateUrl: './material-and-tax.component.html',
@@ -34,7 +35,8 @@ export class MaterialAndTaxComponent implements OnInit {
     private detailService: DetailService,
     private materialTaxService: MaterialTaxService,
     private uomService: UomService,
-    private projectService: projectService
+    private projectService: projectService,
+    private alertService: AlertService
   ) {
     this.authService.employee.subscribe((employee) => (this.user = employee));
     this.detailService.getAllDetail().subscribe((detail) => {
@@ -110,6 +112,7 @@ export class MaterialAndTaxComponent implements OnInit {
   }
 
   onSubmit() {
+    this.alertService.clear();
     const materialTaxToSubmit = this.items.getRawValue().map((item) => {
       return {
         ...item,
@@ -118,9 +121,14 @@ export class MaterialAndTaxComponent implements OnInit {
         disc_amount: item.disc_amount || null,
       };
     });
-    console.log(materialTaxToSubmit);
-    this.materialTaxService.addMaterialTax(materialTaxToSubmit).subscribe();
-    this.item.reset();
+    this.materialTaxService.addMaterialTax(materialTaxToSubmit).subscribe({
+      next: () => {
+        this.alertService.success('Successfully Create a Purchase Detail!', {
+          autoClose: true,
+        });
+        this.item.reset();
+      },
+    });
   }
 
   onSearchSparePart() {
